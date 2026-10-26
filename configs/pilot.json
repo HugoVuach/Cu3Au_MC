@@ -1,0 +1,12 @@
+{
+  "L": 6,
+  "temperatures": [300,500,650,800,900,950,1000,1050,1100,1150,1200,1250,1300,1350,1400,1450,1500,1550,1600,1700,1850,2050,2400,3000,4000],
+  "seeds": [20261021, 20261022],
+  "burn_sweeps": 500,
+  "sample_sweeps": 1500,
+  "sample_every": 5,
+  "exchange_every": 5,
+  "chunk_sweeps": 250,
+  "bootstrap": 100,
+  "random_start_above_K": 1300
+}

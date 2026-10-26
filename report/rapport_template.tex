@@ -1,0 +1,674 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\IfFileExists{french.ldf}{\usepackage[french]{babel}}{}
+\usepackage[margin=22mm,headheight=15pt]{geometry}
+\usepackage{amsmath,amssymb,graphicx,booktabs,array,xcolor}
+\usepackage{microtype,fancyhdr,tcolorbox}
+\tcbuselibrary{breakable}
+\usepackage[colorlinks=true,linkcolor=blue!45!black,urlcolor=blue!60!black,citecolor=blue!45!black]{hyperref}
+\renewcommand{\contentsname}{Sommaire}
+\renewcommand{\refname}{Références}
+\definecolor{navy}{HTML}{183047}
+\definecolor{teal}{HTML}{167D9A}
+\definecolor{gold}{HTML}{DBA52D}
+\definecolor{pale}{HTML}{F2F6F9}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textcolor{navy}{Cu\textsubscript{3}Au : ordre et désordre chimique}}
+\fancyhead[R]{\small Projet Monte-Carlo}
+\fancyfoot[L]{\small Réseau CFC rigide / ensemble canonique}
+\fancyfoot[R]{\thepage}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlength{\emergencystretch}{2em}
+\newtcolorbox{oral}[1]{breakable,colback=pale,colframe=teal,boxrule=.6pt,
+  title={\textbf{Préparation à l'oral : #1}},fonttitle=\small,coltitle=white}
+\newtcolorbox{attention}{breakable,colback=gold!8,colframe=gold!80!black,boxrule=.6pt,
+  title={Point d'interprétation},fonttitle=\small}
+\newcommand{\Au}{\mathrm{Au}}
+\newcommand{\Cu}{\mathrm{Cu}}
+\newcommand{\kb}{k_{\mathrm B}}
+\newcommand{\fig}[3]{\begin{figure}[htbp]\centering
+\includegraphics[width=#2\linewidth]{figures/#1.pdf}\caption{#3}\end{figure}}
+\input{auto_results.tex}
+\begin{document}
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+\vspace*{14mm}
+{\color{teal}\rule{\linewidth}{2pt}}
+\vspace{9mm}
+{\Large\textcolor{teal}{Modélisation et simulation numérique}\par}
+\vspace{8mm}
+{\Huge\bfseries\color{navy} Transition ordre--désordre de Cu\textsubscript{3}Au\par}
+\vspace{7mm}
+{\Large Monte-Carlo sur réseau CFC rigide\par}
+\vspace{12mm}
+{\large Rapport question par question, démonstrations et notes pour l'oral\par}
+\vspace{10mm}
+\begin{tcolorbox}[colback=pale,colframe=navy,boxrule=.8pt]
+\textbf{Système étudié :} $\Lbox^3$ mailles, $N=\Natoms$ sites,
+$c_{\Au}=1/4$, interactions de premiers et seconds voisins.\\[2mm]
+\textbf{Résultat exact :} $u_0=-3.813\ \mathrm{eV/atome}$.\\[2mm]
+\textbf{Maximum thermique observé :} $T^*_{C_V}=\Tpeak\ \mathrm K$ sur la grille.\\[2mm]
+\textbf{Statut des diagnostics près du maximum :} \DiagnosticStatus.
+\end{tcolorbox}
+\vfill
+\textbf{Traçabilité.} Tous les résultats numériques, tableaux et figures de ce
+rapport proviennent des fichiers du dossier de résultats associé. Le code
+recalcule les résultats à partir des paramètres du modèle ; aucune valeur
+de transition n'est imposée à la simulation.
+\vspace{8mm}
+\end{titlepage}
+\hypersetup{pageanchor=true}
+\tableofcontents
+\newpage
+
+\section*{Cadre du projet et conventions}
+\addcontentsline{toc}{section}{Cadre du projet et conventions}
+Le projet étudie le désordre \emph{chimique} d'un alliage Cu$_3$Au. Les sites
+du réseau ne se déplacent pas : l'état d'un site est seulement son occupation
+par Au ou Cu. La composition et le volume sont fixés. Les températures sont
+en kelvins, les énergies en eV et $\kb=8.617333262\times10^{-5}\ \mathrm{eV/K}$.
+Dans le code, $s_i=1$ désigne Au et $s_i=0$ Cu. Une paire non orientée est
+comptée une seule fois.
+
+\begin{center}
+\begin{tabular}{lrrr}
+\toprule
+Coquille & Distance & Coordination & Énergies de paire (eV)\\
+\midrule
+Premiers voisins & $a/\sqrt2$ & $12$ & $J_{\Au\Au}=-0.635$\\
+ & & & $J_{\Cu\Cu}=-0.582$, $J_{\Au\Cu}=-0.689$\\
+Seconds voisins & $a$ & $6$ & $I_{\Au\Au}=I_{\Cu\Cu}=0$\\
+ & & & $I_{\Au\Cu}=+0.0063$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Question 1 -- Réseau, énergie et algorithme de Metropolis}
+\subsection{Construction exacte de la géométrie}
+Une maille conventionnelle porte les quatre positions
+\[
+\mathbf b_0=(0,0,0),\quad
+\mathbf b_1=(0,\tfrac12,\tfrac12),\quad
+\mathbf b_2=(\tfrac12,0,\tfrac12),\quad
+\mathbf b_3=(\tfrac12,\tfrac12,0).
+\]
+Les sites sont $\mathbf r/a=(i,j,k)+\mathbf b_\mu$, avec
+$i,j,k=0,\ldots,L-1$. Ainsi $N=4L^3$, $N_{\Au}=L^3$ et $N_{\Cu}=3L^3$.
+La boîte demandée correspond à $L=6$, donc $864$ sites dont $216$ Au.
+
+Le changement de coordonnées $(X,Y,Z)=2\mathbf r/a$ permet de travailler
+avec des entiers. Les sites CFC vérifient
+\[
+X,Y,Z\in\{0,\ldots,2L-1\},\qquad X+Y+Z\text{ pair}.
+\]
+En effet, les parités possibles sont $(0,0,0)$, $(0,1,1)$, $(1,0,1)$ et
+$(1,1,0)$, soit exactement les quatre positions de base. Pour $L=6$, les
+coordonnées vont de $0$ à $11$. La coordonnée $12$ est identifiée à $0$.
+
+Les déplacements de premiers voisins sont
+\[
+(\pm1,\pm1,0),\quad(\pm1,0,\pm1),\quad(0,\pm1,\pm1),
+\]
+et ceux de seconds voisins sont
+\[
+(\pm2,0,0),\quad(0,\pm2,0),\quad(0,0,\pm2).
+\]
+Toutes les coordonnées sont réduites modulo $2L$. Le tableau des voisins
+est calculé une fois et reste fixe. Les tailles $L<3$ sont refusées dans cette
+implémentation pour éviter les ambiguïtés d'images périodiques multiples.
+
+\fig{01_reseau}{.95}{La maille $L1_2$ et le partage des sites de bord. Les
+positions sont celles du réseau CFC, quelle que soit l'occupation chimique.}
+
+\subsection{Énergie et tendance à l'ordre}
+L'énergie est
+\begin{equation}
+E=\sum_{\{i,j\}\in\mathcal P_1}J_{\sigma_i\sigma_j}
++\sum_{\{i,j\}\in\mathcal P_2}I_{\sigma_i\sigma_j}.
+\end{equation}
+Si l'on utilise les listes de voisins orientées, il faut un facteur $1/2$.
+On obtient $Nz_1/2=5184$ paires de premiers voisins et $Nz_2/2=2592$ paires
+de seconds voisins pour $N=864$.
+
+Pour comparer les préférences chimiques, on définit
+\[
+w_1=J_{\Au\Au}+J_{\Cu\Cu}-2J_{\Au\Cu}=0.161\ \mathrm{eV}.
+\]
+Deux contacts Au--Cu coûtent donc $0.161$ eV de moins qu'un contact Au--Au
+et un contact Cu--Cu. Au second voisinage, chaque paire Au--Cu coûte
+$0.0063$ eV, tandis qu'une paire identique coûte zéro. L'ordre $L1_2$
+satisfait ces deux tendances.
+
+\subsection{Échanges à composition fixée et variation locale}
+Un mouvement échange un Au et un Cu, choisis uniformément parmi les paires
+d'espèces différentes. Cela conserve exactement la stœchiométrie.
+Pour des sites $i$ et $j$, initialement Au et Cu,
+\begin{align}
+\Delta E={}&\sum_{n=1}^2\sum_{k\in V_n(i)\setminus\{j\}}
+[V_n(\Cu,\sigma_k)-V_n(\Au,\sigma_k)]\notag\\
+&+\sum_{n=1}^2\sum_{k\in V_n(j)\setminus\{i\}}
+[V_n(\Au,\sigma_k)-V_n(\Cu,\sigma_k)],
+\end{align}
+avec $V_1=J$ et $V_2=I$. Si les sites sont voisins, leur liaison mutuelle
+reste Au--Cu : sa variation est nulle. Elle ne doit pas être recalculée comme
+si une seule extrémité changeait.
+
+Le noyau rapide exploite aussi l'identité démontrée à la question 5.
+Si $a_i,a_j$ sont les nombres de voisins Au de première coquille, et
+$b_i,b_j$ ceux de seconde coquille, en excluant le partenaire échangé,
+\begin{equation}
+\boxed{\Delta E=0.161(a_j-a_i)+0.0126(b_i-b_j)\quad\text{eV}.}
+\end{equation}
+Les énergies sont stockées en micro-eV entiers. La somme locale est ainsi
+exacte, sans accumulation d'erreurs d'arrondi. Les exponentielles
+d'acceptation restent naturellement évaluées en nombres réels.
+
+\subsection{Balance détaillée}
+La mesure canonique sur les configurations de composition fixée est
+\[
+\pi_T(C)=Z^{-1}e^{-E(C)/(\kb T)}.
+\]
+Comme la proposition d'échange est symétrique, l'acceptation de Metropolis est
+\begin{equation}
+\boxed{A(C\to C')=\min[1,e^{-\Delta E/(\kb T)}].}
+\end{equation}
+On a $A(C\to C')/A(C'\to C)=e^{-\beta\Delta E}=\pi(C')/\pi(C)$,
+ce qui établit la balance détaillée. Accepter certains mouvements défavorables
+est nécessaire pour reproduire les excitations thermiques.
+
+Un balayage représente ici $N$ propositions \emph{Au--Cu}. Les propositions
+triviales entre deux espèces identiques sont retirées avant le comptage.
+Cette convention modifie l'unité de temps Monte-Carlo, mais pas la mesure
+d'équilibre. Les échanges à longue distance sont un outil d'échantillonnage ;
+ils ne décrivent pas une cinétique réaliste de diffusion par lacunes.
+
+\begin{oral}{Pourquoi ne pas changer un seul atome ?}
+Changer Au en Cu modifierait la composition. Notre ensemble est canonique :
+on doit permuter les occupations. Expliquer aussi pourquoi une énergie de
+paire plus négative est plus favorable, et pourquoi le facteur $1/2$ apparaît
+dans une somme sur des voisinages orientés.
+\end{oral}
+
+\section{Question 2 -- Ordre à courte portée : paramètres de Cowley}
+Pour une référence Au, l'énoncé définit
+\[
+\alpha_n=1-\frac{p_n^{\Cu\mid\Au}}{c_{\Cu}},\qquad c_{\Cu}=\frac34.
+\]
+Si $B_n$ est le nombre de paires Au--Cu non orientées de la coquille $n$,
+chaque paire possède exactement une extrémité Au. On obtient
+\[
+p_n^{\Cu\mid\Au}=\frac{B_n}{N_{\Au}z_n},\qquad
+\boxed{\alpha_n=1-\frac{B_n}{N_{\Au}z_nc_{\Cu}}.}
+\]
+Pour la boîte de l'énoncé,
+\[
+\alpha_1=1-\frac{B_1}{1944},\qquad
+\alpha_2=1-\frac{B_2}{972}.
+\]
+Dans $L1_2$, les premiers voisins d'un Au sont tous Cu, donc
+$\alpha_1=1-1/(3/4)=-1/3$. Les seconds voisins sont tous Au, donc
+$\alpha_2=1$.
+
+Un paramètre négatif indique un excès de voisins d'espèce opposée. Un
+paramètre positif indique leur déficit. Zéro décrit un mélange aléatoire
+dans la limite d'un grand système, et non l'état parfaitement ordonné.
+
+À composition fixée dans une boîte finie, conditionner la référence à être
+Au laisse $N_{\Cu}$ Cu parmi $N-1$ autres sites. Ainsi
+\[
+\left\langle\alpha_n\right\rangle_{T\to\infty}
+=1-\frac{N_{\Cu}/(N-1)}{N_{\Cu}/N}
+=\boxed{-\frac1{N-1}}.
+\]
+Pour $N=864$, cette correction vaut environ $-0.00116$.
+
+\begin{oral}{Quel est le signe attendu dans l'état ordonné ?}
+Répondre sans mémoriser une formule : un Au a douze voisins Cu alors qu'un
+mélange aléatoire n'en aurait que neuf en moyenne. Les contacts Au--Cu sont
+surreprésentés, d'où $\alpha_1<0$. Au second voisinage, ils sont absents,
+d'où $\alpha_2=1$.
+\end{oral}
+
+\section{Question 3 -- Ordre à longue portée et variantes équivalentes}
+Le sous-réseau des sommets comprend $N/4$ sites. En notant
+$n_{\Au}^{(0)}$ son nombre d'Au,
+\[
+p_0=\frac{n_{\Au}^{(0)}}{N/4},\qquad
+\boxed{\eta=\frac{p_0-1/4}{3/4}}.
+\]
+Pour $N=864$, cela s'écrit $\eta=(n_{\Au}^{(0)}-54)/162$.
+Dans la variante de référence, $p_0=1$ et $\eta=1$. Dans un mélange
+aléatoire, $\langle p_0\rangle=1/4$ et $\langle\eta\rangle=0$.
+
+Il existe quatre variantes équivalentes : Au peut occuper chacun des quatre
+sous-réseaux CFC. Dans une autre variante parfaitement ordonnée, $p_0=0$
+et $\eta=-1/3$. Pour éviter une mauvaise interprétation, le code conserve
+le paramètre du sujet et calcule aussi
+\begin{equation}
+q=\sqrt{\frac43\sum_{\mu=0}^3(p_\mu-1/4)^2},
+\qquad \sum_{\mu=0}^3p_\mu=1.
+\end{equation}
+On a $q=1$ dans les quatre variantes et $q=0$ pour les occupations moyennes
+uniformes. Mais $\langle q\rangle$ est légèrement positif dans une boîte finie
+désordonnée, car il mesure une amplitude de fluctuations.
+
+\fig{09_sous_reseaux}{1}{Paramètre signé de l'énoncé, amplitude invariante et
+occupations des sous-réseaux. Une moyenne entre variantes ne doit pas être
+confondue avec une configuration instantanée désordonnée.}
+
+\begin{oral}{Pourquoi une moyenne de $\eta$ peut-elle être nulle à basse température ?}
+Dans une boîte finie, un échantillonnage parfaitement ergodique visite les
+quatre variantes. Leur moyenne donne $(1+3(-1/3))/4=0$, même si chaque
+configuration est ordonnée. C'est pourquoi l'amplitude $q$ complète le
+paramètre demandé. L'ordre de moyenne et de prise de norme compte.
+\end{oral}
+
+\section{Question 4 -- Vérifications du programme}
+Le dossier contient une suite de tests automatiques : \TestCount\ tests
+passent dans l'environnement décrit dans le fichier de validation. Ils
+contrôlent la géométrie périodique, la réciprocité des voisinages, les quatre
+variantes, les valeurs analytiques, les différences d'énergie locales et
+globales, la conservation de composition et la reproductibilité.
+
+\subsection{Création d'une paire d'antisites}
+Échangeons un Au et un Cu premiers voisins dans l'état $L1_2$. En excluant
+leur liaison mutuelle, le premier site a onze voisins Cu, et le second trois
+Au et huit Cu. La variation de première coquille vaut
+\begin{align*}
+\Delta E_1={}&11(J_{\Cu\Cu}-J_{\Au\Cu})
++3(J_{\Au\Au}-J_{\Au\Cu})\\
+&+8(J_{\Au\Cu}-J_{\Cu\Cu})=3w_1=0.483\ \mathrm{eV}.
+\end{align*}
+Douze liaisons identiques de seconde coquille deviennent Au--Cu :
+\[
+\Delta E_2=12(0.0063)=0.0756\ \mathrm{eV}.
+\]
+Ainsi
+\[
+\boxed{\Delta E_{\text{échange 1er voisin}}=0.5586\ \mathrm{eV}.}
+\]
+L'échange inverse rend exactement l'énergie opposée.
+
+\subsection{Contrôles indépendants}
+Le noyau rapide par comptage est confronté à une somme explicite des
+matrices de paire pour des échanges aléatoires, voisins et non voisins, sur
+plusieurs tailles. Un petit ensemble restreint de configurations est énuméré
+exactement pour vérifier la stationnarité canonique de la matrice de
+Metropolis. Le signe de l'acceptation des échanges de répliques est également
+vérifié par balance détaillée.
+
+Pendant la campagne, à la fin de chaque segment, le code recalcule l'énergie
+complète de chaque réplique et impose l'égalité entière avec l'énergie suivie
+localement. Il vérifie également la composition et la borne $E\ge E_0$.
+Une incohérence arrête immédiatement le calcul.
+
+\begin{oral}{Qu'est-ce qu'un bon test physique ?}
+Une jolie courbe n'est pas un test de correction. Citer une valeur exacte,
+puis un contrôle indépendant : $\Delta E=0.5586$ eV pour un défaut précis,
+et égalité entre variation locale et différence de deux énergies globales.
+Le test canonique restreint ne constitue pas une résolution exacte de la
+boîte de 864 sites ; il vérifie la règle probabiliste.
+\end{oral}
+
+\section{Question 5 -- Énergie de cohésion à température nulle}
+Chaque Au a douze voisins Cu. Il y a donc $216\times12=2592$ paires Au--Cu,
+aucune paire Au--Au de première coquille, et $5184-2592=2592$ paires Cu--Cu.
+Les seconds voisins sont de même espèce et ne contribuent pas à l'énergie.
+\[
+E_0=2592(-0.689)+2592(-0.582)=-3294.432\ \mathrm{eV}.
+\]
+Donc
+\begin{equation}
+\boxed{u_0=-3.813\ \mathrm{eV/atome},\qquad
+E_0^{\Cu_3\Au}=-15.252\ \mathrm{eV}.}
+\end{equation}
+La cohésion exprimée comme énergie positive de dissociation vaut
+$3.813\ \mathrm{eV/atome}$, relativement au zéro énergétique du modèle.
+
+\subsection{Preuve que \texorpdfstring{$L1_2$}{L12} est un état fondamental}
+Soient $A_1,B_1,C_1$ les nombres de paires Au--Au, Au--Cu et Cu--Cu de
+première coquille. À composition fixée,
+\[
+2A_1+B_1=12N_{\Au},\qquad A_1+B_1+C_1=M_1.
+\]
+En éliminant $B_1$ et $C_1$ dans l'énergie, on trouve
+\[
+E_1=J_{\Cu\Cu}M_1+(J_{\Au\Cu}-J_{\Cu\Cu})12N_{\Au}+w_1A_1.
+\]
+Pour les seconds voisins, $E_2=0.0063B_2$. Puisque $L1_2$ possède
+$A_1=B_2=0$,
+\begin{equation}
+\boxed{E-E_0=0.161A_1+0.0063B_2\ge0.}
+\end{equation}
+C'est une preuve du minimum global pour les paramètres donnés. Elle ne
+nécessite aucune simulation.
+
+\begin{oral}{Le minimum observé est-il seulement numérique ?}
+Non : les deux nombres de paires sont positifs ou nuls et leurs coefficients
+sont positifs. La structure $L1_2$ annule simultanément les deux contributions.
+Cette démonstration vaut pour le modèle de l'énoncé ; elle ne prétend pas
+décrire toutes les contributions microscopiques d'un alliage réel.
+\end{oral}
+
+\section{Question 6 -- Équilibrer à différentes températures}
+La simulation doit échantillonner
+\[
+P_T(C)=\frac{e^{-\beta E(C)}}{\sum_{C'\,\text{de même composition}}e^{-\beta E(C')}}.
+\]
+Une configuration finale seule n'est pas une moyenne thermique. À chaque
+température, on distingue une phase d'équilibration, écartée de l'analyse,
+et une phase de production.
+
+\subsection{Échanges de répliques et mesure canonique}
+Pour faciliter les passages entre états métastables, plusieurs répliques
+évoluent à des températures $T_r$. La mesure jointe est le produit
+$\Pi(\{C_r\})\propto\prod_r e^{-\beta_rE(C_r)}$. L'échange de deux
+configurations à températures voisines est accepté avec
+\begin{equation}
+A_{r,r+1}=\min\left[1,
+\exp\{(\beta_r-\beta_{r+1})(E_r-E_{r+1})\}\right].
+\end{equation}
+Le rapport des poids après et avant échange donne directement cet exposant.
+La marginale à chaque température reste canonique. La mesure doit être
+classée par \emph{température fixe}, et non par identité de réplique.
+
+Le code alterne les paires de températures échangées et réalise une tentative
+sur chaque lien concerné tous les \ExchangeEvery\ balayages. Les noyaux de
+Metropolis restent ceux demandés par l'énoncé ; les échanges de répliques
+ajoutent un mécanisme d'échantillonnage qui conserve la mesure cible
+\cite{metropolis,hukushima}.
+
+\subsection{Protocole réellement exécuté}
+\begin{center}
+\begin{tabular}{lr}
+\toprule
+Paramètre & Valeur\\
+\midrule
+Nombre de sites & \Natoms\\
+Nombre de températures & \Ntemps\\
+Chaînes indépendantes & \Nchains\\
+Balayages d'équilibration par chaîne & \BurnSweeps\\
+Balayages de production par chaîne & \ProductionSweeps\\
+Intervalle entre mesures & \SampleEvery\\
+Mesures par température et par chaîne & \Ndraws\\
+Maximum sur la grille & $\Tpeak\ \mathrm K$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Les graines et toutes les températures figurent dans le fichier de
+configuration et dans \texttt{summary.json}. Les chaînes démarrent dans
+des variantes ordonnées différentes ; dans la seconde chaîne, les répliques
+chaudes démarrent désordonnées. Un départ entièrement aléatoire à très basse
+température risquerait de se figer avant d'atteindre l'état fondamental.
+
+\fig{07_configurations}{1}{Configurations finales effectivement obtenues,
+au froid, près du maximum thermique et au chaud. Ce sont des instantanés,
+pas des moyennes sur les occupations.}
+\fig{10_repliques}{1}{Trajectoires de quelques identités de répliques.
+La circulation en température complète les contrôles locaux d'équilibre.}
+
+\begin{oral}{Pourquoi ajouter des températures chaudes ?}
+Une réplique chaude franchit plus facilement une barrière d'énergie. Les
+échanges permettent ensuite à cette configuration de rejoindre une
+température plus basse. Cela améliore l'exploration mais ne garantit pas
+à lui seul un équilibre parfait : il faut examiner les trajectoires,
+l'autocorrélation et l'accord entre chaînes.
+\end{oral}
+
+\section{Question 7 -- Grandeurs physiques et incertitudes}
+Les moyennes numériques approchent
+$\langle A\rangle_T=\sum_C A(C)P_T(C)$. On calcule l'énergie par atome,
+les deux paramètres de Cowley, $\eta$, $q$ et les occupations des quatre
+sous-réseaux.
+
+\subsection{Capacité calorifique et fluctuations d'ordre}
+À Hamiltonien indépendant de la température,
+\[
+\frac{\partial\langle E\rangle}{\partial\beta}
+=-\big(\langle E^2\rangle-\langle E\rangle^2\big).
+\]
+Comme $d\beta/dT=-1/(\kb T^2)$,
+\begin{equation}
+\boxed{\frac{c_V}{\kb}=
+\frac{\langle E^2\rangle-\langle E\rangle^2}{N(\kb T)^2}.}
+\end{equation}
+Il faut utiliser l'énergie \emph{totale} dans cette formule. La contribution
+calculée est configuratoire : elle n'inclut pas la chaleur des vibrations.
+
+On suit aussi
+\[
+X_q=\frac{N}{\kb T}\big(\langle q^2\rangle-\langle q\rangle^2\big),
+\quad
+U_q=1-\frac{\langle q^4\rangle}{3\langle q^2\rangle^2}.
+\]
+$X_q$ est une réponse à un champ artificiel couplé comme $-Nhq$ ; il ne
+faut pas l'identifier sans précaution à une susceptibilité d'un composant
+du paramètre d'ordre. Le cumulant est fourni comme diagnostic complémentaire.
+Le facteur $3$ est une convention scalaire ; sa limite désordonnée n'est
+pas supposée nulle pour cette amplitude à plusieurs composantes.
+
+\subsection{Autocorrélation, erreurs et comparaison des chaînes}
+Les mesures successives ne sont pas indépendantes. Pour une série $A_t$,
+\[
+\tau_{\mathrm{int}}=\frac12+\sum_{\ell\ge1}\rho_A(\ell),\qquad
+N_{\mathrm{eff}}\simeq\frac{M}{2\tau_{\mathrm{int}}}.
+\]
+Le code utilise une troncature par paires positives de l'autocorrélation
+et un bootstrap par blocs circulaires. Les blocs ont une longueur d'au moins
+$2\tau_{\mathrm{int}}$, estimée à partir de l'énergie et de $q$, sauf lorsque
+la série est trop courte pour le permettre ; ce cas est signalé par le faible
+nombre de blocs. Les erreurs retiennent aussi la dispersion entre chaînes.
+Les variances thermiques sont calculées \emph{dans chaque chaîne} avant
+moyennage pour éviter de transformer une divergence entre chaînes en
+capacité calorifique artificielle.
+
+Les contrôles indicatifs demandent $\widehat R<1.05$ pour l'énergie et $q$,
+un effectif indépendant estimé d'au moins $200$, au moins $20$ blocs par
+chaîne, et un écart entre demi-séries inférieur à trois unités d'erreur
+estimée. Les graines indépendantes ne rendent pas les températures d'une
+même campagne indépendantes.
+
+\fig{02_ordres}{1}{Ordre à longue et courte portée. Les bandes représentent
+une erreur-type estimée ; elles ne sont pas une enveloppe systématique de
+toutes les erreurs de modélisation ou d'équilibration.}
+\fig{03_thermodynamique}{1}{Énergie et capacité calorifique. Les références
+analytiques encadrent l'interprétation du calcul.}
+\fig{05_diagnostics}{1}{Diagnostics par température. Un indicateur favorable
+ne prouve pas l'exploration de tous les états métastables.}
+\fig{06_traces}{1}{Énergie et ordre à température fixe. La phase initiale
+grisée est exclue des statistiques.}
+
+\subsection{Vérification de la limite de haute température}
+Dans un mélange indépendant de grande taille,
+$P(\Au\Au)=1/16$, $P(\Cu\Cu)=9/16$ et $P(\Au\Cu)=3/8$. Ainsi
+\begin{align*}
+u_\infty={}&6\left(\frac{J_{\Au\Au}}{16}
++\frac{9J_{\Cu\Cu}}{16}+\frac{3J_{\Au\Cu}}8\right)
++3\left(\frac{3I_{\Au\Cu}}8\right)\\
+={}&-3.7455375\ \mathrm{eV/atome}.
+\end{align*}
+À $N$ fini, les probabilités exactes sont
+\[
+P(\Au\Au)=\frac{N_{\Au}(N_{\Au}-1)}{N(N-1)},\quad
+P(\Cu\Cu)=\frac{N_{\Cu}(N_{\Cu}-1)}{N(N-1)},\quad
+P(\Au\Cu)=\frac{2N_{\Au}N_{\Cu}}{N(N-1)}.
+\]
+Le code utilise ces corrections pour les tests. La limite exacte pour la
+boîte étudiée vaut $\RandomLimit\ \mathrm{eV/atome}$. Même à plusieurs
+milliers de kelvins, les interactions peuvent encore créer des corrélations :
+il ne faut pas forcer les courbes à rejoindre la limite $T\to\infty$.
+
+\begin{oral}{Pourquoi ne pas utiliser seulement l'écart-type divisé par $\sqrt M$ ?}
+Parce que deux mesures proches peuvent représenter presque la même
+configuration. L'effectif utile est $N_{\mathrm{eff}}$, plus petit que $M$.
+Une petite barre d'erreur n'est crédible que si le temps d'autocorrélation et
+les désaccords entre chaînes ont été examinés.
+\end{oral}
+
+\section{Question 8 -- Repérer la transition et comparer au champ moyen}
+\subsection{Résultat Monte-Carlo et résolution de la grille}
+Le maximum de capacité calorifique sur les températures échantillonnées est
+\begin{equation}
+\boxed{T^*_{C_V}(L=\Lbox)=\Tpeak\ \mathrm K.}
+\end{equation}
+Les deux températures voisines de ce maximum sont $\Tleft$ et $\Tright$ K.
+L'intervalle $[\Tleft,\Tright]$ K décrit le voisinage sur la grille :
+\textbf{ce n'est pas un intervalle de confiance statistique}. Il ne couvre
+ni une éventuelle erreur systématique d'équilibration ni le déplacement
+avec la taille.
+
+Les maxima trouvés séparément dans les chaînes sont : \ChainPeaks.
+Les diagnostics des cinq températures centrées sur le maximum sont résumés
+ci-dessous. Leur statut global est : \DiagnosticStatus.
+\input{critical_table.tex}
+\fig{11_zoom_transition}{1}{Agrandissement de la zone de transition :
+ordre, énergie et fluctuations. La zone grisée représente les voisins de
+grille, sans interprétation comme intervalle de confiance.}
+
+Une boîte finie n'a pas de singularité thermodynamique. Une seule taille
+permet de repérer un maximum apparent, mais pas d'extrapoler $T_c$ à la limite
+$N\to\infty$. Une étude complémentaire pourrait comparer plusieurs $L$,
+les distributions et les déplacements des maxima \cite{binder}.
+
+\fig{04_distributions}{1}{Distributions près de la zone de transition.
+L'inspection de la coexistence complète celle du maximum de capacité
+calorifique ; les histogrammes restent sensibles à la durée du calcul.}
+
+\subsection{Estimation analytique de Bragg-Williams}
+Pour une famille d'états à un sous-réseau privilégié,
+\[
+p_0=\frac{1+3\eta}{4},\qquad
+p_1=p_2=p_3=p_f=\frac{1-\eta}{4}.
+\]
+Le champ moyen néglige les corrélations entre occupations. Les premiers
+voisins relient des sous-réseaux distincts ; les seconds voisins appartiennent
+au même sous-réseau. Le comptage donne
+\[
+\frac{B_1}{N}=\frac94+\frac34\eta^2,\qquad
+\frac{B_2}{N}=\frac98(1-\eta^2).
+\]
+L'énergie moyenne s'écrit
+\[
+u_{\mathrm{MF}}(\eta)=u_\infty-A\eta^2,
+\quad A=\frac38w_1-\frac9{16}w_2=0.0674625\ \mathrm{eV},
+\]
+avec $w_2=I_{\Au\Au}+I_{\Cu\Cu}-2I_{\Au\Cu}=-0.0126$ eV.
+
+L'entropie de mélange par site d'un sous-réseau vaut $-\kb h(p)$, où
+$h(p)=p\ln p+(1-p)\ln(1-p)$ et $0\ln0=0$. Donc
+\[
+f_{\mathrm{MF}}(\eta,T)=u_\infty-A\eta^2+\kb T g(\eta),
+\quad g(\eta)=\tfrac14h(p_0)+\tfrac34h(p_f).
+\]
+La coexistence vérifie à la fois la stationnarité du minimum ordonné et
+l'égalité de son énergie libre à celle du minimum désordonné :
+\[
+2A\eta_t=\kb T_tg'(\eta_t),\qquad
+A\eta_t^2=\kb T_t[g(\eta_t)-g(0)].
+\]
+En éliminant $T_t$,
+\[
+\eta_tg'(\eta_t)=2[g(\eta_t)-g(0)],\qquad
+g'(\eta)=\frac3{16}\ln\frac{(1+3\eta)(3+\eta)}{3(1-\eta)^2}.
+\]
+La résolution donne $\eta_t\simeq0.46358$ et
+\[
+\boxed{T_t^{\mathrm{MF}}\simeq1712.18\ \mathrm K.}
+\]
+L'annulation de $f''(0,T)$ donne seulement la perte de stabilité locale de
+l'état désordonné : $T_{\mathrm{sp}}=2A/\kb\simeq1565.74$ K. Cette
+spinodale est distincte de la coexistence. Le saut d'ordre prédit ici est
+une propriété de l'approximation de champ moyen, et ne remplace pas une
+étude de la nature de la transition du modèle spatial.
+
+\fig{08_champ_moyen}{1}{Énergies libres approchées et comparaison entre
+amplitudes d'ordre. L'estimation de champ moyen n'est pas utilisée pour
+fixer le résultat Monte-Carlo.}
+
+\begin{oral}{Pourquoi le champ moyen et Monte-Carlo donnent-ils des températures différentes ?}
+Le champ moyen remplace les voisins par des probabilités indépendantes.
+Il ignore les corrélations locales, pourtant mesurées par Cowley. Le Monte-Carlo
+échantillonne les configurations du modèle spatial. Une différence n'est donc
+pas automatiquement un défaut du code. Il faut distinguer coexistence,
+spinodale et maximum d'une boîte finie.
+\end{oral}
+
+\section{Question 9 -- Discussion des résultats et limites}
+\input{discussion_results.tex}
+
+Le mécanisme général est une compétition entre énergie et entropie :
+$F=U-TS$. L'ordre minimise l'énergie, tandis que le nombre très élevé de
+configurations désordonnées favorise leur poids statistique à haute
+température. La disparition de l'ordre global peut précéder la disparition
+des préférences chimiques locales : un $q$ faible ne contraint pas
+$\alpha_1$ et $\alpha_2$ à être exactement nuls.
+
+Les limites principales sont explicites : taille finie unique, durées de
+simulation finies, grille de températures discrète, et approximation physique
+du réseau rigide. Les vibrations, la dilatation et les relaxations autour des
+antisites sont absentes. Les constantes de paire sont supposées indépendantes
+de la température. On ne présente donc pas la température du modèle comme
+une prédiction expérimentale exacte.
+
+Une distribution à deux pics est compatible avec une coexistence ; une
+hystérésis est compatible avec une métastabilité. Aucune de ces observations
+isolées n'est une preuve suffisante de l'ordre thermodynamique de la
+transition. Il faudrait renforcer les statistiques et comparer plusieurs
+tailles pour conclure sur ce point.
+
+\begin{oral}{Plan possible pour une présentation de 8 à 10 minutes}
+\begin{enumerate}
+\item Décrire le réseau fixe, la composition et la structure $L1_2$.
+\item Montrer les préférences de paire et la preuve du fondamental.
+\item Expliquer un échange et la balance détaillée de Metropolis.
+\item Définir Cowley et l'ordre global ; montrer les quatre variantes.
+\item Présenter les tests avant les résultats numériques.
+\item Montrer énergie, capacité calorifique et perte d'ordre.
+\item Donner le maximum apparent avec sa résolution et ses diagnostics.
+\item Terminer par les limites physiques et l'étude de taille à poursuivre.
+\end{enumerate}
+\end{oral}
+
+\appendix
+\section{Correspondance entre les questions et les fichiers}
+\begin{center}\small
+\begin{tabular}{p{.12\linewidth}p{.40\linewidth}p{.38\linewidth}}
+\toprule
+Question & Réponse numérique & Fichier principal\\
+\midrule
+1 & Réseau, énergie, échanges, Metropolis & \texttt{lattice.py}, \texttt{model.py}, \texttt{kernel.py}\\
+2 & Cowley des deux coquilles & \texttt{model.py : cowley}\\
+3 & Ordre signé, amplitude, sous-réseaux & \texttt{model.py : ordre}\\
+4 & Tests analytiques et probabilistes & \texttt{tests/test\_physics.py}\\
+5 & Énergie exacte, preuve et tests & \texttt{model.py}, présent rapport\\
+6 & Configurations, répliques, graines & \texttt{simulation.py}, \texttt{chain\_*.npz}\\
+7 & Moyennes, erreurs, figures & \texttt{statistics.py}, \texttt{figures.py}\\
+8 & Maximum sur la grille, champ moyen & \texttt{summary.json}, \texttt{meanfield.py}\\
+9 & Discussion fondée sur les données & Rapport et diagnostics CSV\\
+\bottomrule
+\end{tabular}\end{center}
+
+Le lanceur \texttt{run\_project.py} enchaîne les tests, la simulation, les
+statistiques, les figures et le rapport. L'option \texttt{--reuse} réutilise
+uniquement une campagne dont la configuration correspond exactement.
+La compilation PDF demande une installation LaTeX, mais les fichiers
+\texttt{.tex} et les figures sont produits même sans compilation.
+
+\begin{thebibliography}{9}
+\bibitem{metropolis} N. Metropolis, A. W. Rosenbluth, M. N. Rosenbluth,
+A. H. Teller et E. Teller, \emph{Equation of State Calculations by Fast
+Computing Machines}, J. Chem. Phys. \textbf{21}, 1087--1092 (1953).
+\href{https://doi.org/10.1063/1.1699114}{doi:10.1063/1.1699114}.
+\bibitem{hukushima} K. Hukushima et K. Nemoto, \emph{Exchange Monte Carlo
+Method and Application to Spin Glass Simulations}, J. Phys. Soc. Jpn.
+\textbf{65}, 1604--1608 (1996).
+\href{https://doi.org/10.1143/JPSJ.65.1604}{doi:10.1143/JPSJ.65.1604}.
+\bibitem{binder} K. Binder, \emph{Theory of first-order phase transitions},
+Rep. Prog. Phys. \textbf{50}, 783 (1987).
+\href{https://doi.org/10.1088/0034-4885/50/7/001}{doi:10.1088/0034-4885/50/7/001}.
+\end{thebibliography}
+\end{document}

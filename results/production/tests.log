@@ -1,0 +1,20 @@
+test_exact_restricted_canonical_detailed_balance (test_physics.PhysicsTests.test_exact_restricted_canonical_detailed_balance) ... ok
+test_four_equivalent_variants (test_physics.PhysicsTests.test_four_equivalent_variants) ... ok
+test_geometry_and_periodic_distances (test_physics.PhysicsTests.test_geometry_and_periodic_distances) ... ok
+test_ground_state_bound_identity (test_physics.PhysicsTests.test_ground_state_bound_identity) ... ok
+test_high_temperature_limit (test_physics.PhysicsTests.test_high_temperature_limit) ... ok
+test_meanfield_reference (test_physics.PhysicsTests.test_meanfield_reference) ... ok
+test_nearest_neighbor_defect (test_physics.PhysicsTests.test_nearest_neighbor_defect) ... ok
+test_ordered_exact_energy_and_cowley (test_physics.PhysicsTests.test_ordered_exact_energy_and_cowley) ... ok
+test_random_swaps_against_full_energy (test_physics.PhysicsTests.test_random_swaps_against_full_energy) ... ok
+test_replica_exchange_sign_and_balance (test_physics.PhysicsTests.test_replica_exchange_sign_and_balance) ... ok
+test_short_actual_kernel_and_reproducibility (test_physics.PhysicsTests.test_short_actual_kernel_and_reproducibility) ... ok
+test_autocorrelation_known_ar1 (test_statistics.StatisticsTests.test_autocorrelation_known_ar1) ... ok
+test_invalid_temperature_grid_rejected (test_statistics.StatisticsTests.test_invalid_temperature_grid_rejected) ... ok
+test_rhat_detects_separated_chains (test_statistics.StatisticsTests.test_rhat_detects_separated_chains) ... ok
+test_total_energy_heat_capacity_units (test_statistics.StatisticsTests.test_total_energy_heat_capacity_units) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.722s
+
+OK
