@@ -57,6 +57,43 @@ def curves(ax, T, ys, err, color, label):
     ax.fill_between(T, ys-err, ys+err, color=color, alpha=.16, lw=0)
 
 
+def make_cowley_figure(result_dir):
+    """Figure dédiée à alpha1 et alpha2, depuis le CSV existant."""
+    style()
+    root = Path(result_dir)
+    folder = root/'figures'
+    folder.mkdir(exist_ok=True)
+    summary = json.loads((root/'summary.json').read_text(encoding='utf8'))
+    with (root/'observables.csv').open(encoding='utf8') as f:
+        rows = list(csv.DictReader(f))
+    col = lambda key: np.array([float(row[key]) for row in rows])
+    temperatures = col('T_K')
+    peak_temperature = summary['T_cv_peak_grid_K']
+    random_limit = -1/(summary['n_atoms']-1)
+
+    fig, axes = plt.subplots(1, 2, figsize=(12, 5.2), sharex=True)
+    parameters = [
+        ('alpha1', RED, -1/3, r'$\alpha_1$', 'Première coquille : 12 voisins', 'lower right'),
+        ('alpha2', GREEN, 1, r'$\alpha_2$', 'Deuxième coquille : 6 voisins', 'upper right'),
+    ]
+    for ax, (key, color, ordered_limit, symbol, title, legend_loc) in zip(axes, parameters):
+        curves(ax, temperatures, col(key), col(key+'_se'), color, 'Monte-Carlo')
+        ax.axhline(ordered_limit, color=GOLD, ls='--', lw=1.3,
+                   label=r'Ordre parfait $L1_2$')
+        ax.axhline(random_limit, color=INK, ls='-.', lw=1,
+                   label=r'Mélange aléatoire : $-1/(N-1)$')
+        ax.axvline(peak_temperature, color=INK, ls=':', lw=1.2,
+                   label=rf'Maximum de $c_V$ : {peak_temperature:.0f} K')
+        ax.set(xlabel='Température (K)', ylabel=symbol, title=title)
+        ax.legend(loc=legend_loc, fontsize=8.5)
+        ax.margins(y=.12)
+    fig.suptitle('Ordre chimique local : paramètres de Cowley', y=.98)
+    fig.tight_layout(rect=(0, .065, 1, .94))
+    save(fig, folder, '12_cowley',
+         'Bandes : ±1 erreur-type. Les références horizontales sont des limites idéales ; le maximum de cᵥ est repéré sur la grille.')
+    return folder/'12_cowley.pdf'
+
+
 def make_figures(result_dir):
     style()
     root = Path(result_dir)
@@ -276,6 +313,7 @@ def make_figures(result_dir):
     fig.suptitle(f'La grille fine résout le voisinage du maximum · {tc:.0f} K', y=1.01)
     fig.tight_layout()
     save(fig, folder, '11_zoom_transition', 'Zone grisée : températures voisines du maximum, pas un intervalle de confiance. Bandes colorées : ±1 erreur-type.')
+    make_cowley_figure(root)
     for a in archives:
         a.close()
     return sorted(str(p) for p in folder.glob('*.pdf'))
