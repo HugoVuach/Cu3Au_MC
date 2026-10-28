@@ -57,9 +57,7 @@ def sample_observables(state, e_int, neighbors, sub):
 @njit(cache=True)
 def run_segment(states, energies, temps, neighbors, sub, sweeps,
                 exchange_every, sample_every, seed, labels, phase=0):
-    """Metropolis local + échange de répliques ; retour par température fixe. Chaque appel reçoit une graine distincte. L'alternance des liens est conservée
-entre segments via phase. Les identités labels suivent les configurations.
-"""
+
     np.random.seed(seed)
     r, n = states.shape
     records = np.empty((sweeps//sample_every, r, 9))
