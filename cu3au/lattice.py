@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from itertools import product
 import numpy as np
 
-
+# test
 @dataclass(frozen=True)
 class Lattice:
     L: int
