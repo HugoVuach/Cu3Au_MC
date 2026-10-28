@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.9.11)  28 OCT 2026 13:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.9.11)  28 OCT 2026 14:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -859,7 +859,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip71
 ) (auto_results.tex)
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 38
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 39
 .
 
 (C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmr.fd
@@ -876,25 +876,25 @@ Package babel Info: 'french' activates 'french' shorthands.
 )
 \openout1 = `rapport_template.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 38.
-LaTeX Font Info:    ... okay on input line 38.
-LaTeX Info: Redefining \degres on input line 38.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Info: Redefining \degres on input line 39.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -956,13 +956,13 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 s.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-LaTeX Info: Redefining \microtypecontext on input line 38.
-Package microtype Info: Applying patch `item' on input line 38.
-Package microtype Info: Applying patch `toc' on input line 38.
-Package microtype Info: Applying patch `eqnum' on input line 38.
-Package microtype Info: Applying patch `footnote' on input line 38.
-Package microtype Info: Applying patch `verbatim' on input line 38.
-LaTeX Info: Redefining \microtypesetup on input line 38.
+LaTeX Info: Redefining \microtypecontext on input line 39.
+Package microtype Info: Applying patch `item' on input line 39.
+Package microtype Info: Applying patch `toc' on input line 39.
+Package microtype Info: Applying patch `eqnum' on input line 39.
+Package microtype Info: Applying patch `footnote' on input line 39.
+Package microtype Info: Applying patch `verbatim' on input line 39.
+LaTeX Info: Redefining \microtypesetup on input line 39.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -978,44 +978,44 @@ Package microtype Info: No adjustment of character kerning.
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
-Package hyperref Info: Link coloring ON on input line 38.
+Package hyperref Info: Link coloring ON on input line 39.
  (C:/Users\vuache_h\Desktop\perso\Cu3Au_MC\report\rapport_template.out)
 (C:/Users\vuache_h\Desktop\perso\Cu3Au_MC\report\rapport_template.out)
 \@outlinefile=\write4
 \openout4 = `rapport_template.out'.
 
-Package hyperref Info: Option `pageanchor' set `false' on input line 39.
+Package hyperref Info: Option `pageanchor' set `false' on input line 40.
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 4
-6.
+7.
 
 (C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 4
-6.
+7.
 
 (C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-46.
+47.
 
 (C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/lm\omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-46.
+47.
 
 (C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/lm\omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <24.88> on input line 46.
+(Font)              <24.88> on input line 47.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <20.74> on input line 46.
+(Font)              <20.74> on input line 47.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <17.28> on input line 46.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 46.
+(Font)              <17.28> on input line 47.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 47.
 
 
 (C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
@@ -1024,7 +1024,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 46.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 47.
 
  (C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1033,11 +1033,11 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 51.
+(Font)              <10.95> on input line 52.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 51.
+(Font)              <8> on input line 52.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 51.
+(Font)              <6> on input line 52.
  [1
 
 {C:/Users/vuache_h/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/v
@@ -1045,7 +1045,7 @@ uache_h/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/Users/vu
 ache_h/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users/vua
 che_h/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Users/
 vuache_h/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}]
-Package hyperref Info: Option `pageanchor' set `true' on input line 64.
+Package hyperref Info: Option `pageanchor' set `true' on input line 65.
 
 (C:/Users\vuache_h\Desktop\perso\Cu3Au_MC\report\rapport_template.toc
 LaTeX Font Info:    External font `lmex10' loaded for size
@@ -1063,85 +1063,93 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 <figures/01_reseau.pdf, id=221, 851.20775pt x 454.82957pt>
 File: figures/01_reseau.pdf Graphic file (type pdf)
 <use figures/01_reseau.pdf>
-Package pdftex.def Info: figures/01_reseau.pdf  used on input line 125.
+Package pdftex.def Info: figures/01_reseau.pdf  used on input line 126.
 (pdftex.def)             Requested size: 448.69853pt x 239.75378pt.
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/lmr/m/sc/10.95'.
 (microtype)             Ignoring protrusion settings for this character.
  [3{C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathe
-x.enc}] [4 <./figures/01_reseau.pdf>] [5]
-<figures/09_sous_reseaux.pdf, id=261, 857.4864pt x 379.4928pt>
+x.enc}] [4 <./figures/01_reseau.pdf>]
+<figures/12_cowley.pdf, id=257, 856.43309pt x 379.27509pt>
+File: figures/12_cowley.pdf Graphic file (type pdf)
+<use figures/12_cowley.pdf>
+Package pdftex.def Info: figures/12_cowley.pdf  used on input line 233.
+(pdftex.def)             Requested size: 472.31577pt x 209.16908pt.
+ [5]
+<figures/09_sous_reseaux.pdf, id=262, 857.4864pt x 379.4928pt>
 File: figures/09_sous_reseaux.pdf Graphic file (type pdf)
 <use figures/09_sous_reseaux.pdf>
-Package pdftex.def Info: figures/09_sous_reseaux.pdf  used on input line 261.
+Package pdftex.def Info: figures/09_sous_reseaux.pdf  used on input line 276.
 (pdftex.def)             Requested size: 472.31577pt x 209.02858pt.
- [6 <./figures/09_sous_reseaux.pdf>]
+ [6 <./figures/12_cowley.pdf>]
+[7 <./figures/09_sous_reseaux.pdf>]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 332.
- [7]
+(Font)              <12> on input line 347.
+ [8]
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 4
-03.
- (C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
+18.
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-<figures/07_configurations.pdf, id=293, 1035.42007pt x 379.4928pt>
+<figures/07_configurations.pdf, id=318, 1035.42007pt x 379.4928pt>
 File: figures/07_configurations.pdf Graphic file (type pdf)
 <use figures/07_configurations.pdf>
-Package pdftex.def Info: figures/07_configurations.pdf  used on input line 410.
+Package pdftex.def Info: figures/07_configurations.pdf  used on input line 425.
 
 (pdftex.def)             Requested size: 472.31577pt x 173.10957pt.
-<figures/10_repliques.pdf, id=294, 857.59207pt x 375.87929pt>
+<figures/10_repliques.pdf, id=319, 857.59207pt x 375.87929pt>
 File: figures/10_repliques.pdf Graphic file (type pdf)
 <use figures/10_repliques.pdf>
-Package pdftex.def Info: figures/10_repliques.pdf  used on input line 412.
+Package pdftex.def Info: figures/10_repliques.pdf  used on input line 427.
 (pdftex.def)             Requested size: 472.31577pt x 207.01527pt.
 
-[8] [9 <./figures/07_configurations.pdf> <./figures/10_repliques.pdf>]
-<figures/02_ordres.pdf, id=333, 1072.62352pt x 364.9665pt>
+[9 <./figures/07_configurations.pdf>] [10 <./figures/10_repliques.pdf>]
+<figures/02_ordres.pdf, id=357, 1072.62352pt x 364.9665pt>
 File: figures/02_ordres.pdf Graphic file (type pdf)
 <use figures/02_ordres.pdf>
-Package pdftex.def Info: figures/02_ordres.pdf  used on input line 477.
+Package pdftex.def Info: figures/02_ordres.pdf  used on input line 492.
 (pdftex.def)             Requested size: 472.31577pt x 160.70827pt.
-<figures/03_thermodynamique.pdf, id=334, 857.40106pt x 364.9665pt>
+<figures/03_thermodynamique.pdf, id=358, 857.40106pt x 364.9665pt>
 File: figures/03_thermodynamique.pdf Graphic file (type pdf)
 <use figures/03_thermodynamique.pdf>
-Package pdftex.def Info: figures/03_thermodynamique.pdf  used on input line 479
+Package pdftex.def Info: figures/03_thermodynamique.pdf  used on input line 494
 .
 (pdftex.def)             Requested size: 472.31577pt x 201.04962pt.
-<figures/05_diagnostics.pdf, id=335, 857.4864pt x 591.60526pt>
+<figures/05_diagnostics.pdf, id=359, 857.4864pt x 591.60526pt>
 File: figures/05_diagnostics.pdf Graphic file (type pdf)
 <use figures/05_diagnostics.pdf>
-Package pdftex.def Info: figures/05_diagnostics.pdf  used on input line 481.
+Package pdftex.def Info: figures/05_diagnostics.pdf  used on input line 496.
 (pdftex.def)             Requested size: 472.31577pt x 325.86234pt.
-<figures/06_traces.pdf, id=336, 864.45273pt x 519.69658pt>
+<figures/06_traces.pdf, id=360, 864.45273pt x 519.69658pt>
 File: figures/06_traces.pdf Graphic file (type pdf)
 <use figures/06_traces.pdf>
-Package pdftex.def Info: figures/06_traces.pdf  used on input line 483.
+Package pdftex.def Info: figures/06_traces.pdf  used on input line 498.
 (pdftex.def)             Requested size: 472.31577pt x 283.94669pt.
- [10]
+
 [11 <./figures/02_ordres.pdf> <./figures/03_thermodynamique.pdf>] [12 <./figure
 s/05_diagnostics.pdf> <./figures/06_traces.pdf>] (critical_table.tex)
-<figures/11_zoom_transition.pdf, id=413, 857.86562pt x 555.65092pt>
+<figures/11_zoom_transition.pdf, id=432, 857.86562pt x 555.65092pt>
 File: figures/11_zoom_transition.pdf Graphic file (type pdf)
 <use figures/11_zoom_transition.pdf>
-Package pdftex.def Info: figures/11_zoom_transition.pdf  used on input line 530
+Package pdftex.def Info: figures/11_zoom_transition.pdf  used on input line 545
 .
 (pdftex.def)             Requested size: 472.31577pt x 305.93114pt.
-<figures/04_distributions.pdf, id=415, 857.23087pt x 364.9665pt>
+<figures/04_distributions.pdf, id=434, 857.23087pt x 364.9665pt>
 File: figures/04_distributions.pdf Graphic file (type pdf)
 <use figures/04_distributions.pdf>
-Package pdftex.def Info: figures/04_distributions.pdf  used on input line 539.
+Package pdftex.def Info: figures/04_distributions.pdf  used on input line 554.
 (pdftex.def)             Requested size: 472.31577pt x 201.08861pt.
  [13]
 [14 <./figures/11_zoom_transition.pdf> <./figures/04_distributions.pdf>]
-<figures/08_champ_moyen.pdf, id=456, 857.80006pt x 379.4928pt>
+<figures/08_champ_moyen.pdf, id=475, 857.80006pt x 379.4928pt>
 File: figures/08_champ_moyen.pdf Graphic file (type pdf)
 <use figures/08_champ_moyen.pdf>
-Package pdftex.def Info: figures/08_champ_moyen.pdf  used on input line 590.
+Package pdftex.def Info: figures/08_champ_moyen.pdf  used on input line 605.
 (pdftex.def)             Requested size: 472.31577pt x 208.95331pt.
 
 [15 <./figures/08_champ_moyen.pdf>] (discussion_results.tex) [16] [17] [18
@@ -1150,7 +1158,7 @@ Package pdftex.def Info: figures/08_champ_moyen.pdf  used on input line 590.
 [19] [20] [21] [22] [23] [24] [25] [26] [27] [28
 
 ] [29] [30] [31]
-Underfull \hbox (badness 1210) in paragraph at lines 1556--1559
+Underfull \hbox (badness 1210) in paragraph at lines 1571--1574
 []\T1/lmr/m/n/10.95 (+20) K. Bin-der, \T1/lmr/m/it/10.95 (+20) Theory of first-
 order phase tran-si-tions\T1/lmr/m/n/10.95 (+20) , Rep. Prog. Phys. \T1/lmr/bx/
 n/10.95 (+20) 50\T1/lmr/m/n/10.95 (+20) , 783 (1987).
@@ -1165,11 +1173,11 @@ Package rerunfilecheck Info: File `rapport_template.out' has not changed.
 (rerunfilecheck)             Checksum: F4893FC0187483A3EED7497A2F8DCEFE;11245.
  ) 
 Here is how much of TeX's memory you used:
- 28520 strings out of 467871
- 548110 string characters out of 5416924
+ 28530 strings out of 467871
+ 548371 string characters out of 5416924
  976725 words of memory out of 5000000
- 56462 multiletter control sequences out of 15000+600000
- 754463 words of font info for 278 fonts, out of 8000000 for 9000
+ 56471 multiletter control sequences out of 15000+600000
+ 754445 words of font info for 278 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  98i,16n,108p,1061b,818s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10
@@ -1194,9 +1202,9 @@ rams/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Users/vuache_h/AppData/Local/Pr
 ograms/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/Users/vuache_h/AppData/Local
 /Programs/MiKTeX/fonts/type1/public/lm/lmtt8.pfb>
 Output written on C:/Users\vuache_h\Desktop\perso\Cu3Au_MC\report\rapport_templ
-ate.pdf (33 pages, 1007513 bytes).
+ate.pdf (33 pages, 1034561 bytes).
 PDF statistics:
- 738 PDF objects out of 1000 (max. 8388607)
- 152 named destinations out of 1000 (max. 500000)
- 70004 words of extra memory for PDF output out of 74296 (max. 10000000)
+ 757 PDF objects out of 1000 (max. 8388607)
+ 153 named destinations out of 1000 (max. 500000)
+ 70009 words of extra memory for PDF output out of 74296 (max. 10000000)
 
