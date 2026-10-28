@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.9.11)  28 OCT 2026 14:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.9.11)  28 OCT 2026 14:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1073,21 +1073,21 @@ x.enc}] [4 <./figures/01_reseau.pdf>]
 <figures/12_cowley.pdf, id=257, 856.43309pt x 379.27509pt>
 File: figures/12_cowley.pdf Graphic file (type pdf)
 <use figures/12_cowley.pdf>
-Package pdftex.def Info: figures/12_cowley.pdf  used on input line 233.
+Package pdftex.def Info: figures/12_cowley.pdf  used on input line 232.
 (pdftex.def)             Requested size: 472.31577pt x 209.16908pt.
  [5]
 <figures/09_sous_reseaux.pdf, id=262, 857.4864pt x 379.4928pt>
 File: figures/09_sous_reseaux.pdf Graphic file (type pdf)
 <use figures/09_sous_reseaux.pdf>
-Package pdftex.def Info: figures/09_sous_reseaux.pdf  used on input line 276.
+Package pdftex.def Info: figures/09_sous_reseaux.pdf  used on input line 275.
 (pdftex.def)             Requested size: 472.31577pt x 209.02858pt.
  [6 <./figures/12_cowley.pdf>]
 [7 <./figures/09_sous_reseaux.pdf>]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 347.
+(Font)              <12> on input line 346.
  [8]
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 4
-18.
+17.
 
 (C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
@@ -1099,36 +1099,36 @@ Package microtype Info: Loading generic protrusion settings for font family
 <figures/07_configurations.pdf, id=318, 1035.42007pt x 379.4928pt>
 File: figures/07_configurations.pdf Graphic file (type pdf)
 <use figures/07_configurations.pdf>
-Package pdftex.def Info: figures/07_configurations.pdf  used on input line 425.
+Package pdftex.def Info: figures/07_configurations.pdf  used on input line 424.
 
 (pdftex.def)             Requested size: 472.31577pt x 173.10957pt.
 <figures/10_repliques.pdf, id=319, 857.59207pt x 375.87929pt>
 File: figures/10_repliques.pdf Graphic file (type pdf)
 <use figures/10_repliques.pdf>
-Package pdftex.def Info: figures/10_repliques.pdf  used on input line 427.
+Package pdftex.def Info: figures/10_repliques.pdf  used on input line 426.
 (pdftex.def)             Requested size: 472.31577pt x 207.01527pt.
 
 [9 <./figures/07_configurations.pdf>] [10 <./figures/10_repliques.pdf>]
 <figures/02_ordres.pdf, id=357, 1072.62352pt x 364.9665pt>
 File: figures/02_ordres.pdf Graphic file (type pdf)
 <use figures/02_ordres.pdf>
-Package pdftex.def Info: figures/02_ordres.pdf  used on input line 492.
+Package pdftex.def Info: figures/02_ordres.pdf  used on input line 491.
 (pdftex.def)             Requested size: 472.31577pt x 160.70827pt.
 <figures/03_thermodynamique.pdf, id=358, 857.40106pt x 364.9665pt>
 File: figures/03_thermodynamique.pdf Graphic file (type pdf)
 <use figures/03_thermodynamique.pdf>
-Package pdftex.def Info: figures/03_thermodynamique.pdf  used on input line 494
+Package pdftex.def Info: figures/03_thermodynamique.pdf  used on input line 493
 .
 (pdftex.def)             Requested size: 472.31577pt x 201.04962pt.
 <figures/05_diagnostics.pdf, id=359, 857.4864pt x 591.60526pt>
 File: figures/05_diagnostics.pdf Graphic file (type pdf)
 <use figures/05_diagnostics.pdf>
-Package pdftex.def Info: figures/05_diagnostics.pdf  used on input line 496.
+Package pdftex.def Info: figures/05_diagnostics.pdf  used on input line 495.
 (pdftex.def)             Requested size: 472.31577pt x 325.86234pt.
 <figures/06_traces.pdf, id=360, 864.45273pt x 519.69658pt>
 File: figures/06_traces.pdf Graphic file (type pdf)
 <use figures/06_traces.pdf>
-Package pdftex.def Info: figures/06_traces.pdf  used on input line 498.
+Package pdftex.def Info: figures/06_traces.pdf  used on input line 497.
 (pdftex.def)             Requested size: 472.31577pt x 283.94669pt.
 
 [11 <./figures/02_ordres.pdf> <./figures/03_thermodynamique.pdf>] [12 <./figure
@@ -1136,20 +1136,20 @@ s/05_diagnostics.pdf> <./figures/06_traces.pdf>] (critical_table.tex)
 <figures/11_zoom_transition.pdf, id=432, 857.86562pt x 555.65092pt>
 File: figures/11_zoom_transition.pdf Graphic file (type pdf)
 <use figures/11_zoom_transition.pdf>
-Package pdftex.def Info: figures/11_zoom_transition.pdf  used on input line 545
+Package pdftex.def Info: figures/11_zoom_transition.pdf  used on input line 544
 .
 (pdftex.def)             Requested size: 472.31577pt x 305.93114pt.
 <figures/04_distributions.pdf, id=434, 857.23087pt x 364.9665pt>
 File: figures/04_distributions.pdf Graphic file (type pdf)
 <use figures/04_distributions.pdf>
-Package pdftex.def Info: figures/04_distributions.pdf  used on input line 554.
+Package pdftex.def Info: figures/04_distributions.pdf  used on input line 553.
 (pdftex.def)             Requested size: 472.31577pt x 201.08861pt.
  [13]
 [14 <./figures/11_zoom_transition.pdf> <./figures/04_distributions.pdf>]
 <figures/08_champ_moyen.pdf, id=475, 857.80006pt x 379.4928pt>
 File: figures/08_champ_moyen.pdf Graphic file (type pdf)
 <use figures/08_champ_moyen.pdf>
-Package pdftex.def Info: figures/08_champ_moyen.pdf  used on input line 605.
+Package pdftex.def Info: figures/08_champ_moyen.pdf  used on input line 604.
 (pdftex.def)             Requested size: 472.31577pt x 208.95331pt.
 
 [15 <./figures/08_champ_moyen.pdf>] (discussion_results.tex) [16] [17] [18
@@ -1158,7 +1158,7 @@ Package pdftex.def Info: figures/08_champ_moyen.pdf  used on input line 605.
 [19] [20] [21] [22] [23] [24] [25] [26] [27] [28
 
 ] [29] [30] [31]
-Underfull \hbox (badness 1210) in paragraph at lines 1571--1574
+Underfull \hbox (badness 1210) in paragraph at lines 1570--1573
 []\T1/lmr/m/n/10.95 (+20) K. Bin-der, \T1/lmr/m/it/10.95 (+20) Theory of first-
 order phase tran-si-tions\T1/lmr/m/n/10.95 (+20) , Rep. Prog. Phys. \T1/lmr/bx/
 n/10.95 (+20) 50\T1/lmr/m/n/10.95 (+20) , 783 (1987).
@@ -1202,7 +1202,7 @@ rams/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Users/vuache_h/AppData/Local/Pr
 ograms/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/Users/vuache_h/AppData/Local
 /Programs/MiKTeX/fonts/type1/public/lm/lmtt8.pfb>
 Output written on C:/Users\vuache_h\Desktop\perso\Cu3Au_MC\report\rapport_templ
-ate.pdf (33 pages, 1034561 bytes).
+ate.pdf (33 pages, 1033787 bytes).
 PDF statistics:
  757 PDF objects out of 1000 (max. 8388607)
  153 named destinations out of 1000 (max. 500000)

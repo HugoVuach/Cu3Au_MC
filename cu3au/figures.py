@@ -79,8 +79,8 @@ def make_cowley_figure(result_dir):
         curves(ax, temperatures, col(key), col(key+'_se'), color, 'Monte-Carlo')
         ax.axhline(ordered_limit, color=GOLD, ls='--', lw=1.3,
                    label=r'Ordre parfait $L1_2$')
-        ax.axvline(peak_temperature, color=INK, ls=':', lw=1.2,
-                   label=rf'Maximum de $c_V$ : {peak_temperature:.0f} K')
+        # ax.axvline(peak_temperature, color=INK, ls=':', lw=1.2,
+        #            label=rf'Maximum de $c_V$ : {peak_temperature:.0f} K')
         ax.set(xlabel='Température (K)', ylabel=symbol, title=title)
         ax.legend(loc=legend_loc, fontsize=8.5, frameon=True,
                   facecolor='white', edgecolor='none', framealpha=.95)
@@ -88,7 +88,7 @@ def make_cowley_figure(result_dir):
     fig.suptitle('Ordre chimique local : paramètres de Cowley', y=.98)
     fig.tight_layout(rect=(0, .065, 1, .94))
     save(fig, folder, '12_cowley',
-         'Bandes : ±1 erreur-type. Les références horizontales sont des limites idéales ; le maximum de cᵥ est repéré sur la grille.')
+         'Bandes : ±1 erreur-type. Les références horizontales correspondent à l’ordre parfait L1₂.')
     return folder/'12_cowley.pdf'
 
 
