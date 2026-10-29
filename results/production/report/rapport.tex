@@ -14,6 +14,7 @@
 \definecolor{teal}{HTML}{167D9A}
 \definecolor{gold}{HTML}{DBA52D}
 \definecolor{pale}{HTML}{F2F6F9}
+
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\small\textcolor{navy}{Cu\textsubscript{3}Au : ordre et désordre chimique}}
@@ -27,6 +28,9 @@
   title={\textbf{Préparation à l'oral : #1}},fonttitle=\small,coltitle=white}
 \newtcolorbox{attention}{breakable,colback=gold!8,colframe=gold!80!black,boxrule=.6pt,
   title={Point d'interprétation},fonttitle=\small}
+\newtcolorbox{algocode}[1]{breakable,colback=pale,colframe=navy,boxrule=.6pt,
+  title={#1},fonttitle=\bfseries,coltitle=white,
+  before={\par\smallskip},after={\par\smallskip}}
 \newcommand{\Au}{\mathrm{Au}}
 \newcommand{\Cu}{\mathrm{Cu}}
 \newcommand{\kb}{k_{\mathrm B}}
@@ -43,10 +47,8 @@
 \vspace{8mm}
 {\Huge\bfseries\color{navy} Transition ordre--désordre de Cu\textsubscript{3}Au\par}
 \vspace{7mm}
-{\Large Monte-Carlo sur réseau CFC rigide\par}
+{\Large Study of the order-disorder transition of the Cu3AU compound by the Monte Carlo method on a rigid lattice (FD)\par}
 \vspace{12mm}
-{\large Rapport question par question, démonstrations et notes pour l'oral\par}
-\vspace{10mm}
 \begin{tcolorbox}[colback=pale,colframe=navy,boxrule=.8pt]
 \textbf{Système étudié :} $\Lbox^3$ mailles, $N=\Natoms$ sites,
 $c_{\Au}=1/4$, interactions de premiers et seconds voisins.\\[2mm]
@@ -87,6 +89,21 @@ Seconds voisins & $a$ & $6$ & $I_{\Au\Au}=I_{\Cu\Cu}=0$\\
 \end{tabular}
 \end{center}
 
+\subsection*{Repères de vocabulaire}
+Un \textbf{site} est une position fixe du réseau ; son occupation est Au ou Cu.
+Une \textbf{maille} est le motif géométrique répété dans l'espace. Les quatre
+\textbf{sous-réseaux}, repérés par $\mu=0,1,2,3$, distinguent les positions
+de base de la maille CFC. Une \textbf{coquille} regroupe les voisins à une
+même distance d'un site choisi. Une \textbf{configuration} donne l'espèce
+sur chacun des sites à un instant du calcul.
+
+Une \textbf{réplique} est une configuration qui peut voyager entre les
+températures. Une \textbf{chaîne} désigne ici une campagne indépendante
+avec sa graine et ses \Ntemps\ répliques. Un \textbf{balayage} effectue
+$N$ propositions Au--Cu par température, refus compris. L'\textbf{équilibration}
+est la phase initiale écartée des moyennes ; la \textbf{production} est la
+phase dont on utilise les mesures pour estimer les grandeurs thermiques.
+
 \section{Question 1 -- Réseau, énergie et algorithme de Metropolis}
 \subsection{Construction exacte de la géométrie}
 Une maille conventionnelle porte les quatre positions
@@ -125,6 +142,11 @@ implémentation pour éviter les ambiguïtés d'images périodiques multiples.
 positions sont celles du réseau CFC, quelle que soit l'occupation chimique.}
 
 \subsection{Énergie et tendance à l'ordre}
+\fig{13_coquilles}{.95}{Les deux coquilles autour d'un Au dans la référence
+ordonnée $L1_2$. Les douze premiers voisins sont Cu et les six seconds
+voisins sont Au. Les coquilles sont définies par leurs distances, même si
+leurs occupations changent pendant la simulation.}
+
 L'énergie est
 \begin{equation}
 E=\sum_{\{i,j\}\in\mathcal P_1}J_{\sigma_i\sigma_j}
@@ -186,6 +208,10 @@ Cette convention modifie l'unité de temps Monte-Carlo, mais pas la mesure
 d'équilibre. Les échanges à longue distance sont un outil d'échantillonnage ;
 ils ne décrivent pas une cinétique réaliste de diffusion par lacunes.
 
+\fig{14_organigramme}{.72}{Organisation du calcul : proposition, décision,
+comptage des tentatives, fin de balayage, échanges puis mesures. Le dessin
+résume les étapes ; les boucles complètes sont données en annexe.}
+
 \begin{oral}{Pourquoi ne pas changer un seul atome ?}
 Changer Au en Cu modifierait la composition. Notre ensemble est canonique :
 on doit permuter les occupations. Expliquer aussi pourquoi une énergie de
@@ -209,6 +235,22 @@ Pour la boîte de l'énoncé,
 \alpha_1=1-\frac{B_1}{1944},\qquad
 \alpha_2=1-\frac{B_2}{972}.
 \]
+\begin{tcolorbox}[breakable,colback=pale,colframe=teal,title={Du comptage à la probabilité puis à Cowley}]
+À première coquille, les $216$ Au donnent $216\times12=2592$ positions
+voisines examinées. Si $1944$ de ces positions portent Cu, alors
+\[
+p_1^{\Cu\mid\Au}=\frac{1944}{2592}=0.75,
+\qquad \alpha_1=1-\frac{0.75}{0.75}=0.
+\]
+La première division mesure une probabilité conditionnelle ; la seconde
+la compare à la concentration globale $c_{\Cu}=0.75$.
+Si les $2592$ positions portent Cu, $p_1^{\Cu\mid\Au}=1$ et
+$\alpha_1=-1/3$. À seconde coquille, on examine $216\times6=1296$
+positions : si aucune ne porte Cu, $p_2^{\Cu\mid\Au}=0$ et $\alpha_2=1$.
+Le code effectue ce comptage autour de tous les Au, à chaque mesure,
+puis moyenne les paramètres obtenus sur la production.
+\end{tcolorbox}
+
 Dans $L1_2$, les premiers voisins d'un Au sont tous Cu, donc
 $\alpha_1=1-1/(3/4)=-1/3$. Les seconds voisins sont tous Au, donc
 $\alpha_2=1$.
@@ -225,6 +267,19 @@ Au laisse $N_{\Cu}$ Cu parmi $N-1$ autres sites. Ainsi
 =\boxed{-\frac1{N-1}}.
 \]
 Pour $N=864$, cette correction vaut environ $-0.00116$.
+
+\fig{12_cowley}{1}{Évolution des paramètres de Cowley $\alpha_1$ et
+$\alpha_2$ avec la température. Les bandes représentent une erreur-type.
+Les lignes horizontales indiquent l'ordre parfait $L1_2$.}
+
+À basse température, les courbes rejoignent les valeurs de l'ordre parfait :
+$\alpha_1=-1/3$ et $\alpha_2=1$. Lorsque la température augmente,
+les deux paramètres s'éloignent de ces valeurs et se rapprochent de zéro.
+Un $\alpha_1$ encore négatif au-dessus de la zone de perte d'ordre global
+signifie que les voisins Cu restent favorisés autour d'Au : l'ordre local
+peut donc persister après la disparition de l'ordre à longue portée.
+La limite aléatoire correspond à $T\to\infty$ ; les mesures à
+température finie ne sont pas contraintes à l'atteindre.
 
 \begin{oral}{Quel est le signe attendu dans l'état ordonné ?}
 Répondre sans mémoriser une formule : un Au a douze voisins Cu alors qu'un
@@ -256,6 +311,31 @@ On a $q=1$ dans les quatre variantes et $q=0$ pour les occupations moyennes
 uniformes. Mais $\langle q\rangle$ est légèrement positif dans une boîte finie
 désordonnée, car il mesure une amplitude de fluctuations.
 
+\fig{15_variantes}{1}{Les quatre variantes parfaitement ordonnées sont
+équivalentes : seul le sous-réseau qui porte les Au change. $\eta$ dépend
+du sous-réseau de référence, tandis que $q=1$ dans les quatre cas. Ces
+dessins sont des états de référence construits, pas des mesures Monte-Carlo.}
+
+\begin{center}\small
+\begin{tabular}{lccc}\toprule
+Configuration & $(p_0,p_1,p_2,p_3)$ & $\eta$ & $q$\\\midrule
+Au sur le sous-réseau 0 & $(1,0,0,0)$ & $1$ & $1$\\
+Au sur le sous-réseau 1 & $(0,1,0,0)$ & $-1/3$ & $1$\\
+Au sur le sous-réseau 2 & $(0,0,1,0)$ & $-1/3$ & $1$\\
+Au sur le sous-réseau 3 & $(0,0,0,1)$ & $-1/3$ & $1$\\\bottomrule
+\end{tabular}\end{center}
+
+Si ces quatre états sont visités aussi souvent, leur occupation moyenne
+vaut $(1/4,1/4,1/4,1/4)$. Pourtant, chaque instantané est ordonné :
+\[
+\boxed{\langle q(p)\rangle=1\quad\text{alors que}\quad
+q(\langle p\rangle)=0.}
+\]
+Les courbes de gauche de la figure suivante sont des moyennes sur les
+mesures \emph{et les chaînes}. Leur proximité avec $1/4$ à basse température
+reflète la visite de plusieurs variantes ; elle ne suffit pas à conclure
+au désordre. Il faut les lire avec $\langle q\rangle$, qui reste proche de 1.
+
 \fig{09_sous_reseaux}{1}{Paramètre signé de l'énoncé, amplitude invariante et
 occupations des sous-réseaux. Une moyenne entre variantes ne doit pas être
 confondue avec une configuration instantanée désordonnée.}
@@ -269,10 +349,17 @@ paramètre demandé. L'ordre de moyenne et de prise de norme compte.
 
 \section{Question 4 -- Vérifications du programme}
 Le dossier contient une suite de tests automatiques : \TestCount\ tests
-passent dans l'environnement décrit dans le fichier de validation. Ils
+ont été relancés avec succès pour la présente mise à jour. Leur date,
+leurs valeurs de référence et leur environnement sont précisés ci-dessous.
+Ils
 contrôlent la géométrie périodique, la réciprocité des voisinages, les quatre
 variantes, les valeurs analytiques, les différences d'énergie locales et
 globales, la conservation de composition et la reproductibilité.
+Les tests supplémentaires vérifient le bootstrap du maximum, sa
+reproductibilité et son invariance à une constante ajoutée à l'énergie.
+Ils vérifient également la continuité du cycle thermique et l'identité
+des trajectoires après reprise à un palier sauvegardé.
+\input{current_validation.tex}
 
 \subsection{Création d'une paire d'antisites}
 Échangeons un Au et un Cu premiers voisins dans l'état $L1_2$. En excluant
@@ -318,14 +405,29 @@ boîte de 864 sites ; il vérifie la règle probabiliste.
 Chaque Au a douze voisins Cu. Il y a donc $216\times12=2592$ paires Au--Cu,
 aucune paire Au--Au de première coquille, et $5184-2592=2592$ paires Cu--Cu.
 Les seconds voisins sont de même espèce et ne contribuent pas à l'énergie.
+Le tableau compte les paires \emph{non orientées}, une seule fois chacune :
+\begin{center}\small
+\begin{tabular}{lrrrr}\toprule
+Coquille & Au--Au & Au--Cu & Cu--Cu & Total\\\midrule
+Première & 0 & 2592 & 2592 & 5184\\
+Deuxième & 648 & 0 & 1944 & 2592\\\bottomrule
+\end{tabular}\end{center}
+Par exemple, les $216\times6$ contacts Au--Au de seconde coquille sont
+comptés depuis les deux extrémités, soit $216\times6/2=648$ paires.
 \[
 E_0=2592(-0.689)+2592(-0.582)=-3294.432\ \mathrm{eV}.
 \]
 Donc
 \begin{equation}
-\boxed{u_0=-3.813\ \mathrm{eV/atome},\qquad
-E_0^{\Cu_3\Au}=-15.252\ \mathrm{eV}.}
+\begin{aligned}
+u_0&=\frac{E_0}{N}=\frac{-3294.432}{864}
+=\boxed{-3.813\ \mathrm{eV/atome}},\\
+E_0^{\Cu_3\Au}&=\frac{E_0}{N/4}=\frac{-3294.432}{216}=4u_0
+=\boxed{-15.252\ \mathrm{eV/formule}}.
+\end{aligned}
 \end{equation}
+Une unité de formule Cu$_3$Au contient trois Cu et un Au, donc quatre
+atomes ; la boîte contient $864/4=216$ unités de formule.
 La cohésion exprimée comme énergie positive de dissociation vaut
 $3.813\ \mathrm{eV/atome}$, relativement au zéro énergétique du modèle.
 
@@ -376,8 +478,9 @@ Le rapport des poids après et avant échange donne directement cet exposant.
 La marginale à chaque température reste canonique. La mesure doit être
 classée par \emph{température fixe}, et non par identité de réplique.
 
-Le code alterne les paires de températures échangées et réalise une tentative
-sur chaque lien concerné tous les \ExchangeEvery\ balayages. Les noyaux de
+Une session d'échange a lieu tous les \ExchangeEvery\ balayages. Le code
+alterne les liens pairs et impairs : un lien donné est donc testé toutes
+les deux sessions, soit tous les 10 balayages dans cette campagne. Les noyaux de
 Metropolis restent ceux demandés par l'énoncé ; les échanges de répliques
 ajoutent un mécanisme d'échantillonnage qui conserve la mesure cible
 \cite{metropolis,hukushima}.
@@ -408,6 +511,21 @@ température risquerait de se figer avant d'atteindre l'état fondamental.
 \fig{07_configurations}{1}{Configurations finales effectivement obtenues,
 au froid, près du maximum thermique et au chaud. Ce sont des instantanés,
 pas des moyennes sur les occupations.}
+\fig{16_coupes_2D}{.95}{Deux plans adjacents des mêmes configurations de la
+première chaîne. Les deux hauteurs sont nécessaires pour montrer les quatre
+sous-réseaux : une seule coupe peut ne contenir aucun Au dans une variante
+pourtant parfaitement ordonnée. L'ordre est plus lisible ici que dans le
+nuage tridimensionnel.}
+\fig{17_moyennes_cumulees}{.95}{Comparaison des moyennes cumulées de
+production dans les deux chaînes à $\Tpeak$ K. Une moyenne cumulée utilise
+toutes les mesures précédentes ; ses points ne sont donc pas indépendants.}
+
+Pour $M'$ mesures de production, la courbe cumulée est
+$\overline A(M')=(1/M')\sum_{m=1}^{M'}A_m$. Sa stabilisation et l'accord
+des chaînes complètent les traces instantanées, sans prouver à eux seuls
+l'absence de bassins métastables non visités. Les contrôles de circulation
+donnent 4 puis 3 allers-retours complets froid--chaud--froid pour les deux
+chaînes de cette campagne ; leur faible nombre reste une limite à considérer.
 \fig{10_repliques}{1}{Trajectoires de quelques identités de répliques.
 La circulation en température complète les contrôles locaux d'équilibre.}
 
@@ -426,6 +544,29 @@ les deux paramètres de Cowley, $\eta$, $q$ et les occupations des quatre
 sous-réseaux.
 
 \subsection{Capacité calorifique et fluctuations d'ordre}
+\input{representative_results.tex}
+Ce tableau est calculé à partir du CSV des mesures. La valeur observée
+$c_V=0$ au froid signifie qu'aucune fluctuation d'énergie n'a été mesurée
+dans cette série ; elle ne démontre pas que la capacité calorifique exacte
+est strictement nulle à une température finie.
+
+La capacité calorifique mesure la variation d'énergie moyenne quand on
+chauffe à volume constant :
+\[
+C_V=\left(\frac{\partial\langle E\rangle}{\partial T}\right)_V,
+\qquad c_V=C_V/N.
+\]
+Le déroulement concret est
+\[
+\text{configurations Metropolis}\ \longrightarrow\
+\{E_1,\ldots,E_M\}\ \longrightarrow\
+\langle E^2\rangle-\langle E\rangle^2\ \longrightarrow\ c_V.
+\]
+Metropolis fournit les configurations avec leurs poids thermiques ; le
+post-traitement utilise les énergies mesurées, pas le taux d'acceptation.
+Dans l'ensemble canonique,
+$Z=\sum_C e^{-\beta E(C)}$ et $\langle E\rangle=-\partial_\beta\ln Z$.
+En dérivant une seconde fois, on obtient la variance d'énergie.
 À Hamiltonien indépendant de la température,
 \[
 \frac{\partial\langle E\rangle}{\partial\beta}
@@ -471,6 +612,13 @@ un effectif indépendant estimé d'au moins $200$, au moins $20$ blocs par
 chaîne, et un écart entre demi-séries inférieur à trois unités d'erreur
 estimée. Les graines indépendantes ne rendent pas les températures d'une
 même campagne indépendantes.
+
+Lorsque E et q sont constants dans une série froide, le code attribue
+$\tau=1/2$ et peut obtenir $\widehat R=1$ : ce traitement numérique ne
+prouve pas que toutes les excitations ou variantes ont été explorées.
+Le choix des blocs utilise E et q ; il reste utile de tester également
+la corrélation des paramètres de Cowley et la stabilité des erreurs
+lorsque la longueur des blocs est augmentée.
 
 \fig{02_ordres}{1}{Ordre à longue et courte portée. Les bandes représentent
 une erreur-type estimée ; elles ne sont pas une enveloppe systématique de
@@ -537,6 +685,43 @@ les distributions et les déplacements des maxima \cite{binder}.
 \fig{04_distributions}{1}{Distributions près de la zone de transition.
 L'inspection de la coexistence complète celle du maximum de capacité
 calorifique ; les histogrammes restent sensibles à la durée du calcul.}
+
+\subsection{Incertitude statistique du maximum et concordance des indices}
+La hauteur du pic possède une erreur-type, mais celle-ci n'est pas une
+erreur en kelvins sur sa position. On estime cette dernière par un
+bootstrap \emph{conjoint} des températures : dans chaque chaîne, les mêmes
+indices de blocs sont appliqués simultanément à toutes les températures.
+Les deux chaînes sont rééchantillonnées séparément. Pour chaque tirage,
+on recalcule les variances d'énergie dans chaque chaîne, on moyenne leurs
+capacités calorifiques puis on recherche le maximum sur la grille initiale.
+Cette synchronisation conserve les dépendances entre températures induites
+par les échanges de répliques.
+
+La longueur de référence vaut
+$b=\lceil2\max_{T,c,A\in\{E,q\}}\tau_{c,A}\rceil$, avec les bornes
+numériques décrites en annexe. On la compare à une longueur environ deux
+fois plus petite et deux fois plus grande. Les résultats sont obtenus
+uniquement à partir des archives de production :
+\input{peak_uncertainty.tex}
+\fig{18_incertitude_pic}{.95}{Fréquence de la position du maximum parmi
+les tirages bootstrap pour trois longueurs de bloc. Les températures
+possibles sont celles de la grille : aucune précision sous la maille de
+température n'est créée par ce calcul.}
+
+Un écart-type inférieur au pas de 5 K traduit ici des changements rares
+de la case de maximum ; il ne localise pas le pic entre les températures
+simulées. L'intervalle percentile est une estimation statistique conditionnelle à
+la taille, aux deux chaînes observées et à la grille. Il ne couvre ni
+le déplacement avec $L$, ni les états métastables éventuellement non
+visités. S'il se réduit à un point, cela ne signifie pas que la vraie
+température de transition est connue exactement. Les changements de pente
+et les maxima de fluctuations ne définissent pas exactement le même
+critère : leur proximité identifie une zone cohérente, pas plusieurs
+mesures indépendantes d'une température critique unique.
+
+Une étude de plusieurs tailles renforcerait l'interprétation
+thermodynamique. La présente mise à jour n'utilise que la campagne
+$L=\Lbox$ terminée ; aucun résultat du calcul $L=9$ interrompu n'est inclus.
 
 \subsection{Estimation analytique de Bragg-Williams}
 Pour une famille d'états à un sous-réseau privilégié,
@@ -620,6 +805,20 @@ isolées n'est une preuve suffisante de l'ordre thermodynamique de la
 transition. Il faudrait renforcer les statistiques et comparer plusieurs
 tailles pour conclure sur ce point.
 
+\begin{samepage}
+\subsection{Conclusion physique}
+Au froid, l'énergie rejoint le minimum exact
+$u_0=-3.813$ eV/atome, $q\simeq1$ et les deux paramètres de Cowley
+prennent les valeurs de $L1_2$. En chauffant, les défauts chimiques
+augmentent et l'ordre global chute dans la zone du maximum de capacité
+calorifique, situé à $\Tpeak$ K sur cette grille. Au chaud, $q$ devient
+faible alors que les corrélations locales restent mesurables : perdre
+l'ordre à longue portée ne rend pas immédiatement les occupations
+indépendantes. La valeur $\Tpeak$ K caractérise donc ce modèle de réseau
+rigide dans la boîte de $\Natoms$ sites ; elle n'est ni une extrapolation
+à taille infinie ni une mesure expérimentale de Cu$_3$Au.
+\end{samepage}
+
 \begin{oral}{Plan possible pour une présentation de 8 à 10 minutes}
 \begin{enumerate}
 \item Décrire le réseau fixe, la composition et la structure $L1_2$.
@@ -632,6 +831,18 @@ tailles pour conclure sur ce point.
 \item Terminer par les limites physiques et l'étude de taille à poursuivre.
 \end{enumerate}
 \end{oral}
+
+\section{Bonus -- Cycle de chauffage et de refroidissement}
+\label{sec:bonus-cycle}
+Le bonus étudie la mémoire du trajet thermique à budget de simulation
+fixé. Il complète l'étude canonique précédente par un protocole
+séquentiel de chauffage puis de refroidissement.
+\begingroup\sloppy
+\IfFileExists{bonus_cycle.tex}{\input{bonus_cycle.tex}}{
+Le module \texttt{run\_thermal\_cycle.py} produit les mesures et les
+comparaisons des deux branches ; aucun résultat de cycle n'est joint
+à cette version du rapport.}
+\endgroup
 
 \appendix
 \section{Correspondance entre les questions et les fichiers}
@@ -649,6 +860,7 @@ Question & Réponse numérique & Fichier principal\\
 7 & Moyennes, erreurs, figures & \texttt{statistics.py}, \texttt{figures.py}\\
 8 & Maximum sur la grille, champ moyen & \texttt{summary.json}, \texttt{meanfield.py}\\
 9 & Discussion fondée sur les données & Rapport et diagnostics CSV\\
+10 & Cycle chauffage--refroidissement & \texttt{thermal\_cycle.py}, \texttt{run\_thermal\_cycle.py}\\
 \bottomrule
 \end{tabular}\end{center}
 
@@ -657,6 +869,892 @@ statistiques, les figures et le rapport. L'option \texttt{--reuse} réutilise
 uniquement une campagne dont la configuration correspond exactement.
 La compilation PDF demande une installation LaTeX, mais les fichiers
 \texttt{.tex} et les figures sont produits même sans compilation.
+
+\clearpage
+\section{Algorithme}
+\label{sec:algorithme}
+
+Cette partie décrit le calcul effectivement implémenté, depuis la construction
+du réseau jusqu'aux erreurs statistiques. Les algorithmes numérotés forment un
+pseudocode commenté : les noms de fonctions permettent de retrouver chaque
+opération dans les sources. Les commentaires expliquent à la fois le choix
+physique et le moment où l'opération doit être exécutée.
+
+\subsection{Notations, données et niveaux de boucle}
+On note $C$ le nombre de chaînes indépendantes, $R$ le nombre de températures,
+$S_{\mathrm{eq}}$ et $S_{\mathrm{prod}}$ les nombres de balayages des deux
+phases, $d_m$ l'intervalle de mesure, $d_x$ l'intervalle d'échange et $K$ la
+taille maximale d'un segment. Dans une chaîne, les $R$ configurations sont
+couplées par les échanges de répliques ; ce ne sont donc pas $R$ chaînes
+indépendantes. L'indice $r=0,\ldots,R-1$ désigne un \emph{emplacement à
+température fixe} $T_r$, avec $T_0<\cdots<T_{R-1}$.
+
+\begin{center}\small
+\begin{tabular}{p{.27\linewidth}p{.64\linewidth}}
+\toprule
+Donnée en mémoire & Signification et unité\\
+\midrule
+\texttt{states[r,i]} & Occupation $s_{r,i}\in\{0,1\}$ : Cu ou Au.\\
+\texttt{neighbors[i,k]} & Indices des 12 premiers puis des 6 seconds voisins.\\
+\texttt{sub[i]} & Sous-réseau $\mu\in\{0,1,2,3\}$ du site $i$.\\
+\texttt{energies[r]} & Énergie totale entière $\mathcal E_r$ en micro-eV.\\
+\texttt{labels[r]} & Identité de la configuration présente à $T_r$.\\
+\texttt{phase} & Nombre de sessions d'échange déjà exécutées ; sa parité choisit les liens.\\
+\texttt{records[m,r,:]} & Neuf observables à la mesure $m$ et à la température $T_r$.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Posons $Q=10^6$, le nombre de micro-eV par eV. Ainsi
+$E_r=\mathcal E_r/Q$ en eV et
+\[
+ \widetilde\beta_r=\frac{1}{Q\kb T_r},\qquad
+ \widetilde\beta_r\Delta\mathcal E=\frac{\Delta E}{\kb T_r}.
+\]
+Cette conversion est indispensable : utiliser une énergie entière en
+micro-eV directement avec $1/(\kb T)$ fausserait l'exposant d'un facteur $10^6$.
+Le code nomme \texttt{beta} la quantité $\widetilde\beta$.
+
+L'emboîtement exact est
+\[
+\boxed{\text{chaîne}\ \to\ \text{phase}\ \to\ \text{segment}\ \to\
+\text{balayage}\ \to\ \text{température}\ \to\ \text{proposition}.}
+\]
+À la fin de chaque balayage viennent, dans cet ordre, les échanges de
+répliques puis les mesures si leurs échéances sont atteintes. Les statistiques
+de production sont calculées après les simulations, à partir des séries
+sauvegardées, et non après chaque proposition.
+
+\subsection{Algorithme 1 : préparer la géométrie et les configurations}
+\begin{algocode}{Algorithme 1 --- Initialisation d'une chaîne}
+\textbf{Entrées :} configuration JSON et indice de chaîne $c=0,\ldots,C-1$.
+\textbf{Sorties :} géométrie fixe, occupations, énergies et identités initiales.
+\begin{enumerate}
+\item Vérifier $L\ge3$, les températures positives strictement croissantes,
+au moins deux graines distinctes et les longueurs de phases strictement
+positives. Exiger que $S_{\mathrm{eq}}$, $S_{\mathrm{prod}}$ et $K$ soient
+divisibles par $d_m$ et, si $d_x>0$, par $d_x$.
+\par\textit{Commentaire :} ces multiples empêchent le redémarrage du compteur
+local de balayages à chaque segment de décaler les mesures ou les échanges.
+Le dernier segment, éventuellement plus court, conserve cette propriété.
+\item Construire une seule fois les $N=4L^3$ coordonnées entières
+$\mathbf X=2(i,j,k)+\mathbf b_\mu$, avec
+$\mathbf b_\mu\in\{(0,0,0),(0,1,1),(1,0,1),(1,1,0)\}$.
+Attribuer \texttt{sub[i]} et construire la correspondance coordonnées--indice.
+\par\textit{Commentaire :} l'arithmétique entière évite les tests d'égalité
+approchée sur des coordonnées. La géométrie est commune à toutes les chaînes.
+\item Pour chaque site, ajouter les déplacements des deux coquilles,
+réduire chaque coordonnée modulo $2L$ et stocker les 18 indices voisins.
+\par\textit{Commentaire :} la périodicité supprime les surfaces libres.
+Les listes restent valables pendant tout le calcul puisque les atomes
+échangent leurs espèces sans déplacer les sites.
+\item Initialiser un générateur avec la graine de la chaîne $c$.
+Pour chaque température $T_r$, choisir l'état initial suivant le code :
+\begin{itemize}
+\item si $c=0$ ou $T_r<T_{\text{départ}}$, remplir d'Au le sous-réseau
+$\mu=(2c)\bmod4$ et de Cu les trois autres ;
+\item sinon, tirer sans remise exactement $N/4$ sites Au parmi les $N$ sites.
+\end{itemize}
+\textit{Commentaire :} les deux chaînes de production commencent dans les
+variantes 0 et 2. Les départs aléatoires de la seconde chaîne concernent
+$T_r\ge1060$ K. Les départs froids ordonnés évitent de partir d'un état
+aléatoire difficile à réorganiser à basse température ; ils ne dispensent
+pas de vérifier l'équilibration.
+\item Calculer pour chaque configuration l'énergie entière de référence
+\[
+\mathcal E_r=\frac12\sum_{i=0}^{N-1}
+ \left[\sum_{k=0}^{11}J^{\mathrm{int}}_{s_{r,i},s_{r,V(i,k)}}
+ +\sum_{k=12}^{17}I^{\mathrm{int}}_{s_{r,i},s_{r,V(i,k)}}\right],
+\]
+où $J^{\mathrm{int}}=QJ$ et $I^{\mathrm{int}}=QI$.
+Initialiser \texttt{labels[r]} $=r$ et \texttt{phase} $=0$.
+\par\textit{Commentaire :} le facteur $1/2$ corrige le double comptage des
+paires orientées. Ce calcul global fournit l'énergie initiale ; les
+propositions ultérieures utilisent seulement une différence locale.
+\end{enumerate}
+{\raggedright\textbf{Sources :} \texttt{simulation.py : load\_config, campaign} ;
+\texttt{lattice.py} ; \texttt{model.py : energy\_int}.\par}
+\end{algocode}
+
+\subsection{Algorithme 2 : organiser équilibration et production}
+\begin{algocode}{Algorithme 2 --- Campagne complète et contrôles par segment}
+\textbf{Entrées :} géométrie, paramètres et graines.
+\textbf{Sorties :} archives par chaîne, moyennes, erreurs et diagnostics.
+\begin{enumerate}
+\item \textbf{Pour chaque chaîne} $c=0,\ldots,C-1$ : exécuter l'algorithme 1
+et créer des listes séparées pour les mesures d'équilibration et de production.
+\par\textit{Commentaire :} chaque chaîne possède sa graine et son propre
+ensemble de $R$ répliques ; aucun échange n'a lieu entre chaînes.
+\item \textbf{Pour chaque phase}, d'abord équilibration de longueur
+$S_{\mathrm{eq}}$, puis production de longueur $S_{\mathrm{prod}}$ :
+\begin{enumerate}
+\item Mettre le compteur $\texttt{done}=0$.
+\item \textbf{Tant que} \texttt{done} est inférieur à la longueur de phase :
+choisir $S=\min(K,\text{longueur}-\texttt{done})$, tirer une graine de
+segment dans $\{1,\ldots,2^{31}-2\}$ avec le générateur de la chaîne,
+puis appeler l'algorithme 3 pour $S$ balayages.
+\par\textit{Commentaire :} le noyau Numba réinitialise son générateur à chaque
+appel avec cette graine nouvellement tirée. On conserve en revanche
+\texttt{states}, \texttt{energies}, \texttt{labels} et \texttt{phase} entre
+appels ; les segments découpent une même trajectoire, sans recréer les états.
+\item Après chaque segment, recalculer indépendamment toutes les énergies
+avec les matrices $J^{\mathrm{int}}$ et $I^{\mathrm{int}}$. Arrêter si elles
+diffèrent des énergies mises à jour, si $\sum_i s_{r,i}\ne N/4$, ou si
+$\mathcal E_r<QN(-3.813)$ pour une réplique.
+\par\textit{Commentaire :} ces contrôles exacts détectent une erreur de
+variation locale, une mauvaise permutation ou une violation de composition.
+Les effectuer par segment évite un recalcul global à chaque tentative.
+\item En équilibration, ajouter les mesures à \texttt{burn\_samples} seulement.
+En production, ajouter mesures et identités aux séries d'analyse, et cumuler
+les compteurs d'acceptation locale et d'échange. Augmenter \texttt{done} de $S$.
+\par\textit{Commentaire :} les mesures initiales servent aux historiques
+mais n'entrent pas dans les moyennes thermiques. Le passage à la production
+continue avec les configurations atteintes, sans nouvelle initialisation.
+\end{enumerate}
+\item Concaténer les segments et sauvegarder \texttt{chain\_XX.npz} :
+mesures de production, mesures d'équilibration, identités, configurations
+finales, températures, coordonnées et sous-réseaux.
+\item Après toutes les chaînes, analyser les séries avec les algorithmes 7
+et 8 ; écrire \texttt{observables.csv} et \texttt{summary.json}.
+\par\textit{Commentaire :} conserver les données brutes permet de refaire
+les analyses et les figures sans relancer les trajectoires Monte-Carlo.
+\end{enumerate}
+\textbf{Source :} \texttt{simulation.py : campaign}.
+\end{algocode}
+
+\subsection{Algorithme 3 : boucles à l'intérieur d'un segment}
+\begin{algocode}{Algorithme 3 --- Metropolis, échanges et mesures dans le bon ordre}
+\textbf{Entrées :} états courants, énergies, identités, parité et $S$ balayages.
+\textbf{Sorties :} mêmes états mis à jour, séries et compteurs du segment.
+\begin{enumerate}
+\item Initialiser le générateur du noyau avec la graine reçue ; calculer
+$\widetilde\beta_r=1/(Q\kb T_r)$ ; allouer $S/d_m$ lignes de mesures par
+température et mettre les compteurs du segment à zéro.
+\par\textit{Commentaire :} les températures sont fixes ; leurs inverses
+n'ont pas besoin d'être recalculés dans la boucle des propositions.
+\item \textbf{Pour} $s=1,\ldots,S$ :
+\begin{enumerate}
+\item \textbf{Pour} $r=0,\ldots,R-1$ : effectuer exactement $N$ appels à
+l'algorithme 4 sur la configuration présente à $T_r$.
+\par\textit{Commentaire :} un balayage contient $N$ propositions Au--Cu,
+acceptées ou refusées. Le tirage se fait avec remise : certains sites
+peuvent intervenir plusieurs fois et d'autres pas du tout.
+\item \textbf{Si} $d_x>0$ et $s\bmod d_x=0$, exécuter l'algorithme 5
+pour les liens de la parité courante, puis incrémenter \texttt{phase}.
+\par\textit{Commentaire :} toutes les températures ont d'abord subi le
+même nombre de propositions locales. $d_x=0$ désactive les échanges.
+\item \textbf{Si} $s\bmod d_m=0$, calculer l'algorithme 6 pour chaque
+emplacement $r$, enregistrer les neuf valeurs et \texttt{labels[r]},
+puis avancer l'indice de mesure.
+\par\textit{Commentaire :} si les deux échéances coïncident, la mesure
+porte sur l'état \emph{après} l'échange. Elle est rangée sous $T_r$, même
+si l'identité de la configuration vient de changer.
+\end{enumerate}
+\item Retourner les séries, les compteurs locaux, les compteurs de liens
+et la valeur courante de \texttt{phase}.
+\par\textit{Commentaire :} conserver cette parité au segment suivant évite
+de recommencer systématiquement par les mêmes liens.
+\end{enumerate}
+\textbf{Source :} \texttt{kernel.py : run\_segment}.
+\end{algocode}
+
+Les mouvements locaux et les échanges préservent chacun la mesure jointe
+$\Pi\propto\prod_r\exp[-E_r/(\kb T_r)]$. Leur composition dans cet ordre
+préserve donc cette mesure ; il n'est pas nécessaire de prétendre que la
+composition complète satisfait elle-même la balance détaillée. Les échanges
+de répliques accélèrent la circulation entre températures, tandis que
+l'étiquette permet d'en vérifier l'efficacité.
+
+\subsection{Algorithme 4 : proposition Au--Cu et test de Metropolis}
+\begin{algocode}{Algorithme 4 --- Une tentative locale à température fixée}
+\textbf{Entrées :} occupation $s$, énergie $\mathcal E$ et $\widetilde\beta_r$.
+\textbf{Sortie :} état inchangé ou état échangé avec énergie cohérente.
+\begin{enumerate}
+\item Tirer indépendamment $i,j$ uniformément dans $\{0,\ldots,N-1\}$.
+\textbf{Tant que} $s_i=s_j$, retirer les deux indices.
+\par\textit{Commentaire :} un tirage d'espèces identiques, y compris $i=j$,
+n'est pas compté comme tentative. Chaque paire non orientée Au--Cu a alors
+la probabilité $1/(N_{\Au}N_{\Cu})$. La composition étant conservée,
+la proposition inverse a exactement la même probabilité : aucun rapport
+de proposition supplémentaire n'apparaît dans Metropolis.
+\item Pour le calcul local, nommer $i$ le site initialement Au et $j$ le
+site initialement Cu, en permutant les noms si nécessaire. Sans modifier
+l'état, calculer
+\[
+\begin{aligned}
+a_i&=\sum_{v\in V_1(i),\,v\ne j}s_v,&
+a_j&=\sum_{v\in V_1(j),\,v\ne i}s_v,\\
+b_i&=\sum_{v\in V_2(i),\,v\ne j}s_v,&
+b_j&=\sum_{v\in V_2(j),\,v\ne i}s_v.
+\end{aligned}
+\]
+\textit{Commentaire :} seules les liaisons incidentes aux sites échangés
+peuvent changer. Leur éventuelle liaison mutuelle reste Au--Cu, donc on
+l'exclut. Un voisin commun peut contribuer aux deux sites : ce sont deux
+liaisons distinctes et leurs variations doivent toutes deux être comptées.
+\item Évaluer la différence entière
+\[
+ \Delta\mathcal E=161000(a_j-a_i)+12600(b_i-b_j).
+\]
+\textit{Commentaire :} déplacer l'Au de $i$ vers $j$ change le nombre de
+paires Au--Au de première coquille de $a_j-a_i$. Pour les secondes coquilles,
+le nombre de paires Au--Cu change de $2(b_i-b_j)$ : perdre un voisin Au
+et gagner un voisin Cu ont des contributions opposées. D'où
+$12600=2\times6300$. La formule est exacte à composition fixée et ne
+requiert que deux listes de 18 voisins.
+\item \textbf{Si} $\Delta\mathcal E\le0$, accepter. \textbf{Sinon}, tirer
+$u$ uniforme sur $[0,1)$ et accepter si
+\[
+u<\exp(-\widetilde\beta_r\Delta\mathcal E).
+\]
+\textit{Commentaire :} les mouvements qui abaissent l'énergie et ceux
+d'énergie égale sont toujours acceptés. Un mouvement défavorable reste
+possible avec le poids de Boltzmann ; sans cela, le calcul chercherait
+seulement un minimum d'énergie au lieu d'échantillonner une température.
+Le test conditionnel évite de calculer l'exponentielle pour $\Delta\mathcal E\le0$.
+\item \textbf{Si accepté}, permuter simultanément $s_i,s_j$, effectuer
+$\mathcal E\leftarrow\mathcal E+\Delta\mathcal E$ et incrémenter le compteur.
+\textbf{Sinon}, conserver exactement l'état et l'énergie précédents.
+\par\textit{Commentaire :} la mise à jour doit suivre la décision. Un refus
+représente un temps de séjour dans la chaîne et compte dans le balayage ;
+ne mesurer que les mouvements acceptés biaiserait les poids d'équilibre.
+\end{enumerate}
+\textbf{Sources :} \texttt{kernel.py : delta\_fast, run\_segment}.
+\end{algocode}
+
+\subsection{Algorithme 5 : échange de répliques voisines}
+\begin{algocode}{Algorithme 5 --- Une session d'échange entre températures}
+\textbf{Entrées :} les $R$ états, énergies, identités et \texttt{phase}.
+\textbf{Sorties :} configurations éventuellement permutées ; températures fixes.
+\begin{enumerate}
+\item Poser $p=\texttt{phase}\bmod2$. \textbf{Pour} les liens
+$r=p,p+2,p+4,\ldots$ tels que $r+1<R$, incrémenter le nombre de tentatives
+sur le lien $(r,r+1)$.
+\par\textit{Commentaire :} une session teste $(0,1),(2,3),\ldots$, la
+suivante $(1,2),(3,4),\ldots$. Les liens d'une session ne partagent pas de
+réplique ; l'alternance permet de parcourir toute l'échelle de températures.
+\item Calculer le logarithme du rapport des poids :
+\[
+\ell=(\widetilde\beta_r-\widetilde\beta_{r+1})
+       (\mathcal E_r-\mathcal E_{r+1}).
+\]
+\textit{Commentaire :} en effet,
+\[
+\log\frac{\exp[-\beta_r E_{r+1}-\beta_{r+1}E_r]}
+{\exp[-\beta_r E_r-\beta_{r+1}E_{r+1}]}
+=(\beta_r-\beta_{r+1})(E_r-E_{r+1}),
+\]
+avec $\beta_r=1/(\kb T_r)$. Les propositions d'échange sont symétriques.
+\item Accepter si $\ell\ge0$ ; sinon tirer $u$ uniforme sur $[0,1)$ et
+accepter si $\log(\max(u,10^{-300}))<\ell$.
+\par\textit{Commentaire :} travailler en logarithmes évite de former une
+exponentielle pouvant déborder. La borne du code évite $\log0$ ; elle ne
+modifie le test usuel que pour des probabilités numériquement extrêmes.
+\item Si accepté, permuter les lignes complètes de \texttt{states}, les
+deux énergies et les deux identités ; incrémenter le nombre d'échanges
+acceptés sur ce lien. Laisser $T_r$ et $T_{r+1}$ à leurs emplacements.
+\par\textit{Commentaire :} énergie et identité doivent suivre la
+configuration. Permuter seulement les occupations produirait une énergie
+incorrecte pour le mouvement local suivant.
+\item Après tous les liens de la session, incrémenter \texttt{phase}.
+\end{enumerate}
+\textbf{Source :} \texttt{kernel.py : run\_segment}, bloc d'échange.
+\end{algocode}
+
+\subsection{Algorithme 6 : observables d'une configuration instantanée}
+\begin{algocode}{Algorithme 6 --- Mesure après un balayage sélectionné}
+\textbf{Entrées :} $s$, énergie entière courante, voisins et sous-réseaux.\par
+\textbf{Sortie :} $(E,\eta,q,\alpha_1,\alpha_2,p_0,p_1,p_2,p_3)$.
+\begin{enumerate}
+\item Mettre $p_\mu=0$ pour les quatre sous-réseaux et $B_1=B_2=0$.
+\item \textbf{Pour chaque site} $i$ tel que $s_i=1$ :
+\begin{enumerate}
+\item ajouter $4/N$ à $p_{\texttt{sub[i]}}$ ;
+\item ajouter $1-s_v$ à $B_1$ pour chacun des 12 premiers voisins et à
+$B_2$ pour chacun des 6 seconds voisins.
+\end{enumerate}
+\textit{Commentaire :} chaque sous-réseau contient $N/4$ sites ; ainsi
+$p_\mu=N_{\Au,\mu}/(N/4)$ est une fraction d'occupation, avec
+$\sum_\mu p_\mu=1$ à cette composition. Partir seulement des sites Au
+compte chaque paire mixte exactement une fois : il n'y a pas de facteur
+$1/2$ à appliquer à $B_n$.
+\item Calculer l'ordre signé et l'amplitude :
+\[
+\eta=\frac{p_0-1/4}{3/4},\qquad
+q=\sqrt{\frac43\sum_{\mu=0}^3(p_\mu-1/4)^2}.
+\]
+\textit{Commentaire :} $\eta$ suit le sous-réseau 0 et change selon la
+variante ; $q$ reconnaît les quatre variantes ordonnées sans choisir de
+sous-réseau privilégié. Il faut calculer $q$ pour chaque configuration
+puis moyenner : le calcul à partir des $\langle p_\mu\rangle$ pourrait
+effacer un ordre réel lorsque la variante change au cours de la trajectoire.
+\item Pour $n=1,2$, calculer
+\[
+\alpha_n=1-\frac{B_n}{(N/4)z_n(3/4)},\qquad z_1=12,\ z_2=6.
+\]
+\textit{Commentaire :} $B_n/[(N/4)z_n]$ est la probabilité conditionnelle
+de trouver Cu autour d'Au. Diviser par $c_{\Cu}=3/4$ compare ce voisinage
+à la composition globale ; on mesure ici l'ordre local.
+\item Former la ligne avec $E=\mathcal E/Q$ en eV \emph{totaux}, puis
+$\eta,q,\alpha_1,\alpha_2,p_0,\ldots,p_3$. Enregistrer séparément l'identité.
+\par\textit{Commentaire :} l'énergie n'est pas recalculée ici : sa valeur
+est tenue à jour après chaque mouvement et vérifiée après le segment.
+Le parcours global des occupations sert aux observables structurales.
+L'énergie par atome sera obtenue au stade des statistiques.
+\end{enumerate}
+\textbf{Source :} \texttt{kernel.py : sample\_observables}.
+\end{algocode}
+
+L'intervalle $d_m$ réduit le coût des parcours de tous les sites et la taille
+des archives. Il ne garantit pas l'indépendance des mesures. Mesurer moins
+souvent ne remplace donc pas l'estimation de l'autocorrélation. De même,
+une configuration inchangée entre deux échéances doit être enregistrée à
+nouveau : son temps de séjour fait partie de la mesure canonique.
+
+\subsection{Algorithme 7 : moyennes et fluctuations à température fixe}
+Notons $M=S_{\mathrm{prod}}/d_m$ le nombre de mesures par chaîne et
+$\overline A_c=M^{-1}\sum_{m=1}^M A_{c,m}$ la moyenne de production à une
+température donnée. Pour les variances thermiques, le code utilise
+$v_c(A)=\overline{A^2}_c-\overline A_c^2$, équivalent à
+\texttt{numpy.var} avec le diviseur $M$ ; les barres d'erreur sont ensuite
+estimées par rééchantillonnage.
+
+\begin{algocode}{Algorithme 7 --- Estimer les observables thermiques}
+\textbf{Entrées :} séries de production $[C,M,R,9]$, températures et $N$.
+\textbf{Sorties :} huit estimations par température.
+\begin{enumerate}
+\item \textbf{Pour chaque température} $T_r$, extraire les séries à
+\emph{emplacement fixe} $r$ des $C$ chaînes.
+\par\textit{Commentaire :} suivre une identité de réplique mélangerait
+plusieurs températures et ne donnerait pas une moyenne canonique à $T_r$.
+\item \textbf{Dans chaque chaîne}, calculer
+\[
+\begin{gathered}
+u_c=\overline E_c/N,\quad
+\overline\eta_c,\quad\overline q_c,\quad
+\overline\alpha_{1,c},\quad\overline\alpha_{2,c},\\
+\left(\frac{c_V}{\kb}\right)_c=\frac{v_c(E)}{N(\kb T_r)^2},\qquad
+(X_q)_c=\frac{N v_c(q)}{\kb T_r},\\
+(U_q)_c=1-\frac{\overline{q^4}_c}{3(\overline{q^2}_c)^2}.
+\end{gathered}
+\]
+Si $\overline{q^2}_c=0$, enregistrer un cumulant non défini.
+\par\textit{Commentaire :} $c_V$ est une variance d'énergie \emph{totale}
+divisée par $N$ ; remplacer $E$ par $E/N$ dans la même formule ferait
+perdre un facteur $N^2$. $X_q$ et $U_q$ exigent des moments de la série de
+$q$ ; ils ne se déduisent pas de la seule moyenne $\overline q$.
+\item Moyenner les huit estimations sur les chaînes :
+$\widehat\theta_r=C^{-1}\sum_c\widehat\theta_{c,r}$.
+\par\textit{Commentaire :} les variances sont calculées avant ce
+moyennage. La variance d'un mélange de chaînes ajouterait la variance de
+leurs moyennes à la fluctuation interne et pourrait transformer un défaut
+d'équilibration en pic artificiel de capacité calorifique.
+\item Transmettre estimations et séries à l'algorithme 8 pour les erreurs
+et les diagnostics. Après analyse de toutes les températures, choisir
+$T^*=T_{\arg\max_r(c_V/\kb)_r}$ et sauvegarder ses voisins sur la grille.
+\par\textit{Commentaire :} cette recherche intervient après les mesures ;
+aucune température de transition n'est imposée à la dynamique. Les deux
+voisins décrivent une résolution de grille, pas une erreur-type sur $T^*$.
+\end{enumerate}
+\textbf{Sources :} \texttt{statistics.py : moments, summarize} ;
+\texttt{simulation.py : campaign}.
+\end{algocode}
+
+\subsection{Algorithme 8 : autocorrélation, incertitudes et diagnostics}
+\begin{algocode}{Algorithme 8 --- Analyse statistique des séries corrélées}
+\textbf{Entrées :} séries de production à $T_r$, $B$ tirages bootstrap.
+\textbf{Sorties :} erreurs-types, temps de corrélation et critères de suivi.
+\begin{enumerate}
+\item Pour chaque chaîne et pour $A=E,q$, centrer la série. Calculer par
+transformée de Fourier sa covariance aux retards $\ell$, en divisant par
+$M-\ell$, puis normaliser par la covariance à retard nul pour obtenir
+$\rho_A(\ell)$.
+\par\textit{Commentaire :} le remplissage de zéros de la transformée évite
+une corrélation circulaire parasite ; la FFT accélère le calcul de tous les
+retards. Une série de moins de huit valeurs ou de variance numérique
+quasi nulle reçoit $\tau=1/2$ dans le code ; ce retour conventionnel ne
+constitue pas une preuve de mélange si la trajectoire est figée.
+\item Accumuler les paires
+$P_j=\rho_A(2j-1)+\rho_A(2j)$ tant qu'elles sont positives. Arrêter à la
+première paire non positive ou selon la fenêtre du code,
+$2j-1>10[1/2+\sum_{h\le j}P_h]$. Poser
+\[
+\tau_{c,A}=\max\left(\frac12,\frac12+\sum_{j\ \text{retenus}}P_j\right),
+\qquad \tau_{\max}=\max_{c,A\in\{E,q\}}\tau_{c,A}.
+\]
+\textit{Commentaire :} les grands retards sont bruyants ; sommer sans
+troncature rendrait l'estimation instable. $\tau$ est exprimé en
+\emph{mesures enregistrées} ; multiplier par $d_m$ pour l'exprimer en balayages.
+\item Choisir exactement comme dans \texttt{summarize} la longueur de bloc
+\[
+b=\min\!\left(\max(2,\lceil2\tau_{\max}\rceil),
+                \max(2,\lfloor M/4\rfloor)\right).
+\]
+\textit{Commentaire :} on vise des blocs au moins aussi longs que
+$2\tau_{\max}$ pour conserver la dépendance temporelle. Le plafond lié à
+$M/4$ limite cette longueur pour les séries courtes ; si ce plafond devient
+actif, la longueur souhaitée n'est plus garantie.
+\item \textbf{Pour} chaque tirage bootstrap $h=1,\ldots,B$ et chaque chaîne :
+tirer $\lceil M/b\rceil$ débuts de blocs uniformément, construire les
+indices consécutifs modulo $M$, concaténer et garder les $M$ premiers.
+Rééchantillonner ensemble les neuf colonnes avec ces indices ; recalculer
+les huit fonctions de l'algorithme 7 puis moyenner sur les chaînes.
+\par\textit{Commentaire :} les blocs circulaires évitent de sous-représenter
+les bords. Recalculer les variances et le cumulant à chaque tirage transmet
+l'incertitude à ces fonctions non linéaires. Le rééchantillonnage est fait
+séparément dans chaque chaîne et à chaque température.
+\item Pour chaque estimation $\theta$, retenir
+\[
+\mathrm{SE}(\theta)=\max\!\left[
+\mathrm{sd}_{h}(\widehat\theta^{*(h)}),\,
+\frac{\mathrm{sd}_{c}(\widehat\theta_c)}{\sqrt C}\right],
+\]
+avec des écarts-types à diviseur effectif nombre de valeurs moins un.
+\par\textit{Commentaire :} le second terme empêche d'afficher une erreur
+plus petite que la dispersion observée entre chaînes. Ce maximum reste
+une estimation d'erreur-type, sans corriger une éventuelle métastabilité
+commune aux deux chaînes.
+\item Calculer l'effectif utile rapporté
+\[
+\mathrm{ESS}_{\min}=\min_{A\in\{E,q\}}
+       \sum_{c=1}^C\frac{M}{2\tau_{c,A}},
+\]
+ainsi que $\widehat R_E$, $\widehat R_q$ et le nombre de blocs
+$\lfloor M/b\rfloor$ par chaîne.
+\item Comparer les deux demi-séries d'énergie de chaque chaîne et retenir
+\[
+z_{\max}=\max_c
+\frac{|\overline E_{c,\text{première moitié}}
+       -\overline E_{c,\text{seconde moitié}}|}
+{\max[s_c(E)\sqrt{8\tau_{\max}/M},10^{-12}]},
+\]
+où $s_c(E)$ est l'écart-type à diviseur $M-1$. Déclarer le critère local
+satisfait si simultanément
+\[
+\mathrm{ESS}_{\min}\ge200,\quad\widehat R_E<1.05,\quad
+\widehat R_q<1.05,\quad\lfloor M/b\rfloor\ge20,\quad z_{\max}<3.
+\]
+\textit{Commentaire :} ces seuils signalent les séries à renforcer ; ils
+ne garantissent pas que tous les bassins métastables ont été visités.
+\end{enumerate}
+\textbf{Sources :} \texttt{statistics.py : tau\_int, split\_rhat, summarize}.
+\end{algocode}
+
+Pour préciser le calcul de $\widehat R$, le code partage chaque chaîne en
+deux moitiés de longueur $n_h=\lfloor M/2\rfloor$, puis normalise les rangs
+de leurs valeurs par
+\[
+z=\Phi^{-1}\!\left(\frac{\mathrm{rang}-3/8}{2Cn_h+1/4}\right).
+\]
+Il calcule $W$, la moyenne des variances internes, et
+$B_{\mathrm{inter}}=n_h\,\mathrm{Var}(\overline z_{\text{demi-chaîne}})$,
+puis
+\[
+\widehat R=\max\!\left(1,
+\sqrt{\frac{(n_h-1)W/n_h+B_{\mathrm{inter}}/n_h}{W}}\right).
+\]
+Le résultat retenu est le maximum de cette version et de celle obtenue
+en remplaçant les valeurs initiales par leurs écarts absolus à la médiane
+globale, avant de recalculer les rangs. Cette seconde version recherche des
+différences de dispersion. Les cas dégénérés $W\simeq0$ et les séries trop
+courtes sont traités séparément par \texttt{split\_rhat}. L'ordre signé
+$\eta$ n'est pas utilisé ici car deux variantes ordonnées peuvent avoir
+des valeurs signées différentes tout en décrivant le même degré d'ordre.
+
+Les identités fournissent un autre contrôle, calculé sur la production :
+pour chaque étiquette, un automate attend successivement une présence au
+froid, au chaud, puis au froid, et compte alors un aller-retour. Ce comptage
+utilise les seules dates enregistrées et peut manquer des visites entre
+deux mesures. Les taux locaux sont
+$N_{\text{acceptés},r}/(NS_{\mathrm{prod}})$ et les taux d'échange sont
+$N_{\text{échanges acceptés},r}/N_{\mathrm{tentatives},r}$ par lien.
+Ces contrôles de circulation complètent les critères de séries temporelles.
+
+\subsection{Chronologie concrète avec les paramètres de production}
+Le fichier \texttt{configs/production.json}, également recopié dans
+\texttt{summary.json}, fixe $N=864$, $R=46$, $C=2$,
+$S_{\mathrm{eq}}=6000$, $S_{\mathrm{prod}}=30000$, $K=500$,
+$d_x=5$, $d_m=10$ et $B=250$. Un segment contient donc 500 balayages,
+100 sessions d'échange et 50 dates de mesure. Une session ne teste
+qu'une parité de liens : un lien donné est sollicité toutes les deux
+sessions, soit tous les 10 balayages dans cette campagne.
+
+\begin{center}\small
+\begin{tabular}{r p{.66\linewidth}}
+\toprule
+Balayage local & Opérations après les $N$ propositions à chacune des $R$ températures\\
+\midrule
+1 à 4 & Pas d'échange et pas de mesure enregistrée.\\
+5 & Tester $(0,1),(2,3),\ldots,(44,45)$ ; aucune mesure.\\
+6 à 9 & Poursuivre les mouvements locaux.\\
+10 & Tester $(1,2),(3,4),\ldots,(43,44)$ ; mesurer ensuite les 46 états.\\
+15 & Reprendre la première parité de liens.\\
+20 & Tester la seconde parité puis mesurer.\\
+500 & Échanges, dernière mesure du segment, puis vérification globale des énergies et de la composition.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Ce tableau décrit le premier segment ; les suivants poursuivent la valeur
+de \texttt{phase}. Ici les 100 sessions par segment ramènent à la même
+parité, mais le code conserve explicitement cette variable pour les autres
+configurations admissibles. La production comporte 60 segments par chaîne
+et $M=3000$ mesures par température et par chaîne. L'équilibration comporte
+12 segments et 600 mesures diagnostiques par température et par chaîne,
+écartées des estimations thermiques.
+
+Au total, hors tirages rejetés d'espèces identiques, la campagne comporte
+\[
+C R N(S_{\mathrm{eq}}+S_{\mathrm{prod}})
+=2\times46\times864\times36000
+=2\,861\,568\,000
+\]
+propositions Au--Cu. Ce total compte les tests de Metropolis, et non le
+nombre de mouvements finalement acceptés.
+
+\subsection{Validation finale, champ moyen et coût du calcul}
+Après la campagne, \texttt{validation.py} vérifie notamment, pour toutes
+les mesures archivées, les identités sur $p_\mu$, $\eta$ et $q$, puis
+reconstruit l'énergie à partir des paramètres de Cowley :
+\[
+B_1=(1-\alpha_1)(N/4)12(3/4),\quad
+A_1=\frac{12(N/4)-B_1}{2},\quad
+B_2=(1-\alpha_2)(N/4)6(3/4),
+\]
+\[
+E_{\mathrm{reconstruit}}=-3.813N+0.161A_1+0.0063B_2.
+\]
+Cette comparaison indépendante associe les observables structurales à
+l'énergie effectivement mesurée. La validation compare aussi les moyennes
+d'énergie du CSV aux archives et contrôle les bornes analytiques ainsi que
+les régimes froid et chaud. Le lanceur exécute auparavant les tests
+physiques et statistiques ; un échec interrompt le calcul.
+
+La référence de champ moyen est obtenue séparément dans
+\texttt{meanfield.py}. L'algorithme de Brent recherche une racine de
+$h(\eta)=\eta g'(\eta)-2[g(\eta)-g(0)]$ sur
+$[0.01,0.999999]$, puis calcule
+$T_{\mathrm{MF}}=2A\eta/[\kb g'(\eta)]$ et
+$T_{\mathrm{sp}}=2A/\kb$. L'intervalle évite la solution triviale
+$\eta=0$ et la singularité de $g'$ à $\eta=1$ ; les termes entropiques
+$p\log p$ utilisent une fonction qui applique $0\log0=0$.
+Ce calcul fournit une comparaison analytique sans modifier les probabilités
+de transition Monte-Carlo.
+
+À nombre de voisins fixé, une différence d'énergie locale coûte $O(1)$
+et un balayage de toutes les températures coûte $O(RN)$ en moyenne.
+Le contrôle global d'énergie coûte également $O(RN)$, une seule fois par
+segment ; le calcul des observables coûte $O(RN)$ à chaque date de mesure.
+La précalculation des voisins et la compilation Numba réduisent le travail
+dans les boucles de propositions. Les configurations et voisinages
+occupent $O(RN+18N)$, tandis que les neuf séries de production occupent
+$O(9CMR)$ valeurs, auxquelles s'ajoutent identités et équilibration.
+Le bootstrap, effectué après la dynamique, réévalue les statistiques sur
+des blocs pour propager les corrélations temporelles dans les erreurs.
+
+\clearpage
+\subsection{Version en pseudocode}
+\label{sec:pseudocode}
+Les blocs suivants donnent une lecture directement transposable en code
+des algorithmes précédents. L'indentation et les mots-clés
+\texttt{POUR}, \texttt{TANT QUE}, \texttt{SI} indiquent les boucles et les
+conditions ; \texttt{<-} désigne une affectation et \texttt{\#} un commentaire.
+Les indices commencent à zéro. Les tableaux passés à une procédure sont
+modifiés sur place, sauf les données explicitement retournées.
+
+On conserve les conventions de l'annexe : \texttt{Q = 1000000},
+\texttt{Eint} est une énergie totale en micro-eV entiers, \texttt{E} une
+énergie totale en eV, \texttt{dm} l'intervalle de mesure, \texttt{dx}
+l'intervalle d'échange et \texttt{K} la taille maximale d'un segment.
+\texttt{UNIFORME()} tire un réel dans $[0,1)$ et
+\texttt{ENTIER(a,b)} un entier uniforme dans $\{a,\ldots,b\}$.
+Chaque commentaire signale le rôle de l'étape dans le calcul.
+
+\begin{algocode}{Pseudocode P1 --- Géométrie et énergie de référence}
+\small
+\begin{verbatim}
+FONCTION GEOMETRIE(L):
+    EXIGER L entier ET L >= 3
+    base <- [(0,0,0), (0,1,1), (1,0,1), (1,1,0)]
+    xyz, sub <- listes vides
+    POUR chaque maille (a,b,c) dans {0,...,L-1}^3:
+        POUR mu = 0,...,3:
+            AJOUTER 2*(a,b,c) + base[mu] A xyz
+            AJOUTER mu A sub
+        FIN POUR
+    FIN POUR
+    N <- longueur(xyz)
+    index <- dictionnaire {coordonnees : indice du site}
+    D1 <- deplacements entiers de norme carree 2
+    D2 <- [(+/-2,0,0), (0,+/-2,0), (0,0,+/-2)]
+    POUR i = 0,...,N-1:
+        V1[i] <- [index[(xyz[i]+d) modulo (2*L)] pour d dans D1]
+        V2[i] <- [index[(xyz[i]+d) modulo (2*L)] pour d dans D2]
+    FIN POUR
+    RETOURNER xyz, sub, V1, V2  # Voisinages calcules une fois
+
+FONCTION ENERGIE_REFERENCE(s):
+    total <- 0
+    POUR i = 0,...,N-1:
+        POUR v dans V1[i]: total <- total + Jint[s[i],s[v]]
+        POUR v dans V2[i]: total <- total + Iint[s[i],s[v]]
+    FIN POUR
+    RETOURNER total / 2        # Chaque paire est vue deux fois
+\end{verbatim}
+\end{algocode}
+
+\texttt{Jint} et \texttt{Iint} sont les matrices de paires multipliées par
+\texttt{Q}. La division finale donne un entier exact. Les signes
+\texttt{+/-} du pseudocode signifient que les deux signes sont énumérés.
+La taille $N=4L^3$ est déduite du nombre de sites construits.
+
+\begin{algocode}{Pseudocode P2 --- Campagne : chaînes, phases et segments}
+\small
+\begin{verbatim}
+VERIFIER_PARAMETRES(cfg)             # Multiples de dm et dx
+xyz, sub, V1, V2 <- GEOMETRIE(L)
+N <- longueur(xyz)
+archives <- liste vide
+
+POUR c = 0,...,C-1:
+    rng <- GENERATEUR(graine[c])     # Generateur de cette chaine
+    POUR r = 0,...,R-1:
+        SI c = 0 OU T[r] < Tdepart:
+            s[r] <- (sub = (2*c) modulo 4)
+        SINON:
+            s[r] <- N/4 sites Au tires sans remise avec rng
+        FIN SI
+        Eint[r] <- ENERGIE_REFERENCE(s[r])
+    FIN POUR
+    labels <- [0,...,R-1]
+    phase <- 0                      # Parite des liens a echanger
+    burn, prod, ids <- listes vides
+    acc_prod, ok_prod, essais_prod <- tableaux nuls
+
+    POUR (mode, longueur) dans [(equilibration, Seq),
+                               (production, Sprod)]:
+        fait <- 0
+        TANT QUE fait < longueur:
+            S <- min(K, longueur - fait)
+            g <- TIRER_GRAINE(rng)  # Nouvelle graine de segment
+            rec, lab, acc, ok, essais, phase <- SEGMENT(
+                s, Eint, labels, phase, S, g)
+            POUR r = 0,...,R-1:
+                EXIGER ENERGIE_REFERENCE(s[r]) = Eint[r]
+                EXIGER somme(s[r]) = N/4
+                EXIGER Eint[r] >= ARRONDIR(-3.813*N*Q)
+            FIN POUR                # Controle apres le segment
+            SI mode = equilibration:
+                CONCATENER rec A burn
+            SINON:
+                CONCATENER rec A prod ET lab A ids
+                acc_prod <- acc_prod + acc
+                ok_prod <- ok_prod + ok
+                essais_prod <- essais_prod + essais
+            FIN SI
+            fait <- fait + S
+        FIN TANT QUE
+    FIN POUR                        # Pas de remise a zero des etats
+    SAUVEGARDER(prod, burn, ids, s, T, xyz, sub)
+    AJOUTER prod A archives
+    CALCULER_ACCEPTATIONS_ET_ALLERS_RETOURS(ids,
+        acc_prod, ok_prod, essais_prod)
+FIN POUR
+
+tableau <- ANALYSER(archives, T, N)
+Tetoile <- temperature du maximum de tableau.cv
+SAUVEGARDER(tableau, Tetoile, voisins_de_grille(Tetoile))
+VALIDER_ARCHIVES_ET_CSV()
+PRODUIRE_FIGURES_ET_RAPPORT()
+\end{verbatim}
+\end{algocode}
+
+\texttt{burn} conserve seulement les historiques d'équilibration.
+\texttt{ANALYSER} reçoit uniquement \texttt{prod}, donc les mesures
+initiales sont exclues des estimations thermiques. Les fonctions de
+sauvegarde et de contrôle des allers-retours correspondent à celles
+décrites dans l'algorithme 2 et après l'algorithme 8.
+
+\begin{algocode}{Pseudocode P3 --- Un segment de balayages et d'échanges}
+\small
+\begin{verbatim}
+PROCEDURE SEGMENT(s, Eint, labels, phase, S, graine):
+    INITIALISER_ALEATOIRE_NOYAU(graine)
+    beta[r] <- 1 / (Q*kB*T[r]) pour chaque r
+    rec, lab <- tableaux de S/dm dates
+    acc, ok, essais <- tableaux nuls
+    m <- 0
+
+    POUR balayage = 1,...,S:
+        POUR r = 0,...,R-1:
+            POUR tentative = 1,...,N:
+                accepte <- METROPOLIS(s[r], Eint[r], beta[r])
+                SI accepte: acc[r] <- acc[r] + 1
+            FIN POUR                # N propositions, refus inclus
+        FIN POUR
+
+        SI dx > 0 ET balayage modulo dx = 0:
+            POUR r = phase modulo 2,...,R-2 PAR PAS DE 2:
+                essais[r] <- essais[r] + 1
+                ell <- (beta[r]-beta[r+1])*(Eint[r]-Eint[r+1])
+                SI ell >= 0:
+                    accepter <- VRAI
+                SINON:
+                    u <- UNIFORME()
+                    accepter <- log(max(u, 1e-300)) < ell
+                FIN SI
+                SI accepter:
+                    PERMUTER s[r], s[r+1]       # Lignes completes
+                    PERMUTER Eint[r], Eint[r+1]
+                    PERMUTER labels[r], labels[r+1]
+                    ok[r] <- ok[r] + 1
+                FIN SI
+            FIN POUR
+            phase <- phase + 1      # Alterner les liens testes
+        FIN SI
+
+        SI balayage modulo dm = 0:
+            POUR r = 0,...,R-1:
+                rec[m,r] <- OBSERVABLES(s[r], Eint[r])
+                lab[m,r] <- labels[r]
+            FIN POUR                # Mesure APRES les echanges
+            m <- m + 1
+        FIN SI
+    FIN POUR
+    RETOURNER rec, lab, acc, ok, essais, phase
+\end{verbatim}
+\end{algocode}
+
+Les températures ne sont jamais permutées : \texttt{rec[m,r]} désigne
+toujours $T_r$. Le compteur de balayages repart de 1 à chaque appel, mais
+les multiples exigés dans P2 assurent la continuité du calendrier des
+mesures et des échanges. La variable \texttt{phase} est retournée pour
+conserver l'alternance entre appels.
+
+\begin{algocode}{Pseudocode P4 --- Variation locale et décision de Metropolis}
+\small
+\begin{verbatim}
+FONCTION DELTA_LOCAL(s, i, j):
+    SI s[i] = 0: PERMUTER les noms i, j
+    # Ici i porte Au et j porte Cu ; s est encore inchange.
+    ai <- somme(s[v] pour v dans V1[i] si v != j)
+    aj <- somme(s[v] pour v dans V1[j] si v != i)
+    bi <- somme(s[v] pour v dans V2[i] si v != j)
+    bj <- somme(s[v] pour v dans V2[j] si v != i)
+    RETOURNER 161000*(aj-ai) + 12600*(bi-bj)
+
+PROCEDURE METROPOLIS(s, Eint, beta):
+    REPETER:
+        i <- ENTIER(0,N-1)
+        j <- ENTIER(0,N-1)
+    JUSQU'A s[i] != s[j]             # Proposer uniquement Au-Cu
+    dE <- DELTA_LOCAL(s, i, j)       # Energie entiere en micro-eV
+    SI dE <= 0:
+        accepter <- VRAI
+    SINON:
+        accepter <- UNIFORME() < exp(-beta*dE)
+    FIN SI
+    SI accepter:
+        PERMUTER s[i], s[j]          # Composition conservee
+        Eint <- Eint + dE           # Mise a jour apres decision
+    FIN SI                          # Un refus garde l'ancien etat
+    RETOURNER accepter
+\end{verbatim}
+\end{algocode}
+
+\texttt{Eint} est ici un argument modifiable : sa nouvelle valeur est
+transmise à l'appelant. Dans \texttt{DELTA\_LOCAL}, permuter les noms
+\texttt{i,j} ne modifie pas les occupations et ne change pas les indices
+de l'appelant. La liaison mutuelle des sites, si elle existe, est exclue
+des quatre sommes car elle reste Au--Cu après l'échange.
+
+\begin{algocode}{Pseudocode P5 --- Calcul des neuf observables instantanées}
+\small
+\begin{verbatim}
+FONCTION OBSERVABLES(s, Eint):
+    p <- [0,0,0,0]
+    B1, B2 <- 0, 0
+    POUR i = 0,...,N-1:
+        SI s[i] = 1:
+            p[sub[i]] <- p[sub[i]] + 4/N
+            POUR v dans V1[i]: B1 <- B1 + (1-s[v])
+            POUR v dans V2[i]: B2 <- B2 + (1-s[v])
+        FIN SI
+    FIN POUR                        # Chaque paire mixte vue une fois
+    eta <- (p[0]-1/4) / (3/4)
+    q <- sqrt((4/3)*somme((p[mu]-1/4)^2 pour mu=0,...,3))
+    alpha1 <- 1 - B1 / ((N/4)*12*(3/4))
+    alpha2 <- 1 - B2 / ((N/4)*6*(3/4))
+    E <- Eint / Q                   # Energie TOTALE en eV
+    RETOURNER [E, eta, q, alpha1, alpha2, p[0],p[1],p[2],p[3]]
+\end{verbatim}
+\end{algocode}
+
+\begin{algocode}{Pseudocode P6 --- Moyennes thermiques et bootstrap par blocs}
+\small
+\begin{verbatim}
+FONCTION MOMENTS(serie, T, N):
+    E, eta, q, alpha1, alpha2 <- cinq premieres colonnes
+    u  <- moyenne(E)/N
+    cv <- variance(E) / (N*(kB*T)^2) # Ici cv signifie cV/kB
+    Xq <- N*variance(q) / (kB*T)
+    SI moyenne(q^2) > 0:
+        Uq <- 1 - moyenne(q^4)/(3*moyenne(q^2)^2)
+    SINON:
+        Uq <- NON_DEFINI
+    FIN SI
+    RETOURNER [u, moyenne(eta), moyenne(q), moyenne(alpha1),
+               moyenne(alpha2), cv, Xq, Uq]
+
+FONCTION ANALYSER(archives, T, N):
+    rng_boot <- GENERATEUR(318)
+    POUR r = 0,...,R-1:
+        a <- archives[:,:,r,:]      # Temperature fixe, production
+        M <- nombre de mesures par chaine
+        POUR c = 0,...,C-1:
+            tau[c,E] <- TAU_INT(a[c,:,E])
+            tau[c,q] <- TAU_INT(a[c,:,q])
+            theta[c] <- MOMENTS(a[c], T[r], N)
+        FIN POUR
+        tau_max <- maximum(tau)
+        b <- min(max(2, plafond(2*tau_max)), max(2, plancher(M/4)))
+        estimation <- moyenne(theta sur les chaines)
+
+        POUR h = 1,...,B:
+            POUR c = 0,...,C-1:
+                debuts <- plafond(M/b) entiers dans [0,M-1]
+                          tires avec rng_boot
+                ix <- CONCATENER((debut + [0,...,b-1]) modulo M
+                                  pour chaque debut dans debuts)
+                ix <- les M premiers indices
+                tirage[c] <- MOMENTS(a[c,ix,:], T[r], N)
+            FIN POUR                # Blocs tires par chaine
+            boot[h] <- moyenne(tirage sur les chaines)
+        FIN POUR
+        erreur <- max_composante(ecart_type(boot),
+                                 ecart_type(theta)/sqrt(C))
+        ess <- min_sur_E_et_q(somme_sur_c(M/(2*tau[c,A])))
+        rE <- SPLIT_RHAT(a[:,:,E])
+        rq <- SPLIT_RHAT(a[:,:,q])
+        z <- ECART_DEMI_SERIES_ENERGIE(a, tau_max)
+        diagnostic <- (ess >= 200 ET rE < 1.05 ET rq < 1.05
+                       ET plancher(M/b) >= 20 ET z < 3)
+        AJOUTER T[r], estimation, erreur, tau_max, ess,
+                rE, rq, b, z, diagnostic AU tableau
+    FIN POUR
+    RETOURNER tableau
+\end{verbatim}
+\end{algocode}
+
+Dans P6, \texttt{variance} utilise le diviseur $M$, tandis que les
+\texttt{ecart\_type} du bootstrap et de la dispersion entre chaînes
+utilisent le diviseur nombre de valeurs moins un. Le maximum des erreurs
+est pris séparément pour chacune des huit observables. Les routines
+\texttt{TAU\_INT}, \texttt{SPLIT\_RHAT} et
+\texttt{ECART\_DEMI\_SERIES\_ENERGIE} suivent les formules et les
+traitements des cas dégénérés explicités dans l'algorithme 8. Les énergies
+et $q$ sont des colonnes de la série ; le symbole \texttt{A} de la ligne
+\texttt{ess} parcourt ces deux colonnes.
 
 \begin{thebibliography}{9}
 \bibitem{metropolis} N. Metropolis, A. W. Rosenbluth, M. N. Rosenbluth,

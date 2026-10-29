@@ -1,0 +1,12 @@
+{
+  "state": "complete",
+  "pid": 6572,
+  "updated_at": "2026-10-28T17:02:54.881990+01:00",
+  "L": 6,
+  "n_atoms": 864,
+  "figures": 8,
+  "peaks_cv_grid_K": {
+    "heating": 1050.0,
+    "cooling": 1055.0
+  }
+}

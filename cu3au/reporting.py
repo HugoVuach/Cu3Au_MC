@@ -17,10 +17,13 @@ def make_report(result_dir, compile_pdf=True):
     shutil.copy2(template, out/'rapport.tex')
     shutil.copytree(root/'figures', out/'figures', dirs_exist_ok=True)
     summary = json.loads((root/'summary.json').read_text(encoding='utf8'))
+    from .pedagogy import write_pedagogical_tables
+    write_pedagogical_tables(root)
     cfg = summary['config']
     with (root/'observables.csv').open(encoding='utf8') as f:
         rows = list(csv.DictReader(f))
-    tests = (root/'tests.log').read_text(encoding='utf8') if (root/'tests.log').exists() else ''
+    test_path = root/'tests_current.log' if (root/'tests_current.log').exists() else root/'tests.log'
+    tests = test_path.read_text(encoding='utf8') if test_path.exists() else ''
     found = re.search(r'Ran (\d+) tests?', tests)
     peaks = []
     for file in sorted(root.glob('chain_*.npz')):

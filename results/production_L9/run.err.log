@@ -1,0 +1,2 @@
+mkdir -p failed for path C:\Users\vuache_h\.matplotlib: [WinError 5] Accès refusé: 'C:\\Users\\vuache_h\\.matplotlib'
+Matplotlib created a temporary cache directory at C:\Users\vuache_h\AppData\Local\Temp\matplotlib-ks0nz3cr because there was an issue with the default path (C:\Users\vuache_h\.matplotlib); it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.

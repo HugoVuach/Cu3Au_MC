@@ -29,7 +29,8 @@
 \newtcolorbox{attention}{breakable,colback=gold!8,colframe=gold!80!black,boxrule=.6pt,
   title={Point d'interprétation},fonttitle=\small}
 \newtcolorbox{algocode}[1]{breakable,colback=pale,colframe=navy,boxrule=.6pt,
-  title={#1},fonttitle=\bfseries,coltitle=white}
+  title={#1},fonttitle=\bfseries,coltitle=white,
+  before={\par\smallskip},after={\par\smallskip}}
 \newcommand{\Au}{\mathrm{Au}}
 \newcommand{\Cu}{\mathrm{Cu}}
 \newcommand{\kb}{k_{\mathrm B}}
@@ -88,6 +89,21 @@ Seconds voisins & $a$ & $6$ & $I_{\Au\Au}=I_{\Cu\Cu}=0$\\
 \end{tabular}
 \end{center}
 
+\subsection*{Repères de vocabulaire}
+Un \textbf{site} est une position fixe du réseau ; son occupation est Au ou Cu.
+Une \textbf{maille} est le motif géométrique répété dans l'espace. Les quatre
+\textbf{sous-réseaux}, repérés par $\mu=0,1,2,3$, distinguent les positions
+de base de la maille CFC. Une \textbf{coquille} regroupe les voisins à une
+même distance d'un site choisi. Une \textbf{configuration} donne l'espèce
+sur chacun des sites à un instant du calcul.
+
+Une \textbf{réplique} est une configuration qui peut voyager entre les
+températures. Une \textbf{chaîne} désigne ici une campagne indépendante
+avec sa graine et ses \Ntemps\ répliques. Un \textbf{balayage} effectue
+$N$ propositions Au--Cu par température, refus compris. L'\textbf{équilibration}
+est la phase initiale écartée des moyennes ; la \textbf{production} est la
+phase dont on utilise les mesures pour estimer les grandeurs thermiques.
+
 \section{Question 1 -- Réseau, énergie et algorithme de Metropolis}
 \subsection{Construction exacte de la géométrie}
 Une maille conventionnelle porte les quatre positions
@@ -126,6 +142,11 @@ implémentation pour éviter les ambiguïtés d'images périodiques multiples.
 positions sont celles du réseau CFC, quelle que soit l'occupation chimique.}
 
 \subsection{Énergie et tendance à l'ordre}
+\fig{13_coquilles}{.95}{Les deux coquilles autour d'un Au dans la référence
+ordonnée $L1_2$. Les douze premiers voisins sont Cu et les six seconds
+voisins sont Au. Les coquilles sont définies par leurs distances, même si
+leurs occupations changent pendant la simulation.}
+
 L'énergie est
 \begin{equation}
 E=\sum_{\{i,j\}\in\mathcal P_1}J_{\sigma_i\sigma_j}
@@ -187,6 +208,10 @@ Cette convention modifie l'unité de temps Monte-Carlo, mais pas la mesure
 d'équilibre. Les échanges à longue distance sont un outil d'échantillonnage ;
 ils ne décrivent pas une cinétique réaliste de diffusion par lacunes.
 
+\fig{14_organigramme}{.72}{Organisation du calcul : proposition, décision,
+comptage des tentatives, fin de balayage, échanges puis mesures. Le dessin
+résume les étapes ; les boucles complètes sont données en annexe.}
+
 \begin{oral}{Pourquoi ne pas changer un seul atome ?}
 Changer Au en Cu modifierait la composition. Notre ensemble est canonique :
 on doit permuter les occupations. Expliquer aussi pourquoi une énergie de
@@ -210,6 +235,22 @@ Pour la boîte de l'énoncé,
 \alpha_1=1-\frac{B_1}{1944},\qquad
 \alpha_2=1-\frac{B_2}{972}.
 \]
+\begin{tcolorbox}[breakable,colback=pale,colframe=teal,title={Du comptage à la probabilité puis à Cowley}]
+À première coquille, les $216$ Au donnent $216\times12=2592$ positions
+voisines examinées. Si $1944$ de ces positions portent Cu, alors
+\[
+p_1^{\Cu\mid\Au}=\frac{1944}{2592}=0.75,
+\qquad \alpha_1=1-\frac{0.75}{0.75}=0.
+\]
+La première division mesure une probabilité conditionnelle ; la seconde
+la compare à la concentration globale $c_{\Cu}=0.75$.
+Si les $2592$ positions portent Cu, $p_1^{\Cu\mid\Au}=1$ et
+$\alpha_1=-1/3$. À seconde coquille, on examine $216\times6=1296$
+positions : si aucune ne porte Cu, $p_2^{\Cu\mid\Au}=0$ et $\alpha_2=1$.
+Le code effectue ce comptage autour de tous les Au, à chaque mesure,
+puis moyenne les paramètres obtenus sur la production.
+\end{tcolorbox}
+
 Dans $L1_2$, les premiers voisins d'un Au sont tous Cu, donc
 $\alpha_1=1-1/(3/4)=-1/3$. Les seconds voisins sont tous Au, donc
 $\alpha_2=1$.
@@ -270,6 +311,31 @@ On a $q=1$ dans les quatre variantes et $q=0$ pour les occupations moyennes
 uniformes. Mais $\langle q\rangle$ est légèrement positif dans une boîte finie
 désordonnée, car il mesure une amplitude de fluctuations.
 
+\fig{15_variantes}{1}{Les quatre variantes parfaitement ordonnées sont
+équivalentes : seul le sous-réseau qui porte les Au change. $\eta$ dépend
+du sous-réseau de référence, tandis que $q=1$ dans les quatre cas. Ces
+dessins sont des états de référence construits, pas des mesures Monte-Carlo.}
+
+\begin{center}\small
+\begin{tabular}{lccc}\toprule
+Configuration & $(p_0,p_1,p_2,p_3)$ & $\eta$ & $q$\\\midrule
+Au sur le sous-réseau 0 & $(1,0,0,0)$ & $1$ & $1$\\
+Au sur le sous-réseau 1 & $(0,1,0,0)$ & $-1/3$ & $1$\\
+Au sur le sous-réseau 2 & $(0,0,1,0)$ & $-1/3$ & $1$\\
+Au sur le sous-réseau 3 & $(0,0,0,1)$ & $-1/3$ & $1$\\\bottomrule
+\end{tabular}\end{center}
+
+Si ces quatre états sont visités aussi souvent, leur occupation moyenne
+vaut $(1/4,1/4,1/4,1/4)$. Pourtant, chaque instantané est ordonné :
+\[
+\boxed{\langle q(p)\rangle=1\quad\text{alors que}\quad
+q(\langle p\rangle)=0.}
+\]
+Les courbes de gauche de la figure suivante sont des moyennes sur les
+mesures \emph{et les chaînes}. Leur proximité avec $1/4$ à basse température
+reflète la visite de plusieurs variantes ; elle ne suffit pas à conclure
+au désordre. Il faut les lire avec $\langle q\rangle$, qui reste proche de 1.
+
 \fig{09_sous_reseaux}{1}{Paramètre signé de l'énoncé, amplitude invariante et
 occupations des sous-réseaux. Une moyenne entre variantes ne doit pas être
 confondue avec une configuration instantanée désordonnée.}
@@ -283,10 +349,17 @@ paramètre demandé. L'ordre de moyenne et de prise de norme compte.
 
 \section{Question 4 -- Vérifications du programme}
 Le dossier contient une suite de tests automatiques : \TestCount\ tests
-passent dans l'environnement décrit dans le fichier de validation. Ils
+ont été relancés avec succès pour la présente mise à jour. Leur date,
+leurs valeurs de référence et leur environnement sont précisés ci-dessous.
+Ils
 contrôlent la géométrie périodique, la réciprocité des voisinages, les quatre
 variantes, les valeurs analytiques, les différences d'énergie locales et
 globales, la conservation de composition et la reproductibilité.
+Les tests supplémentaires vérifient le bootstrap du maximum, sa
+reproductibilité et son invariance à une constante ajoutée à l'énergie.
+Ils vérifient également la continuité du cycle thermique et l'identité
+des trajectoires après reprise à un palier sauvegardé.
+\input{current_validation.tex}
 
 \subsection{Création d'une paire d'antisites}
 Échangeons un Au et un Cu premiers voisins dans l'état $L1_2$. En excluant
@@ -332,14 +405,29 @@ boîte de 864 sites ; il vérifie la règle probabiliste.
 Chaque Au a douze voisins Cu. Il y a donc $216\times12=2592$ paires Au--Cu,
 aucune paire Au--Au de première coquille, et $5184-2592=2592$ paires Cu--Cu.
 Les seconds voisins sont de même espèce et ne contribuent pas à l'énergie.
+Le tableau compte les paires \emph{non orientées}, une seule fois chacune :
+\begin{center}\small
+\begin{tabular}{lrrrr}\toprule
+Coquille & Au--Au & Au--Cu & Cu--Cu & Total\\\midrule
+Première & 0 & 2592 & 2592 & 5184\\
+Deuxième & 648 & 0 & 1944 & 2592\\\bottomrule
+\end{tabular}\end{center}
+Par exemple, les $216\times6$ contacts Au--Au de seconde coquille sont
+comptés depuis les deux extrémités, soit $216\times6/2=648$ paires.
 \[
 E_0=2592(-0.689)+2592(-0.582)=-3294.432\ \mathrm{eV}.
 \]
 Donc
 \begin{equation}
-\boxed{u_0=-3.813\ \mathrm{eV/atome},\qquad
-E_0^{\Cu_3\Au}=-15.252\ \mathrm{eV}.}
+\begin{aligned}
+u_0&=\frac{E_0}{N}=\frac{-3294.432}{864}
+=\boxed{-3.813\ \mathrm{eV/atome}},\\
+E_0^{\Cu_3\Au}&=\frac{E_0}{N/4}=\frac{-3294.432}{216}=4u_0
+=\boxed{-15.252\ \mathrm{eV/formule}}.
+\end{aligned}
 \end{equation}
+Une unité de formule Cu$_3$Au contient trois Cu et un Au, donc quatre
+atomes ; la boîte contient $864/4=216$ unités de formule.
 La cohésion exprimée comme énergie positive de dissociation vaut
 $3.813\ \mathrm{eV/atome}$, relativement au zéro énergétique du modèle.
 
@@ -390,8 +478,9 @@ Le rapport des poids après et avant échange donne directement cet exposant.
 La marginale à chaque température reste canonique. La mesure doit être
 classée par \emph{température fixe}, et non par identité de réplique.
 
-Le code alterne les paires de températures échangées et réalise une tentative
-sur chaque lien concerné tous les \ExchangeEvery\ balayages. Les noyaux de
+Une session d'échange a lieu tous les \ExchangeEvery\ balayages. Le code
+alterne les liens pairs et impairs : un lien donné est donc testé toutes
+les deux sessions, soit tous les 10 balayages dans cette campagne. Les noyaux de
 Metropolis restent ceux demandés par l'énoncé ; les échanges de répliques
 ajoutent un mécanisme d'échantillonnage qui conserve la mesure cible
 \cite{metropolis,hukushima}.
@@ -422,6 +511,21 @@ température risquerait de se figer avant d'atteindre l'état fondamental.
 \fig{07_configurations}{1}{Configurations finales effectivement obtenues,
 au froid, près du maximum thermique et au chaud. Ce sont des instantanés,
 pas des moyennes sur les occupations.}
+\fig{16_coupes_2D}{.95}{Deux plans adjacents des mêmes configurations de la
+première chaîne. Les deux hauteurs sont nécessaires pour montrer les quatre
+sous-réseaux : une seule coupe peut ne contenir aucun Au dans une variante
+pourtant parfaitement ordonnée. L'ordre est plus lisible ici que dans le
+nuage tridimensionnel.}
+\fig{17_moyennes_cumulees}{.95}{Comparaison des moyennes cumulées de
+production dans les deux chaînes à $\Tpeak$ K. Une moyenne cumulée utilise
+toutes les mesures précédentes ; ses points ne sont donc pas indépendants.}
+
+Pour $M'$ mesures de production, la courbe cumulée est
+$\overline A(M')=(1/M')\sum_{m=1}^{M'}A_m$. Sa stabilisation et l'accord
+des chaînes complètent les traces instantanées, sans prouver à eux seuls
+l'absence de bassins métastables non visités. Les contrôles de circulation
+donnent 4 puis 3 allers-retours complets froid--chaud--froid pour les deux
+chaînes de cette campagne ; leur faible nombre reste une limite à considérer.
 \fig{10_repliques}{1}{Trajectoires de quelques identités de répliques.
 La circulation en température complète les contrôles locaux d'équilibre.}
 
@@ -440,6 +544,29 @@ les deux paramètres de Cowley, $\eta$, $q$ et les occupations des quatre
 sous-réseaux.
 
 \subsection{Capacité calorifique et fluctuations d'ordre}
+\input{representative_results.tex}
+Ce tableau est calculé à partir du CSV des mesures. La valeur observée
+$c_V=0$ au froid signifie qu'aucune fluctuation d'énergie n'a été mesurée
+dans cette série ; elle ne démontre pas que la capacité calorifique exacte
+est strictement nulle à une température finie.
+
+La capacité calorifique mesure la variation d'énergie moyenne quand on
+chauffe à volume constant :
+\[
+C_V=\left(\frac{\partial\langle E\rangle}{\partial T}\right)_V,
+\qquad c_V=C_V/N.
+\]
+Le déroulement concret est
+\[
+\text{configurations Metropolis}\ \longrightarrow\
+\{E_1,\ldots,E_M\}\ \longrightarrow\
+\langle E^2\rangle-\langle E\rangle^2\ \longrightarrow\ c_V.
+\]
+Metropolis fournit les configurations avec leurs poids thermiques ; le
+post-traitement utilise les énergies mesurées, pas le taux d'acceptation.
+Dans l'ensemble canonique,
+$Z=\sum_C e^{-\beta E(C)}$ et $\langle E\rangle=-\partial_\beta\ln Z$.
+En dérivant une seconde fois, on obtient la variance d'énergie.
 À Hamiltonien indépendant de la température,
 \[
 \frac{\partial\langle E\rangle}{\partial\beta}
@@ -485,6 +612,13 @@ un effectif indépendant estimé d'au moins $200$, au moins $20$ blocs par
 chaîne, et un écart entre demi-séries inférieur à trois unités d'erreur
 estimée. Les graines indépendantes ne rendent pas les températures d'une
 même campagne indépendantes.
+
+Lorsque E et q sont constants dans une série froide, le code attribue
+$\tau=1/2$ et peut obtenir $\widehat R=1$ : ce traitement numérique ne
+prouve pas que toutes les excitations ou variantes ont été explorées.
+Le choix des blocs utilise E et q ; il reste utile de tester également
+la corrélation des paramètres de Cowley et la stabilité des erreurs
+lorsque la longueur des blocs est augmentée.
 
 \fig{02_ordres}{1}{Ordre à longue et courte portée. Les bandes représentent
 une erreur-type estimée ; elles ne sont pas une enveloppe systématique de
@@ -551,6 +685,43 @@ les distributions et les déplacements des maxima \cite{binder}.
 \fig{04_distributions}{1}{Distributions près de la zone de transition.
 L'inspection de la coexistence complète celle du maximum de capacité
 calorifique ; les histogrammes restent sensibles à la durée du calcul.}
+
+\subsection{Incertitude statistique du maximum et concordance des indices}
+La hauteur du pic possède une erreur-type, mais celle-ci n'est pas une
+erreur en kelvins sur sa position. On estime cette dernière par un
+bootstrap \emph{conjoint} des températures : dans chaque chaîne, les mêmes
+indices de blocs sont appliqués simultanément à toutes les températures.
+Les deux chaînes sont rééchantillonnées séparément. Pour chaque tirage,
+on recalcule les variances d'énergie dans chaque chaîne, on moyenne leurs
+capacités calorifiques puis on recherche le maximum sur la grille initiale.
+Cette synchronisation conserve les dépendances entre températures induites
+par les échanges de répliques.
+
+La longueur de référence vaut
+$b=\lceil2\max_{T,c,A\in\{E,q\}}\tau_{c,A}\rceil$, avec les bornes
+numériques décrites en annexe. On la compare à une longueur environ deux
+fois plus petite et deux fois plus grande. Les résultats sont obtenus
+uniquement à partir des archives de production :
+\input{peak_uncertainty.tex}
+\fig{18_incertitude_pic}{.95}{Fréquence de la position du maximum parmi
+les tirages bootstrap pour trois longueurs de bloc. Les températures
+possibles sont celles de la grille : aucune précision sous la maille de
+température n'est créée par ce calcul.}
+
+Un écart-type inférieur au pas de 5 K traduit ici des changements rares
+de la case de maximum ; il ne localise pas le pic entre les températures
+simulées. L'intervalle percentile est une estimation statistique conditionnelle à
+la taille, aux deux chaînes observées et à la grille. Il ne couvre ni
+le déplacement avec $L$, ni les états métastables éventuellement non
+visités. S'il se réduit à un point, cela ne signifie pas que la vraie
+température de transition est connue exactement. Les changements de pente
+et les maxima de fluctuations ne définissent pas exactement le même
+critère : leur proximité identifie une zone cohérente, pas plusieurs
+mesures indépendantes d'une température critique unique.
+
+Une étude de plusieurs tailles renforcerait l'interprétation
+thermodynamique. La présente mise à jour n'utilise que la campagne
+$L=\Lbox$ terminée ; aucun résultat du calcul $L=9$ interrompu n'est inclus.
 
 \subsection{Estimation analytique de Bragg-Williams}
 Pour une famille d'états à un sous-réseau privilégié,
@@ -634,6 +805,20 @@ isolées n'est une preuve suffisante de l'ordre thermodynamique de la
 transition. Il faudrait renforcer les statistiques et comparer plusieurs
 tailles pour conclure sur ce point.
 
+\begin{samepage}
+\subsection{Conclusion physique}
+Au froid, l'énergie rejoint le minimum exact
+$u_0=-3.813$ eV/atome, $q\simeq1$ et les deux paramètres de Cowley
+prennent les valeurs de $L1_2$. En chauffant, les défauts chimiques
+augmentent et l'ordre global chute dans la zone du maximum de capacité
+calorifique, situé à $\Tpeak$ K sur cette grille. Au chaud, $q$ devient
+faible alors que les corrélations locales restent mesurables : perdre
+l'ordre à longue portée ne rend pas immédiatement les occupations
+indépendantes. La valeur $\Tpeak$ K caractérise donc ce modèle de réseau
+rigide dans la boîte de $\Natoms$ sites ; elle n'est ni une extrapolation
+à taille infinie ni une mesure expérimentale de Cu$_3$Au.
+\end{samepage}
+
 \begin{oral}{Plan possible pour une présentation de 8 à 10 minutes}
 \begin{enumerate}
 \item Décrire le réseau fixe, la composition et la structure $L1_2$.
@@ -646,6 +831,18 @@ tailles pour conclure sur ce point.
 \item Terminer par les limites physiques et l'étude de taille à poursuivre.
 \end{enumerate}
 \end{oral}
+
+\section{Bonus -- Cycle de chauffage et de refroidissement}
+\label{sec:bonus-cycle}
+Le bonus étudie la mémoire du trajet thermique à budget de simulation
+fixé. Il complète l'étude canonique précédente par un protocole
+séquentiel de chauffage puis de refroidissement.
+\begingroup\sloppy
+\IfFileExists{bonus_cycle.tex}{\input{bonus_cycle.tex}}{
+Le module \texttt{run\_thermal\_cycle.py} produit les mesures et les
+comparaisons des deux branches ; aucun résultat de cycle n'est joint
+à cette version du rapport.}
+\endgroup
 
 \appendix
 \section{Correspondance entre les questions et les fichiers}
@@ -663,6 +860,7 @@ Question & Réponse numérique & Fichier principal\\
 7 & Moyennes, erreurs, figures & \texttt{statistics.py}, \texttt{figures.py}\\
 8 & Maximum sur la grille, champ moyen & \texttt{summary.json}, \texttt{meanfield.py}\\
 9 & Discussion fondée sur les données & Rapport et diagnostics CSV\\
+10 & Cycle chauffage--refroidissement & \texttt{thermal\_cycle.py}, \texttt{run\_thermal\_cycle.py}\\
 \bottomrule
 \end{tabular}\end{center}
 

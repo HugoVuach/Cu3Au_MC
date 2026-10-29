@@ -5,13 +5,14 @@ Projet complet répondant aux neuf questions de l'énoncé : réseau CFC rigide,
 voisins, Metropolis, Cowley, ordre à longue portée, énergie de cohésion,
 configurations thermiques, courbes, transition et discussion.
 
-Le dossier livré comprend les résultats réellement calculés, onze figures
+Le dossier livré comprend les résultats réellement calculés, dix-huit figures
 scientifiques en PDF vectoriel et PNG, les archives des échantillons et un
 rapport français LaTeX/PDF avec démonstrations et encadrés pour l'oral.
 
 ## Lire les résultats déjà fournis
 
-- `results/production/report/rapport.pdf` : rapport compilé.
+- `report/rapport_template.pdf` : rapport enrichi compilé, à lire en priorité.
+- `results/production/report/rapport.pdf` : copie synchronisée du rapport enrichi.
 - `results/production/report/rapport.tex` : source du rapport, modifiable.
 - `results/production/report/auto_results.tex` : nombres injectés depuis la simulation.
 - `results/production/figures/` : figures séparées, adaptées à des diapositives.
@@ -19,6 +20,8 @@ rapport français LaTeX/PDF avec démonstrations et encadrés pour l'oral.
 - `results/production/summary.json` : protocole, maximum thermique, taux d'acceptation.
 - `results/production/validation.json` : vérifications des résultats.
 - `results/production/tests.log` : résultats des tests automatiques.
+- `results/production/tests_current.log` et `verification_current.json` : tests et contrôles datés de la mise à jour.
+- `results/production/peak_uncertainty.json` : bootstrap conjoint du maximum de capacité calorifique et sensibilité à la longueur des blocs.
 - `results/production/chain_01.npz`, `chain_02.npz` : données brutes et configurations.
 - `VERIFICATION.md` : compte rendu de l'exécution livrée.
 
@@ -60,7 +63,7 @@ python run_project.py --preset production --output results/mon_execution
 ```
 
 Le lanceur enchaîne les tests, les deux campagnes indépendantes, les
-statistiques par blocs, les vérifications indépendantes, les onze figures et
+statistiques par blocs, les vérifications indépendantes, les dix-huit figures et
 la compilation du rapport. Il affiche l'avancement. Compter plusieurs minutes
 pour la production, selon le processeur. Les échanges de répliques sont
 calculés dans un noyau compilé ; ce projet ne nécessite pas de GPU.
@@ -108,6 +111,49 @@ pdflatex -interaction=nonstopmode -halt-on-error rapport.tex
 Le fichier `report/rapport_template.tex` à la racine est le **gabarit**, utilisé
 par le programme. Pour un rapport autonome, employer le dossier généré
 `results/production/report/`, qui inclut les données LaTeX et les figures.
+
+## Bonus 10 : cycle chauffage puis refroidissement
+
+Le module `cu3au/thermal_cycle.py` suit une configuration de palier en palier,
+depuis un état ordonné jusqu'à 4000 K puis jusqu'à 300 K. Les deux trajectoires
+indépendantes utilisent la configuration `configs/thermal_cycle_L6.json` :
+L=6, 46 températures par sens, 6000 balayages initiaux puis 30000 balayages
+de production à chaque palier, mesures tous les 10 balayages. Les échanges
+de répliques sont désactivés pour conserver l'histoire du cycle.
+
+```powershell
+.\.venv\Scripts\python.exe run_thermal_cycle.py --config configs/thermal_cycle_L6.json --output results/thermal_cycle_L6 --reference-report results/production
+```
+
+Après une interruption, ajouter `--resume` à cette commande. La reprise
+utilise le dernier palier entièrement sauvegardé et rejoue un éventuel
+palier partiel ; elle ne réinitialise pas toute la trajectoire.
+
+Fichiers produits dans `results/thermal_cycle_L6/` :
+
+- `run.log` et `execution.json` : progression et état du processus ;
+- `chain_01/step_000.npz`, etc. : toutes les mesures enregistrées en
+  équilibration et production, états initial/final et générateur aléatoire ;
+- `observables_heating.csv`, `observables_cooling.csv` : moyennes, erreurs,
+  occupations, acceptations et diagnostics, classés par température croissante ;
+- `paired_differences.csv` : écarts refroidissement moins chauffage,
+  calculés cycle par cycle ;
+- `summary.json` : maxima, diagnostics et portée des résultats ;
+- `figures/bonus_01_thermodynamique.pdf` à `bonus_08_distributions.pdf`,
+  avec leurs versions PNG : comparaison des branches et diagnostics.
+
+Avec `--reference-report results/production`, la section 10 présente d'abord
+le protocole et signale le calcul en cours. Après validation des deux branches,
+les huit figures et la synthèse chiffrée sont insérées automatiquement et
+les deux copies du PDF sont recompilées. Les derniers PDF valides sont
+conservés si une compilation échoue. `--no-pdf` produit les sources sans
+compilation ; omettre `--reference-report` laisse le rapport principal intact.
+
+Une différence entre les branches est un effet de protocole à durée finie.
+Elle ne démontre pas à elle seule une transition du premier ordre. Les
+fluctuations ne deviennent une réponse thermique d'équilibre qu'après
+vérification des diagnostics. Les deux branches d'un cycle sont appariées ;
+la dispersion entre deux cycles ne constitue pas une preuve de significativité.
 
 ## Conventions scientifiques
 

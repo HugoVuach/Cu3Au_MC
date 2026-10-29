@@ -12,7 +12,7 @@ from .lattice import build_lattice
 from .model import energy_int, SCALE
 
 
-def validate_results(result_dir):
+def validate_results(result_dir, output_name='validation.json'):
     root = Path(result_dir)
     summary = json.loads((root/'summary.json').read_text(encoding='utf8'))
     lat = build_lattice(summary['config']['L'])
@@ -56,5 +56,5 @@ def validate_results(result_dir):
         'runtime': {'python': platform.python_version(), 'executable': sys.executable,
                     'numpy': np.__version__, 'scipy': scipy.__version__,
                     'matplotlib': matplotlib.__version__, 'numba': numba.__version__}}
-    (root/'validation.json').write_text(json.dumps(result, indent=2, ensure_ascii=False), encoding='utf8')
+    (root/output_name).write_text(json.dumps(result, indent=2, ensure_ascii=False), encoding='utf8')
     return result

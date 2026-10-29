@@ -1,0 +1,24 @@
+Traceback (most recent call last):
+  File "C:\Users\vuache_h\Desktop\perso\Cu3Au_MC\run_thermal_cycle.py", line 58, in main
+    result = run_cycle(cfg, out, resume=args.resume)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vuache_h\Desktop\perso\Cu3Au_MC\cu3au\thermal_cycle.py", line 134, in run_cycle
+    write_status(out, 'simulating', L=cfg['L'], n_atoms=lat.n,
+  File "C:\Users\vuache_h\Desktop\perso\Cu3Au_MC\cu3au\thermal_cycle.py", line 50, in write_status
+    temporary.replace(out/'execution.json')
+  File "C:\Program Files\Python311\Lib\pathlib.py", line 1188, in replace
+    os.replace(self, target)
+PermissionError: [WinError 5] Accès refusé: 'C:\\Users\\vuache_h\\Desktop\\perso\\Cu3Au_MC\\results\\thermal_cycle_L6\\execution.tmp' -> 'C:\\Users\\vuache_h\\Desktop\\perso\\Cu3Au_MC\\results\\thermal_cycle_L6\\execution.json'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\vuache_h\Desktop\perso\Cu3Au_MC\run_thermal_cycle.py", line 75, in <module>
+    main()
+  File "C:\Users\vuache_h\Desktop\perso\Cu3Au_MC\run_thermal_cycle.py", line 69, in main
+    write_status(out, 'failed', error=traceback.format_exc())
+  File "C:\Users\vuache_h\Desktop\perso\Cu3Au_MC\cu3au\thermal_cycle.py", line 50, in write_status
+    temporary.replace(out/'execution.json')
+  File "C:\Program Files\Python311\Lib\pathlib.py", line 1188, in replace
+    os.replace(self, target)
+PermissionError: [WinError 5] Accès refusé: 'C:\\Users\\vuache_h\\Desktop\\perso\\Cu3Au_MC\\results\\thermal_cycle_L6\\execution.tmp' -> 'C:\\Users\\vuache_h\\Desktop\\perso\\Cu3Au_MC\\results\\thermal_cycle_L6\\execution.json'

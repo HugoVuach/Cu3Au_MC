@@ -46,6 +46,8 @@ def main():
         print('2/6 · Campagne Monte-Carlo', flush=True)
         campaign(cfg, out)
     print('3/6 · Validation indépendante des archives', flush=True)
+    from cu3au.pedagogy import record_current_validation
+    record_current_validation(out, tests.stdout+tests.stderr)
     validation = validate_results(out)
     print('4/6 · Figures PDF vectorielles et PNG', flush=True)
     figures = make_figures(out)

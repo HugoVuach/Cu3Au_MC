@@ -168,6 +168,8 @@ def make_figures(result_dir):
     axes[1].set(xlabel='Température (K)', ylabel=r'$c_V/k_B$ par atome', title='Capacité calorifique configuratoire')
     axes[1].legend(fontsize=9)
     fig.suptitle('L’énergie augmente lorsque l’ordre est détruit', y=1.02)
+    for ax in axes:
+        ax.set_xlim(650, 1300)
     fig.tight_layout()
     save(fig, folder, '03_thermodynamique', 'Seule la contribution des occupations chimiques est incluse ; le réseau ne vibre pas.')
 
@@ -242,8 +244,8 @@ def make_figures(result_dir):
         ax.set(title=f'{T[k]:.0f} K', xlabel='x/a', ylabel='y/a', zlabel='z/a')
         ax.set_box_aspect([1, 1, 1]); ax.view_init(21, 33)
         ax.set_xticks([0, cfg['L']/2, cfg['L']]); ax.set_yticks([0, cfg['L']/2, cfg['L']])
-    fig.suptitle('Instantanés issus du calcul · Au en or, Cu en bleu', y=1.02)
-    fig.tight_layout()
+    fig.suptitle('Instantanés issus du calcul · Au en or, Cu en bleu', y=.99)
+    fig.tight_layout(rect=(0, .09, 1, .93))
     save(fig, folder, '07_configurations', 'Les occupations changent ; les positions atomiques sont identiques sur les trois panneaux.')
 
     # 08 — champ moyen : deux minima et saut de l'ordre.
@@ -273,7 +275,7 @@ def make_figures(result_dir):
     for sub, color in enumerate([GOLD, BLUE, RED, GREEN]):
         axes[0].plot(T, means[:, 5+sub], 'o-', ms=3, color=color, label=f'Sous-réseau {sub}')
     axes[0].axhline(.25, color=INK, ls=':')
-    axes[0].set(xlabel='Température (K)', ylabel='Fraction de sites occupés par Au', title='Occupations moyennes des sous-réseaux')
+    axes[0].set(xlabel='Température (K)', ylabel='Occupation moyenne par Au', title='Moyennes sur les mesures et les deux chaînes')
     axes[0].legend(fontsize=9)
     for c in range(len(archives)):
         axes[1].plot(T, samples[c, :, :, 1].mean(axis=0), 'o-', ms=3, label=f'η signé · chaîne {c+1}')
@@ -309,9 +311,11 @@ def make_figures(result_dir):
         ax.axvspan(*summary['T_cv_neighbor_bracket_K'], color=INK, alpha=.06)
         ax.set(xlim=(tc-100, tc+100), title=title, ylabel=ylabel, xlabel='Température (K)')
     fig.suptitle(f'La grille fine résout le voisinage du maximum · {tc:.0f} K', y=1.01)
-    fig.tight_layout()
+    fig.tight_layout(rect=(0, .07, 1, .95))
     save(fig, folder, '11_zoom_transition', 'Zone grisée : températures voisines du maximum, pas un intervalle de confiance. Bandes colorées : ±1 erreur-type.')
     make_cowley_figure(root)
+    from .pedagogy import make_pedagogical_figures
+    make_pedagogical_figures(root)
     for a in archives:
         a.close()
     return sorted(str(p) for p in folder.glob('*.pdf'))

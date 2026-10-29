@@ -59,6 +59,35 @@ def moments(a, temperature, n):
 NAMES = ['u_eV', 'eta', 'q', 'alpha1', 'alpha2', 'cv_kB', 'Xq_per_eV', 'binder_q']
 
 
+def bootstrap_peak(energies, temperatures, n, block, bootstrap=1000, seed=9421):
+    """Circular blocks, synchronized across temperatures within each chain.
+
+    Return grid-valued cV peak locations. Chains keep their separate thermal
+    variances, and each chain receives an independent set of block starts.
+    """
+    e = np.asarray(energies, dtype=float)
+    t = np.asarray(temperatures, dtype=float)
+    if (e.ndim != 3 or e.shape[2] != len(t) or n <= 0 or
+            not np.all(np.isfinite(e)) or np.any(t <= 0) or
+            not np.all(np.isfinite(t)) or np.any(np.diff(t) <= 0)):
+        raise ValueError('Invalid energies, temperature grid, or system size.')
+    chains, draws, nt = e.shape
+    if not 1 <= block <= draws or bootstrap < 2:
+        raise ValueError('Require 1 <= block <= draws and bootstrap >= 2.')
+    rng = np.random.default_rng(seed)
+    peaks = np.empty(bootstrap)
+    # Center before resampling: absolute binding energy is irrelevant to cV.
+    e = e-e.mean(axis=1, keepdims=True)
+    for b in range(bootstrap):
+        cv = np.zeros(nt)
+        for c in range(chains):
+            starts = rng.integers(draws, size=int(np.ceil(draws/block)))
+            ix = ((starts[:, None]+np.arange(block)) % draws).ravel()[:draws]
+            cv += np.var(e[c, ix, :], axis=0)/(n*(KB*t)**2)
+        peaks[b] = t[np.argmax(cv/chains)]
+    return peaks
+
+
 def summarize(samples, temperatures, n, seed=318, bootstrap=200):
     """samples=(chaînes, mesures, températures,9).
 

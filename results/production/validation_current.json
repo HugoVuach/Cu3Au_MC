@@ -1,0 +1,19 @@
+{
+  "technical_validation": "passed",
+  "critical_diagnostics_ok": true,
+  "checks": [
+    "chain_01.npz: énergie reconstruite par les paires/Cowley, ordre et composition vérifiés pour toutes les mesures",
+    "chain_02.npz: énergie reconstruite par les paires/Cowley, ordre et composition vérifiés pour toutes les mesures",
+    "CSV cohérent avec les archives brutes",
+    "Bornes analytiques et régimes froid/chaud vérifiés"
+  ],
+  "limitations": "Validation technique et références exactes ; T* reste un maximum de taille finie.",
+  "runtime": {
+    "python": "3.11.9",
+    "executable": "C:\\Users\\vuache_h\\Desktop\\perso\\Cu3Au_MC\\.venv\\Scripts\\python.exe",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "matplotlib": "3.10.8",
+    "numba": "0.68.0"
+  }
+}

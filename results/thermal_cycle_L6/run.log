@@ -1,0 +1,256 @@
+cycle 1/2 | heating | 300 K | palier 1/6 sauvegardé | 0.0 s
+cycle 1/2 | heating | 1400 K | palier 2/6 sauvegardé | 0.3 s
+cycle 1/2 | heating | 4000 K | palier 3/6 sauvegardé | 0.3 s
+cycle 1/2 | cooling | 4000 K | palier 4/6 sauvegardé | 0.3 s
+cycle 1/2 | cooling | 1400 K | palier 5/6 sauvegardé | 0.3 s
+cycle 1/2 | cooling | 300 K | palier 6/6 sauvegardé | 0.3 s
+cycle 2/2 | heating | 300 K | palier 1/6 sauvegardé | 0.3 s
+cycle 2/2 | heating | 1400 K | palier 2/6 sauvegardé | 0.3 s
+cycle 2/2 | heating | 4000 K | palier 3/6 sauvegardé | 0.4 s
+cycle 2/2 | cooling | 4000 K | palier 4/6 sauvegardé | 0.4 s
+cycle 2/2 | cooling | 1400 K | palier 5/6 sauvegardé | 0.4 s
+cycle 2/2 | cooling | 300 K | palier 6/6 sauvegardé | 0.4 s
+cycle 1/2 | heating | 300 K | palier 1/6 sauvegardé | 0.0 s
+cycle 1/2 | heating | 1400 K | palier 2/6 sauvegardé | 0.0 s
+cycle 1/2 | heating | 4000 K | palier 3/6 sauvegardé | 0.1 s
+cycle 1/2 | cooling | 4000 K | palier 4/6 sauvegardé | 0.1 s
+cycle 1/2 | cooling | 1400 K | palier 5/6 sauvegardé | 0.1 s
+cycle 1/2 | cooling | 300 K | palier 6/6 sauvegardé | 0.1 s
+cycle 2/2 | heating | 300 K | palier 1/6 sauvegardé | 0.1 s
+cycle 2/2 | heating | 1400 K | palier 2/6 sauvegardé | 0.1 s
+cycle 2/2 | heating | 4000 K | palier 3/6 sauvegardé | 0.1 s
+cycle 2/2 | cooling | 4000 K | palier 4/6 sauvegardé | 0.2 s
+cycle 2/2 | cooling | 1400 K | palier 5/6 sauvegardé | 0.2 s
+cycle 2/2 | cooling | 300 K | palier 6/6 sauvegardé | 0.2 s
+cycle 1/2 | heating | 300 K | palier 1/6 sauvegardé | 0.0 s
+cycle 1/2 | heating | 1400 K | palier 2/6 sauvegardé | 0.0 s
+cycle 1/2 | heating | 4000 K | palier 3/6 sauvegardé | 0.0 s
+cycle 1/2 | cooling | 4000 K | palier 4/6 sauvegardé | 0.3 s
+cycle 1/2 | cooling | 1400 K | palier 5/6 sauvegardé | 0.3 s
+cycle 1/2 | cooling | 300 K | palier 6/6 sauvegardé | 0.3 s
+cycle 2/2 | heating | 300 K | palier 1/6 sauvegardé | 0.3 s
+cycle 2/2 | heating | 1400 K | palier 2/6 sauvegardé | 0.3 s
+cycle 2/2 | heating | 4000 K | palier 3/6 sauvegardé | 0.3 s
+cycle 2/2 | cooling | 4000 K | palier 4/6 sauvegardé | 0.4 s
+cycle 2/2 | cooling | 1400 K | palier 5/6 sauvegardé | 0.4 s
+cycle 2/2 | cooling | 300 K | palier 6/6 sauvegardé | 0.4 s
+cycle 1/2 | heating | 300 K | palier 1/6 sauvegardé | 0.0 s
+cycle 1/2 | heating | 1400 K | palier 2/6 sauvegardé | 0.0 s
+cycle 1/2 | heating | 4000 K | palier 3/6 sauvegardé | 0.1 s
+cycle 1/2 | cooling | 4000 K | palier 4/6 sauvegardé | 0.1 s
+cycle 1/2 | cooling | 1400 K | palier 5/6 sauvegardé | 0.1 s
+cycle 1/2 | cooling | 300 K | palier 6/6 sauvegardé | 0.1 s
+cycle 2/2 | heating | 300 K | palier 1/6 sauvegardé | 0.1 s
+cycle 2/2 | heating | 1400 K | palier 2/6 sauvegardé | 0.1 s
+cycle 2/2 | heating | 4000 K | palier 3/6 sauvegardé | 0.1 s
+cycle 2/2 | cooling | 4000 K | palier 4/6 sauvegardé | 0.2 s
+cycle 2/2 | cooling | 1400 K | palier 5/6 sauvegardé | 0.2 s
+cycle 2/2 | cooling | 300 K | palier 6/6 sauvegardé | 0.2 s
+test_grid_support_reproducibility_and_invalid_parameters (test_peak_bootstrap.PeakBootstrapTests.test_grid_support_reproducibility_and_invalid_parameters) ... ok
+test_known_peak_and_energy_offset_invariance (test_peak_bootstrap.PeakBootstrapTests.test_known_peak_and_energy_offset_invariance) ... ok
+test_exact_restricted_canonical_detailed_balance (test_physics.PhysicsTests.test_exact_restricted_canonical_detailed_balance) ... ok
+test_four_equivalent_variants (test_physics.PhysicsTests.test_four_equivalent_variants) ... ok
+test_geometry_and_periodic_distances (test_physics.PhysicsTests.test_geometry_and_periodic_distances) ... ok
+test_ground_state_bound_identity (test_physics.PhysicsTests.test_ground_state_bound_identity) ... ok
+test_high_temperature_limit (test_physics.PhysicsTests.test_high_temperature_limit) ... ok
+test_meanfield_reference (test_physics.PhysicsTests.test_meanfield_reference) ... ok
+test_nearest_neighbor_defect (test_physics.PhysicsTests.test_nearest_neighbor_defect) ... ok
+test_ordered_exact_energy_and_cowley (test_physics.PhysicsTests.test_ordered_exact_energy_and_cowley) ... ok
+test_random_swaps_against_full_energy (test_physics.PhysicsTests.test_random_swaps_against_full_energy) ... ok
+test_replica_exchange_sign_and_balance (test_physics.PhysicsTests.test_replica_exchange_sign_and_balance) ... ok
+test_short_actual_kernel_and_reproducibility (test_physics.PhysicsTests.test_short_actual_kernel_and_reproducibility) ... ok
+test_autocorrelation_known_ar1 (test_statistics.StatisticsTests.test_autocorrelation_known_ar1) ... ok
+test_invalid_temperature_grid_rejected (test_statistics.StatisticsTests.test_invalid_temperature_grid_rejected) ... ok
+test_rhat_detects_separated_chains (test_statistics.StatisticsTests.test_rhat_detects_separated_chains) ... ok
+test_total_energy_heat_capacity_units (test_statistics.StatisticsTests.test_total_energy_heat_capacity_units) ... ok
+test_a_locked_monitoring_file_does_not_abort_the_cycle (test_thermal_cycle.ThermalCycleTests.test_a_locked_monitoring_file_does_not_abort_the_cycle) ... ok
+test_complete_cycle_continuity_and_observable_archives (test_thermal_cycle.ThermalCycleTests.test_complete_cycle_continuity_and_observable_archives) ... ok
+test_restart_replays_the_identical_trajectory (test_thermal_cycle.ThermalCycleTests.test_restart_replays_the_identical_trajectory) ... ok
+test_schedule_and_invalid_replica_exchange (test_thermal_cycle.ThermalCycleTests.test_schedule_and_invalid_replica_exchange) ... ok
+test_validation_rejects_a_broken_handoff (test_thermal_cycle.ThermalCycleTests.test_validation_rejects_a_broken_handoff) ... ok
+
+----------------------------------------------------------------------
+Ran 22 tests in 3.358s
+
+OK
+
+Starting sequential cycle L=6: 46 plateaus per direction, 2 independent cycles.
+cycle 1/2 | heating | 980 K | palier 7/92 sauvegardé | 7.8 s
+cycle 1/2 | heating | 990 K | palier 8/92 sauvegardé | 15.5 s
+cycle 1/2 | heating | 995 K | palier 9/92 sauvegardé | 23.8 s
+cycle 1/2 | heating | 1000 K | palier 10/92 sauvegardé | 31.9 s
+cycle 1/2 | heating | 1005 K | palier 11/92 sauvegardé | 40.2 s
+cycle 1/2 | heating | 1010 K | palier 12/92 sauvegardé | 48.0 s
+cycle 1/2 | heating | 1015 K | palier 13/92 sauvegardé | 55.8 s
+cycle 1/2 | heating | 1020 K | palier 14/92 sauvegardé | 63.6 s
+cycle 1/2 | heating | 1025 K | palier 15/92 sauvegardé | 71.1 s
+cycle 1/2 | heating | 1030 K | palier 16/92 sauvegardé | 79.3 s
+cycle 1/2 | heating | 1035 K | palier 17/92 sauvegardé | 87.1 s
+cycle 1/2 | heating | 1040 K | palier 18/92 sauvegardé | 94.7 s
+cycle 1/2 | heating | 1045 K | palier 19/92 sauvegardé | 102.5 s
+cycle 1/2 | heating | 1050 K | palier 20/92 sauvegardé | 110.1 s
+cycle 1/2 | heating | 1055 K | palier 21/92 sauvegardé | 117.9 s
+cycle 1/2 | heating | 1060 K | palier 22/92 sauvegardé | 125.8 s
+cycle 1/2 | heating | 1065 K | palier 23/92 sauvegardé | 133.6 s
+cycle 1/2 | heating | 1070 K | palier 24/92 sauvegardé | 141.4 s
+cycle 1/2 | heating | 1075 K | palier 25/92 sauvegardé | 149.1 s
+cycle 1/2 | heating | 1080 K | palier 26/92 sauvegardé | 157.0 s
+cycle 1/2 | heating | 1085 K | palier 27/92 sauvegardé | 164.6 s
+cycle 1/2 | heating | 1090 K | palier 28/92 sauvegardé | 172.4 s
+cycle 1/2 | heating | 1095 K | palier 29/92 sauvegardé | 180.1 s
+cycle 1/2 | heating | 1100 K | palier 30/92 sauvegardé | 187.8 s
+cycle 1/2 | heating | 1105 K | palier 31/92 sauvegardé | 195.7 s
+cycle 1/2 | heating | 1110 K | palier 32/92 sauvegardé | 205.2 s
+cycle 1/2 | heating | 1115 K | palier 33/92 sauvegardé | 213.3 s
+cycle 1/2 | heating | 1120 K | palier 34/92 sauvegardé | 221.3 s
+cycle 1/2 | heating | 1140 K | palier 35/92 sauvegardé | 229.4 s
+cycle 1/2 | heating | 1170 K | palier 36/92 sauvegardé | 237.7 s
+cycle 1/2 | heating | 1200 K | palier 37/92 sauvegardé | 245.5 s
+cycle 1/2 | heating | 1250 K | palier 38/92 sauvegardé | 253.3 s
+cycle 1/2 | heating | 1300 K | palier 39/92 sauvegardé | 261.1 s
+cycle 1/2 | heating | 1400 K | palier 40/92 sauvegardé | 269.7 s
+cycle 1/2 | heating | 1550 K | palier 41/92 sauvegardé | 278.4 s
+cycle 1/2 | heating | 1750 K | palier 42/92 sauvegardé | 286.9 s
+cycle 1/2 | heating | 2050 K | palier 43/92 sauvegardé | 295.1 s
+cycle 1/2 | heating | 2500 K | palier 44/92 sauvegardé | 303.1 s
+cycle 1/2 | heating | 3200 K | palier 45/92 sauvegardé | 311.2 s
+cycle 1/2 | heating | 4000 K | palier 46/92 sauvegardé | 319.2 s
+cycle 1/2 | cooling | 4000 K | palier 47/92 sauvegardé | 327.8 s
+cycle 1/2 | cooling | 3200 K | palier 48/92 sauvegardé | 335.7 s
+cycle 1/2 | cooling | 2500 K | palier 49/92 sauvegardé | 343.7 s
+cycle 1/2 | cooling | 2050 K | palier 50/92 sauvegardé | 351.5 s
+cycle 1/2 | cooling | 1750 K | palier 51/92 sauvegardé | 359.2 s
+cycle 1/2 | cooling | 1550 K | palier 52/92 sauvegardé | 367.0 s
+cycle 1/2 | cooling | 1400 K | palier 53/92 sauvegardé | 374.8 s
+cycle 1/2 | cooling | 1300 K | palier 54/92 sauvegardé | 384.3 s
+cycle 1/2 | cooling | 1250 K | palier 55/92 sauvegardé | 392.8 s
+cycle 1/2 | cooling | 1200 K | palier 56/92 sauvegardé | 400.9 s
+cycle 1/2 | cooling | 1170 K | palier 57/92 sauvegardé | 409.4 s
+cycle 1/2 | cooling | 1140 K | palier 58/92 sauvegardé | 417.0 s
+cycle 1/2 | cooling | 1120 K | palier 59/92 sauvegardé | 424.6 s
+cycle 1/2 | cooling | 1115 K | palier 60/92 sauvegardé | 432.0 s
+cycle 1/2 | cooling | 1110 K | palier 61/92 sauvegardé | 439.5 s
+cycle 1/2 | cooling | 1105 K | palier 62/92 sauvegardé | 446.8 s
+cycle 1/2 | cooling | 1100 K | palier 63/92 sauvegardé | 454.2 s
+cycle 1/2 | cooling | 1095 K | palier 64/92 sauvegardé | 461.6 s
+cycle 1/2 | cooling | 1090 K | palier 65/92 sauvegardé | 469.0 s
+cycle 1/2 | cooling | 1085 K | palier 66/92 sauvegardé | 476.6 s
+cycle 1/2 | cooling | 1080 K | palier 67/92 sauvegardé | 484.1 s
+cycle 1/2 | cooling | 1075 K | palier 68/92 sauvegardé | 491.5 s
+cycle 1/2 | cooling | 1070 K | palier 69/92 sauvegardé | 498.9 s
+cycle 1/2 | cooling | 1065 K | palier 70/92 sauvegardé | 506.3 s
+cycle 1/2 | cooling | 1060 K | palier 71/92 sauvegardé | 514.1 s
+cycle 1/2 | cooling | 1055 K | palier 72/92 sauvegardé | 522.5 s
+cycle 1/2 | cooling | 1050 K | palier 73/92 sauvegardé | 529.8 s
+cycle 1/2 | cooling | 1045 K | palier 74/92 sauvegardé | 537.2 s
+cycle 1/2 | cooling | 1040 K | palier 75/92 sauvegardé | 544.4 s
+cycle 1/2 | cooling | 1035 K | palier 76/92 sauvegardé | 551.7 s
+cycle 1/2 | cooling | 1030 K | palier 77/92 sauvegardé | 559.1 s
+cycle 1/2 | cooling | 1025 K | palier 78/92 sauvegardé | 566.9 s
+cycle 1/2 | cooling | 1020 K | palier 79/92 sauvegardé | 574.2 s
+cycle 1/2 | cooling | 1015 K | palier 80/92 sauvegardé | 581.5 s
+cycle 1/2 | cooling | 1010 K | palier 81/92 sauvegardé | 588.7 s
+cycle 1/2 | cooling | 1005 K | palier 82/92 sauvegardé | 596.0 s
+cycle 1/2 | cooling | 1000 K | palier 83/92 sauvegardé | 603.3 s
+cycle 1/2 | cooling | 995 K | palier 84/92 sauvegardé | 610.6 s
+cycle 1/2 | cooling | 990 K | palier 85/92 sauvegardé | 617.8 s
+cycle 1/2 | cooling | 980 K | palier 86/92 sauvegardé | 625.4 s
+cycle 1/2 | cooling | 950 K | palier 87/92 sauvegardé | 632.7 s
+cycle 1/2 | cooling | 900 K | palier 88/92 sauvegardé | 640.2 s
+cycle 1/2 | cooling | 800 K | palier 89/92 sauvegardé | 647.8 s
+cycle 1/2 | cooling | 650 K | palier 90/92 sauvegardé | 655.1 s
+cycle 1/2 | cooling | 500 K | palier 91/92 sauvegardé | 662.3 s
+cycle 1/2 | cooling | 300 K | palier 92/92 sauvegardé | 669.5 s
+cycle 2/2 | heating | 300 K | palier 1/92 sauvegardé | 676.7 s
+cycle 2/2 | heating | 500 K | palier 2/92 sauvegardé | 684.4 s
+cycle 2/2 | heating | 650 K | palier 3/92 sauvegardé | 691.6 s
+cycle 2/2 | heating | 800 K | palier 4/92 sauvegardé | 698.8 s
+cycle 2/2 | heating | 900 K | palier 5/92 sauvegardé | 706.1 s
+cycle 2/2 | heating | 950 K | palier 6/92 sauvegardé | 713.5 s
+cycle 2/2 | heating | 980 K | palier 7/92 sauvegardé | 720.8 s
+cycle 2/2 | heating | 990 K | palier 8/92 sauvegardé | 728.1 s
+cycle 2/2 | heating | 995 K | palier 9/92 sauvegardé | 735.4 s
+cycle 2/2 | heating | 1000 K | palier 10/92 sauvegardé | 742.7 s
+cycle 2/2 | heating | 1005 K | palier 11/92 sauvegardé | 750.2 s
+cycle 2/2 | heating | 1010 K | palier 12/92 sauvegardé | 757.5 s
+cycle 2/2 | heating | 1015 K | palier 13/92 sauvegardé | 764.8 s
+cycle 2/2 | heating | 1020 K | palier 14/92 sauvegardé | 772.2 s
+cycle 2/2 | heating | 1025 K | palier 15/92 sauvegardé | 779.5 s
+cycle 2/2 | heating | 1030 K | palier 16/92 sauvegardé | 786.9 s
+cycle 2/2 | heating | 1035 K | palier 17/92 sauvegardé | 794.2 s
+cycle 2/2 | heating | 1040 K | palier 18/92 sauvegardé | 801.5 s
+cycle 2/2 | heating | 1045 K | palier 19/92 sauvegardé | 808.8 s
+cycle 2/2 | heating | 1050 K | palier 20/92 sauvegardé | 816.1 s
+cycle 2/2 | heating | 1055 K | palier 21/92 sauvegardé | 823.4 s
+cycle 2/2 | heating | 1060 K | palier 22/92 sauvegardé | 830.7 s
+cycle 2/2 | heating | 1065 K | palier 23/92 sauvegardé | 838.2 s
+cycle 2/2 | heating | 1070 K | palier 24/92 sauvegardé | 846.5 s
+cycle 2/2 | heating | 1075 K | palier 25/92 sauvegardé | 853.8 s
+cycle 2/2 | heating | 1080 K | palier 26/92 sauvegardé | 861.3 s
+cycle 2/2 | heating | 1085 K | palier 27/92 sauvegardé | 868.7 s
+cycle 2/2 | heating | 1090 K | palier 28/92 sauvegardé | 876.1 s
+cycle 2/2 | heating | 1095 K | palier 29/92 sauvegardé | 883.5 s
+cycle 2/2 | heating | 1100 K | palier 30/92 sauvegardé | 890.8 s
+cycle 2/2 | heating | 1105 K | palier 31/92 sauvegardé | 898.2 s
+cycle 2/2 | heating | 1110 K | palier 32/92 sauvegardé | 905.5 s
+cycle 2/2 | heating | 1115 K | palier 33/92 sauvegardé | 912.9 s
+cycle 2/2 | heating | 1120 K | palier 34/92 sauvegardé | 920.2 s
+cycle 2/2 | heating | 1140 K | palier 35/92 sauvegardé | 927.7 s
+cycle 2/2 | heating | 1170 K | palier 36/92 sauvegardé | 935.1 s
+cycle 2/2 | heating | 1200 K | palier 37/92 sauvegardé | 942.6 s
+cycle 2/2 | heating | 1250 K | palier 38/92 sauvegardé | 950.1 s
+cycle 2/2 | heating | 1300 K | palier 39/92 sauvegardé | 957.5 s
+cycle 2/2 | heating | 1400 K | palier 40/92 sauvegardé | 965.0 s
+cycle 2/2 | heating | 1550 K | palier 41/92 sauvegardé | 972.4 s
+cycle 2/2 | heating | 1750 K | palier 42/92 sauvegardé | 980.0 s
+cycle 2/2 | heating | 2050 K | palier 43/92 sauvegardé | 987.6 s
+cycle 2/2 | heating | 2500 K | palier 44/92 sauvegardé | 995.2 s
+cycle 2/2 | heating | 3200 K | palier 45/92 sauvegardé | 1003.0 s
+cycle 2/2 | heating | 4000 K | palier 46/92 sauvegardé | 1010.8 s
+cycle 2/2 | cooling | 4000 K | palier 47/92 sauvegardé | 1018.7 s
+cycle 2/2 | cooling | 3200 K | palier 48/92 sauvegardé | 1026.4 s
+cycle 2/2 | cooling | 2500 K | palier 49/92 sauvegardé | 1034.0 s
+cycle 2/2 | cooling | 2050 K | palier 50/92 sauvegardé | 1041.6 s
+cycle 2/2 | cooling | 1750 K | palier 51/92 sauvegardé | 1049.0 s
+cycle 2/2 | cooling | 1550 K | palier 52/92 sauvegardé | 1056.8 s
+cycle 2/2 | cooling | 1400 K | palier 53/92 sauvegardé | 1064.7 s
+cycle 2/2 | cooling | 1300 K | palier 54/92 sauvegardé | 1072.3 s
+cycle 2/2 | cooling | 1250 K | palier 55/92 sauvegardé | 1079.8 s
+cycle 2/2 | cooling | 1200 K | palier 56/92 sauvegardé | 1087.1 s
+cycle 2/2 | cooling | 1170 K | palier 57/92 sauvegardé | 1094.6 s
+cycle 2/2 | cooling | 1140 K | palier 58/92 sauvegardé | 1102.0 s
+cycle 2/2 | cooling | 1120 K | palier 59/92 sauvegardé | 1109.4 s
+cycle 2/2 | cooling | 1115 K | palier 60/92 sauvegardé | 1116.8 s
+cycle 2/2 | cooling | 1110 K | palier 61/92 sauvegardé | 1124.1 s
+cycle 2/2 | cooling | 1105 K | palier 62/92 sauvegardé | 1131.7 s
+cycle 2/2 | cooling | 1100 K | palier 63/92 sauvegardé | 1139.0 s
+cycle 2/2 | cooling | 1095 K | palier 64/92 sauvegardé | 1146.4 s
+cycle 2/2 | cooling | 1090 K | palier 65/92 sauvegardé | 1153.8 s
+cycle 2/2 | cooling | 1085 K | palier 66/92 sauvegardé | 1161.2 s
+cycle 2/2 | cooling | 1080 K | palier 67/92 sauvegardé | 1168.7 s
+cycle 2/2 | cooling | 1075 K | palier 68/92 sauvegardé | 1176.0 s
+cycle 2/2 | cooling | 1070 K | palier 69/92 sauvegardé | 1183.4 s
+cycle 2/2 | cooling | 1065 K | palier 70/92 sauvegardé | 1190.8 s
+cycle 2/2 | cooling | 1060 K | palier 71/92 sauvegardé | 1198.1 s
+cycle 2/2 | cooling | 1055 K | palier 72/92 sauvegardé | 1205.5 s
+cycle 2/2 | cooling | 1050 K | palier 73/92 sauvegardé | 1212.8 s
+cycle 2/2 | cooling | 1045 K | palier 74/92 sauvegardé | 1220.1 s
+cycle 2/2 | cooling | 1040 K | palier 75/92 sauvegardé | 1227.5 s
+cycle 2/2 | cooling | 1035 K | palier 76/92 sauvegardé | 1235.0 s
+cycle 2/2 | cooling | 1030 K | palier 77/92 sauvegardé | 1242.3 s
+cycle 2/2 | cooling | 1025 K | palier 78/92 sauvegardé | 1249.8 s
+cycle 2/2 | cooling | 1020 K | palier 79/92 sauvegardé | 1257.0 s
+cycle 2/2 | cooling | 1015 K | palier 80/92 sauvegardé | 1264.3 s
+cycle 2/2 | cooling | 1010 K | palier 81/92 sauvegardé | 1271.6 s
+cycle 2/2 | cooling | 1005 K | palier 82/92 sauvegardé | 1278.9 s
+cycle 2/2 | cooling | 1000 K | palier 83/92 sauvegardé | 1286.2 s
+cycle 2/2 | cooling | 995 K | palier 84/92 sauvegardé | 1293.5 s
+cycle 2/2 | cooling | 990 K | palier 85/92 sauvegardé | 1300.8 s
+cycle 2/2 | cooling | 980 K | palier 86/92 sauvegardé | 1308.1 s
+cycle 2/2 | cooling | 950 K | palier 87/92 sauvegardé | 1315.4 s
+cycle 2/2 | cooling | 900 K | palier 88/92 sauvegardé | 1323.1 s
+cycle 2/2 | cooling | 800 K | palier 89/92 sauvegardé | 1331.5 s
+cycle 2/2 | cooling | 650 K | palier 90/92 sauvegardé | 1339.4 s
+cycle 2/2 | cooling | 500 K | palier 91/92 sauvegardé | 1346.7 s
+cycle 2/2 | cooling | 300 K | palier 92/92 sauvegardé | 1354.1 s
+Cycle, validation, figures, and requested report update complete.

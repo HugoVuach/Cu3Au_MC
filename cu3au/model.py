@@ -1,5 +1,4 @@
 """Deux évaluations indépendantes de l'énergie ; 1=Au, 0=Cu."""
-from polars._utils.construction import other
 import numpy as np
 
 KB = 8.617333262e-5  # eV/K

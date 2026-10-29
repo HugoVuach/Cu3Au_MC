@@ -1,0 +1,54 @@
+{
+  "bootstrap": 1000,
+  "seed": 9421,
+  "draws_per_chain": 3000,
+  "base_block_samples": 37,
+  "requested_block_samples": 37,
+  "base_block_sweeps": 370,
+  "observed_peak_K": 1050.0,
+  "cases": [
+    {
+      "block_samples": 18,
+      "ci95_K": [
+        1050.0,
+        1055.0
+      ],
+      "se_K": 0.8533628936321452,
+      "frequencies": {
+        "1050.0": 970,
+        "1055.0": 30
+      }
+    },
+    {
+      "block_samples": 37,
+      "ci95_K": [
+        1050.0,
+        1055.0
+      ],
+      "se_K": 0.9442810316143531,
+      "frequencies": {
+        "1050.0": 963,
+        "1055.0": 37
+      }
+    },
+    {
+      "block_samples": 74,
+      "ci95_K": [
+        1050.0,
+        1055.0
+      ],
+      "se_K": 1.159793136779193,
+      "frequencies": {
+        "1050.0": 943,
+        "1055.0": 57
+      }
+    }
+  ],
+  "indicators_K": {
+    "Maximum de capacité calorifique": 1050.0,
+    "Pente la plus forte de q": 1050.0,
+    "Pente la plus forte de l'énergie": 1050.0,
+    "Maximum des fluctuations d'ordre": 1055.0
+  },
+  "scope": "Grid-valued peak; fixed size and observed chains; synchronized circular blocks."
+}
