@@ -269,7 +269,7 @@ Au laisse $N_{\Cu}$ Cu parmi $N-1$ autres sites. Ainsi
 Pour $N=864$, cette correction vaut environ $-0.00116$.
 
 \fig{12_cowley}{1}{Évolution des paramètres de Cowley $\alpha_1$ et
-$\alpha_2$ avec la température. Les bandes représentent une erreur-type.
+$\alpha_2$ avec la température. Les barres représentent une erreur-type.
 Les lignes horizontales indiquent l'ordre parfait $L1_2$.}
 
 À basse température, les courbes rejoignent les valeurs de l'ordre parfait :
@@ -620,7 +620,7 @@ Le choix des blocs utilise E et q ; il reste utile de tester également
 la corrélation des paramètres de Cowley et la stabilité des erreurs
 lorsque la longueur des blocs est augmentée.
 
-\fig{02_ordres}{1}{Ordre à longue et courte portée. Les bandes représentent
+\fig{02_ordres}{1}{Ordre à longue et courte portée. Les barres représentent
 une erreur-type estimée ; elles ne sont pas une enveloppe systématique de
 toutes les erreurs de modélisation ou d'équilibration.}
 \fig{03_thermodynamique}{1}{Énergie et capacité calorifique. Les références
@@ -832,16 +832,22 @@ rigide dans la boîte de $\Natoms$ sites ; elle n'est ni une extrapolation
 \end{enumerate}
 \end{oral}
 
-\section{Bonus -- Cycle de chauffage et de refroidissement}
+\section{Bonus -- Histoire thermique, visualisation et corrélations spatiales}
 \label{sec:bonus-cycle}
 Le bonus étudie la mémoire du trajet thermique à budget de simulation
 fixé. Il complète l'étude canonique précédente par un protocole
 séquentiel de chauffage puis de refroidissement.
+\subsection{Partie 1 -- Cycle thermique et visualisation des configurations}
 \begingroup\sloppy
 \IfFileExists{bonus_cycle.tex}{\input{bonus_cycle.tex}}{
 Le module \texttt{run\_thermal\_cycle.py} produit les mesures et les
 comparaisons des deux branches ; aucun résultat de cycle n'est joint
 à cette version du rapport.}
+\IfFileExists{bonus_animations.tex}{\input{bonus_animations.tex}}{}
+\subsection{Partie 2 -- Longueur de corrélation et analyse de Fourier}
+\IfFileExists{bonus_correlation.tex}{\input{bonus_correlation.tex}}{
+Le module de corrélations produit les champs d'ordre locaux, les spectres
+et les diagnostics de la longueur de second moment.}
 \endgroup
 
 \appendix

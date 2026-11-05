@@ -1,10 +1,11 @@
-\subsection{Protocole séquentiel et conservation de la mémoire}
+\subsubsection{Protocole séquentiel et conservation de la mémoire}
 Le cycle porte sur $L=6$, soit $864$ sites, avec 2 trajectoires indépendantes et 46 températures entre 300 et 4000 K.
 À chaque température et dans chaque sens, on écarte 6000 balayages initiaux, puis on mesure pendant 30000 balayages, à raison d'une mesure tous les 10 balayages.
 Chaque trajectoire part d'une variante ordonnée. La configuration finale d'un palier est transmise au suivant ; après le palier le plus chaud, le programme parcourt les températures en sens inverse sans réinitialiser les occupations. Le sommet chaud fait l'objet d'un second palier mesuré au début de la branche retour : aucune mesure n'est dupliquée.
 Il n'y a pas d'échange de répliques dans ce bonus : l'objectif est de comparer deux histoires thermiques avec le même budget de balayages. Les déplacements restent des échanges Au--Cu globaux ; ce cycle ne représente donc pas une vitesse de chauffage expérimentale ni une cinétique de diffusion réelle.
-\subsection{Mesures sauvegardées et reprise}
+\subsubsection{Mesures sauvegardées et reprise}
 Chaque archive de palier conserve les séries d'équilibration et de production $(E,\eta,q,\alpha_1,\alpha_2,p_0,p_1,p_2,p_3)$, les états initial et final, les compteurs d'acceptation et l'état du générateur aléatoire. L'énergie et la composition sont vérifiées après chaque segment. Les archives sont écrites atomiquement après un palier complet. L'option \texttt{--resume} reprend au dernier palier achevé ; un palier interrompu est recalculé depuis son début.
+\par
 \begin{algocode}{Pseudocode du cycle chauffage--refroidissement}
 \small\begin{verbatim}
 POUR chaque graine independante :
@@ -22,21 +23,33 @@ FIN POUR
 comparer les branches a temperature identique, cycle par cycle
 \end{verbatim}
 \end{algocode}
-\subsection{Interprétation des différences entre branches}
+\subsubsection{Interprétation des différences entre branches}
 On compare principalement $u$, $q$, les deux paramètres de Cowley et les fluctuations. L'ordre signé $\eta$ dépend aussi de la variante et ne suffit pas à identifier une hystérésis. Les branches sont appariées au sein d'un même cycle : $\Delta A_c(T)=A_{c,\downarrow}(T)-A_{c,\uparrow}(T)$.
 Une différence persistante à budget fini peut révéler une métastabilité ou une relaxation insuffisante. À équilibre complet, les observables canoniques ne dépendent pas du sens de parcours. Une boucle ne prouve donc pas, à elle seule, une transition du premier ordre. La capacité calculée par variance est notée $c_V^{\mathrm{fluct}}$ : son interprétation comme réponse thermique d'équilibre exige des diagnostics satisfaisants.
-\subsection{Résultats du cycle terminé}
+\subsubsection{Résultats du cycle terminé}
 \begin{center}\small\begin{tabular}{lrr}\toprule
 Branche & Maximum de $c_V^{\mathrm{fluct}}$ (K) & Paliers avec diagnostic insuffisant\\\midrule
 Chauffage & 1050 & 9\\
 Refroidissement & 1055 & 10\\
 \bottomrule\end{tabular}\end{center}
 L'écart refroidissement moins chauffage des maxima vaut $5$ K sur la grille. Il décrit ce protocole, sans fournir une température critique extrapolée.
-Les bandes sont des erreurs-types calculées séparément par branche. Pour les différences, les courbes individuelles montrent la dispersion entre cycles ; avec seulement deux graines, elle ne constitue pas un test robuste de significativité. Les paliers dont les diagnostics échouent doivent être prolongés avant une interprétation d'équilibre.
+Les barres indiquent une erreur-type calculée séparément par branche. Dans les comparaisons des moyennes par branche, les cercles creux représentent le chauffage et les carrés creux le refroidissement ; les vues rapprochées couvrent 100 K autour du maximum au chauffage. Pour les différences, les courbes individuelles montrent la dispersion entre cycles ; avec seulement deux graines, elle ne constitue pas un test robuste de significativité. Les paliers dont les diagnostics échouent doivent être prolongés avant une interprétation d'équilibre.
+\subsubsection{Occupations des Au : distinguer les cycles et les variantes}
+Le label $\mu\in\{0,1,2,3\}$ repère une position géométrique dans la base CFC ; il ne change pas pendant le calcul. Chaque sous-réseau contient $L^3$ sites et son occupation vaut $p_\mu=N_{\mathrm{Au},\mu}/L^3$. Ainsi $\sum_\mu p_\mu=1$ à la composition étudiée. Un état parfaitement ordonné présente une occupation égale à 1 et trois égales à 0.
+La figure des occupations sépare les cycles indépendants : une colonne par cycle et une ligne par sens du parcours. Chaque point est la moyenne temporelle des seules mesures de production de ce cycle à cette température. Les mêmes couleurs et symboles désignent les mêmes sous-réseaux dans tous les panneaux.
+Au chauffage, à $300$ K, les archives donnent :
+\begin{center}\small\begin{tabular}{lrrrrr}\toprule
+Cycle & $\langle p_0\rangle$ & $\langle p_1\rangle$ & $\langle p_2\rangle$ & $\langle p_3\rangle$ & $\langle q\rangle$\\\midrule
+1 & 1.000 & 0.000 & 0.000 & 0.000 & 1.000\\
+2 & 0.000 & 0.000 & 1.000 & 0.000 & 1.000\\
+\midrule Moyenne des cycles & 0.500 & 0.000 & 0.500 & 0.000 & 1.000\\
+\bottomrule\end{tabular}\end{center}
+Moyenner des cycles partis dans des variantes différentes peut donc répartir l'occupation moyenne entre plusieurs sous-réseaux, même si chacun des états est ordonné. Par exemple, la moyenne de $(1,0,0,0)$ et $(0,0,1,0)$ vaut $(1/2,0,1/2,0)$ : ce vecteur moyen ne décrit aucune des deux configurations. Il ne signale pas une erreur de définition de $\mu$.
+Près de la transition, un même cycle peut aussi changer de variante au cours du temps : séparer les cycles ne supprime pas cet effet de moyenne temporelle. Pour comparer le degré d'ordre, on calcule $q$ sur chaque configuration puis on moyenne les valeurs obtenues. En général, $\langle q(\mathbf p)\rangle\ne q(\langle\mathbf p\rangle)$ ; une occupation moyenne uniforme ne suffit donc pas à conclure au désordre instantané.
 \fig{bonus_01_thermodynamique}{.95}{Énergie et réponse par fluctuations, sur le cycle complet et dans la zone de transition.}
 \fig{bonus_02_ordres}{.95}{Comparaison de l’ordre global, de l’ordre local et des fluctuations.}
-\fig{bonus_03_sous_reseaux}{.95}{Occupations moyennes des quatre sous-réseaux dans les deux sens.}
-\fig{bonus_04_ecarts}{.95}{Différences appariées refroidissement moins chauffage ; les traits fins représentent les cycles indépendants.}
+\fig{bonus_03_sous_reseaux}{.95}{Occupations des Au séparées par cycle et par sens du parcours. Chaque point est une moyenne temporelle au sein d’un seul cycle ; couleurs et symboles identifient les sous-réseaux, sans moyenne entre cycles.}
+\fig{bonus_04_ecarts}{.95}{Différences appariées refroidissement moins chauffage ; les symboles distinguent les cycles indépendants et leur moyenne.}
 \fig{bonus_05_traces}{.95}{Historique incluant les transitoires ; seule la représentation est décimée, pas les archives.}
 \fig{bonus_06_diagnostics}{.95}{Autocorrélation, accord des chaînes, effectif utile et acceptation des mouvements.}
 \fig{bonus_07_configurations}{.95}{Deux coupes de configurations finales à température identique, dans le premier cycle.}

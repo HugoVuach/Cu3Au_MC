@@ -1,0 +1,121 @@
+{
+  "archive": "C:\\Users\\vuache_h\\Desktop\\perso\\Cu3Au_MC\\results\\thermal_cycle_L6\\chain_01\\step_072.npz",
+  "temperature_K": 1050.0,
+  "branch": "cooling",
+  "cycle": 1,
+  "L": 6,
+  "q": 0.3690563108595714,
+  "occupations": [
+    0.1574074074074074,
+    0.2777777777777778,
+    0.49537037037037035,
+    0.06944444444444445
+  ],
+  "slices": [
+    {
+      "orientation": "001",
+      "integer_level": 4,
+      "offset_a": 2.0,
+      "sites": 72,
+      "au": 12,
+      "sublattices": [
+        0,
+        3
+      ]
+    },
+    {
+      "orientation": "001",
+      "integer_level": 5,
+      "offset_a": 2.5,
+      "sites": 72,
+      "au": 26,
+      "sublattices": [
+        1,
+        2
+      ]
+    },
+    {
+      "orientation": "001",
+      "integer_level": 6,
+      "offset_a": 3.0,
+      "sites": 72,
+      "au": 12,
+      "sublattices": [
+        0,
+        3
+      ]
+    },
+    {
+      "orientation": "110",
+      "integer_level": 10,
+      "offset_a": 5.0,
+      "sites": 66,
+      "au": 6,
+      "sublattices": [
+        0,
+        3
+      ]
+    },
+    {
+      "orientation": "110",
+      "integer_level": 11,
+      "offset_a": 5.5,
+      "sites": 72,
+      "au": 28,
+      "sublattices": [
+        1,
+        2
+      ]
+    },
+    {
+      "orientation": "110",
+      "integer_level": 12,
+      "offset_a": 6.0,
+      "sites": 66,
+      "au": 7,
+      "sublattices": [
+        0,
+        3
+      ]
+    },
+    {
+      "orientation": "111",
+      "integer_level": 14,
+      "offset_a": 7.0,
+      "sites": 102,
+      "au": 26,
+      "sublattices": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "orientation": "111",
+      "integer_level": 16,
+      "offset_a": 8.0,
+      "sites": 108,
+      "au": 26,
+      "sublattices": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "orientation": "111",
+      "integer_level": 18,
+      "offset_a": 9.0,
+      "sites": 106,
+      "au": 26,
+      "sublattices": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  ]
+}

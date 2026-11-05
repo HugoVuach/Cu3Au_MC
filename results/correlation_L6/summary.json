@@ -1,0 +1,51 @@
+{
+  "config": {
+    "L": 6,
+    "temperatures": [
+      900,
+      980,
+      1000,
+      1020,
+      1030,
+      1040,
+      1045,
+      1050,
+      1055,
+      1060,
+      1080,
+      1100,
+      1300,
+      2000
+    ],
+    "seeds": [
+      202611041,
+      202611042
+    ],
+    "burn_sweeps": 3000,
+    "sample_sweeps": 12000,
+    "sample_every": 20,
+    "exchange_every": 5,
+    "chunk_sweeps": 100,
+    "bootstrap": 400
+  },
+  "snapshots_per_chain_temperature": 600,
+  "failed_temperatures_K": [
+    900,
+    980,
+    1000,
+    1020,
+    1030,
+    1040,
+    1045,
+    1050,
+    1055,
+    1060
+  ],
+  "connected_definition": "mean of per-chain <|F|^2>-|<F>|^2; no per-frame spatial centering",
+  "spatial_field": "three L12 cell envelopes, conventional cell step a",
+  "initial_time_q": 0.04899539464934427,
+  "final_time_q": 0.9444747029769134,
+  "time_box_dominated_count": 299,
+  "temporal_frames": 301,
+  "bootstrap_repetitions": 400
+}

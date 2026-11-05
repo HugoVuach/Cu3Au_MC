@@ -1,0 +1,9 @@
+{
+  "states": 16800,
+  "composition": "all passed",
+  "occupations": "all passed",
+  "q": "all passed",
+  "reference_energy_checks": 840,
+  "energy": "all passed",
+  "fft_tests": "4 passed; full suite 26 passed"
+}

@@ -18,6 +18,21 @@ BLUE = '#167d9a'
 GOLD = '#dba52d'
 RED = '#ce5964'
 GREEN = '#319b79'
+MARKERS = ('o', 's', '^', 'D', 'v', 'P')
+
+
+def measurement_points(ax, x, y, color, label=None, err=None, series=0):
+    """Symboles creux distincts, sans interpolation ni aplat masquant les séries."""
+    return ax.errorbar(x, y, yerr=err, fmt=MARKERS[series % len(MARKERS)],
+                       linestyle='none', markersize=6.5-series % 3,
+                       markerfacecolor='none', markeredgewidth=1.1,
+                       color=color, label=label, elinewidth=.8, capsize=2,
+                       alpha=.85)
+
+
+def transition_window(temperature):
+    """Fenêtre de 100 K centrée sur le maximum mesuré de la campagne."""
+    return float(temperature)-50, float(temperature)+50
 
 
 def style():
@@ -53,8 +68,7 @@ def save(fig, folder, name, subtitle=None):
 
 
 def curves(ax, T, ys, err, color, label):
-    ax.plot(T, ys, 'o-', ms=3.5, lw=1.6, color=color, label=label)
-    ax.fill_between(T, ys-err, ys+err, color=color, alpha=.16, lw=0)
+    measurement_points(ax, T, ys, color, label, err)
 
 
 def make_cowley_figure(result_dir):
@@ -88,7 +102,7 @@ def make_cowley_figure(result_dir):
     fig.suptitle('Ordre chimique local : paramètres de Cowley', y=.98)
     fig.tight_layout(rect=(0, .065, 1, .94))
     save(fig, folder, '12_cowley',
-         'Bandes : ±1 erreur-type. Les références horizontales correspondent à l’ordre parfait L1₂.')
+         'Barres : ±1 erreur-type. Les références horizontales correspondent à l’ordre parfait L1₂.')
     return folder/'12_cowley.pdf'
 
 
@@ -154,7 +168,7 @@ def make_figures(result_dir):
         ax.axhline(-1/(n-1), color=INK, lw=.8, alpha=.5)
     fig.suptitle('Ordre global et préférences chimiques locales', y=1.02)
     fig.tight_layout()
-    save(fig, folder, '02_ordres', 'Bandes : ±1 erreur-type (blocs et dispersion entre chaînes). Pointillés : maximum de Cᵥ sur la grille.')
+    save(fig, folder, '02_ordres', 'Barres : ±1 erreur-type (blocs et dispersion entre chaînes). Pointillés : maximum de Cᵥ sur la grille.')
 
     # 03 — énergie et réponse thermique.
     fig, axes = plt.subplots(1, 2, figsize=(12, 4.8))
@@ -169,7 +183,7 @@ def make_figures(result_dir):
     axes[1].legend(fontsize=9)
     fig.suptitle('L’énergie augmente lorsque l’ordre est détruit', y=1.02)
     for ax in axes:
-        ax.set_xlim(650, 1300)
+        ax.set_xlim(*transition_window(tc))
     fig.tight_layout()
     save(fig, folder, '03_thermodynamique', 'Seule la contribution des occupations chimiques est incluse ; le réseau ne vibre pas.')
 
@@ -191,18 +205,19 @@ def make_figures(result_dir):
 
     # 05 — diagnostics.
     fig, axes = plt.subplots(2, 2, figsize=(12, 8))
-    for k, c, name in [('rhat_E', BLUE, 'Énergie'), ('rhat_q', RED, 'Ordre q')]:
-        axes[0, 0].plot(T, col(k), 'o-', ms=3, color=c, label=name)
+    for index, (k, c, name) in enumerate([('rhat_E', BLUE, 'Énergie'), ('rhat_q', RED, 'Ordre q')]):
+        measurement_points(axes[0, 0], T, col(k), c, name, series=index)
     axes[0, 0].axhline(1.05, color=INK, ls='--', label='Seuil de contrôle 1,05')
     axes[0, 0].set(ylabel='R-hat séparé par rangs', title='Accord entre chaînes')
     axes[0, 0].legend(fontsize=9)
-    axes[0, 1].semilogy(T, np.maximum(col('ess_min'), 1), 'o-', color=GREEN, ms=3)
+    measurement_points(axes[0, 1], T, np.maximum(col('ess_min'), 1), GREEN)
+    axes[0, 1].set_yscale('log')
     axes[0, 1].axhline(200, color=INK, ls='--')
     axes[0, 1].set(ylabel='Effectif indépendant estimé', title='Autocorrélation prise en compte')
     middle = (T[:-1]+T[1:])/2
     for i, chain in enumerate(summary['chains']):
-        axes[1, 0].plot(middle, chain['swap_acceptance'], 'o-', ms=3, label=f'Chaîne {i+1}')
-        axes[1, 1].plot(T, chain['local_acceptance'], 'o-', ms=3, label=f'Chaîne {i+1}')
+        measurement_points(axes[1, 0], middle, chain['swap_acceptance'], [BLUE, RED][i % 2], f'Chaîne {i+1}', series=i)
+        measurement_points(axes[1, 1], T, chain['local_acceptance'], [BLUE, RED][i % 2], f'Chaîne {i+1}', series=i)
     axes[1, 0].set(ylabel='Fraction acceptée', title='Échanges entre températures', ylim=(-.02, 1.02))
     axes[1, 1].set(ylabel='Fraction acceptée', title='Échanges Au-Cu', ylim=(-.02, 1.02))
     for ax in axes.flat:
@@ -273,13 +288,13 @@ def make_figures(result_dir):
     fig, axes = plt.subplots(1, 2, figsize=(12, 5))
     means = samples.mean(axis=(0, 1))
     for sub, color in enumerate([GOLD, BLUE, RED, GREEN]):
-        axes[0].plot(T, means[:, 5+sub], 'o-', ms=3, color=color, label=f'Sous-réseau {sub}')
+        measurement_points(axes[0], T, means[:, 5+sub], color, f'Sous-réseau {sub}', series=sub)
     axes[0].axhline(.25, color=INK, ls=':')
     axes[0].set(xlabel='Température (K)', ylabel='Occupation moyenne par Au', title='Moyennes sur les mesures et les deux chaînes')
     axes[0].legend(fontsize=9)
     for c in range(len(archives)):
-        axes[1].plot(T, samples[c, :, :, 1].mean(axis=0), 'o-', ms=3, label=f'η signé · chaîne {c+1}')
-    axes[1].plot(T, col('q'), color=INK, lw=2, label='Amplitude q · moyenne')
+        measurement_points(axes[1], T, samples[c, :, :, 1].mean(axis=0), [BLUE, RED][c % 2], f'η signé · chaîne {c+1}', series=c)
+    measurement_points(axes[1], T, col('q'), INK, 'Amplitude q · moyenne', series=len(archives))
     axes[1].set(xlabel='Température (K)', ylabel='Paramètre d’ordre', title='Une variante différente peut changer le signe de η')
     axes[1].legend(fontsize=9)
     fig.suptitle('La symétrie entre quatre variantes doit être prise en compte', y=1.02)
@@ -309,10 +324,10 @@ def make_figures(result_dir):
         curves(ax, T, col(key), col(key+'_se'), color, title)
         ax.axvline(tc, color=INK, ls=':')
         ax.axvspan(*summary['T_cv_neighbor_bracket_K'], color=INK, alpha=.06)
-        ax.set(xlim=(tc-100, tc+100), title=title, ylabel=ylabel, xlabel='Température (K)')
+        ax.set(xlim=transition_window(tc), title=title, ylabel=ylabel, xlabel='Température (K)')
     fig.suptitle(f'La grille fine résout le voisinage du maximum · {tc:.0f} K', y=1.01)
     fig.tight_layout(rect=(0, .07, 1, .95))
-    save(fig, folder, '11_zoom_transition', 'Zone grisée : températures voisines du maximum, pas un intervalle de confiance. Bandes colorées : ±1 erreur-type.')
+    save(fig, folder, '11_zoom_transition', 'Zone grisée : températures voisines du maximum, pas un intervalle de confiance. Barres : ±1 erreur-type.')
     make_cowley_figure(root)
     from .pedagogy import make_pedagogical_figures
     make_pedagogical_figures(root)

@@ -232,3 +232,76 @@ obtenues concernent le modèle fourni, sans calibration expérimentale ajoutée.
 Les figures sont générées à partir des données sauvegardées, sans image ni
 donnée téléchargée pendant l'exécution. Le programme ne requiert aucun accès
 réseau après installation des dépendances.
+
+## Plaquettes animées des coupes cristallographiques
+
+```powershell
+.\.venv\Scripts\python.exe -m cu3au.slice_animations
+```
+
+Les deux GIF sont écrits dans `results/thermal_cycle_L6/visualisation/animations`.
+Chaque image montre trois couches atomiques exactes pour chacune des orientations
+(001), (110), (111), avec plans, cadrage et couleurs Au/Cu fixes.
+
+- `plaquette_cycle_thermique.gif` : cycle 1 archivé, état initial puis 92 fins de
+  palier, du chauffage au refroidissement. Le compteur inclut équilibration et
+  production. Les configurations intermédiaires entre paliers ne sont pas disponibles.
+- `plaquette_relaxation_isotherme.gif` : calcul dédié L=6 après trempe de l'état
+  archivé à 4000 K vers 1000 K, graine 20261104, 6000 balayages, captures tous les
+  20 balayages sans suppression du transitoire. Les 200 premiers balayages sont
+  ralentis dans le GIF ; le compteur indique toujours la valeur exacte.
+
+Les états et observables de relaxation sont conservés dans
+`relaxation_isotherme.npz`. Un second lancement réutilise cette archive après
+vérification des paramètres. Les JSON accompagnant les GIF décrivent les plans,
+les températures, les balayages et q à chaque image. Des vues initiales/finales
+PNG et PDF sont également exportées. Le temps Monte-Carlo n'est pas un temps
+physique ; ces images d'occupation seules ne démontrent pas une nucléation.
+
+## Bonus, partie 2 : corrélations spatiales et second moment
+
+```powershell
+.\.venv\Scripts\python.exe -m cu3au.correlation_campaign
+.\.venv\Scripts\python.exe -m cu3au.correlation_analysis
+.\.venv\Scripts\python.exe -m cu3au.correlation_report
+```
+
+La configuration `configs/correlation_L6.json` définit une campagne canonique
+dédiée : L=6, 14 températures, deux graines indépendantes, 3000 balayages
+d'équilibration et 12000 de production ; états capturés tous les 20 balayages
+et échanges de répliques tous les 5 balayages. Chaque chaîne complète est
+sauvegardée atomiquement et réutilisée uniquement si sa configuration correspond.
+Les états de départ viennent de l'ancienne production à la température disponible
+la plus proche, puis sont rééquilibrés.
+
+`cu3au/correlation.py` construit trois champs d'ordre signés par maille, adaptés
+aux quatre variantes L1₂. La FFT porte sur ce champ d'ordre de pas a ; son mode
+zéro n'est pas celui de la concentration totale, fixée. Le module distingue
+spectres brut, connexe et part cohérente, reconstruit les corrélations réelles
+et estime la longueur de second moment sur la boîte périodique.
+
+Les résultats sont conservés dans `results/correlation_L6` :
+
+- `chain_01.npz`, `chain_02.npz` : états atomiques, observables, étiquettes et
+  compteurs d'échanges pour toutes les températures.
+- `correlation_vs_temperature.csv` : longueurs brute/connexe, diagnostic
+  intra-variante froid, bootstrap par blocs, R-hat, ESS et réserves explicites.
+- `spectra.npz` : spectres complets brut et connexe.
+- `block_sensitivity.csv` : sensibilité du bootstrap aux longueurs de blocs.
+- `lengths_vs_time.csv` : analyse des états du GIF isotherme, longueur apparente,
+  largeur diffuse hors mode uniforme, poids du mode uniforme.
+- `figures/` : quatre figures de corrélations et une analyse des historiques des GIF.
+
+Le bootstrap réestime la moyenne complexe dans chaque chaîne et chaque répétition.
+Les racines négatives/dénominateurs nuls donnent des valeurs manquantes ; les
+grandes longueurs ne sont pas écrêtées. La visite des variantes peut maintenir
+une forte puissance canonique au mode zéro même après soustraction de la moyenne.
+Le diagnostic intra-variante est conditionnel, limité au régime froid, et n'est
+pas substitué à la définition canonique. Les longueurs temporelles ne sont ni
+des longueurs de fluctuation d'équilibre ni des rayons géométriques de germes.
+
+La dernière commande ajoute l'analyse des GIF, le protocole et les résultats de
+corrélation à la section 10 puis recompile `report/rapport_template.pdf` et sa
+copie de production. Elle requiert les deux GIF et `relaxation_isotherme.npz`
+générés par `cu3au.slice_animations`. Les GIF sont également copiés dans un
+sous-dossier `animations` à côté de chaque PDF afin de conserver des liens relatifs.

@@ -298,57 +298,63 @@ modynamique.pdf>] [18 <./figures/05_diagnostics.pdf> <./figures/06_traces.pdf>]
 _distributions.pdf>] (peak_uncertainty.tex) [21 <./figures/18_incertitude_pic.p
 df>] (discussion_results.tex [22]) [23 <./figures/08_champ_moyen.pdf>]
 (bonus_cycle.tex
-Underfull \hbox (badness 10000) in paragraph at lines 7--24
+Underfull \hbox (badness 10000) in paragraph at lines 7--8
 []\T1/lmr/m/n/10.95 (+20) Chaque ar-chive de pa-lier conserve les s�-ries d'�qu
 i-li-bra-tion et de pro-duc-tion
 
-Underfull \hbox (badness 1163) in paragraph at lines 7--24
+Underfull \hbox (badness 1163) in paragraph at lines 7--8
 \OT1/lmr/m/n/10.95 (+20) (\OML/lmm/m/it/10.95 E; ^^Q; q; []; []; p[]; p[]; p[
 ]; p[]\OT1/lmr/m/n/10.95 (+20) )$\T1/lmr/m/n/10.95 (+20) , les �tats ini-tial e
 t fi-nal, les comp-teurs d'ac-cep-ta-tion et l'�tat
-[24])
-Underfull \hbox (badness 10000) in paragraph at lines 863--864
+[24] [25]) (bonus_animations.tex [26 <./figures/bonus_01_thermodynamique.pdf>]
+[27 <./figures/bonus_02_ordres.pdf> <./figures/bonus_03_sous_reseaux.pdf>]
+[28 <./figures/bonus_04_ecarts.pdf> <./figures/bonus_05_traces.pdf>])
+(bonus_correlation.tex [29 <./figures/bonus_06_diagnostics.pdf>] [30 <./figures
+/bonus_07_configurations.pdf>] [31 <./figures/bonus_08_distributions.pdf> <./fi
+gures/animations_01_evolution.pdf>] [32 <./figures/animation_isotherme_debut.pd
+f>] [33 <./figures/animation_isotherme_fin.pdf>] [34] [35] [36 <./figures/corre
+lation_01_xi.pdf>] [37 <./figures/correlation_02_real_fourier.pdf> <./figures/c
+orrelation_04_diagnostics.pdf>])
+Underfull \hbox (badness 10000) in paragraph at lines 869--870
 []|\T1/lmtt/m/n/10 thermal_cycle.py\T1/lmr/m/n/10 (+20) ,
-[25] [26 <./figures/bonus_01_thermodynamique.pdf> <./figures/bonus_02_ordres.pd
-f>] [27 <./figures/bonus_03_sous_reseaux.pdf> <./figures/bonus_04_ecarts.pdf>]
-[28 <./figures/bonus_05_traces.pdf> <./figures/bonus_06_diagnostics.pdf>]
-[29 <./figures/bonus_07_configurations.pdf>] [30 <./figures/bonus_08_distributi
-ons.pdf>] [31] [32] [33] [34] [35] [36] [37] [38] [39] [40] [41] [42] [43]
-[44]
-Underfull \hbox (badness 1210) in paragraph at lines 1768--1771
+[38 <./figures/correlation_03_relaxation.pdf>] [39] [40] [41] [42] [43]
+[44] [45] [46] [47] [48] [49] [50] [51] [52] [53]
+Underfull \hbox (badness 1210) in paragraph at lines 1774--1777
 []\T1/lmr/m/n/10.95 (+20) K. Bin-der, \T1/lmr/m/it/10.95 (+20) Theory of first-
 order phase tran-si-tions\T1/lmr/m/n/10.95 (+20) , Rep. Prog. Phys. \T1/lmr/bx/
 n/10.95 (+20) 50\T1/lmr/m/n/10.95 (+20) , 783 (1987).
-[45]
+[54]
 (C:\Users\vuache_h\Desktop\perso\Cu3Au_MC\results\thermal_cycle_L6\report\build
 \rapport_template.aux) )
 (see the transcript file for additional information)<C:/Users/vuache_h/AppData/
 Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/vuache_h/AppDa
 ta/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/vuache_h/Ap
-pData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmcsc10.pfb><C:/Users/vuache_
-h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Users/vuac
-he_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Users/v
-uache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/User
-s/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi6.pfb><C:/Us
-ers/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi7.pfb><C:/
-Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi8.pfb><C
-:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi9.pfb>
-<C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pf
-b><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.
-pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr6
-.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr
-7.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lm
-r8.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/l
-mr9.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/
-lmri10.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/
-lm/lmsy10.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/publ
-ic/lm/lmsy6.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/pu
-blic/lm/lmsy8.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/
-public/lm/lmsy9.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type
-1/public/lm/lmtt10.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/t
-ype1/public/lm/lmtt8.pfb>
+pData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx8.pfb><C:/Users/vuache_h/
+AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmcsc10.pfb><C:/Users/vuach
+e_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Users/vu
+ache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Users
+/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Us
+ers/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi6.pfb><C:/
+Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi7.pfb><C
+:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi8.pfb>
+<C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi9.pf
+b><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmib1
+0.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lm
+r10.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/
+lmr12.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/l
+m/lmr6.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/
+lm/lmr7.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public
+/lm/lmr8.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/publi
+c/lm/lmr9.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/publ
+ic/lm/lmri10.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/p
+ublic/lm/lmsy10.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type
+1/public/lm/lmsy6.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/ty
+pe1/public/lm/lmsy8.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/
+type1/public/lm/lmsy9.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/font
+s/type1/public/lm/lmtt10.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/f
+onts/type1/public/lm/lmtt8.pfb>
 Output written on C:\Users\vuache_h\Desktop\perso\Cu3Au_MC\results\thermal_cycl
-e_L6\report\build\rapport_template.pdf (46 pages, 1629387 bytes).
+e_L6\report\build\rapport_template.pdf (55 pages, 1875055 bytes).
 Transcript written on C:\Users\vuache_h\Desktop\perso\Cu3Au_MC\results\thermal_
 cycle_L6\report\build\rapport_template.log.
 log4cxx: setFile(C:\Users\vuache_h\AppData\Local\MiKTeX\miktex\log/pdflatex.log,true) call failed.

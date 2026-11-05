@@ -9,13 +9,22 @@ import numpy as np
 from .model import KB
 
 
+def _copy_atomic(source, destination):
+    destination = Path(destination)
+    temporary = destination.with_suffix(destination.suffix+'.tmp')
+    shutil.copy2(source, temporary)
+    temporary.replace(destination)
+    return str(destination)
+
+
 def make_report(result_dir, compile_pdf=True):
     root = Path(result_dir).resolve()
     out = root/'report'
     out.mkdir(exist_ok=True)
     template = Path(__file__).resolve().parents[1]/'report'/'rapport_template.tex'
     shutil.copy2(template, out/'rapport.tex')
-    shutil.copytree(root/'figures', out/'figures', dirs_exist_ok=True)
+    shutil.copytree(root/'figures', out/'figures', dirs_exist_ok=True,
+                    copy_function=_copy_atomic)
     summary = json.loads((root/'summary.json').read_text(encoding='utf8'))
     from .pedagogy import write_pedagogical_tables
     write_pedagogical_tables(root)

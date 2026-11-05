@@ -1,0 +1,75 @@
+\subsubsection{Pourquoi mesurer une longueur spatiale ?}
+L'amplitude $q$ décrit l'ordre global, tandis que $\alpha_1$ et $\alpha_2$ décrivent les deux premières coquilles. La longueur de corrélation $\xi$ caractérise la portée spatiale des corrélations de l'ordre chimique. Elle n'est pas automatiquement le rayon d'un germe ni la taille géométrique d'un domaine.
+\subsubsection{Champ local : conserver les quatre variantes \texorpdfstring{L1$_2$}{L12}}
+On numérote les mailles conventionnelles par $\mathbf R$, de pas $a$, et leurs quatre sites par $\mu$. Avec $n_{\mathbf R\mu}=1$ pour Au et 0 pour Cu, on définit trois composantes signées :
+\[\psi_\alpha(\mathbf R)=\sum_{\mu=0}^{3}\epsilon_{\alpha\mu}(n_{\mathbf R\mu}-1/4),\qquad\epsilon=\begin{pmatrix}1&1&-1&-1\\1&-1&1&-1\\1&-1&-1&1\end{pmatrix}.\]
+Dans les quatre états parfaitement ordonnés, le champ vaut $(1,1,1)$, $(1,-1,-1)$, $(-1,1,-1)$ ou $(-1,-1,1)$. Le signe distingue donc la variante, ce que ne ferait pas une amplitude locale toujours positive. Avec $V=L^3$ et $\mathbf m=V^{-1}\sum_{\mathbf R}\boldsymbol\psi(\mathbf R)$, on retrouve exactement $q^2=|\mathbf m|^2/3$.
+Ce champ représente les enveloppes, par maille, des trois ondes d'ordre $\mathbf Q_x=(2\pi/a)(1,0,0)$, $\mathbf Q_y=(2\pi/a)(0,1,0)$ et $\mathbf Q_z=(2\pi/a)(0,0,1)$. À décalage nul, ses composantes sont exactement les amplitudes de ces ondes. À décalage non nul, on étudie la FFT du champ par maille : cette convention d'enveloppe est explicitement distincte d'un calcul de diffraction atomique incluant les phases de position internes à la base.
+La concentration totale étant fixée, son mode uniforme ne fluctue pas. Le mode $\mathbf k=0$ utilisé ci-dessous est celui du champ d'ordre, pas celui de la concentration brute.
+\subsubsection{Corrélation réelle, FFT et second moment}
+\[F_\alpha(\mathbf k)=\sum_{\mathbf R}\psi_\alpha(\mathbf R)e^{-i\mathbf k\cdot\mathbf R},\qquad S_{\rm brut}(\mathbf k)=\frac1{3V}\sum_\alpha\langle|F_\alpha(\mathbf k)|^2\rangle.\]
+\[S_{\rm c}(\mathbf k)=\frac1{3V}\sum_\alpha\left[\langle|F_\alpha(\mathbf k)|^2\rangle-|\langle F_\alpha(\mathbf k)\rangle|^2\right].\]
+La soustraction se fait sur la moyenne temporelle complexe de chaque chaîne, puis les spectres des chaînes sont moyennés. On ne soustrait jamais la moyenne spatiale de chaque configuration : cela annulerait artificiellement le mode dont on veut mesurer les fluctuations. La FFT inverse donne exactement, sur la boîte périodique,
+\[C_{\rm c}(\mathbf r)=\frac1{3V}\sum_{\mathbf R}\left[\langle\boldsymbol\psi(\mathbf R)\cdot\boldsymbol\psi(\mathbf R+\mathbf r)\rangle-\langle\boldsymbol\psi(\mathbf R)\rangle\cdot\langle\boldsymbol\psi(\mathbf R+\mathbf r)\rangle\right].\]
+Dans la limite de volume infini et pour une corrélation isotrope sommable, la longueur de second moment vérifie
+\[\xi_{\rm 2nd}^{\,2}=\frac{\sum_{\mathbf r}|\mathbf r|^2C_{\rm c}(\mathbf r)}{6\sum_{\mathbf r}C_{\rm c}(\mathbf r)}.\]
+Le mot moment désigne ici une pondération par la distance au carré, pas la variance d'énergie de $c_V$. Sur une boîte périodique, une somme naïve en $r^2$ dépend du choix des images. Le code emploie l'estimateur spectral fini, avec $\overline S_1$ la moyenne sur les six vecteurs $\pm(2\pi/(La))\mathbf e_j$ :
+\[\boxed{\frac{\xi_{2,L}}a=\frac1{2\sin(\pi/L)}\sqrt{\frac{S_{\rm c}(0)}{\overline S_1}-1}}.\]
+Le facteur sinus correspond au réseau de mailles de pas $a$. Cet estimateur compare le pic d'ordre et ses premiers voisins réciproques ; une FFT complète n'est pas indispensable pour ces sept modes, mais elle permet aussi de reconstruire $C(\mathbf r)$. Il ne prouve pas une forme lorentzienne à tous les vecteurs d'onde. La longueur de second moment n'est pas strictement identique à la longueur de décroissance exponentielle. On n'ajuste donc pas une exponentielle sur les quelques distances accessibles ici.
+\subsubsection{Retirer une moyenne ne supprime pas nécessairement le mélange de variantes}
+La part cohérente $|\langle F\rangle|^2$ est sauvegardée séparément. Cependant, si la chaîne visite plusieurs variantes ordonnées, $\langle\boldsymbol\psi\rangle$ peut être proche de zéro alors que $q$ reste élevé. Le spectre connexe canonique contient alors encore la fluctuation collective entre variantes : une grande valeur de $\xi_{2,L}$ ne décrit pas les petits défauts d'une phase pure.
+Un diagnostic supplémentaire calcule la variance de Fourier conditionnellement au sous-réseau majoritaire, puis moyenne ces variances avec les fréquences des variantes. Ce diagnostic intra-variante enlève la variation entre leurs moyennes. Il est affiché uniquement pour $T\leq1000$ K, $\langle q\rangle>0.8$ et au moins 90\,\% de couverture par des groupes de huit états ou plus. Il s'agit d'un conditionnement explicite, pas d'un remplacement de la corrélation canonique ; il serait biaisant dans le régime désordonné. Aucune incertitude statistique n'est attribuée ici à ce seul diagnostic.
+\subsubsection{Campagne dédiée, incertitudes et contrôles}
+La configuration 	exttt{configs/correlation\_L6.json} utilise $L=6$, 14 températures entre 900 et 2000 K, deux chaînes de graines 202611041 et 202611042. Après 3000 balayages d'équilibration, 12000 balayages produisent 600 configurations par chaîne et température, espacées de 20 balayages. Les échanges de répliques ont lieu tous les 5 balayages.
+Les états de départ sont les configurations finales de la campagne canonique antérieure à la température disponible la plus proche ; les nouvelles mesures proviennent uniquement de la nouvelle production. Contrairement aux anciennes archives contenant surtout des observables, les nouvelles archives conservent chaque état atomique échantillonné.
+Les intervalles sont les percentiles 2.5 et 97.5 d'un bootstrap circulaire de 400 répétitions, par blocs contigus dans chaque chaîne, avec recalcul de la moyenne complexe et du rapport à chaque répétition. La longueur des blocs vaut environ deux fois le plus grand temps d'autocorrélation estimé parmi $E$, $q$, les puissances des modes et les composantes signées. Une sensibilité à demi/double longueur est conservée autour de la transition. Ces intervalles sont conditionnels aux trajectoires observées et ne corrigent ni une phase non visitée ni la taille finie.
+Les diagnostics comprennent R-hat de $E$, $q$, $S(0)$ et des composantes signées, l'effectif utile, les échanges acceptés et la fraction de rapports bootstrap définis. Une racine négative ou un dénominateur nul produit une valeur manquante, jamais un zéro fabriqué. Une longueur supérieure à $L/2$ est signalée sans être écrêtée : ce seuil est un repère prudent, pas une borne mathématique de l'estimateur.
+\begin{algocode}{Pseudocode : mesures spatiales et analyse}
+\small\begin{verbatim}
+POUR chaque chaine et temperature :
+    equilibrer, puis capturer les etats pendant la production
+    verifier composition et energie exacte a chaque capture
+    construire les trois champs signes psi sur les mailles
+    calculer F = FFT(psi)
+    accumuler <abs(F)^2> et <F> complexe separement
+    S_connexe = (<abs(F)^2> - abs(<F>)^2) / (3*V)
+    conserver aussi S_brut et la part coherente
+moyenner les spectres des chaines, puis calculer le rapport
+reconstruire C = IFFT(S_connexe)
+reechantillonner des blocs, recalculer les moyennes et xi
+signaler ratios indefinis, diagnostics et taille finie
+\end{verbatim}
+\end{algocode}
+\subsubsection{Résultats à taille finie et comparaison des définitions}
+\begin{center}\scriptsize\begin{tabular}{rrrrrl}\toprule
+$T$ (K) & $\xi_{\rm brut}/a$ & $\xi_{\rm c}/a$ & IC 95\,\% de $\xi_{\rm c}/a$ & Intra-variante$/a$ & Réserve\\\midrule
+900 & 41.344 & 40.722 & $[35.942,43.461]$ & 0.687 & voir CSV\\
+980 & 24.609 & 24.327 & $[22.754,25.768]$ & 0.759 & voir CSV\\
+1000 & 18.587 & 18.445 & $[17.039,20.036]$ & 1.097 & voir CSV\\
+1020 & 14.071 & 13.968 & $[12.672,15.314]$ & \textemdash & voir CSV\\
+1030 & 11.379 & 11.322 & $[10.277,12.462]$ & \textemdash & voir CSV\\
+1040 & 8.794 & 8.732 & $[8.051,9.428]$ & \textemdash & voir CSV\\
+1045 & 7.320 & 7.276 & $[6.853,7.724]$ & \textemdash & voir CSV\\
+1050 & 6.220 & 6.193 & $[5.868,6.509]$ & \textemdash & voir CSV\\
+1055 & 5.052 & 5.037 & $[4.775,5.356]$ & \textemdash & voir CSV\\
+1060 & 4.009 & 4.002 & $[3.775,4.202]$ & \textemdash & taille finie\\
+1080 & 1.854 & 1.844 & $[1.710,1.956]$ & \textemdash & aucune détectée\\
+1100 & 1.374 & 1.370 & $[1.283,1.460]$ & \textemdash & aucune détectée\\
+1300 & 0.662 & 0.663 & $[0.599,0.712]$ & \textemdash & aucune détectée\\
+2000 & 0.374 & 0.376 & $[0.295,0.441]$ & \textemdash & aucune détectée\\
+\bottomrule\end{tabular}\end{center}
+Dans la phase froide, la grande longueur canonique et la longueur intra-variante beaucoup plus courte répondent à des questions différentes : cohérence de l'ordre à l'échelle de la boîte, ou fluctuations conditionnelles autour d'une variante. L'augmentation du rapport spectral ne constitue pas la mesure d'un domaine géométrique plus grand que le volume.
+Au-dessus de la transition, la longueur devient plus courte. Avec seulement six mailles par direction, le premier décalage accessible est $k_{\min}a=2\pi/6\simeq1.047$ : le régime des très petits vecteurs d'onde est peu résolu. Cette campagne ne détermine ni un exposant critique, ni une divergence, ni une température critique extrapolée. Il faudrait plusieurs tailles et étudier notamment $\xi/L$ en conservant la même définition.
+\fig{correlation_01_xi}{1}{Longueurs spectrales brute et connexe, et diagnostic conditionnel intra-variante à basse température. Les grandes valeurs doivent être interprétées avec les réserves de taille finie.}
+\fig{correlation_02_real_fourier}{1}{Corrélations réelles connexes obtenues par FFT inverse et spectres des enveloppes d’ordre. Un plateau à basse température peut subsister du fait des fluctuations collectives entre variantes.}
+\fig{correlation_04_diagnostics}{1}{Diagnostics de la campagne spatiale ; l’accord statistique ne supprime pas les effets de taille finie.}
+\subsubsection{Après la trempe : distinguer croissance de l’ordre et longueur de fluctuation}
+Les 301 configurations du GIF isotherme permettent une analyse spatiale instantanée à 1000 K. On calcule le même rapport de puissances sans moyenne d'ensemble, noté $\ell_{\rm app}(t)$. Ce n'est pas $\xi_{\rm c}(T)$ : le système relaxe et aucune moyenne d'ensemble à temps fixé sur plusieurs trempes n'est disponible.
+On enregistre aussi la fraction $f_0=S(0)/\sum_{\mathbf k}S(\mathbf k)$ et une longueur de largeur diffuse, en excluant explicitement le mode uniforme :
+\[\frac{\ell_{\rm diff}}a=\left[\frac{\sum_{\mathbf k\ne0}S(\mathbf k)}{\sum_{\mathbf k\ne0}\widehat k_a^{\,2}S(\mathbf k)}\right]^{1/2},\qquad \widehat k_a^{\,2}=4\sum_j\sin^2(k_ja/2).\]
+Cette largeur est un second moment dans l'espace réciproque, distinct du second moment en espace réel qui définit $\xi$. Elle sonde le spectre diffus restant, incluant les défauts et les courtes distances, et n'est pas un rayon de domaine.
+Dans cette trajectoire, $\ell_{m app}>L/2$ pour 299 des 301 images. Dès 40 balayages, sa valeur est dominée par l'ordre qui se forme à l'échelle de la boîte ; à l'instant initial, le rapport ne définit pas de longueur réelle. Ces observations empêchent d'interpréter une courbe croissante comme une loi de croissance de germes. Elles expliquent pourquoi les GIF doivent être accompagnés d'une analyse quantitative et de plusieurs répétitions.
+\fig{correlation_03_relaxation}{1}{Longueur apparente, largeur diffuse et poids de l’ordre uniforme pendant la relaxation, avec zoom initial ; comparaison à la part cohérente de la campagne canonique.}
+\subsubsection{Fichiers, vérifications et références de méthode}
+Le code est dans \texttt{correlation.py}, \texttt{correlation\_campaign.py}, \texttt{correlation\_analysis.py} et \texttt{correlation\_report.py}. Les configurations, CSV, spectres complets et diagnostics sont dans \texttt{results/correlation\_L6}. Les tests vérifient les quatre variantes, $S(0)=V\langle q^2\rangle$, FFT contre somme directe, FFT inverse contre corrélation de paires, valeurs indéfinies et séparation d'un mélange de variantes parfaitement ordonnées.
+Pour la définition de second moment sur un réseau périodique : \href{https://arxiv.org/abs/hep-lat/9112002}{Edwards et al., Multi-Grid Monte Carlo III, équations (3.14)--(3.18)}. Pour les trois composantes d'ordre Cu$_3$Au et les domaines : \href{https://www.homepages.ucl.ac.uk/~ucapikr/harald3.pdf}{Reichert et al., Europhysics Letters 53, 570--576 (2001)}. Ce dernier travail porte sur une surface expérimentale : ses mécanismes cinétiques ne sont pas assimilés à notre boîte périodique rigide.

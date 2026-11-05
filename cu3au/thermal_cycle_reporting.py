@@ -12,7 +12,8 @@ BRANCHES = [('heating', 'Chauffage'), ('cooling', 'Refroidissement')]
 
 
 def make_cycle_figures(output):
-    from .figures import plt, style, save, RED, BLUE, GOLD, GREEN, INK
+    from .figures import (plt, style, save, RED, BLUE, GOLD, GREEN, INK,
+                          measurement_points, transition_window)
     out = Path(output)
     cfg, data = load_cycle_archives(out)
     folder = out/'figures'
@@ -25,18 +26,19 @@ def make_cycle_figures(output):
     t = np.asarray(cfg['temperatures'], dtype=float)
     n = 4*cfg['L']**3
     col = lambda branch, key: np.array([float(r[key]) for r in rows[branch]])
+    peaks = [t[np.argmax(col(branch, 'cv_kB'))] for branch, _ in BRANCHES]
+    # Même fenêtre pour les deux branches, centrée sur le maximum au chauffage.
+    zoom_limits = transition_window(peaks[0])
     style()
 
     def compare(ax, key, ylabel, zoom=False):
-        for branch, label in BRANCHES:
+        for index, (branch, label) in enumerate(BRANCHES):
             y = col(branch, key)
-            ax.plot(t, y, 'o-', ms=3, lw=1.4, color=colors[branch], label=label)
-            if key+'_se' in rows[branch][0]:
-                error = col(branch, key+'_se')
-                ax.fill_between(t, y-error, y+error, color=colors[branch], alpha=.14)
+            error = col(branch, key+'_se') if key+'_se' in rows[branch][0] else None
+            measurement_points(ax, t, y, colors[branch], label, error, series=index)
         ax.set(xlabel='Température (K)', ylabel=ylabel)
-        if zoom and t[-1] >= 1300 and t[0] <= 650:
-            ax.set_xlim(650, 1300)
+        if zoom:
+            ax.set_xlim(*zoom_limits)
         ax.legend(fontsize=9)
 
     # B01: global comparison and the temperature window requested for figure 03.
@@ -51,7 +53,7 @@ def make_cycle_figures(output):
     fig.suptitle('Cycle thermique : énergie et fluctuations', y=.99)
     fig.tight_layout(rect=(0, .055, 1, .95))
     save(fig, folder, 'bonus_01_thermodynamique',
-         'Bandes : ±1 erreur-type par branche ; l’interprétation canonique des fluctuations exige une stationnarité suffisante.')
+         'Barres : ±1 erreur-type par branche ; cercles : chauffage, carrés : refroidissement ; stationnarité requise pour les fluctuations.')
 
     fig, axes = plt.subplots(2, 3, figsize=(14, 8))
     for ax, (key, label) in zip(axes.flat, [
@@ -62,16 +64,28 @@ def make_cycle_figures(output):
     fig.tight_layout(rect=(0, .06, 1, .95))
     save(fig, folder, 'bonus_02_ordres', 'η dépend de la variante choisie ; q est l’amplitude à privilégier pour comparer les branches.')
 
-    fig, axes = plt.subplots(1, 2, figsize=(12, 4.8), sharey=True)
-    for ax, (branch, label) in zip(axes, BRANCHES):
-        for mu, color in enumerate([GOLD, BLUE, RED, GREEN]):
-            ax.plot(t, col(branch, f'p{mu}'), 'o-', ms=3, color=color, label=f'μ = {mu}')
-        ax.axhline(.25, color=INK, ls=':', lw=1)
-        ax.set(xlabel='Température (K)', ylabel='Occupation moyenne par Au', title=label)
-        ax.legend(fontsize=9)
-    fig.suptitle('Occupations des quatre sous-réseaux', y=.99)
-    fig.tight_layout(rect=(0, .06, 1, .94))
-    save(fig, folder, 'bonus_03_sous_reseaux', 'Moyennes sur le temps et les cycles : une moyenne uniforme peut masquer des variantes instantanément ordonnées.')
+    # Ne pas fusionner les variantes ordonnées choisies par les cycles indépendants.
+    # Lignes : sens du parcours ; colonnes : cycles, avec la même clé μ partout.
+    cycles = len(cfg['seeds'])
+    fig, axes = plt.subplots(2, cycles, figsize=(6*cycles, 8),
+                             sharex=True, sharey=True, squeeze=False)
+    for row, (branch, label) in enumerate(BRANCHES):
+        for c in range(cycles):
+            ax = axes[row, c]
+            occupations = np.array([a['samples'][:, 5:9].mean(axis=0)
+                                    for a in data[branch][c]])
+            for mu, color in enumerate([GOLD, BLUE, RED, GREEN]):
+                measurement_points(ax, t, occupations[:, mu], color,
+                                   f'μ = {mu}', series=mu)
+            ax.axhline(.25, color=INK, ls=':', lw=1)
+            ax.set(xlabel='Température (K)', ylabel='Occupation temporelle moyenne par Au',
+                   title=f'{label} · cycle {c+1}', ylim=(-.04, 1.06))
+            ax.legend(fontsize=9, ncols=2)
+    fig.suptitle('Occupations des sous-réseaux : chaque cycle séparément', y=.99, fontsize=17)
+    fig.tight_layout(rect=(0, .085, 1, .95))
+    save(fig, folder, 'bonus_03_sous_reseaux',
+         'Chaque point : moyenne temporelle d’un seul cycle, sans moyenne entre cycles.\n'
+         'Les couleurs et symboles identifient μ ; des changements de variante peuvent subsister dans une moyenne temporelle.')
 
     fig, axes = plt.subplots(2, 2, figsize=(11, 7))
     for ax, (index, label, divisor) in zip(axes.flat,
@@ -82,16 +96,15 @@ def make_cycle_figures(output):
                              data['heating'][c][k]['samples'][:, index].mean())/divisor
                             for k in range(len(t))])
             gaps.append(gap)
-            ax.plot(t, gap, lw=.9, alpha=.55, label=f'Cycle {c+1}')
-        ax.plot(t, np.mean(gaps, axis=0), color=INK, lw=2, label='Moyenne appariée')
+            measurement_points(ax, t, gap, [BLUE, RED][c % 2], f'Cycle {c+1}', series=c)
+        measurement_points(ax, t, np.mean(gaps, axis=0), INK, 'Moyenne appariée', series=len(gaps))
         ax.axhline(0, color=INK, ls=':', lw=1)
         ax.set(xlabel='Température (K)', ylabel=label)
-        if t[0] <= 650 and t[-1] >= 1300:
-            ax.set_xlim(650, 1300)
+        ax.set_xlim(*zoom_limits)
         ax.legend(fontsize=8)
     fig.suptitle('Mémoire du trajet : refroidissement moins chauffage', y=.99, fontsize=17)
     fig.tight_layout(rect=(0, .06, 1, .95))
-    save(fig, folder, 'bonus_04_ecarts', 'Les deux branches d’un même cycle sont appariées ; les lignes fines montrent la dispersion entre cycles, sans test de significativité.')
+    save(fig, folder, 'bonus_04_ecarts', 'Les branches sont appariées ; les symboles distinguent les cycles et leur moyenne, sans test de significativité.')
 
     fig, axes = plt.subplots(3, 1, figsize=(12, 8), sharex=True)
     for c in range(len(cfg['seeds'])):
@@ -116,12 +129,14 @@ def make_cycle_figures(output):
     save(fig, folder, 'bonus_05_traces', 'Affichage décimé pour la lisibilité ; toutes les mesures enregistrées, y compris les transitoires, restent dans les archives NPZ.')
 
     fig, axes = plt.subplots(2, 2, figsize=(11, 7))
-    for branch, label in BRANCHES:
+    for index, (branch, label) in enumerate(BRANCHES):
         color = colors[branch]
-        axes[0, 0].plot(t, np.maximum(col(branch, 'rhat_E'), col(branch, 'rhat_q')), 'o-', ms=3, color=color, label=label)
-        axes[0, 1].semilogy(t, np.maximum(1, col(branch, 'ess_min')), 'o-', ms=3, color=color)
-        axes[1, 0].plot(t, col(branch, 'tau_max_samples'), 'o-', ms=3, color=color)
-        axes[1, 1].plot(t, col(branch, 'local_acceptance'), 'o-', ms=3, color=color)
+        for ax, values in zip(axes.flat, [
+                np.maximum(col(branch, 'rhat_E'), col(branch, 'rhat_q')),
+                np.maximum(1, col(branch, 'ess_min')),
+                col(branch, 'tau_max_samples'), col(branch, 'local_acceptance')]):
+            measurement_points(ax, t, values, color, label, series=index)
+    axes[0, 1].set_yscale('log')
     axes[0, 0].axhline(1.05, color=INK, ls='--'); axes[0, 0].legend(fontsize=9)
     axes[0, 1].axhline(200, color=INK, ls='--')
     for ax, label in zip(axes.flat, ['Maximum de R-hat(E,q)', 'ESS minimal estimé', 'τ maximal (mesures)', 'Fraction de mouvements acceptés']):
@@ -157,7 +172,8 @@ def make_cycle_figures(output):
             bins = np.histogram_bin_edges(np.concatenate(list(values.values())), bins=35)
             for branch, legend in BRANCHES:
                 axes[row, column].hist(values[branch], bins=bins, density=True,
-                    histtype='step', lw=1.6, color=colors[branch], label=legend)
+                    histtype='step', lw=1.6, linestyle='-' if branch == 'heating' else '--',
+                    color=colors[branch], label=legend)
             axes[row, column].set(xlabel=label, ylabel='Densité', title=f'{t[index]:.0f} K')
             if column == 0:
                 axes[row, column].legend(fontsize=8)
@@ -241,16 +257,57 @@ def write_bonus_include(output, reference_dir, complete=False):
             f"L'écart refroidissement moins chauffage des maxima vaut "
             f"${result['peak_difference_cooling_minus_heating_K']:.0f}$ K sur la grille. "
             r"Il décrit ce protocole, sans fournir une température critique extrapolée.",
-            r"Les bandes sont des erreurs-types calculées séparément par branche. "
+            r"Les barres indiquent une erreur-type calculée séparément par branche. "
+            r"Dans les comparaisons des moyennes par branche, les cercles creux représentent "
+            r"le chauffage et les carrés creux le refroidissement ; "
+            r"les vues rapprochées couvrent 100 K autour du maximum au chauffage. "
             r"Pour les différences, les courbes individuelles montrent la dispersion "
             r"entre cycles ; avec seulement deux graines, elle ne constitue pas un "
             r"test robuste de significativité. Les paliers dont les diagnostics "
             r"échouent doivent être prolongés avant une interprétation d'équilibre."]
+        _, archives = load_cycle_archives(out)
+        lines += [r'\subsection{Occupations des Au : distinguer les cycles et les variantes}',
+            r"Le label $\mu\in\{0,1,2,3\}$ repère une position géométrique dans la "
+            r"base CFC ; il ne change pas pendant le calcul. Chaque sous-réseau "
+            r"contient $L^3$ sites et son occupation vaut "
+            r"$p_\mu=N_{\mathrm{Au},\mu}/L^3$. Ainsi $\sum_\mu p_\mu=1$ "
+            r"à la composition étudiée. Un état parfaitement ordonné présente "
+            r"une occupation égale à 1 et trois égales à 0.",
+            r"La figure des occupations sépare les cycles indépendants : "
+            r"une colonne par cycle et une ligne par sens du parcours. Chaque point "
+            r"est la moyenne temporelle des seules mesures de production de ce cycle "
+            r"à cette température. Les mêmes couleurs et symboles désignent les "
+            r"mêmes sous-réseaux dans tous les panneaux.",
+            f"Au chauffage, à ${min(cfg['temperatures']):g}$ K, les archives donnent :",
+            r'\begin{center}\small\begin{tabular}{lrrrrr}\toprule',
+            r'Cycle & $\langle p_0\rangle$ & $\langle p_1\rangle$ & $\langle p_2\rangle$ & $\langle p_3\rangle$ & $\langle q\rangle$\\\midrule']
+        cold_values = []
+        for c in range(len(cfg['seeds'])):
+            cold = archives['heating'][c][0]['samples']
+            values = np.r_[cold[:, 5:9].mean(axis=0), cold[:, 2].mean()]
+            cold_values.append(values)
+            lines.append(f'{c+1} & '+' & '.join(f'{v:.3f}' for v in values)+r'\\')
+        pooled = np.mean(cold_values, axis=0)
+        lines += [r'\midrule Moyenne des cycles & '+' & '.join(f'{v:.3f}' for v in pooled)+r'\\',
+            r'\bottomrule\end{tabular}\end{center}',
+            r"Moyenner des cycles partis dans des variantes différentes peut "
+            r"donc répartir l'occupation moyenne entre plusieurs sous-réseaux, "
+            r"même si chacun des états est ordonné. Par exemple, la moyenne de "
+            r"$(1,0,0,0)$ et $(0,0,1,0)$ vaut $(1/2,0,1/2,0)$ : "
+            r"ce vecteur moyen ne décrit aucune des deux configurations. "
+            r"Il ne signale pas une erreur de définition de $\mu$.",
+            r"Près de la transition, un même cycle peut aussi changer de variante "
+            r"au cours du temps : séparer les cycles ne supprime pas cet effet de "
+            r"moyenne temporelle. Pour comparer le degré d'ordre, on calcule $q$ "
+            r"sur chaque configuration puis on moyenne les valeurs obtenues. "
+            r"En général, $\langle q(\mathbf p)\rangle\ne "
+            r"q(\langle\mathbf p\rangle)$ ; une occupation moyenne uniforme "
+            r"ne suffit donc pas à conclure au désordre instantané."]
         captions = [
             ('bonus_01_thermodynamique', 'Énergie et réponse par fluctuations, sur le cycle complet et dans la zone de transition.'),
             ('bonus_02_ordres', 'Comparaison de l’ordre global, de l’ordre local et des fluctuations.'),
-            ('bonus_03_sous_reseaux', 'Occupations moyennes des quatre sous-réseaux dans les deux sens.'),
-            ('bonus_04_ecarts', 'Différences appariées refroidissement moins chauffage ; les traits fins représentent les cycles indépendants.'),
+            ('bonus_03_sous_reseaux', 'Occupations des Au séparées par cycle et par sens du parcours. Chaque point est une moyenne temporelle au sein d’un seul cycle ; couleurs et symboles identifient les sous-réseaux, sans moyenne entre cycles.'),
+            ('bonus_04_ecarts', 'Différences appariées refroidissement moins chauffage ; les symboles distinguent les cycles indépendants et leur moyenne.'),
             ('bonus_05_traces', 'Historique incluant les transitoires ; seule la représentation est décimée, pas les archives.'),
             ('bonus_06_diagnostics', 'Autocorrélation, accord des chaînes, effectif utile et acceptation des mouvements.'),
             ('bonus_07_configurations', 'Deux coupes de configurations finales à température identique, dans le premier cycle.'),
@@ -260,9 +317,12 @@ def write_bonus_include(output, reference_dir, complete=False):
         (target/'figures').mkdir(exist_ok=True)
         for path in (out/'figures').glob('bonus_*.*'):
             if path.suffix in ('.png', '.pdf'):
-                shutil.copy2(path, target/'figures'/path.name)
+                destination = target/'figures'/path.name
+                temporary = destination.with_suffix(destination.suffix+'.tmp')
+                shutil.copy2(path, temporary)
+                temporary.replace(destination)
     (out/'report').mkdir(exist_ok=True)
-    text = '\n'.join(lines)+'\n'
+    text = ('\n'.join(lines)+'\n').replace(r'\subsection{', r'\subsubsection{')
     (out/'report'/'bonus_cycle.tex').write_text(text, encoding='utf8')
     (target/'bonus_cycle.tex').write_text(text, encoding='utf8')
 
