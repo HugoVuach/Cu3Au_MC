@@ -1,9 +1,12 @@
-﻿{
-    "state":  "stopped",
-    "pid":  22824,
-    "config":  "C:\\Users\\vuache_h\\Desktop\\perso\\Cu3Au_MC\\configs\\production_L9.json",
-    "L":  9,
-    "n_atoms":  2916,
-    "reason":  "Stopped at user request",
-    "stopped_at":  "2026-10-28T15:53:38.5459700+01:00"
+{
+  "state": "complete",
+  "pid": 35704,
+  "updated_at": "2026-11-08T19:24:00.684061+01:00",
+  "config": "C:\\Users\\vuache_h\\Desktop\\perso\\Cu3Au_MC\\configs\\production_L9.json",
+  "L": 9,
+  "n_atoms": 2916,
+  "T_peak_K": 1055.0,
+  "critical_diagnostics_ok": false,
+  "figures": 18,
+  "size_comparison": "C:\\Users\\vuache_h\\Desktop\\perso\\Cu3Au_MC\\results\\production_L9\\comparison_L6_L9"
 }

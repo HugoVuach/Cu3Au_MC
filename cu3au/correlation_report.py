@@ -112,8 +112,11 @@ def write_includes(output='results/correlation_L6', reference='results/productio
         r"les balayages ne constituent pas une durée physique ni une cinétique "
         r"de diffusion atomique calibrée.",
         r'\fig{animations_01_evolution}{1}{Ordre global des configurations présentes dans les deux GIF et agrandissement du début de la relaxation.}',
-        r'\fig{animation_isotherme_debut}{.93}{Neuf coupes de l’état initial chaud, avant relaxation à la nouvelle consigne de 1000 K.}',
-        r'\fig{animation_isotherme_fin}{.93}{Les mêmes neuf coupes après 6000 balayages à 1000 K. Leur comparaison indique une mise en ordre ; les images seules ne démontrent pas une nucléation.}']
+        r"Les plaquettes fixes initiale et finale sont disponibles avec les GIF "
+        r"dans \texttt{results/thermal\_cycle\_L6/visualisation/animations} "
+        r"(fichiers \texttt{plaquette\_relaxation\_isotherme\_debut.pdf} et "
+        r"\texttt{plaquette\_relaxation\_isotherme\_fin.pdf}). Elles ne sont "
+        r"pas reproduites une seconde fois comme grandes figures de neuf panneaux."]
 
     correlation_lines = [r'\subsubsection{Pourquoi mesurer une longueur spatiale ?}',
         r"L'amplitude $q$ décrit l'ordre global, tandis que $\alpha_1$ et $\alpha_2$ "
@@ -217,7 +220,12 @@ def write_includes(output='results/correlation_L6', reference='results/productio
         r"puissances des modes et les composantes signées. Une sensibilité "
         r"à demi/double longueur est conservée autour de la transition. "
         r"Ces intervalles sont conditionnels aux trajectoires observées "
-        r"et ne corrigent ni une phase non visitée ni la taille finie.",
+        r"et ne corrigent ni une phase non visitée ni la taille finie. "
+        r"À basse température, les composantes signées peuvent rester "
+        r"corrélées bien plus longtemps que l'énergie et la norme $q$ ; "
+        r"l'effectif utile ou le nombre de blocs deviennent alors insuffisants. "
+        r"Un intervalle étroit malgré ce signalement reste une incertitude "
+        r"conditionnelle fragile, et non une mesure validée à haute précision.",
         r"Les diagnostics comprennent R-hat de $E$, $q$, $S(0)$ et des "
         r"composantes signées, l'effectif utile, les échanges acceptés "
         r"et la fraction de rapports bootstrap définis. Une racine "
@@ -283,7 +291,7 @@ def write_includes(output='results/correlation_L6', reference='results/productio
         r"distinct du second moment en espace réel qui définit $\xi$. "
         r"Elle sonde le spectre diffus restant, incluant les défauts et les "
         r"courtes distances, et n'est pas un rayon de domaine.",
-        f"Dans cette trajectoire, $\ell_{{\rm app}}>L/2$ pour "
+        fr"Dans cette trajectoire, $\ell_{{\rm app}}>L/2$ pour "
         f"{summary['time_box_dominated_count']} des {summary['temporal_frames']} "
         r"images. Dès 40 balayages, sa valeur est dominée par l'ordre "
         r"qui se forme à l'échelle de la boîte ; à l'instant initial, "
@@ -294,8 +302,10 @@ def write_includes(output='results/correlation_L6', reference='results/productio
         r"plusieurs répétitions.",
         r'\fig{correlation_03_relaxation}{1}{Longueur apparente, largeur diffuse et poids de l’ordre uniforme pendant la relaxation, avec zoom initial ; comparaison à la part cohérente de la campagne canonique.}',
         r'\subsubsection{Fichiers, vérifications et références de méthode}',
-        r"Le code est dans \texttt{correlation.py}, \texttt{correlation\_campaign.py}, "
-        r"\texttt{correlation\_analysis.py} et \texttt{correlation\_report.py}. "
+        r"Le module \texttt{correlation.py} définit les observables. "
+        r"Le lancement se fait par \texttt{correlation\_campaign.py} ; "
+        r"\texttt{correlation\_analysis.py} analyse les états, "
+        r"et \texttt{correlation\_report.py} produit cette partie du rapport. "
         r"Les configurations, CSV, spectres complets et diagnostics sont dans "
         r"\texttt{results/correlation\_L6}. Les tests vérifient les quatre "
         r"variantes, $S(0)=V\langle q^2\rangle$, FFT contre somme directe, "

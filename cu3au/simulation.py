@@ -28,6 +28,10 @@ def load_config(path):
             raise ValueError(f'{k} doit être un entier strictement positif.')
     if not isinstance(cfg['exchange_every'], int) or cfg['exchange_every'] < 0:
         raise ValueError('exchange_every doit être un entier positif ou nul.')
+    capture = cfg.get('store_states_every', 0)
+    if (not isinstance(capture, int) or isinstance(capture, bool) or capture < 0 or
+            (capture and (capture % cfg['sample_every'] or cfg['sample_sweeps'] % capture))):
+        raise ValueError('store_states_every doit être nul ou un multiple de sample_every divisant sample_sweeps.')
     for k in ['burn_sweeps', 'sample_sweeps', 'chunk_sweeps']:
         if cfg[k] % cfg['sample_every']:
             raise ValueError(f'{k} doit être multiple de sample_every.')
@@ -44,7 +48,7 @@ def save_csv(path, rows):
         writer.writerows(rows)
 
 
-def campaign(cfg, output):
+def campaign(cfg, output, progress=None):
     out = Path(output)
     out.mkdir(parents=True, exist_ok=True)
     lat = build_lattice(cfg['L'])
@@ -66,6 +70,7 @@ def campaign(cfg, output):
         phase = 0
         serial = 0
         records, lab_records = [], []
+        spatial_states, spatial_sweeps = [], []
         burn_records = []
         count_ok = np.zeros(nr-1, dtype=np.int64)
         count_n = np.zeros(nr-1, dtype=np.int64)
@@ -75,6 +80,9 @@ def campaign(cfg, output):
             done = 0
             while done < length:
                 chunk = min(cfg['chunk_sweeps'], length-done)
+                capture = cfg.get('store_states_every', 0) if mode == 'mesure' else 0
+                if capture:
+                    chunk = min(chunk, capture-done % capture)
                 serial += 1
                 res = run_segment(states, energies, temperatures, lat.neighbors,
                                   lat.sublattice, chunk, cfg['exchange_every'],
@@ -98,16 +106,30 @@ def campaign(cfg, output):
                 else:
                     burn_records.append(rec)
                 done += chunk
+                if capture and done % capture == 0:
+                    spatial_states.append(states.copy())
+                    spatial_sweeps.append(done)
+                if progress is not None:
+                    progress(chain+1, mode, done, length, len(spatial_states))
                 print(f'chaîne {chain+1}/{len(cfg["seeds"])} | {mode} '
                       f'{done}/{length} balayages | {time.perf_counter()-start:.1f} s', flush=True)
         samples = np.concatenate(records)
         trace = np.concatenate(lab_records)
         all_samples.append(samples)
         all_labels.append(trace)
-        np.savez_compressed(out/f'chain_{chain+1:02d}.npz', samples=samples,
-                            burn_samples=np.concatenate(burn_records), labels=trace,
-                            final_states=states, temperatures=temperatures,
-                            xyz=lat.xyz, sublattice=lat.sublattice)
+        extra = {}
+        if cfg.get('store_states_every', 0):
+            extra = dict(spatial_states=np.array(spatial_states),
+                         spatial_sample_sweeps=np.array(spatial_sweeps),
+                         spatial_capture_every=cfg['store_states_every'])
+        destination = out/f'chain_{chain+1:02d}.npz'
+        temporary = destination.with_suffix('.npz.tmp')
+        with temporary.open('wb') as stream:
+            np.savez_compressed(stream, samples=samples,
+                                burn_samples=np.concatenate(burn_records), labels=trace,
+                                final_states=states, temperatures=temperatures,
+                                xyz=lat.xyz, sublattice=lat.sublattice, **extra)
+        temporary.replace(destination)
         # Nombre de trajets froid -> chaud -> froid, par identité de réplique.
         roundtrips = np.zeros(nr, dtype=int)
         stage = np.zeros(nr, dtype=int)

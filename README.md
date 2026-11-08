@@ -305,3 +305,37 @@ corrélation à la section 10 puis recompile `report/rapport_template.pdf` et sa
 copie de production. Elle requiert les deux GIF et `relaxation_isotherme.npz`
 générés par `cu3au.slice_animations`. Les GIF sont également copiés dans un
 sous-dossier `animations` à côté de chaque PDF afin de conserver des liens relatifs.
+
+## Rapport consolidé et relance L9 (8 novembre 2026)
+
+Le rapport principal est en 10 points ; les figures redondantes sont remplacées
+par des renvois, en conservant tous les exports. La revue détaillée est dans
+`report/revue_consolidation.md`.
+
+La relance L9 utilise `configs/production_L9.json` et le lanceur
+`results/production_L9/run_simulation.py`. Ses sorties restent isolées de L6.
+`execution.json` indique l'état, la chaîne, la phase et les balayages en cours ;
+`run.log` et `run.err.log` conservent les traces. Une chaîne complète est écrite
+atomiquement, mais une chaîne interrompue en cours ne peut pas être reprise.
+
+Le paramètre facultatif `store_states_every` sauvegarde des configurations pendant
+la production. À L9, sa valeur 100 donne 300 états par température et par chaîne,
+dans `spatial_states` ; `spatial_sample_sweeps` indique leurs instants exacts.
+L'intervalle doit être un multiple de `sample_every` et diviser `sample_sweeps`.
+Les segments sont découpés aux captures, ce qui peut changer les trajectoires
+aléatoires par rapport à une exécution sans capture ; le noyau canonique reste
+identique. Les résultats de tailles différentes ne sont pas appariés configuration
+par configuration.
+
+Après le calcul et sa validation, `cu3au.size_comparison` génère les courbes et
+diagnostics L6/L9 dans `results/production_L9/comparison_L6_L9`. Une augmentation
+de taille peut réduire certains effets de boîte, mais aussi ralentir les mélanges.
+Elle ne rétablit pas les vibrations, la dilatation ou une cinétique physique.
+
+Les résultats L9 terminés sont désormais intégrés au PDF principal dans la
+partie 3 du bonus. `make_report` régénère `bonus_sizes.tex` à partir des archives
+validées et de `comparison_L6_L9`, puis copie les trois figures sous des noms
+distincts des figures L6. La synthèse comprend le déplacement du maximum,
+les diagnostics insuffisants, les historiques et les distributions. Les courbes
+de corrélation et GIF restent ceux de L6 ; la sauvegarde d'états L9 n'est pas
+présentée comme une nouvelle mesure de xi déjà effectuée.

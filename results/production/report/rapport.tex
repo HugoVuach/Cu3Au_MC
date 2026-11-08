@@ -1,9 +1,9 @@
-\documentclass[11pt,a4paper]{article}
+\documentclass[10pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \IfFileExists{french.ldf}{\usepackage[french]{babel}}{}
-\usepackage[margin=22mm,headheight=15pt]{geometry}
+\usepackage[margin=19mm,headheight=14pt]{geometry}
 \usepackage{amsmath,amssymb,graphicx,booktabs,array,xcolor}
 \usepackage{microtype,fancyhdr,tcolorbox}
 \tcbuselibrary{breakable}
@@ -22,10 +22,24 @@
 \fancyfoot[L]{\small Réseau CFC rigide / ensemble canonique}
 \fancyfoot[R]{\thepage}
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{5pt}
+\setlength{\parskip}{3pt}
 \setlength{\emergencystretch}{2em}
+\setlength{\textfloatsep}{9pt plus 2pt minus 2pt}
+\setlength{\floatsep}{7pt plus 2pt minus 2pt}
+\setlength{\intextsep}{8pt plus 2pt minus 2pt}
+\setlength{\abovecaptionskip}{4pt}
+\setlength{\belowcaptionskip}{2pt}
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{.90}
+\renewcommand{\bottomfraction}{.85}
+\renewcommand{\textfraction}{.08}
+\renewcommand{\floatpagefraction}{.75}
+\setcounter{tocdepth}{2}
 \newtcolorbox{oral}[1]{breakable,colback=pale,colframe=teal,boxrule=.6pt,
-  title={\textbf{Préparation à l'oral : #1}},fonttitle=\small,coltitle=white}
+  title={\textbf{Préparation à l'oral : #1}},fonttitle=\footnotesize,coltitle=white,
+  fontupper=\small,top=2pt,bottom=2pt,before skip=5pt,after skip=5pt}
 \newtcolorbox{attention}{breakable,colback=gold!8,colframe=gold!80!black,boxrule=.6pt,
   title={Point d'interprétation},fonttitle=\small}
 \newtcolorbox{algocode}[1]{breakable,colback=pale,colframe=navy,boxrule=.6pt,
@@ -35,26 +49,30 @@
 \newcommand{\Cu}{\mathrm{Cu}}
 \newcommand{\kb}{k_{\mathrm B}}
 \newcommand{\fig}[3]{\begin{figure}[htbp]\centering
-\includegraphics[width=#2\linewidth]{figures/#1.pdf}\caption{#3}\end{figure}}
+\includegraphics[width=#2\linewidth,height=.42\textheight,keepaspectratio]{figures/#1.pdf}
+\begingroup\small\caption{#3}\label{fig:#1}\endgroup\end{figure}}
 \input{auto_results.tex}
 \begin{document}
 \hypersetup{pageanchor=false}
 \begin{titlepage}
-\vspace*{14mm}
+\vspace*{5mm}
 {\color{teal}\rule{\linewidth}{2pt}}
 \vspace{9mm}
 {\Large\textcolor{teal}{Modélisation et simulation numérique}\par}
 \vspace{8mm}
 {\Huge\bfseries\color{navy} Transition ordre--désordre de Cu\textsubscript{3}Au\par}
-\vspace{7mm}
-{\Large Study of the order-disorder transition of the Cu3AU compound by the Monte Carlo method on a rigid lattice (FD)\par}
-\vspace{12mm}
+\vspace{5mm}
+{\large Étude Monte-Carlo sur réseau rigide : méthode, résultats et limites\par}
+\vspace{8mm}
 \begin{tcolorbox}[colback=pale,colframe=navy,boxrule=.8pt]
 \textbf{Système étudié :} $\Lbox^3$ mailles, $N=\Natoms$ sites,
 $c_{\Au}=1/4$, interactions de premiers et seconds voisins.\\[2mm]
 \textbf{Résultat exact :} $u_0=-3.813\ \mathrm{eV/atome}$.\\[2mm]
 \textbf{Maximum thermique observé :} $T^*_{C_V}=\Tpeak\ \mathrm K$ sur la grille.\\[2mm]
 \textbf{Statut des diagnostics près du maximum :} \DiagnosticStatus.
+\IfFileExists{bonus_sizes.tex}{\par\small
+\textbf{Complément achevé :} résultats $L=9$ et comparaison L6/L9 en
+section~\ref{sec:tailles}. Les diagnostics L9 près du pic restent insuffisants.}{}
 \end{tcolorbox}
 \vfill
 \textbf{Traçabilité.} Tous les résultats numériques, tableaux et figures de ce
@@ -103,6 +121,51 @@ avec sa graine et ses \Ntemps\ répliques. Un \textbf{balayage} effectue
 $N$ propositions Au--Cu par température, refus compris. L'\textbf{équilibration}
 est la phase initiale écartée des moyennes ; la \textbf{production} est la
 phase dont on utilise les mesures pour estimer les grandeurs thermiques.
+
+\subsection*{Méthodologie : quatre expériences numériques distinctes}
+\addcontentsline{toc}{subsection}{Méthodologie et portée des mesures}
+Le Hamiltonien, la composition et les conditions périodiques sont communs,
+mais les objectifs et les données ne sont pas interchangeables.
+Les résultats de référence des questions 1--9 proviennent de la production
+canonique principale L6. La comparaison achevée avec L9 est regroupée en
+section~\ref{sec:tailles}.
+Les expériences du bonus sont identifiées séparément ; leurs nombres de
+balayages et leurs diagnostics ne remplacent pas ceux de la campagne principale.
+\begin{center}\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{.23\linewidth}>{\raggedright\arraybackslash}p{.31\linewidth}>{\raggedright\arraybackslash}p{.35\linewidth}}
+\toprule
+Campagne $L=6$ & Protocole par chaîne et température & Données et usage légitime\\\midrule
+Canonique principale & 46 températures, 2 chaînes ; 6000 balayages écartés,
+30000 mesurés, pas 10 ; échanges de répliques tous les 5 balayages &
+Énergie, ordre, fluctuations et $T^*(L)$ ; états atomiques finaux seulement.\\
+Cycle thermique & 46 températures dans chaque sens, 2 trajectoires ;
+6000 + 30000 balayages, pas 10 ; aucun échange de répliques &
+Mémoire du parcours à budget fini ; un état final par palier pour le GIF.\\
+Trempe isotherme & Une trajectoire, consigne $4000\to1000$ K ;
+6000 balayages, états tous les 20, aucun transitoire retiré &
+Relaxation hors équilibre ; pas de distribution de temps de nucléation.\\
+Corrélations canoniques & 14 températures, 2 chaînes ; 3000 + 12000 balayages,
+états tous les 20 ; échanges de répliques tous les 5 &
+600 états par chaîne et température ; spectres et longueurs conditionnels aux diagnostics.\\
+\bottomrule
+\end{tabular}\end{center}
+Une graine indépendante crée une nouvelle trajectoire ; les répliques
+d'une même chaîne restent couplées par leurs échanges. Les mesures sont
+classées par température, après les éventuels échanges. Écarter un nombre
+fixé de balayages ne démontre pas l'équilibre : les tests de correction,
+la stationnarité observée et l'exploration des variantes répondent à des
+questions différentes. Une série gelée peut réussir un test de stabilité
+tout en manquant les excitations rares. Les variances thermiques sont
+calculées dans chaque chaîne ; une divergence entre chaînes ne doit pas
+être convertie en chaleur spécifique.
+
+\textbf{Trois niveaux de certitude.} La géométrie, les différences d'énergie
+et les références à $T=0$ sont exactes pour le Hamiltonien donné.
+Les moyennes et intervalles Monte-Carlo sont des estimations conditionnelles
+à la durée, aux états visités et à la grille. La comparaison à un alliage
+réel ajoute une erreur de modèle, qui n'est pas contenue dans les barres
+statistiques. Le calcul en micro-eV évite la dérive d'accumulation ; il ne
+rend pas les paramètres physiques plus précis que ceux de l'énoncé.
 
 \section{Question 1 -- Réseau, énergie et algorithme de Metropolis}
 \subsection{Construction exacte de la géométrie}
@@ -508,14 +571,12 @@ des variantes ordonnées différentes ; dans la seconde chaîne, les répliques
 chaudes démarrent désordonnées. Un départ entièrement aléatoire à très basse
 température risquerait de se figer avant d'atteindre l'état fondamental.
 
-\fig{07_configurations}{1}{Configurations finales effectivement obtenues,
-au froid, près du maximum thermique et au chaud. Ce sont des instantanés,
-pas des moyennes sur les occupations.}
 \fig{16_coupes_2D}{.95}{Deux plans adjacents des mêmes configurations de la
 première chaîne. Les deux hauteurs sont nécessaires pour montrer les quatre
 sous-réseaux : une seule coupe peut ne contenir aucun Au dans une variante
 pourtant parfaitement ordonnée. L'ordre est plus lisible ici que dans le
-nuage tridimensionnel.}
+nuage tridimensionnel, conservé comme fichier complémentaire
+\texttt{07\_configurations.pdf} sans seconde reproduction des mêmes états.}
 \fig{17_moyennes_cumulees}{.95}{Comparaison des moyennes cumulées de
 production dans les deux chaînes à $\Tpeak$ K. Une moyenne cumulée utilise
 toutes les mesures précédentes ; ses points ne sont donc pas indépendants.}
@@ -620,11 +681,14 @@ Le choix des blocs utilise E et q ; il reste utile de tester également
 la corrélation des paramètres de Cowley et la stabilité des erreurs
 lorsque la longueur des blocs est augmentée.
 
-\fig{02_ordres}{1}{Ordre à longue et courte portée. Les barres représentent
-une erreur-type estimée ; elles ne sont pas une enveloppe systématique de
-toutes les erreurs de modélisation ou d'équilibration.}
-\fig{03_thermodynamique}{1}{Énergie et capacité calorifique. Les références
-analytiques encadrent l'interprétation du calcul.}
+Les paramètres de Cowley sont représentés une seule fois en
+figure~\ref{fig:12_cowley}. L'énergie, $q$ et les réponses au voisinage de la
+transition sont regroupés en figure~\ref{fig:11_zoom_transition} ; les
+occupations et $q$ sur la gamme complète figurent en
+figure~\ref{fig:09_sous_reseaux}. Les barres donnent une erreur-type
+estimée, pas une enveloppe de l'erreur de modèle. Les exports
+\texttt{02\_ordres.pdf} et \texttt{03\_thermodynamique.pdf} restent disponibles,
+sans reproduire une deuxième fois ces courbes dans le PDF.
 \fig{05_diagnostics}{1}{Diagnostics par température. Un indicateur favorable
 ne prouve pas l'exploration de tous les états métastables.}
 \fig{06_traces}{1}{Énergie et ordre à température fixe. La phase initiale
@@ -720,8 +784,10 @@ critère : leur proximité identifie une zone cohérente, pas plusieurs
 mesures indépendantes d'une température critique unique.
 
 Une étude de plusieurs tailles renforcerait l'interprétation
-thermodynamique. La présente mise à jour n'utilise que la campagne
-$L=\Lbox$ terminée ; aucun résultat du calcul $L=9$ interrompu n'est inclus.
+thermodynamique. Les résultats de cette question concernent $L=6$.
+La campagne $L=9$ est maintenant achevée et techniquement validée ;
+ses résultats, avec leurs réserves statistiques, sont présentés en
+section~\ref{sec:tailles}.
 
 \subsection{Estimation analytique de Bragg-Williams}
 Pour une famille d'états à un sous-réseau privilégié,
@@ -799,6 +865,111 @@ antisites sont absentes. Les constantes de paire sont supposées indépendantes
 de la température. On ne présente donc pas la température du modèle comme
 une prédiction expérimentale exacte.
 
+\subsection{Comparaison critique avec \texorpdfstring{Cu$_3$Au}{Cu3Au} réel}
+Les mesures de calorimétrie et de diffusion situent le désordre chimique de
+Cu$_3$Au près de 660--663 K, et non à 1050 K
+\cite{benisek,owen}. L'écart d'environ 390 K est de l'ordre de 60\,\% :
+le maximum du présent modèle est donc qualitativement pertinent mais
+quantitativement non calibré au matériau. Passer de $L=6$ à $L=9$ ne
+constitue pas une correction des interactions du Hamiltonien. On ne peut
+pas attribuer cet écart à la seule taille finie, ni aux seules vibrations,
+sans calculs de contrôle séparant ces contributions.
+La transition réelle est décrite comme du premier ordre
+\cite{paras}. L'arrondi des courbes dans notre boîte finie ne démontre
+donc pas une transition continue, et l'on ne doit pas exiger une divergence
+critique de $\xi$ pour conclure à l'existence d'une transition.
+
+\begin{center}\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{.22\linewidth}>{\raggedright\arraybackslash}p{.34\linewidth}>{\raggedright\arraybackslash}p{.33\linewidth}}
+\toprule
+Observation ou attente physique & Ce que donne le modèle & Limite ou interprétation\\\midrule
+Ordre chimique au froid & $L1_2$, quatre variantes, défauts d'antisites et
+préférence pour les liaisons Au--Cu & Accord structurel et énergétique
+pour ce modèle ; les positions atomiques ne se relaxent pas.\\
+Ordre local après perte d'ordre global & $q$ devient faible alors que
+$\alpha_1,\alpha_2$ restent mesurables & Accord qualitatif avec la diffusion
+expérimentale sensible à l'ordre à courte portée \cite{owen}.\\
+Chaleur mesurée en calorimétrie & Pic de la seule contribution
+configuratoire $c_V$ & Une expérience mesure généralement $C_P$, avec
+vibrations et autres contributions ; ni le fond thermique, ni le pic
+total ne sont prédits ici \cite{benisek}.\\
+Diffusion et croissance de domaines & Mise en ordre rapide avec des
+échanges Au--Cu à toute distance & Pas de lacunes ni de barrières de saut
+calibrées ; aucun temps physique ni coefficient de diffusion ne peut
+être déduit du GIF \cite{kessler}.\\
+Volume, surfaces et interfaces & Boîte périodique, volume fixé et interfaces
+chimiques possibles & Pas de surface libre, joint de grain ou contrainte
+élastique relaxable ; les images périodiques peuvent interagir.\\
+Très haute température & Le réseau reste artificiellement solide même
+à 4000 K & Cette borne sert à explorer la limite mathématique désordonnée ;
+le modèle n'a aucun mécanisme de fusion et ne représente pas un solide réel à cette température.\\
+\bottomrule
+\end{tabular}\end{center}
+
+\textbf{Ce qui est observé malgré les simplifications.} La compétition
+énergie--entropie, les quatre variantes, la création de défauts, la perte
+d'ordre global et la persistance de préférences locales sont des mécanismes
+capturés par les occupations et les interactions de paires. Leur présence
+ne valide pas automatiquement leurs amplitudes, leur température ou
+leur vitesse dans le matériau réel.
+
+\textbf{Ce que les animations ne résolvent pas.} Selon la température de
+trempe et la dynamique choisie, un modèle d'alliage peut présenter une
+incubation par nucléation ou une mise en ordre plus homogène
+\cite{kessler}. Une seule trajectoire, sans temps d'attente apparent à
+la résolution de 20 balayages, ne permet pas de choisir entre ces scénarios.
+Les échanges globaux peuvent faciliter une réorganisation collective que
+la diffusion locale réaliserait autrement. Inversement, un pic ou une
+bosse d'occupation de sous-réseau peut provenir d'un changement de variante,
+sans constituer un germe géométrique nouveau.
+
+\subsection{Approximations statistiques et spatiales à ne pas confondre}
+Un $q$ résiduel au chaud n'est pas nécessairement un défaut : $q$ est une
+norme positive, dont la moyenne ne s'annule pas exactement dans une petite
+boîte désordonnée. Une absence de fluctuations au froid borne seulement
+ce qui a été vu pendant cette production. Les erreurs par blocs corrigent
+la dépendance temporelle observée ; elles ne reconstruisent pas un bassin
+métastable jamais visité.
+
+Les longueurs du bonus sont celles d'une enveloppe d'ordre définie par
+maille, avec moyenne sur les trois composantes et sur les directions
+équivalentes. Ce choix fournit un indicateur scalaire ; il peut masquer
+une anisotropie des domaines. Le premier vecteur accessible à $L=6$ vaut
+$k_{\min}a\simeq1.047$, loin d'une résolution continue de très petits $k$.
+Les distances périodiques et la petite gamme de $r$ interdisent un ajustement
+robuste d'une décroissance exponentielle ou d'un exposant critique.
+Une longueur canonique supérieure à la boîte peut refléter le mélange
+des variantes et l'ordre uniforme ; ce n'est pas la taille d'un domaine
+mesuré dans les coupes. La longueur intra-variante est un diagnostic
+conditionnel, sans intervalle de confiance calculé dans cette étude.
+
+\subsection{Ce que le passage à \texorpdfstring{$L=9$}{L=9} peut tester}
+Le côté passe de $6a$ à $9a$, soit un facteur 1.5 ; le nombre de sites
+passe de 864 à 2916, soit un facteur 3.375, avec 729 Au et 2187 Cu.
+Le plus petit décalage réciproque passe de $1.047/a$ à $0.698/a$.
+Cette augmentation peut réduire l'arrondi des pics et l'influence des
+images périodiques, et offrir plus de place aux domaines. Elle ne garantit
+aucune amélioration de l'équilibre : les temps de relaxation et les
+barrières peuvent augmenter, tandis que les échanges de répliques
+deviennent moins efficaces à grille inchangée.
+
+La comparaison réalisée conserve le Hamiltonien, les 46 températures,
+6000 balayages initiaux et 30000 de production par chaîne. Les moyennes
+sont comparées par atome ; les maxima $T^*(L)$, leurs intervalles,
+les histogrammes, R-hat, ESS et la circulation des répliques sont
+examinés ensemble en section~\ref{sec:tailles}. Les valeurs de $q$ ne sont pas comparées comme
+si leur biais de norme finie était indépendant de $N$. Des états
+atomiques espacés de 100 balayages ont été conservés pour permettre
+une analyse spatiale après le calcul. Ce budget identique de balayages
+n'est pas une garantie de nombres identiques d'états indépendants.
+
+Deux tailles permettront d'observer une tendance, pas de justifier à elles
+seules une extrapolation ou une loi universelle. Si les diagnostics se
+dégradent, il faudra allonger les séries ou densifier les températures
+avant d'interpréter une différence comme un effet physique de taille.
+L'absence de phonons, de dilatation, de lacunes et de dynamique de diffusion
+restera exactement la même à $L=9$.
+
 Une distribution à deux pics est compatible avec une coexistence ; une
 hystérésis est compatible avec une métastabilité. Aucune de ces observations
 isolées n'est une preuve suffisante de l'ordre thermodynamique de la
@@ -848,6 +1019,10 @@ comparaisons des deux branches ; aucun résultat de cycle n'est joint
 \IfFileExists{bonus_correlation.tex}{\input{bonus_correlation.tex}}{
 Le module de corrélations produit les champs d'ordre locaux, les spectres
 et les diagnostics de la longueur de second moment.}
+\subsection{Partie 3 -- Résultats achevés et comparaison L6/L9}
+\label{sec:tailles}
+\IfFileExists{bonus_sizes.tex}{\input{bonus_sizes.tex}}{
+Les résultats de taille supplémentaire ne sont pas disponibles dans cette version.}
 \endgroup
 
 \appendix
@@ -878,6 +1053,7 @@ La compilation PDF demande une installation LaTeX, mais les fichiers
 
 \clearpage
 \section{Algorithme}
+\begingroup\small
 \label{sec:algorithme}
 
 Cette partie décrit le calcul effectivement implémenté, depuis la construction
@@ -1762,6 +1938,7 @@ traitements des cas dégénérés explicités dans l'algorithme 8. Les énergies
 et $q$ sont des colonnes de la série ; le symbole \texttt{A} de la ligne
 \texttt{ess} parcourt ces deux colonnes.
 
+\endgroup
 \begin{thebibliography}{9}
 \bibitem{metropolis} N. Metropolis, A. W. Rosenbluth, M. N. Rosenbluth,
 A. H. Teller et E. Teller, \emph{Equation of State Calculations by Fast
@@ -1774,5 +1951,19 @@ Method and Application to Spin Glass Simulations}, J. Phys. Soc. Jpn.
 \bibitem{binder} K. Binder, \emph{Theory of first-order phase transitions},
 Rep. Prog. Phys. \textbf{50}, 783 (1987).
 \href{https://doi.org/10.1088/0034-4885/50/7/001}{doi:10.1088/0034-4885/50/7/001}.
+\bibitem{benisek} A. Benisek et E. Dachs, \emph{The vibrational and configurational
+entropy of disordering in Cu$_3$Au} (2015).
+\href{https://pmc.ncbi.nlm.nih.gov/articles/PMC4394139/}{Article et mesures calorimétriques}.
+\bibitem{owen} L. R. Owen, H. Y. Playford, H. J. Stone et M. G. Tucker,
+\emph{Analysis of short-range order in Cu$_3$Au using X-ray pair distribution functions}.
+\href{https://doi.org/10.17863/CAM.38392}{Manuscrit accepté, dépôt de Cambridge}.
+\bibitem{kessler} M. Kessler, W. Dieterich et A. Majhofer,
+\emph{Ordering kinetics in an fcc A$_3$B binary alloy model: Monte Carlo studies},
+Phys. Rev. B \textbf{67}, 134201 (2003).
+\href{https://arxiv.org/abs/cond-mat/0207611}{Prépublication et protocole de sauts atome--lacune}.
+\bibitem{paras} J. Paras et A. Allanore, \emph{Contribution of electronic
+entropy to the order-disorder transition of Cu$_3$Au}, Phys. Rev. Research
+\textbf{3}, 023239 (2021).
+\href{https://doi.org/10.1103/PhysRevResearch.3.023239}{doi:10.1103/PhysRevResearch.3.023239}.
 \end{thebibliography}
 \end{document}

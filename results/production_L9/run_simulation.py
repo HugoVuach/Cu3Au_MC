@@ -12,15 +12,14 @@ CONFIG = ROOT / 'configs' / 'production_L9.json'
 sys.path.insert(0, str(ROOT))
 os.chdir(ROOT)
 os.environ['PYTHONUTF8'] = '1'
+os.environ.setdefault('MPLCONFIGDIR', str(OUTPUT/'plot_cache'))
 sys.stdout.reconfigure(encoding='utf-8')
 sys.stderr.reconfigure(encoding='utf-8')
 
 
 def status(state, **details):
-    data = {'state': state, 'pid': os.getpid(), 'config': str(CONFIG), **details}
-    temporary = OUTPUT / 'execution.tmp'
-    temporary.write_text(json.dumps(data, indent=2), encoding='utf-8')
-    temporary.replace(OUTPUT / 'execution.json')
+    from cu3au.thermal_cycle import write_status
+    write_status(OUTPUT, state, config=str(CONFIG), **details)
 
 
 def main():
@@ -43,16 +42,25 @@ def main():
     cfg = load_config(CONFIG)
     status('simulating', L=cfg['L'], n_atoms=4*cfg['L']**3)
     print('Starting L=9 campaign: 2916 sites, 46 temperatures, 2 chains.', flush=True)
-    summary = campaign(cfg, OUTPUT)
+    def progress(chain, phase, done, total, captures):
+        status('simulating', L=cfg['L'], n_atoms=4*cfg['L']**3,
+               chain=chain, chains=len(cfg['seeds']), phase=phase,
+               sweeps_done=done, sweeps_target=total, spatial_captures=captures)
+    summary = campaign(cfg, OUTPUT, progress=progress)
     status('validating', L=cfg['L'], n_atoms=summary['n_atoms'])
     validate_results(OUTPUT)
+    from cu3au.pedagogy import record_current_validation
+    record_current_validation(OUTPUT, tests.stdout+tests.stderr)
     status('plotting', L=cfg['L'], n_atoms=summary['n_atoms'])
     figures = make_figures(OUTPUT)
+    status('comparing_sizes', L=cfg['L'], n_atoms=summary['n_atoms'])
+    from cu3au.size_comparison import compare_sizes
+    comparison = compare_sizes(ROOT/'results/production', OUTPUT)
     status('complete', L=cfg['L'], n_atoms=summary['n_atoms'],
            T_peak_K=summary['T_cv_peak_grid_K'],
            critical_diagnostics_ok=summary['critical_diagnostics_ok'],
-           figures=len(figures))
-    print('Campaign, validation, and figures complete.', flush=True)
+           figures=len(figures), size_comparison=str(comparison))
+    print('Campaign, validation, figures, and L6/L9 comparison complete.', flush=True)
 
 
 if __name__ == '__main__':

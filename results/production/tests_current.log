@@ -2,32 +2,20 @@ cycle 1/2 | heating | 300 K | palier 1/6 sauvegardé | 0.0 s
 cycle 1/2 | heating | 1400 K | palier 2/6 sauvegardé | 0.1 s
 cycle 1/2 | heating | 4000 K | palier 3/6 sauvegardé | 0.1 s
 cycle 1/2 | cooling | 4000 K | palier 4/6 sauvegardé | 0.1 s
-cycle 1/2 | cooling | 1400 K | palier 5/6 sauvegardé | 0.2 s
-cycle 1/2 | cooling | 300 K | palier 6/6 sauvegardé | 0.2 s
-cycle 2/2 | heating | 300 K | palier 1/6 sauvegardé | 0.2 s
-cycle 2/2 | heating | 1400 K | palier 2/6 sauvegardé | 0.3 s
-cycle 2/2 | heating | 4000 K | palier 3/6 sauvegardé | 0.3 s
-cycle 2/2 | cooling | 4000 K | palier 4/6 sauvegardé | 0.3 s
-cycle 2/2 | cooling | 1400 K | palier 5/6 sauvegardé | 0.4 s
-cycle 2/2 | cooling | 300 K | palier 6/6 sauvegardé | 0.4 s
-cycle 1/2 | heating | 300 K | palier 1/6 sauvegardé | 0.0 s
+cycle 1/2 | cooling | 1400 K | palier 5/6 sauvegardé | 0.1 s
+cycle 1/2 | cooling | 300 K | palier 6/6 sauvegardé | 0.1 s
+cycle 2/2 | heating | 300 K | palier 1/6 sauvegardé | 0.1 s
+cycle 2/2 | heating | 1400 K | palier 2/6 sauvegardé | 0.2 s
+cycle 2/2 | heating | 4000 K | palier 3/6 sauvegardé | 0.2 s
+cycle 2/2 | cooling | 4000 K | palier 4/6 sauvegardé | 0.2 s
+cycle 2/2 | cooling | 1400 K | palier 5/6 sauvegardé | 0.2 s
+cycle 2/2 | cooling | 300 K | palier 6/6 sauvegardé | 0.2 s
+cycle 1/2 | heating | 300 K | palier 1/6 sauvegardé | 0.1 s
 cycle 1/2 | heating | 1400 K | palier 2/6 sauvegardé | 0.1 s
 cycle 1/2 | heating | 4000 K | palier 3/6 sauvegardé | 0.1 s
 cycle 1/2 | cooling | 4000 K | palier 4/6 sauvegardé | 0.1 s
 cycle 1/2 | cooling | 1400 K | palier 5/6 sauvegardé | 0.1 s
 cycle 1/2 | cooling | 300 K | palier 6/6 sauvegardé | 0.2 s
-cycle 2/2 | heating | 300 K | palier 1/6 sauvegardé | 0.2 s
-cycle 2/2 | heating | 1400 K | palier 2/6 sauvegardé | 0.2 s
-cycle 2/2 | heating | 4000 K | palier 3/6 sauvegardé | 0.2 s
-cycle 2/2 | cooling | 4000 K | palier 4/6 sauvegardé | 0.3 s
-cycle 2/2 | cooling | 1400 K | palier 5/6 sauvegardé | 0.3 s
-cycle 2/2 | cooling | 300 K | palier 6/6 sauvegardé | 0.3 s
-cycle 1/2 | heating | 300 K | palier 1/6 sauvegardé | 0.0 s
-cycle 1/2 | heating | 1400 K | palier 2/6 sauvegardé | 0.1 s
-cycle 1/2 | heating | 4000 K | palier 3/6 sauvegardé | 0.0 s
-cycle 1/2 | cooling | 4000 K | palier 4/6 sauvegardé | 0.1 s
-cycle 1/2 | cooling | 1400 K | palier 5/6 sauvegardé | 0.1 s
-cycle 1/2 | cooling | 300 K | palier 6/6 sauvegardé | 0.1 s
 cycle 2/2 | heating | 300 K | palier 1/6 sauvegardé | 0.2 s
 cycle 2/2 | heating | 1400 K | palier 2/6 sauvegardé | 0.2 s
 cycle 2/2 | heating | 4000 K | palier 3/6 sauvegardé | 0.2 s
@@ -36,16 +24,28 @@ cycle 2/2 | cooling | 1400 K | palier 5/6 sauvegardé | 0.3 s
 cycle 2/2 | cooling | 300 K | palier 6/6 sauvegardé | 0.3 s
 cycle 1/2 | heating | 300 K | palier 1/6 sauvegardé | 0.0 s
 cycle 1/2 | heating | 1400 K | palier 2/6 sauvegardé | 0.1 s
+cycle 1/2 | heating | 4000 K | palier 3/6 sauvegardé | 0.0 s
+cycle 1/2 | cooling | 4000 K | palier 4/6 sauvegardé | 0.0 s
+cycle 1/2 | cooling | 1400 K | palier 5/6 sauvegardé | 0.1 s
+cycle 1/2 | cooling | 300 K | palier 6/6 sauvegardé | 0.1 s
+cycle 2/2 | heating | 300 K | palier 1/6 sauvegardé | 0.1 s
+cycle 2/2 | heating | 1400 K | palier 2/6 sauvegardé | 0.1 s
+cycle 2/2 | heating | 4000 K | palier 3/6 sauvegardé | 0.1 s
+cycle 2/2 | cooling | 4000 K | palier 4/6 sauvegardé | 0.2 s
+cycle 2/2 | cooling | 1400 K | palier 5/6 sauvegardé | 0.2 s
+cycle 2/2 | cooling | 300 K | palier 6/6 sauvegardé | 0.2 s
+cycle 1/2 | heating | 300 K | palier 1/6 sauvegardé | 0.0 s
+cycle 1/2 | heating | 1400 K | palier 2/6 sauvegardé | 0.1 s
 cycle 1/2 | heating | 4000 K | palier 3/6 sauvegardé | 0.1 s
-cycle 1/2 | cooling | 4000 K | palier 4/6 sauvegardé | 0.2 s
-cycle 1/2 | cooling | 1400 K | palier 5/6 sauvegardé | 0.2 s
-cycle 1/2 | cooling | 300 K | palier 6/6 sauvegardé | 0.3 s
-cycle 2/2 | heating | 300 K | palier 1/6 sauvegardé | 0.3 s
-cycle 2/2 | heating | 1400 K | palier 2/6 sauvegardé | 0.4 s
-cycle 2/2 | heating | 4000 K | palier 3/6 sauvegardé | 0.4 s
-cycle 2/2 | cooling | 4000 K | palier 4/6 sauvegardé | 0.5 s
-cycle 2/2 | cooling | 1400 K | palier 5/6 sauvegardé | 0.6 s
-cycle 2/2 | cooling | 300 K | palier 6/6 sauvegardé | 0.6 s
+cycle 1/2 | cooling | 4000 K | palier 4/6 sauvegardé | 0.1 s
+cycle 1/2 | cooling | 1400 K | palier 5/6 sauvegardé | 0.1 s
+cycle 1/2 | cooling | 300 K | palier 6/6 sauvegardé | 0.1 s
+cycle 2/2 | heating | 300 K | palier 1/6 sauvegardé | 0.1 s
+cycle 2/2 | heating | 1400 K | palier 2/6 sauvegardé | 0.2 s
+cycle 2/2 | heating | 4000 K | palier 3/6 sauvegardé | 0.2 s
+cycle 2/2 | cooling | 4000 K | palier 4/6 sauvegardé | 0.2 s
+cycle 2/2 | cooling | 1400 K | palier 5/6 sauvegardé | 0.2 s
+cycle 2/2 | cooling | 300 K | palier 6/6 sauvegardé | 0.2 s
 test_fft_matches_direct_sum_and_real_space_pairs (test_correlation.CorrelationTests.test_fft_matches_direct_sum_and_real_space_pairs) ... ok
 test_four_variants_and_order_normalization (test_correlation.CorrelationTests.test_four_variants_and_order_normalization) ... ok
 test_length_known_spectrum_and_undefined_cases (test_correlation.CorrelationTests.test_length_known_spectrum_and_undefined_cases) ... ok
@@ -63,6 +63,8 @@ test_ordered_exact_energy_and_cowley (test_physics.PhysicsTests.test_ordered_exa
 test_random_swaps_against_full_energy (test_physics.PhysicsTests.test_random_swaps_against_full_energy) ... ok
 test_replica_exchange_sign_and_balance (test_physics.PhysicsTests.test_replica_exchange_sign_and_balance) ... ok
 test_short_actual_kernel_and_reproducibility (test_physics.PhysicsTests.test_short_actual_kernel_and_reproducibility) ... ok
+test_capture_config_rejects_incompatible_intervals (test_spatial_capture.SpatialCaptureTests.test_capture_config_rejects_incompatible_intervals) ... ok
+test_captures_match_measured_observables (test_spatial_capture.SpatialCaptureTests.test_captures_match_measured_observables) ... ok
 test_autocorrelation_known_ar1 (test_statistics.StatisticsTests.test_autocorrelation_known_ar1) ... ok
 test_invalid_temperature_grid_rejected (test_statistics.StatisticsTests.test_invalid_temperature_grid_rejected) ... ok
 test_rhat_detects_separated_chains (test_statistics.StatisticsTests.test_rhat_detects_separated_chains) ... ok
@@ -74,6 +76,6 @@ test_schedule_and_invalid_replica_exchange (test_thermal_cycle.ThermalCycleTests
 test_validation_rejects_a_broken_handoff (test_thermal_cycle.ThermalCycleTests.test_validation_rejects_a_broken_handoff) ... ok
 
 ----------------------------------------------------------------------
-Ran 26 tests in 6.299s
+Ran 28 tests in 5.276s
 
 OK

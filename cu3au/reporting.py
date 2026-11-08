@@ -10,7 +10,12 @@ from .model import KB
 
 
 def _copy_atomic(source, destination):
+    source = Path(source)
     destination = Path(destination)
+    # Éviter de remplacer un export inchangé, notamment lorsqu'un lecteur
+    # Windows garde son fichier ouvert pendant la compilation du rapport.
+    if destination.exists() and source.read_bytes() == destination.read_bytes():
+        return str(destination)
     temporary = destination.with_suffix(destination.suffix+'.tmp')
     shutil.copy2(source, temporary)
     temporary.replace(destination)
@@ -95,6 +100,12 @@ def make_report(result_dir, compile_pdf=True):
                       "durées, densifier la grille ou améliorer la circulation des répliques "
                       "avant d'en tirer une conclusion quantitative ferme.\n")
     (out/'discussion_results.tex').write_text(paragraph, encoding='utf8')
+    # La synthèse principale reste L6 ; les résultats L9 sont un complément
+    # nommé, pour ne pas remplacer silencieusement les macros et figures L6.
+    larger = root.parent/'production_L9'
+    if root.name == 'production' and (larger/'comparison_L6_L9/summary.json').exists():
+        from .size_comparison import write_report_include
+        write_report_include(root, larger)
     if compile_pdf:
         executable = shutil.which('pdflatex')
         if not executable:

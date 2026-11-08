@@ -1,0 +1,39 @@
+\subsubsection{Périmètre et protocole de la comparaison}
+La campagne L9 est terminée ; les deux archives ont passé les contrôles d'énergie, de composition et de cohérence des observables. Cette validation technique n'est pas une validation de l'équilibre statistique.
+La boîte contient $2916$ sites, dont $729$ Au et $2187$ Cu. Les 46 températures, les 6000 balayages d'équilibration et les 30000 de production sont identiques au protocole L6 ; les observables sont mesurées tous les 10 balayages et les sessions d'échange ont lieu tous les 5 balayages. Les deux graines sont 20261021 et 20261022.
+Les deux calculs utilisent le même Hamiltonien et le même ensemble canonique à composition fixée. Les trajectoires L6/L9 ne sont pas appariées configuration par configuration. Augmenter la boîte augmente le nombre de propositions par balayage ; un budget identique de balayages n'implique pas un effectif indépendant identique.
+\subsubsection{Résultats thermodynamiques et bilan des diagnostics}
+\begin{center}\small\begin{tabular}{lrr}\toprule
+Indicateur & $L=6$ & $L=9$\\\midrule
+Sites & 864 & 2916\\
+Maximum de $c_V$ sur la grille (K) & 1050 & 1055\\
+Intervalle bootstrap 95\,\% conditionnel (K) & $[1050,1055]$ & $[1050,1055]$\\
+Hauteur du pic $c_V/k_B$ par atome & 5.873 & 17.676\\
+ESS minimal près du pic & 1190.8 & 37.0\\
+Maximum de R-hat$(E,q)$ près du pic & 1.0045 & 1.0259\\
+Acceptation moyenne des échanges de répliques & 73.9\,\% & 61.1\,\%\\
+Allers-retours froid--chaud--froid (total) & 7 & 0\\
+Diagnostics autour du pic & satisfaits & insuffisants\\
+\bottomrule\end{tabular}\end{center}
+Le maximum se déplace de 5 K, soit une seule maille de température. Les deux intervalles bootstrap de référence couvrent $[1050,1055]$ K. Ils sont conditionnels aux trajectoires observées et ne constituent pas un test du déplacement à taille infinie. Pour L9, la longueur de bloc de référence vaut 187 mesures, soit 1870 balayages, avec 1000 tirages. Les intervalles avec des blocs plus courts peuvent même se réduire à une température : cet effet de grille n'ajoute aucune précision physique.
+Le pic plus haut et la variation plus abrupte de $q$ et de l'énergie sont compatibles avec une transition moins arrondie dans une boîte plus grande. Cependant, leur amplitude reste sensible au temps passé dans les différents bassins : ces deux tailles ne mesurent pas un exposant, une chaleur latente ou une température critique extrapolée.
+\fig{tailles_01_comparaison}{1}{Résultats L6/L9 sur une grille identique : énergie et chaleur par atome, ordre global, Cowley et R-hat. Symboles distincts, sans interpolation des températures.}
+\begin{center}\small\begin{tabular}{rrrrrl}\toprule
+$T$ (K), L9 & ESS & R-hat max & Blocs/chaîne & Écart demi-séries & Contrôle\\\midrule
+1045 & 1834.3 & 1.0040 & 750 & 1.95 & satisfait\\
+1050 & 80.4 & 1.0259 & 16 & 0.62 & insuffisant\\
+1055 & 37.0 & 1.0127 & 16 & 0.93 & insuffisant\\
+1060 & 59.9 & 1.0004 & 26 & 0.22 & insuffisant\\
+1065 & 1539.7 & 1.0013 & 600 & 0.80 & satisfait\\
+\bottomrule\end{tabular}\end{center}
+Le critère R-hat$<1.05$ passe, mais il ne suffit pas. À 1050 et 1055 K, l'ESS est inférieur à 200 et seulement 16 blocs par chaîne sont disponibles, contre 20 demandés. À 1060 K, l'ESS échoue encore malgré un R-hat proche de 1. L'absence d'aller-retour complet ne prouve pas que tout état est gelé, mais signale une exploration globale en température moins convaincante. Une acceptation moyenne de 61\,\% ne garantit donc pas une circulation efficace : les transitions entre bassins peuvent rester rares.
+\subsubsection{Historiques et distributions : indices de coexistence, pas preuve finale}
+À 1055 K, les histogrammes regroupés montrent deux populations d'énergie et d'ordre ; les traces révèlent des séjours corrélés dans des régimes plus ou moins ordonnés. Cela est compatible avec une coexistence à taille finie et explique une partie du ralentissement. Le regroupement des chaînes et le nombre limité de passages empêchent de garantir les poids d'équilibre des deux populations. Les valeurs de variance et les barres d'erreur doivent être interprétées avec cette réserve.
+\fig{tailles_02_historiques}{.95}{Traces L9 à 1055 K : équilibration écartée en gris et production ensuite. À température fixe, une configuration peut également changer par échange de répliques ; ce tracé n’est pas une cinétique atomique physique.}
+\fig{tailles_03_distributions}{.95}{Distributions L9 à 1045, 1055 et 1065 K. Deux populations à 1055 K sont visibles ; leur poids reste conditionnel aux états visités.}
+\subsubsection{Ce que L9 améliore et ce qu’il ne corrige pas}
+À 4000 K, $q$ diminue de 0.0654 à 0.0356. Le rapport $0.545$ est proche de $\sqrt{864/2916}=0.544$ : cette tendance est compatible avec la diminution du biais positif d'une norme dans un système fini, plutôt qu'avec l'apparition d'un ordre supplémentaire à haute température. Les paramètres de Cowley restent proches entre tailles ; les préférences locales ne disparaissent pas avec le seul biais de taille de $q$.
+Le volume disponible et la résolution spatiale augmentent, mais le mélange près de la transition se dégrade avec le budget utilisé. Le passage à L9 n'efface donc pas les insuffisances d'échantillonnage ; il les rend plus visibles. La température reste éloignée de celle du matériau réel et les hypothèses de réseau rigide, de paires constantes et d'échanges globaux restent inchangées.
+Les archives L9 conservent 300 états par température et par chaîne, espacés de 100 balayages, soit 27600 configurations spatiales. Leur présence rend une future analyse de corrélations possible, mais aucune courbe $\xi(T)$ ni animation L9 n'est calculée dans cette intégration : les résultats spatiaux et les GIF de la partie précédente restent explicitement ceux de L6.
+Avant une interprétation quantitative du déplacement de transition, il faut allonger la production autour du pic, vérifier la stabilité par blocs plus longs et améliorer la circulation des répliques, par exemple en densifiant la grille là où se situent les goulots d'étranglement. Il faudra ensuite comparer plusieurs tailles à précision statistique contrôlée.
+Les données viennent de \texttt{results/production\_L9}, et la synthèse comparative de \texttt{comparison\_L6\_L9}. Les figures propres à L9 sont intégrées ici sous des noms préfixés \texttt{tailles\_}, sans remplacer les figures L6.

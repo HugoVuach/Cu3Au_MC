@@ -58,5 +58,6 @@
   "exchange_every": 5,
   "chunk_sweeps": 500,
   "bootstrap": 250,
-  "random_start_above_K": 1060
+  "random_start_above_K": 1060,
+  "store_states_every": 100
 }

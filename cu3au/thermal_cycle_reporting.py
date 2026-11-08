@@ -313,7 +313,17 @@ def write_bonus_include(output, reference_dir, complete=False):
             ('bonus_07_configurations', 'Deux coupes de configurations finales à température identique, dans le premier cycle.'),
             ('bonus_08_distributions', 'Distributions d’énergie et d’ordre au voisinage des maxima, comparées à température égale.')]
         for name, caption in captions:
+            # Les historiques denses et les coupes à une seule température
+            # restent exportés, sans répétition dans le corps du rapport.
+            if name in ('bonus_05_traces', 'bonus_07_configurations'):
+                continue
             lines.append(r'\fig{'+name+r'}{.95}{'+caption+'}')
+        lines.append(r"Les exports complémentaires \texttt{bonus\_05\_traces.pdf} "
+                     r"(historiques denses, transitoires compris) et "
+                     r"\texttt{bonus\_07\_configurations.pdf} (coupes à 1050 K) "
+                     r"restent dans \texttt{results/thermal\_cycle\_L6/figures}. "
+                     r"Les neuf coupes fixes et l'évolution sont examinées dans les GIF, "
+                     r"sans répéter ces vues dans le corps du rapport.")
         (target/'figures').mkdir(exist_ok=True)
         for path in (out/'figures').glob('bonus_*.*'):
             if path.suffix in ('.png', '.pdf'):

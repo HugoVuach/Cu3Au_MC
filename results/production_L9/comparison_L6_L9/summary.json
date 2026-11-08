@@ -1,0 +1,33 @@
+{
+  "sizes": [
+    {
+      "L": 6,
+      "N": 864,
+      "T_peak_grid_K": 1050.0,
+      "critical_diagnostics_ok": true,
+      "min_critical_ess": 1190.784061886844,
+      "max_critical_rhat": 1.0045147224478908,
+      "mean_swap_acceptance": 0.7389925925925926,
+      "total_roundtrips": 7,
+      "spatial_capture_every": 0
+    },
+    {
+      "L": 9,
+      "N": 2916,
+      "T_peak_grid_K": 1055.0,
+      "critical_diagnostics_ok": false,
+      "min_critical_ess": 37.04176489653888,
+      "max_critical_rhat": 1.0258509174760073,
+      "mean_swap_acceptance": 0.611,
+      "total_roundtrips": 0,
+      "spatial_capture_every": 100
+    }
+  ],
+  "peak_shift_grid_K": 5.0,
+  "caveats": [
+    "Same sweep count does not imply the same effective sample count.",
+    "Two sizes do not establish a thermodynamic extrapolation.",
+    "Global exchanges, rigid lattice and fixed pair interactions are unchanged.",
+    "Spatial states are saved for L9; dedicated L6 correlation data use a different sampling protocol."
+  ]
+}
