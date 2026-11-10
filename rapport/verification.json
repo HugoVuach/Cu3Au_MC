@@ -1,0 +1,160 @@
+{
+  "date": "2026-11-10T11:37:42.698934+01:00",
+  "pages": 24,
+  "slide_dimensions_mm": [
+    240.0,
+    135.0
+  ],
+  "question_pages": {
+    "1": 2,
+    "2": 3,
+    "3": 4,
+    "4": 5,
+    "5": 6,
+    "6": 7,
+    "7": 8,
+    "8": 9,
+    "9": 10
+  },
+  "bonus_appendix_slides": 14,
+  "figure_uses": 26,
+  "unique_figures": 26,
+  "repeated_figure_names": [],
+  "latex_warnings": [],
+  "gif_links": [
+    "animations/plaquette_cycle_thermique.gif",
+    "animations/plaquette_relaxation_isotherme.gif"
+  ],
+  "assets": [
+    {
+      "file": "figures\\13_coquilles.pdf",
+      "source": "results\\production\\report\\figures\\13_coquilles.pdf",
+      "sha256": "7a6433fa2da40e8889fe9356a289bb35396ed8447e5197f15e54baf3ecd2c604"
+    },
+    {
+      "file": "figures\\14_organigramme.pdf",
+      "source": "results\\production\\report\\figures\\14_organigramme.pdf",
+      "sha256": "a5b21148b5879450205425b48b55e3ef7bb662184153ff9ee0a8ce80931bcc09"
+    },
+    {
+      "file": "figures\\12_cowley.pdf",
+      "source": "results\\production\\report\\figures\\12_cowley.pdf",
+      "sha256": "538302ed2e200d06729df9828609287c7a9588ad4b29ab7c28f998b40eb01a39"
+    },
+    {
+      "file": "figures\\15_variantes.pdf",
+      "source": "results\\production\\report\\figures\\15_variantes.pdf",
+      "sha256": "2ef75f37e1a76585b20b069730f24c90007ef3fc902ae682aa3eb1c56e2f42cd"
+    },
+    {
+      "file": "figures\\09_sous_reseaux.pdf",
+      "source": "results\\production\\report\\figures\\09_sous_reseaux.pdf",
+      "sha256": "ab1fca374473803bda3ba87c84118794708d23414d616b8d6e9258fb5fbff610"
+    },
+    {
+      "file": "figures\\16_coupes_2D.pdf",
+      "source": "results\\production\\report\\figures\\16_coupes_2D.pdf",
+      "sha256": "2115dbe8e87b0d0ec3c21ec0a593ea6bfc6f16ccc23ca765e654db73d6b1bef5"
+    },
+    {
+      "file": "figures\\17_moyennes_cumulees.pdf",
+      "source": "results\\production\\report\\figures\\17_moyennes_cumulees.pdf",
+      "sha256": "b67f44c4b0b3fea2ae68375f52b706c62c3a1b400cdffc80010ff0103cf7425c"
+    },
+    {
+      "file": "figures\\03_thermodynamique.pdf",
+      "source": "results\\production\\report\\figures\\03_thermodynamique.pdf",
+      "sha256": "0d789c263b69dde1fb4dd62701516b049ca0643d46d49dea3bdfb070bc43bc3f"
+    },
+    {
+      "file": "figures\\11_zoom_transition.pdf",
+      "source": "results\\production\\report\\figures\\11_zoom_transition.pdf",
+      "sha256": "1e60e5951049adf0e93bfdf78dcd531ac9384bc0a0c74d7168fb022078376f51"
+    },
+    {
+      "file": "figures\\18_incertitude_pic.pdf",
+      "source": "results\\production\\report\\figures\\18_incertitude_pic.pdf",
+      "sha256": "31378cd3958c9b8ff611ec9731d9b89c711dcb5bc1e32365b47cb17b23136379"
+    },
+    {
+      "file": "figures\\08_champ_moyen.pdf",
+      "source": "results\\production\\report\\figures\\08_champ_moyen.pdf",
+      "sha256": "5a33844389f01c5ae12261f121f0a8326dc4632addbeb64816822e624261ee39"
+    },
+    {
+      "file": "figures\\bonus_02_ordres.pdf",
+      "source": "results\\production\\report\\figures\\bonus_02_ordres.pdf",
+      "sha256": "fe91c936f089ae4c78bddc6b7d9f57bc8f26a9601ac3d534bbf9275aa7cc9d71"
+    },
+    {
+      "file": "figures\\bonus_03_sous_reseaux.pdf",
+      "source": "results\\production\\report\\figures\\bonus_03_sous_reseaux.pdf",
+      "sha256": "84cab17fb5b4ad4443757a07eace3ed411fdcaf05cb758fbb87151a6c1f7bbd7"
+    },
+    {
+      "file": "figures\\plaquette_relaxation_isotherme_debut.pdf",
+      "source": "results\\thermal_cycle_L6\\visualisation\\animations\\plaquette_relaxation_isotherme_debut.pdf",
+      "sha256": "c7a0deb4f75a6fdf09a49d6a9e83b0b97a5b82a9140d21e9051639c89d57ab25"
+    },
+    {
+      "file": "figures\\plaquette_relaxation_isotherme_fin.pdf",
+      "source": "results\\thermal_cycle_L6\\visualisation\\animations\\plaquette_relaxation_isotherme_fin.pdf",
+      "sha256": "3eefc88e28d6f305d9ebb5a5cf32d0b1d8be86e1844b5080cd8d4b842f8e241f"
+    },
+    {
+      "file": "figures\\correlation_03_relaxation.pdf",
+      "source": "results\\production\\report\\figures\\correlation_03_relaxation.pdf",
+      "sha256": "870f4a9295651e3ec98a9adf69c3586c2368e64eb15dde2dd9d18f0038a3c9b7"
+    },
+    {
+      "file": "figures\\correlation_01_xi.pdf",
+      "source": "results\\production\\report\\figures\\correlation_01_xi.pdf",
+      "sha256": "7289381fbbc1a56115a25192f5b99468201e6d9bb0a56d4d8be2613479d00027"
+    },
+    {
+      "file": "figures\\correlation_02_real_fourier.pdf",
+      "source": "results\\production\\report\\figures\\correlation_02_real_fourier.pdf",
+      "sha256": "1509644bb205ce78dddd04e81f12c9b3385bb5c4acb97cc2460cfba61180e3ff"
+    },
+    {
+      "file": "figures\\croise_01_transition.pdf",
+      "source": "results\\production\\report\\figures\\croise_01_transition.pdf",
+      "sha256": "3a7df69d5faed6e51d2c67ad296d121ff2325bd5cc80d1cf1f0ee4fc2afd5f7d"
+    },
+    {
+      "file": "figures\\croise_02_ordres.pdf",
+      "source": "results\\production\\report\\figures\\croise_02_ordres.pdf",
+      "sha256": "f608d8168c85c2ff2644e39ab698da5f49a4b041ce2ffec4f07a40fd1559102b"
+    },
+    {
+      "file": "figures\\croise_03_diagnostics.pdf",
+      "source": "results\\production\\report\\figures\\croise_03_diagnostics.pdf",
+      "sha256": "4f21026341843865ef416c535716b5eaf32525a6f532476a38209e0e44204303"
+    },
+    {
+      "file": "figures\\croise_05_energie.pdf",
+      "source": "results\\production\\report\\figures\\croise_05_energie.pdf",
+      "sha256": "f97e560ef7a85aafc7fdcc9c577c9521fdd8b7ef2180bddcd33f28dbacfaed0f"
+    },
+    {
+      "file": "figures\\croise_08_spatial.pdf",
+      "source": "results\\production\\report\\figures\\croise_08_spatial.pdf",
+      "sha256": "00188c3bfab9d4d0344f547f533afd426dafa5283e031f09213c041b13c82553"
+    },
+    {
+      "file": "figures\\croise_10_cycles_global.pdf",
+      "source": "results\\production\\report\\figures\\croise_10_cycles_global.pdf",
+      "sha256": "36e616083e9dae794e59cb8b1084ec42c7c4be10878108f50241d88e4fbb2041"
+    },
+    {
+      "file": "figures\\croise_13_cycle_L12_reference.pdf",
+      "source": "results\\production\\report\\figures\\croise_13_cycle_L12_reference.pdf",
+      "sha256": "a0a5ea0211094d484c8d5b6cc8d963aafd2cf32ebe20e6e0ab8d580339f7054c"
+    },
+    {
+      "file": "figures\\croise_14_cycle_L12_populations.pdf",
+      "source": "results\\production\\report\\figures\\croise_14_cycle_L12_populations.pdf",
+      "sha256": "3b6453470cfe93aff1e23c10d00714ad6e3398518d99f6bfe5dcaa10d2ab4686"
+    }
+  ]
+}
