@@ -17,11 +17,10 @@ def number(value, digits=3):
 
 
 def atomic_copy(source, destination):
+    from .reporting import _copy_atomic
     destination = Path(destination)
     destination.parent.mkdir(parents=True, exist_ok=True)
-    temporary = destination.with_suffix(destination.suffix+'.tmp')
-    shutil.copy2(source, temporary)
-    temporary.replace(destination)
+    return _copy_atomic(source, destination)
 
 
 def animation_figure(animation_dir, folder):
@@ -198,7 +197,7 @@ def write_includes(output='results/correlation_L6', reference='results/productio
         r"dans le régime désordonné. Aucune incertitude statistique "
         r"n'est attribuée ici à ce seul diagnostic.",
         r'\subsubsection{Campagne dédiée, incertitudes et contrôles}',
-        f"La configuration \texttt{{configs/correlation\_L6.json}} utilise "
+        rf"La configuration \texttt{{configs/correlation\_L6.json}} utilise "
         f"$L={cfg['L']}$, {len(cfg['temperatures'])} températures entre "
         f"{min(cfg['temperatures'])} et {max(cfg['temperatures'])} K, "
         f"deux chaînes de graines {cfg['seeds'][0]} et {cfg['seeds'][1]}. "
@@ -253,7 +252,14 @@ def write_includes(output='results/correlation_L6', reference='results/productio
         r'$T$ (K) & $\xi_{\rm brut}/a$ & $\xi_{\rm c}/a$ & IC 95\,\% de $\xi_{\rm c}/a$ & Intra-variante$/a$ & Réserve\\\midrule']
     for r in rows:
         flag = r['flags']
-        status = 'taille finie' if flag == 'finite_size_dominated' else ('voir CSV' if flag else 'aucune détectée')
+        issues = []
+        if 'finite_size_dominated' in flag:
+            issues.append('taille finie')
+        if 'insufficient_effective_samples' in flag:
+            issues.append('ESS faible')
+        if 'variant_mixing_unresolved' in flag or 'chain_disagreement' in flag:
+            issues.append('chaînes/variantes')
+        status = ', '.join(issues) if issues else ('voir CSV' if flag else 'aucune détectée')
         correlation_lines.append(f"{r['T_K']} & {number(r['xi_raw_a'])} & "
             f"{number(r['xi_connected_a'])} & $[{number(r['ci95_low_a'])},{number(r['ci95_high_a'])}]$ & "
             f"{number(r['xi_within_variant_a'])} & {status}"+r'\\')
@@ -270,7 +276,7 @@ def write_includes(output='results/correlation_L6', reference='results/productio
         r"des très petits vecteurs d'onde est peu résolu. Cette campagne "
         r"ne détermine ni un exposant critique, ni une divergence, ni "
         r"une température critique extrapolée. Il faudrait plusieurs tailles "
-        r"et étudier notamment $\xi/L$ en conservant la même définition.",
+        r"et étudier notamment $\xi/(La)$ en conservant la même définition.",
         r'\fig{correlation_01_xi}{1}{Longueurs spectrales brute et connexe, et diagnostic conditionnel intra-variante à basse température. Les grandes valeurs doivent être interprétées avec les réserves de taille finie.}',
         r'\fig{correlation_02_real_fourier}{1}{Corrélations réelles connexes obtenues par FFT inverse et spectres des enveloppes d’ordre. Un plateau à basse température peut subsister du fait des fluctuations collectives entre variantes.}',
         r'\fig{correlation_04_diagnostics}{1}{Diagnostics de la campagne spatiale ; l’accord statistique ne supprime pas les effets de taille finie.}',

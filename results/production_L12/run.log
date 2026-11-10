@@ -1,0 +1,735 @@
+cycle 1/2 | heating | 300 K | palier 1/6 sauvegardé | 0.0 s
+cycle 1/2 | heating | 1400 K | palier 2/6 sauvegardé | 0.0 s
+cycle 1/2 | heating | 4000 K | palier 3/6 sauvegardé | 0.0 s
+cycle 1/2 | cooling | 4000 K | palier 4/6 sauvegardé | 0.1 s
+cycle 1/2 | cooling | 1400 K | palier 5/6 sauvegardé | 0.1 s
+cycle 1/2 | cooling | 300 K | palier 6/6 sauvegardé | 0.1 s
+cycle 2/2 | heating | 300 K | palier 1/6 sauvegardé | 0.1 s
+cycle 2/2 | heating | 1400 K | palier 2/6 sauvegardé | 0.1 s
+cycle 2/2 | heating | 4000 K | palier 3/6 sauvegardé | 0.1 s
+cycle 2/2 | cooling | 4000 K | palier 4/6 sauvegardé | 0.1 s
+cycle 2/2 | cooling | 1400 K | palier 5/6 sauvegardé | 0.2 s
+cycle 2/2 | cooling | 300 K | palier 6/6 sauvegardé | 0.2 s
+cycle 1/2 | heating | 300 K | palier 1/6 sauvegardé | 0.0 s
+cycle 1/2 | heating | 1400 K | palier 2/6 sauvegardé | 0.0 s
+cycle 1/2 | heating | 4000 K | palier 3/6 sauvegardé | 0.1 s
+cycle 1/2 | cooling | 4000 K | palier 4/6 sauvegardé | 0.1 s
+cycle 1/2 | cooling | 1400 K | palier 5/6 sauvegardé | 0.1 s
+cycle 1/2 | cooling | 300 K | palier 6/6 sauvegardé | 0.1 s
+cycle 2/2 | heating | 300 K | palier 1/6 sauvegardé | 0.1 s
+cycle 2/2 | heating | 1400 K | palier 2/6 sauvegardé | 0.1 s
+cycle 2/2 | heating | 4000 K | palier 3/6 sauvegardé | 0.2 s
+cycle 2/2 | cooling | 4000 K | palier 4/6 sauvegardé | 0.2 s
+cycle 2/2 | cooling | 1400 K | palier 5/6 sauvegardé | 0.2 s
+cycle 2/2 | cooling | 300 K | palier 6/6 sauvegardé | 0.2 s
+cycle 1/2 | heating | 300 K | palier 1/6 sauvegardé | 0.0 s
+cycle 1/2 | heating | 1400 K | palier 2/6 sauvegardé | 0.0 s
+cycle 1/2 | heating | 4000 K | palier 3/6 sauvegardé | 0.0 s
+cycle 1/2 | cooling | 4000 K | palier 4/6 sauvegardé | 0.0 s
+cycle 1/2 | cooling | 1400 K | palier 5/6 sauvegardé | 0.1 s
+cycle 1/2 | cooling | 300 K | palier 6/6 sauvegardé | 0.1 s
+cycle 2/2 | heating | 300 K | palier 1/6 sauvegardé | 0.1 s
+cycle 2/2 | heating | 1400 K | palier 2/6 sauvegardé | 0.1 s
+cycle 2/2 | heating | 4000 K | palier 3/6 sauvegardé | 0.1 s
+cycle 2/2 | cooling | 4000 K | palier 4/6 sauvegardé | 0.1 s
+cycle 2/2 | cooling | 1400 K | palier 5/6 sauvegardé | 0.1 s
+cycle 2/2 | cooling | 300 K | palier 6/6 sauvegardé | 0.2 s
+cycle 1/2 | heating | 300 K | palier 1/6 sauvegardé | 0.0 s
+cycle 1/2 | heating | 1400 K | palier 2/6 sauvegardé | 0.0 s
+cycle 1/2 | heating | 4000 K | palier 3/6 sauvegardé | 0.1 s
+cycle 1/2 | cooling | 4000 K | palier 4/6 sauvegardé | 0.1 s
+cycle 1/2 | cooling | 1400 K | palier 5/6 sauvegardé | 0.1 s
+cycle 1/2 | cooling | 300 K | palier 6/6 sauvegardé | 0.1 s
+cycle 2/2 | heating | 300 K | palier 1/6 sauvegardé | 0.1 s
+cycle 2/2 | heating | 1400 K | palier 2/6 sauvegardé | 0.1 s
+cycle 2/2 | heating | 4000 K | palier 3/6 sauvegardé | 0.2 s
+cycle 2/2 | cooling | 4000 K | palier 4/6 sauvegardé | 0.2 s
+cycle 2/2 | cooling | 1400 K | palier 5/6 sauvegardé | 0.2 s
+cycle 2/2 | cooling | 300 K | palier 6/6 sauvegardé | 0.2 s
+test_completed_chain_is_reused_after_process_stops (test_campaign_checkpoints.CampaignCheckpointTests.test_completed_chain_is_reused_after_process_stops) ... ok
+test_mismatch_gap_and_implicit_overwrite_are_rejected (test_campaign_checkpoints.CampaignCheckpointTests.test_mismatch_gap_and_implicit_overwrite_are_rejected) ... ok
+test_restart_matches_uninterrupted_in_both_phases_and_second_chain (test_campaign_checkpoints.CampaignCheckpointTests.test_restart_matches_uninterrupted_in_both_phases_and_second_chain) ... ok
+test_fft_matches_direct_sum_and_real_space_pairs (test_correlation.CorrelationTests.test_fft_matches_direct_sum_and_real_space_pairs) ... ok
+test_four_variants_and_order_normalization (test_correlation.CorrelationTests.test_four_variants_and_order_normalization) ... ok
+test_length_known_spectrum_and_undefined_cases (test_correlation.CorrelationTests.test_length_known_spectrum_and_undefined_cases) ... ok
+test_variant_mixture_is_not_intra_variant_fluctuation (test_correlation.CorrelationTests.test_variant_mixture_is_not_intra_variant_fluctuation) ... ok
+test_grid_support_reproducibility_and_invalid_parameters (test_peak_bootstrap.PeakBootstrapTests.test_grid_support_reproducibility_and_invalid_parameters) ... ok
+test_known_peak_and_energy_offset_invariance (test_peak_bootstrap.PeakBootstrapTests.test_known_peak_and_energy_offset_invariance) ... ok
+test_exact_restricted_canonical_detailed_balance (test_physics.PhysicsTests.test_exact_restricted_canonical_detailed_balance) ... ok
+test_four_equivalent_variants (test_physics.PhysicsTests.test_four_equivalent_variants) ... ok
+test_geometry_and_periodic_distances (test_physics.PhysicsTests.test_geometry_and_periodic_distances) ... ok
+test_ground_state_bound_identity (test_physics.PhysicsTests.test_ground_state_bound_identity) ... ok
+test_high_temperature_limit (test_physics.PhysicsTests.test_high_temperature_limit) ... ok
+test_meanfield_reference (test_physics.PhysicsTests.test_meanfield_reference) ... ok
+test_nearest_neighbor_defect (test_physics.PhysicsTests.test_nearest_neighbor_defect) ... ok
+test_ordered_exact_energy_and_cowley (test_physics.PhysicsTests.test_ordered_exact_energy_and_cowley) ... ok
+test_random_swaps_against_full_energy (test_physics.PhysicsTests.test_random_swaps_against_full_energy) ... ok
+test_replica_exchange_sign_and_balance (test_physics.PhysicsTests.test_replica_exchange_sign_and_balance) ... ok
+test_short_actual_kernel_and_reproducibility (test_physics.PhysicsTests.test_short_actual_kernel_and_reproducibility) ... ok
+test_capture_config_rejects_incompatible_intervals (test_spatial_capture.SpatialCaptureTests.test_capture_config_rejects_incompatible_intervals) ... ok
+test_captures_match_measured_observables (test_spatial_capture.SpatialCaptureTests.test_captures_match_measured_observables) ... ok
+test_autocorrelation_known_ar1 (test_statistics.StatisticsTests.test_autocorrelation_known_ar1) ... ok
+test_invalid_temperature_grid_rejected (test_statistics.StatisticsTests.test_invalid_temperature_grid_rejected) ... ok
+test_rhat_detects_separated_chains (test_statistics.StatisticsTests.test_rhat_detects_separated_chains) ... ok
+test_total_energy_heat_capacity_units (test_statistics.StatisticsTests.test_total_energy_heat_capacity_units) ... ok
+test_a_locked_monitoring_file_does_not_abort_the_cycle (test_thermal_cycle.ThermalCycleTests.test_a_locked_monitoring_file_does_not_abort_the_cycle) ... ok
+test_complete_cycle_continuity_and_observable_archives (test_thermal_cycle.ThermalCycleTests.test_complete_cycle_continuity_and_observable_archives) ... ok
+test_restart_replays_the_identical_trajectory (test_thermal_cycle.ThermalCycleTests.test_restart_replays_the_identical_trajectory) ... ok
+test_schedule_and_invalid_replica_exchange (test_thermal_cycle.ThermalCycleTests.test_schedule_and_invalid_replica_exchange) ... ok
+test_validation_rejects_a_broken_handoff (test_thermal_cycle.ThermalCycleTests.test_validation_rejects_a_broken_handoff) ... ok
+
+----------------------------------------------------------------------
+Ran 31 tests in 6.574s
+
+OK
+
+Starting L=12: 6912 sites, 90 temperatures, 2 chains; burn=12000, production=60000.
+chaîne 1/2 | equilibration 500/12000 balayages | 75.0 s
+chaîne 1/2 | equilibration 1000/12000 balayages | 150.0 s
+chaîne 1/2 | equilibration 1500/12000 balayages | 222.1 s
+chaîne 1/2 | equilibration 2000/12000 balayages | 295.2 s
+chaîne 1/2 | equilibration 2500/12000 balayages | 370.0 s
+chaîne 1/2 | equilibration 3000/12000 balayages | 452.6 s
+chaîne 1/2 | equilibration 3500/12000 balayages | 525.0 s
+chaîne 1/2 | equilibration 4000/12000 balayages | 598.0 s
+chaîne 1/2 | equilibration 4500/12000 balayages | 670.7 s
+chaîne 1/2 | equilibration 5000/12000 balayages | 743.9 s
+chaîne 1/2 | equilibration 5500/12000 balayages | 818.6 s
+chaîne 1/2 | equilibration 6000/12000 balayages | 892.2 s
+chaîne 1/2 | equilibration 6500/12000 balayages | 965.1 s
+chaîne 1/2 | equilibration 7000/12000 balayages | 1037.5 s
+chaîne 1/2 | equilibration 7500/12000 balayages | 1110.6 s
+chaîne 1/2 | equilibration 8000/12000 balayages | 1184.0 s
+chaîne 1/2 | equilibration 8500/12000 balayages | 1257.3 s
+chaîne 1/2 | equilibration 9000/12000 balayages | 1329.6 s
+chaîne 1/2 | equilibration 9500/12000 balayages | 1402.6 s
+chaîne 1/2 | equilibration 10000/12000 balayages | 1475.8 s
+chaîne 1/2 | equilibration 10500/12000 balayages | 1548.6 s
+chaîne 1/2 | equilibration 11000/12000 balayages | 1636.6 s
+chaîne 1/2 | equilibration 11500/12000 balayages | 1724.5 s
+chaîne 1/2 | equilibration 12000/12000 balayages | 1797.6 s
+chaîne 1/2 | mesure 200/60000 balayages | 1827.0 s
+chaîne 1/2 | mesure 400/60000 balayages | 1856.5 s
+chaîne 1/2 | mesure 600/60000 balayages | 1886.2 s
+chaîne 1/2 | mesure 800/60000 balayages | 1915.7 s
+chaîne 1/2 | mesure 1000/60000 balayages | 1945.7 s
+chaîne 1/2 | mesure 1200/60000 balayages | 1975.2 s
+chaîne 1/2 | mesure 1400/60000 balayages | 2011.4 s
+chaîne 1/2 | mesure 1600/60000 balayages | 2049.5 s
+chaîne 1/2 | mesure 1800/60000 balayages | 2080.5 s
+chaîne 1/2 | mesure 2000/60000 balayages | 2110.1 s
+chaîne 1/2 | mesure 2200/60000 balayages | 2151.1 s
+chaîne 1/2 | mesure 2400/60000 balayages | 2199.8 s
+chaîne 1/2 | mesure 2600/60000 balayages | 2250.1 s
+chaîne 1/2 | mesure 2800/60000 balayages | 2301.7 s
+chaîne 1/2 | mesure 3000/60000 balayages | 2353.2 s
+chaîne 1/2 | mesure 3200/60000 balayages | 2405.5 s
+chaîne 1/2 | mesure 3400/60000 balayages | 2458.0 s
+chaîne 1/2 | mesure 3600/60000 balayages | 2508.9 s
+chaîne 1/2 | mesure 3800/60000 balayages | 2555.0 s
+chaîne 1/2 | mesure 4000/60000 balayages | 2596.4 s
+chaîne 1/2 | mesure 4200/60000 balayages | 2638.0 s
+chaîne 1/2 | mesure 4400/60000 balayages | 2679.8 s
+chaîne 1/2 | mesure 4600/60000 balayages | 2721.8 s
+chaîne 1/2 | mesure 4800/60000 balayages | 2761.8 s
+chaîne 1/2 | mesure 5000/60000 balayages | 2810.5 s
+chaîne 1/2 | mesure 5200/60000 balayages | 2861.5 s
+chaîne 1/2 | mesure 5400/60000 balayages | 2911.6 s
+chaîne 1/2 | mesure 5600/60000 balayages | 2959.9 s
+chaîne 1/2 | mesure 5800/60000 balayages | 3004.5 s
+chaîne 1/2 | mesure 6000/60000 balayages | 3048.6 s
+chaîne 1/2 | mesure 6200/60000 balayages | 3089.8 s
+chaîne 1/2 | mesure 6400/60000 balayages | 3131.5 s
+chaîne 1/2 | mesure 6600/60000 balayages | 3177.9 s
+chaîne 1/2 | mesure 6800/60000 balayages | 3226.8 s
+chaîne 1/2 | mesure 7000/60000 balayages | 3272.4 s
+chaîne 1/2 | mesure 7200/60000 balayages | 3315.6 s
+chaîne 1/2 | mesure 7400/60000 balayages | 3348.1 s
+chaîne 1/2 | mesure 7600/60000 balayages | 3379.2 s
+chaîne 1/2 | mesure 7800/60000 balayages | 3419.4 s
+chaîne 1/2 | mesure 8000/60000 balayages | 3460.7 s
+chaîne 1/2 | mesure 8200/60000 balayages | 3504.3 s
+chaîne 1/2 | mesure 8400/60000 balayages | 3546.5 s
+chaîne 1/2 | mesure 8600/60000 balayages | 3587.2 s
+chaîne 1/2 | mesure 8800/60000 balayages | 3629.1 s
+chaîne 1/2 | mesure 9000/60000 balayages | 3674.7 s
+chaîne 1/2 | mesure 9200/60000 balayages | 3715.4 s
+chaîne 1/2 | mesure 9400/60000 balayages | 3761.1 s
+chaîne 1/2 | mesure 9600/60000 balayages | 3806.7 s
+chaîne 1/2 | mesure 9800/60000 balayages | 3853.0 s
+chaîne 1/2 | mesure 10000/60000 balayages | 3896.7 s
+chaîne 1/2 | mesure 10200/60000 balayages | 3938.5 s
+chaîne 1/2 | mesure 10400/60000 balayages | 3982.7 s
+chaîne 1/2 | mesure 10600/60000 balayages | 4027.8 s
+chaîne 1/2 | mesure 10800/60000 balayages | 4058.0 s
+chaîne 1/2 | mesure 11000/60000 balayages | 4088.1 s
+chaîne 1/2 | mesure 11200/60000 balayages | 4119.1 s
+chaîne 1/2 | mesure 11400/60000 balayages | 4162.1 s
+chaîne 1/2 | mesure 11600/60000 balayages | 4205.1 s
+chaîne 1/2 | mesure 11800/60000 balayages | 4249.7 s
+chaîne 1/2 | mesure 12000/60000 balayages | 4294.8 s
+chaîne 1/2 | mesure 12200/60000 balayages | 4335.9 s
+chaîne 1/2 | mesure 12400/60000 balayages | 4378.8 s
+chaîne 1/2 | mesure 12600/60000 balayages | 4423.5 s
+chaîne 1/2 | mesure 12800/60000 balayages | 4467.4 s
+chaîne 1/2 | mesure 13000/60000 balayages | 4509.1 s
+chaîne 1/2 | mesure 13200/60000 balayages | 4548.2 s
+chaîne 1/2 | mesure 13400/60000 balayages | 4589.3 s
+chaîne 1/2 | mesure 13600/60000 balayages | 4633.3 s
+chaîne 1/2 | mesure 13800/60000 balayages | 4674.9 s
+chaîne 1/2 | mesure 14000/60000 balayages | 4716.2 s
+chaîne 1/2 | mesure 14200/60000 balayages | 4758.7 s
+chaîne 1/2 | mesure 14400/60000 balayages | 4803.1 s
+chaîne 1/2 | mesure 14600/60000 balayages | 4848.2 s
+chaîne 1/2 | mesure 14800/60000 balayages | 12887.8 s
+chaîne 1/2 | mesure 15000/60000 balayages | 12926.7 s
+chaîne 1/2 | mesure 15200/60000 balayages | 12957.6 s
+chaîne 1/2 | mesure 15400/60000 balayages | 12986.9 s
+chaîne 1/2 | mesure 15600/60000 balayages | 13016.1 s
+chaîne 1/2 | mesure 15800/60000 balayages | 13045.0 s
+chaîne 1/2 | mesure 16000/60000 balayages | 13075.0 s
+chaîne 1/2 | mesure 16200/60000 balayages | 13104.2 s
+chaîne 1/2 | mesure 16400/60000 balayages | 13133.2 s
+chaîne 1/2 | mesure 16600/60000 balayages | 13162.2 s
+chaîne 1/2 | mesure 16800/60000 balayages | 13191.4 s
+chaîne 1/2 | mesure 17000/60000 balayages | 13220.7 s
+chaîne 1/2 | mesure 17200/60000 balayages | 13250.2 s
+chaîne 1/2 | mesure 17400/60000 balayages | 13279.0 s
+chaîne 1/2 | mesure 17600/60000 balayages | 13307.9 s
+chaîne 1/2 | mesure 17800/60000 balayages | 13337.1 s
+chaîne 1/2 | mesure 18000/60000 balayages | 13368.0 s
+chaîne 1/2 | mesure 18200/60000 balayages | 13396.8 s
+chaîne 1/2 | mesure 18400/60000 balayages | 13425.6 s
+chaîne 1/2 | mesure 18600/60000 balayages | 13454.6 s
+chaîne 1/2 | mesure 18800/60000 balayages | 13483.6 s
+chaîne 1/2 | mesure 19000/60000 balayages | 13512.9 s
+chaîne 1/2 | mesure 19200/60000 balayages | 13541.8 s
+chaîne 1/2 | mesure 19400/60000 balayages | 13571.0 s
+chaîne 1/2 | mesure 19600/60000 balayages | 13600.5 s
+chaîne 1/2 | mesure 19800/60000 balayages | 13629.4 s
+chaîne 1/2 | mesure 20000/60000 balayages | 13658.5 s
+chaîne 1/2 | mesure 20200/60000 balayages | 13687.6 s
+chaîne 1/2 | mesure 20400/60000 balayages | 13716.7 s
+chaîne 1/2 | mesure 20600/60000 balayages | 13745.6 s
+chaîne 1/2 | mesure 20800/60000 balayages | 13774.4 s
+chaîne 1/2 | mesure 21000/60000 balayages | 13804.1 s
+chaîne 1/2 | mesure 21200/60000 balayages | 13834.4 s
+chaîne 1/2 | mesure 21400/60000 balayages | 13863.8 s
+chaîne 1/2 | mesure 21600/60000 balayages | 13893.1 s
+chaîne 1/2 | mesure 21800/60000 balayages | 13922.1 s
+chaîne 1/2 | mesure 22000/60000 balayages | 13951.2 s
+chaîne 1/2 | mesure 22200/60000 balayages | 13980.1 s
+chaîne 1/2 | mesure 22400/60000 balayages | 14009.0 s
+chaîne 1/2 | mesure 22600/60000 balayages | 14038.5 s
+chaîne 1/2 | mesure 22800/60000 balayages | 14067.6 s
+chaîne 1/2 | mesure 23000/60000 balayages | 14096.6 s
+chaîne 1/2 | mesure 23200/60000 balayages | 14126.6 s
+chaîne 1/2 | mesure 23400/60000 balayages | 14156.4 s
+chaîne 1/2 | mesure 23600/60000 balayages | 14185.5 s
+chaîne 1/2 | mesure 23800/60000 balayages | 14215.2 s
+chaîne 1/2 | mesure 24000/60000 balayages | 14244.8 s
+chaîne 1/2 | mesure 24200/60000 balayages | 14274.2 s
+chaîne 1/2 | mesure 24400/60000 balayages | 14303.2 s
+chaîne 1/2 | mesure 24600/60000 balayages | 14332.0 s
+chaîne 1/2 | mesure 24800/60000 balayages | 14360.7 s
+chaîne 1/2 | mesure 25000/60000 balayages | 14389.7 s
+chaîne 1/2 | mesure 25200/60000 balayages | 14418.8 s
+chaîne 1/2 | mesure 25400/60000 balayages | 14447.9 s
+chaîne 1/2 | mesure 25600/60000 balayages | 14476.8 s
+chaîne 1/2 | mesure 25800/60000 balayages | 14505.7 s
+chaîne 1/2 | mesure 26000/60000 balayages | 14534.6 s
+chaîne 1/2 | mesure 26200/60000 balayages | 14563.9 s
+chaîne 1/2 | mesure 26400/60000 balayages | 14592.6 s
+chaîne 1/2 | mesure 26600/60000 balayages | 14621.5 s
+chaîne 1/2 | mesure 26800/60000 balayages | 14650.4 s
+chaîne 1/2 | mesure 27000/60000 balayages | 14679.6 s
+chaîne 1/2 | mesure 27200/60000 balayages | 14708.3 s
+chaîne 1/2 | mesure 27400/60000 balayages | 14737.2 s
+chaîne 1/2 | mesure 27600/60000 balayages | 14766.3 s
+chaîne 1/2 | mesure 27800/60000 balayages | 14795.5 s
+chaîne 1/2 | mesure 28000/60000 balayages | 14824.3 s
+chaîne 1/2 | mesure 28200/60000 balayages | 14853.3 s
+chaîne 1/2 | mesure 28400/60000 balayages | 14882.3 s
+chaîne 1/2 | mesure 28600/60000 balayages | 14911.6 s
+chaîne 1/2 | mesure 28800/60000 balayages | 14940.7 s
+chaîne 1/2 | mesure 29000/60000 balayages | 14969.5 s
+chaîne 1/2 | mesure 29200/60000 balayages | 14998.6 s
+chaîne 1/2 | mesure 29400/60000 balayages | 15027.7 s
+chaîne 1/2 | mesure 29600/60000 balayages | 15056.5 s
+chaîne 1/2 | mesure 29800/60000 balayages | 15085.3 s
+chaîne 1/2 | mesure 30000/60000 balayages | 15114.2 s
+chaîne 1/2 | mesure 30200/60000 balayages | 15143.2 s
+chaîne 1/2 | mesure 30400/60000 balayages | 15175.2 s
+chaîne 1/2 | mesure 30600/60000 balayages | 15206.7 s
+chaîne 1/2 | mesure 30800/60000 balayages | 15235.9 s
+chaîne 1/2 | mesure 31000/60000 balayages | 15264.8 s
+chaîne 1/2 | mesure 31200/60000 balayages | 15293.8 s
+chaîne 1/2 | mesure 31400/60000 balayages | 15322.5 s
+chaîne 1/2 | mesure 31600/60000 balayages | 15352.0 s
+chaîne 1/2 | mesure 31800/60000 balayages | 15381.2 s
+chaîne 1/2 | mesure 32000/60000 balayages | 15410.2 s
+chaîne 1/2 | mesure 32200/60000 balayages | 15439.2 s
+chaîne 1/2 | mesure 32400/60000 balayages | 15468.2 s
+chaîne 1/2 | mesure 32600/60000 balayages | 15498.3 s
+chaîne 1/2 | mesure 32800/60000 balayages | 15527.6 s
+chaîne 1/2 | mesure 33000/60000 balayages | 15556.7 s
+chaîne 1/2 | mesure 33200/60000 balayages | 15586.0 s
+chaîne 1/2 | mesure 33400/60000 balayages | 15615.2 s
+chaîne 1/2 | mesure 33600/60000 balayages | 15644.1 s
+chaîne 1/2 | mesure 33800/60000 balayages | 15675.5 s
+chaîne 1/2 | mesure 34000/60000 balayages | 15704.2 s
+chaîne 1/2 | mesure 34200/60000 balayages | 15733.1 s
+chaîne 1/2 | mesure 34400/60000 balayages | 15762.2 s
+chaîne 1/2 | mesure 34600/60000 balayages | 15790.8 s
+chaîne 1/2 | mesure 34800/60000 balayages | 15820.0 s
+chaîne 1/2 | mesure 35000/60000 balayages | 15849.1 s
+chaîne 1/2 | mesure 35200/60000 balayages | 15881.3 s
+chaîne 1/2 | mesure 35400/60000 balayages | 15910.1 s
+chaîne 1/2 | mesure 35600/60000 balayages | 15939.1 s
+chaîne 1/2 | mesure 35800/60000 balayages | 15968.8 s
+chaîne 1/2 | mesure 36000/60000 balayages | 15997.8 s
+chaîne 1/2 | mesure 36200/60000 balayages | 16026.9 s
+chaîne 1/2 | mesure 36400/60000 balayages | 16055.8 s
+chaîne 1/2 | mesure 36600/60000 balayages | 16084.6 s
+chaîne 1/2 | mesure 36800/60000 balayages | 16113.7 s
+chaîne 1/2 | mesure 37000/60000 balayages | 16142.7 s
+chaîne 1/2 | mesure 37200/60000 balayages | 16171.4 s
+chaîne 1/2 | mesure 37400/60000 balayages | 16200.2 s
+chaîne 1/2 | mesure 37600/60000 balayages | 16229.1 s
+chaîne 1/2 | mesure 37800/60000 balayages | 16258.1 s
+chaîne 1/2 | mesure 38000/60000 balayages | 16286.8 s
+chaîne 1/2 | mesure 38200/60000 balayages | 16315.6 s
+chaîne 1/2 | mesure 38400/60000 balayages | 16345.6 s
+chaîne 1/2 | mesure 38600/60000 balayages | 16374.8 s
+chaîne 1/2 | mesure 38800/60000 balayages | 16404.0 s
+chaîne 1/2 | mesure 39000/60000 balayages | 16433.1 s
+chaîne 1/2 | mesure 39200/60000 balayages | 16462.4 s
+chaîne 1/2 | mesure 39400/60000 balayages | 16493.1 s
+chaîne 1/2 | mesure 39600/60000 balayages | 16522.7 s
+chaîne 1/2 | mesure 39800/60000 balayages | 16552.5 s
+chaîne 1/2 | mesure 40000/60000 balayages | 16582.6 s
+chaîne 1/2 | mesure 40200/60000 balayages | 16612.9 s
+chaîne 1/2 | mesure 40400/60000 balayages | 16642.2 s
+chaîne 1/2 | mesure 40600/60000 balayages | 16673.9 s
+chaîne 1/2 | mesure 40800/60000 balayages | 16704.1 s
+chaîne 1/2 | mesure 41000/60000 balayages | 16735.8 s
+chaîne 1/2 | mesure 41200/60000 balayages | 16766.0 s
+chaîne 1/2 | mesure 41400/60000 balayages | 16795.9 s
+chaîne 1/2 | mesure 41600/60000 balayages | 16826.0 s
+chaîne 1/2 | mesure 41800/60000 balayages | 16855.5 s
+chaîne 1/2 | mesure 42000/60000 balayages | 16884.4 s
+chaîne 1/2 | mesure 42200/60000 balayages | 16913.4 s
+chaîne 1/2 | mesure 42400/60000 balayages | 16942.4 s
+chaîne 1/2 | mesure 42600/60000 balayages | 16971.3 s
+chaîne 1/2 | mesure 42800/60000 balayages | 17000.5 s
+chaîne 1/2 | mesure 43000/60000 balayages | 17029.2 s
+chaîne 1/2 | mesure 43200/60000 balayages | 17058.6 s
+chaîne 1/2 | mesure 43400/60000 balayages | 17087.5 s
+chaîne 1/2 | mesure 43600/60000 balayages | 17116.3 s
+chaîne 1/2 | mesure 43800/60000 balayages | 17145.1 s
+chaîne 1/2 | mesure 44000/60000 balayages | 17174.3 s
+chaîne 1/2 | mesure 44200/60000 balayages | 17203.5 s
+chaîne 1/2 | mesure 44400/60000 balayages | 17232.7 s
+chaîne 1/2 | mesure 44600/60000 balayages | 17261.5 s
+chaîne 1/2 | mesure 44800/60000 balayages | 17291.6 s
+chaîne 1/2 | mesure 45000/60000 balayages | 17837.4 s
+chaîne 1/2 | mesure 45200/60000 balayages | 17877.7 s
+chaîne 1/2 | mesure 45400/60000 balayages | 17908.7 s
+chaîne 1/2 | mesure 45600/60000 balayages | 17940.7 s
+chaîne 1/2 | mesure 45800/60000 balayages | 17970.2 s
+chaîne 1/2 | mesure 46000/60000 balayages | 18000.6 s
+chaîne 1/2 | mesure 46200/60000 balayages | 18030.1 s
+chaîne 1/2 | mesure 46400/60000 balayages | 18059.3 s
+chaîne 1/2 | mesure 46600/60000 balayages | 18088.1 s
+chaîne 1/2 | mesure 46800/60000 balayages | 18117.2 s
+chaîne 1/2 | mesure 47000/60000 balayages | 18146.4 s
+chaîne 1/2 | mesure 47200/60000 balayages | 18175.4 s
+chaîne 1/2 | mesure 47400/60000 balayages | 18205.8 s
+chaîne 1/2 | mesure 47600/60000 balayages | 18237.4 s
+chaîne 1/2 | mesure 47800/60000 balayages | 18276.8 s
+chaîne 1/2 | mesure 48000/60000 balayages | 18328.7 s
+chaîne 1/2 | mesure 48200/60000 balayages | 18365.1 s
+chaîne 1/2 | mesure 48400/60000 balayages | 18401.9 s
+chaîne 1/2 | mesure 48600/60000 balayages | 18438.7 s
+chaîne 1/2 | mesure 48800/60000 balayages | 18484.1 s
+chaîne 1/2 | mesure 49000/60000 balayages | 18528.9 s
+chaîne 1/2 | mesure 49200/60000 balayages | 18570.1 s
+chaîne 1/2 | mesure 49400/60000 balayages | 18610.9 s
+chaîne 1/2 | mesure 49600/60000 balayages | 18656.9 s
+chaîne 1/2 | mesure 49800/60000 balayages | 18688.7 s
+chaîne 1/2 | mesure 50000/60000 balayages | 18718.2 s
+chaîne 1/2 | mesure 50200/60000 balayages | 18755.3 s
+chaîne 1/2 | mesure 50400/60000 balayages | 18791.8 s
+chaîne 1/2 | mesure 50600/60000 balayages | 18830.7 s
+chaîne 1/2 | mesure 50800/60000 balayages | 18867.5 s
+chaîne 1/2 | mesure 51000/60000 balayages | 18903.5 s
+chaîne 1/2 | mesure 51200/60000 balayages | 18941.7 s
+chaîne 1/2 | mesure 51400/60000 balayages | 18976.8 s
+chaîne 1/2 | mesure 51600/60000 balayages | 19014.0 s
+chaîne 1/2 | mesure 51800/60000 balayages | 19049.7 s
+chaîne 1/2 | mesure 52000/60000 balayages | 19085.1 s
+chaîne 1/2 | mesure 52200/60000 balayages | 19122.7 s
+chaîne 1/2 | mesure 52400/60000 balayages | 19157.3 s
+chaîne 1/2 | mesure 52600/60000 balayages | 19194.8 s
+chaîne 1/2 | mesure 52800/60000 balayages | 19232.2 s
+chaîne 1/2 | mesure 53000/60000 balayages | 19270.3 s
+chaîne 1/2 | mesure 53200/60000 balayages | 19308.0 s
+chaîne 1/2 | mesure 53400/60000 balayages | 19345.1 s
+chaîne 1/2 | mesure 53600/60000 balayages | 19382.2 s
+chaîne 1/2 | mesure 53800/60000 balayages | 19418.7 s
+chaîne 1/2 | mesure 54000/60000 balayages | 19461.2 s
+chaîne 1/2 | mesure 54200/60000 balayages | 19499.7 s
+chaîne 1/2 | mesure 54400/60000 balayages | 21480.8 s
+chaîne 1/2 | mesure 54600/60000 balayages | 21513.2 s
+chaîne 1/2 | mesure 54800/60000 balayages | 21546.0 s
+chaîne 1/2 | mesure 55000/60000 balayages | 21577.0 s
+chaîne 1/2 | mesure 55200/60000 balayages | 21609.3 s
+chaîne 1/2 | mesure 55400/60000 balayages | 21649.5 s
+chaîne 1/2 | mesure 55600/60000 balayages | 21692.3 s
+chaîne 1/2 | mesure 55800/60000 balayages | 21733.6 s
+chaîne 1/2 | mesure 56000/60000 balayages | 21772.9 s
+chaîne 1/2 | mesure 56200/60000 balayages | 21804.0 s
+chaîne 1/2 | mesure 56400/60000 balayages | 21845.3 s
+chaîne 1/2 | mesure 56600/60000 balayages | 21889.2 s
+chaîne 1/2 | mesure 56800/60000 balayages | 21932.4 s
+chaîne 1/2 | mesure 57000/60000 balayages | 21963.8 s
+chaîne 1/2 | mesure 57200/60000 balayages | 21994.9 s
+chaîne 1/2 | mesure 57400/60000 balayages | 22025.5 s
+chaîne 1/2 | mesure 57600/60000 balayages | 22064.4 s
+chaîne 1/2 | mesure 57800/60000 balayages | 22106.4 s
+chaîne 1/2 | mesure 58000/60000 balayages | 22137.0 s
+chaîne 1/2 | mesure 58200/60000 balayages | 22168.9 s
+chaîne 1/2 | mesure 58400/60000 balayages | 22199.5 s
+chaîne 1/2 | mesure 58600/60000 balayages | 22229.6 s
+chaîne 1/2 | mesure 58800/60000 balayages | 22265.9 s
+chaîne 1/2 | mesure 59000/60000 balayages | 22298.9 s
+chaîne 1/2 | mesure 59200/60000 balayages | 22335.7 s
+chaîne 1/2 | mesure 59400/60000 balayages | 22372.9 s
+chaîne 1/2 | mesure 59600/60000 balayages | 22403.0 s
+chaîne 1/2 | mesure 59800/60000 balayages | 22437.4 s
+chaîne 1/2 | mesure 60000/60000 balayages | 22481.2 s
+chaîne 2/2 | equilibration 500/12000 balayages | 22604.2 s
+chaîne 2/2 | equilibration 1000/12000 balayages | 22714.8 s
+chaîne 2/2 | equilibration 1500/12000 balayages | 22815.6 s
+chaîne 2/2 | equilibration 2000/12000 balayages | 22891.0 s
+chaîne 2/2 | equilibration 2500/12000 balayages | 22964.9 s
+chaîne 2/2 | equilibration 3000/12000 balayages | 23036.8 s
+chaîne 2/2 | equilibration 3500/12000 balayages | 23109.5 s
+chaîne 2/2 | equilibration 4000/12000 balayages | 23182.6 s
+chaîne 2/2 | equilibration 4500/12000 balayages | 23255.0 s
+chaîne 2/2 | equilibration 5000/12000 balayages | 23329.3 s
+chaîne 2/2 | equilibration 5500/12000 balayages | 23403.5 s
+chaîne 2/2 | equilibration 6000/12000 balayages | 23477.1 s
+chaîne 2/2 | equilibration 6500/12000 balayages | 23550.4 s
+chaîne 2/2 | equilibration 7000/12000 balayages | 23624.3 s
+chaîne 2/2 | equilibration 7500/12000 balayages | 23704.1 s
+chaîne 2/2 | equilibration 8000/12000 balayages | 23781.9 s
+chaîne 2/2 | equilibration 8500/12000 balayages | 23876.5 s
+chaîne 2/2 | equilibration 9000/12000 balayages | 23995.9 s
+chaîne 2/2 | equilibration 9500/12000 balayages | 24119.0 s
+chaîne 2/2 | equilibration 10000/12000 balayages | 24242.2 s
+chaîne 2/2 | equilibration 10500/12000 balayages | 24357.7 s
+chaîne 2/2 | equilibration 11000/12000 balayages | 24474.3 s
+chaîne 2/2 | equilibration 11500/12000 balayages | 24592.9 s
+chaîne 2/2 | equilibration 12000/12000 balayages | 24706.7 s
+chaîne 2/2 | mesure 200/60000 balayages | 24752.4 s
+chaîne 2/2 | mesure 400/60000 balayages | 24799.2 s
+chaîne 2/2 | mesure 600/60000 balayages | 24846.7 s
+chaîne 2/2 | mesure 800/60000 balayages | 24890.3 s
+chaîne 2/2 | mesure 1000/60000 balayages | 24930.9 s
+chaîne 2/2 | mesure 1200/60000 balayages | 24971.9 s
+chaîne 2/2 | mesure 1400/60000 balayages | 25019.7 s
+chaîne 2/2 | mesure 1600/60000 balayages | 25064.9 s
+chaîne 2/2 | mesure 1800/60000 balayages | 25107.5 s
+chaîne 2/2 | mesure 2000/60000 balayages | 25149.6 s
+chaîne 2/2 | mesure 2200/60000 balayages | 25191.1 s
+chaîne 2/2 | mesure 2400/60000 balayages | 25231.9 s
+chaîne 2/2 | mesure 2600/60000 balayages | 25273.2 s
+chaîne 2/2 | mesure 2800/60000 balayages | 25316.5 s
+chaîne 2/2 | mesure 3000/60000 balayages | 25353.2 s
+chaîne 2/2 | mesure 3200/60000 balayages | 25381.7 s
+chaîne 2/2 | mesure 3400/60000 balayages | 25410.2 s
+chaîne 2/2 | mesure 3600/60000 balayages | 25451.9 s
+chaîne 2/2 | mesure 3800/60000 balayages | 25493.2 s
+chaîne 2/2 | mesure 4000/60000 balayages | 25536.1 s
+chaîne 2/2 | mesure 4200/60000 balayages | 25577.4 s
+chaîne 2/2 | mesure 4400/60000 balayages | 25618.9 s
+chaîne 2/2 | mesure 4600/60000 balayages | 25657.3 s
+chaîne 2/2 | mesure 4800/60000 balayages | 25698.6 s
+chaîne 2/2 | mesure 5000/60000 balayages | 25738.8 s
+chaîne 2/2 | mesure 5200/60000 balayages | 25777.9 s
+chaîne 2/2 | mesure 5400/60000 balayages | 25819.3 s
+chaîne 2/2 | mesure 5600/60000 balayages | 25860.3 s
+chaîne 2/2 | mesure 5800/60000 balayages | 25899.2 s
+chaîne 2/2 | mesure 6000/60000 balayages | 25941.2 s
+chaîne 2/2 | mesure 6200/60000 balayages | 25982.9 s
+chaîne 2/2 | mesure 6400/60000 balayages | 26023.0 s
+chaîne 2/2 | mesure 6600/60000 balayages | 26064.3 s
+chaîne 2/2 | mesure 6800/60000 balayages | 26105.6 s
+chaîne 2/2 | mesure 7000/60000 balayages | 26146.8 s
+chaîne 2/2 | mesure 7200/60000 balayages | 26186.2 s
+chaîne 2/2 | mesure 7400/60000 balayages | 26227.4 s
+chaîne 2/2 | mesure 7600/60000 balayages | 26272.5 s
+chaîne 2/2 | mesure 7800/60000 balayages | 26307.7 s
+chaîne 2/2 | mesure 8000/60000 balayages | 26338.1 s
+chaîne 2/2 | mesure 8200/60000 balayages | 26366.9 s
+chaîne 2/2 | mesure 8400/60000 balayages | 26397.1 s
+chaîne 2/2 | mesure 8600/60000 balayages | 26429.7 s
+chaîne 2/2 | mesure 8800/60000 balayages | 26460.6 s
+chaîne 2/2 | mesure 9000/60000 balayages | 26490.5 s
+chaîne 2/2 | mesure 9200/60000 balayages | 26520.6 s
+chaîne 2/2 | mesure 9400/60000 balayages | 26549.2 s
+chaîne 2/2 | mesure 9600/60000 balayages | 26578.0 s
+chaîne 2/2 | mesure 9800/60000 balayages | 26606.7 s
+chaîne 2/2 | mesure 10000/60000 balayages | 26635.4 s
+chaîne 2/2 | mesure 10200/60000 balayages | 26664.2 s
+chaîne 2/2 | mesure 10400/60000 balayages | 26692.8 s
+chaîne 2/2 | mesure 10600/60000 balayages | 26721.2 s
+chaîne 2/2 | mesure 10800/60000 balayages | 26751.8 s
+chaîne 2/2 | mesure 11000/60000 balayages | 26780.9 s
+chaîne 2/2 | mesure 11200/60000 balayages | 26810.2 s
+chaîne 2/2 | mesure 11400/60000 balayages | 26838.8 s
+chaîne 2/2 | mesure 11600/60000 balayages | 26867.5 s
+chaîne 2/2 | mesure 11800/60000 balayages | 26896.0 s
+chaîne 2/2 | mesure 12000/60000 balayages | 26924.6 s
+chaîne 2/2 | mesure 12200/60000 balayages | 26953.1 s
+chaîne 2/2 | mesure 12400/60000 balayages | 26981.6 s
+chaîne 2/2 | mesure 12600/60000 balayages | 27010.2 s
+chaîne 2/2 | mesure 12800/60000 balayages | 27038.8 s
+chaîne 2/2 | mesure 13000/60000 balayages | 27067.4 s
+chaîne 2/2 | mesure 13200/60000 balayages | 27096.0 s
+chaîne 2/2 | mesure 13400/60000 balayages | 27125.1 s
+chaîne 2/2 | mesure 13600/60000 balayages | 27153.7 s
+chaîne 2/2 | mesure 13800/60000 balayages | 27182.2 s
+chaîne 2/2 | mesure 14000/60000 balayages | 27210.7 s
+chaîne 2/2 | mesure 14200/60000 balayages | 27239.3 s
+chaîne 2/2 | mesure 14400/60000 balayages | 27267.8 s
+chaîne 2/2 | mesure 14600/60000 balayages | 27296.2 s
+chaîne 2/2 | mesure 14800/60000 balayages | 27324.8 s
+chaîne 2/2 | mesure 15000/60000 balayages | 27353.7 s
+chaîne 2/2 | mesure 15200/60000 balayages | 27389.4 s
+chaîne 2/2 | mesure 15400/60000 balayages | 27435.2 s
+chaîne 2/2 | mesure 15600/60000 balayages | 27481.8 s
+chaîne 2/2 | mesure 15800/60000 balayages | 27528.7 s
+chaîne 2/2 | mesure 16000/60000 balayages | 27576.9 s
+chaîne 2/2 | mesure 16200/60000 balayages | 27626.3 s
+chaîne 2/2 | mesure 16400/60000 balayages | 27669.7 s
+chaîne 2/2 | mesure 16600/60000 balayages | 27712.1 s
+chaîne 2/2 | mesure 16800/60000 balayages | 27759.5 s
+chaîne 2/2 | mesure 17000/60000 balayages | 27809.0 s
+chaîne 2/2 | mesure 17200/60000 balayages | 27857.8 s
+chaîne 2/2 | mesure 17400/60000 balayages | 27908.1 s
+chaîne 2/2 | mesure 17600/60000 balayages | 27957.3 s
+chaîne 2/2 | mesure 17800/60000 balayages | 28005.9 s
+chaîne 2/2 | mesure 18000/60000 balayages | 28056.0 s
+chaîne 2/2 | mesure 18200/60000 balayages | 28107.0 s
+chaîne 2/2 | mesure 18400/60000 balayages | 28158.4 s
+chaîne 2/2 | mesure 18600/60000 balayages | 28209.9 s
+chaîne 2/2 | mesure 18800/60000 balayages | 28261.6 s
+chaîne 2/2 | mesure 19000/60000 balayages | 28313.3 s
+chaîne 2/2 | mesure 19200/60000 balayages | 28365.0 s
+chaîne 2/2 | mesure 19400/60000 balayages | 28410.8 s
+chaîne 2/2 | mesure 19600/60000 balayages | 28451.4 s
+chaîne 2/2 | mesure 19800/60000 balayages | 28492.9 s
+chaîne 2/2 | mesure 20000/60000 balayages | 28533.8 s
+chaîne 2/2 | mesure 20200/60000 balayages | 28574.8 s
+chaîne 2/2 | mesure 20400/60000 balayages | 28616.2 s
+chaîne 2/2 | mesure 20600/60000 balayages | 28661.4 s
+chaîne 2/2 | mesure 20800/60000 balayages | 28709.3 s
+chaîne 2/2 | mesure 21000/60000 balayages | 28750.5 s
+chaîne 2/2 | mesure 21200/60000 balayages | 28780.6 s
+chaîne 2/2 | mesure 21400/60000 balayages | 28811.9 s
+chaîne 2/2 | mesure 21600/60000 balayages | 28842.5 s
+chaîne 2/2 | mesure 21800/60000 balayages | 28877.9 s
+chaîne 2/2 | mesure 22000/60000 balayages | 28926.7 s
+chaîne 2/2 | mesure 22200/60000 balayages | 28975.5 s
+chaîne 2/2 | mesure 22400/60000 balayages | 29025.2 s
+chaîne 2/2 | mesure 22600/60000 balayages | 29074.4 s
+chaîne 2/2 | mesure 22800/60000 balayages | 29124.3 s
+chaîne 2/2 | mesure 23000/60000 balayages | 29173.5 s
+chaîne 2/2 | mesure 23200/60000 balayages | 29225.9 s
+chaîne 2/2 | mesure 23400/60000 balayages | 29276.5 s
+chaîne 2/2 | mesure 23600/60000 balayages | 29328.6 s
+chaîne 2/2 | mesure 23800/60000 balayages | 29936.1 s
+chaîne 2/2 | mesure 24000/60000 balayages | 29969.0 s
+chaîne 2/2 | mesure 24200/60000 balayages | 30001.0 s
+chaîne 2/2 | mesure 24400/60000 balayages | 30032.9 s
+chaîne 2/2 | mesure 24600/60000 balayages | 30062.4 s
+chaîne 2/2 | mesure 24800/60000 balayages | 30091.9 s
+chaîne 2/2 | mesure 25000/60000 balayages | 30121.4 s
+chaîne 2/2 | mesure 25200/60000 balayages | 30151.2 s
+chaîne 2/2 | mesure 25400/60000 balayages | 30180.5 s
+chaîne 2/2 | mesure 25600/60000 balayages | 30210.2 s
+chaîne 2/2 | mesure 25800/60000 balayages | 30239.9 s
+chaîne 2/2 | mesure 26000/60000 balayages | 30269.8 s
+chaîne 2/2 | mesure 26200/60000 balayages | 30299.4 s
+chaîne 2/2 | mesure 26400/60000 balayages | 30329.0 s
+chaîne 2/2 | mesure 26600/60000 balayages | 30358.3 s
+chaîne 2/2 | mesure 26800/60000 balayages | 30388.0 s
+chaîne 2/2 | mesure 27000/60000 balayages | 30417.1 s
+chaîne 2/2 | mesure 27200/60000 balayages | 30446.5 s
+chaîne 2/2 | mesure 27400/60000 balayages | 30476.1 s
+chaîne 2/2 | mesure 27600/60000 balayages | 30505.9 s
+chaîne 2/2 | mesure 27800/60000 balayages | 30534.9 s
+chaîne 2/2 | mesure 28000/60000 balayages | 30564.4 s
+chaîne 2/2 | mesure 28200/60000 balayages | 30593.9 s
+chaîne 2/2 | mesure 28400/60000 balayages | 30623.8 s
+chaîne 2/2 | mesure 28600/60000 balayages | 30653.6 s
+chaîne 2/2 | mesure 28800/60000 balayages | 30683.2 s
+chaîne 2/2 | mesure 29000/60000 balayages | 30712.6 s
+chaîne 2/2 | mesure 29200/60000 balayages | 30742.3 s
+chaîne 2/2 | mesure 29400/60000 balayages | 30772.1 s
+chaîne 2/2 | mesure 29600/60000 balayages | 30801.6 s
+chaîne 2/2 | mesure 29800/60000 balayages | 30831.0 s
+chaîne 2/2 | mesure 30000/60000 balayages | 30860.6 s
+chaîne 2/2 | mesure 30200/60000 balayages | 30889.8 s
+chaîne 2/2 | mesure 30400/60000 balayages | 30919.3 s
+chaîne 2/2 | mesure 30600/60000 balayages | 30948.8 s
+chaîne 2/2 | mesure 30800/60000 balayages | 30978.7 s
+chaîne 2/2 | mesure 31000/60000 balayages | 31008.4 s
+chaîne 2/2 | mesure 31200/60000 balayages | 31037.9 s
+chaîne 2/2 | mesure 31400/60000 balayages | 31069.1 s
+chaîne 2/2 | mesure 31600/60000 balayages | 31098.9 s
+chaîne 2/2 | mesure 31800/60000 balayages | 31128.5 s
+chaîne 2/2 | mesure 32000/60000 balayages | 31157.9 s
+chaîne 2/2 | mesure 32200/60000 balayages | 31187.4 s
+chaîne 2/2 | mesure 32400/60000 balayages | 31217.0 s
+chaîne 2/2 | mesure 32600/60000 balayages | 31246.4 s
+chaîne 2/2 | mesure 32800/60000 balayages | 31276.0 s
+chaîne 2/2 | mesure 33000/60000 balayages | 31305.1 s
+chaîne 2/2 | mesure 33200/60000 balayages | 31336.3 s
+chaîne 2/2 | mesure 33400/60000 balayages | 31365.9 s
+chaîne 2/2 | mesure 33600/60000 balayages | 31395.1 s
+chaîne 2/2 | mesure 33800/60000 balayages | 31424.8 s
+chaîne 2/2 | mesure 34000/60000 balayages | 31454.6 s
+chaîne 2/2 | mesure 34200/60000 balayages | 31484.2 s
+chaîne 2/2 | mesure 34400/60000 balayages | 31513.3 s
+chaîne 2/2 | mesure 34600/60000 balayages | 31542.4 s
+chaîne 2/2 | mesure 34800/60000 balayages | 31571.9 s
+chaîne 2/2 | mesure 35000/60000 balayages | 31601.6 s
+chaîne 2/2 | mesure 35200/60000 balayages | 31631.0 s
+chaîne 2/2 | mesure 35400/60000 balayages | 31660.3 s
+chaîne 2/2 | mesure 35600/60000 balayages | 31690.0 s
+chaîne 2/2 | mesure 35800/60000 balayages | 31720.0 s
+chaîne 2/2 | mesure 36000/60000 balayages | 31749.7 s
+chaîne 2/2 | mesure 36200/60000 balayages | 31779.2 s
+chaîne 2/2 | mesure 36400/60000 balayages | 31809.3 s
+chaîne 2/2 | mesure 36600/60000 balayages | 31840.9 s
+chaîne 2/2 | mesure 36800/60000 balayages | 31870.6 s
+chaîne 2/2 | mesure 37000/60000 balayages | 31900.3 s
+chaîne 2/2 | mesure 37200/60000 balayages | 31929.8 s
+chaîne 2/2 | mesure 37400/60000 balayages | 31959.5 s
+chaîne 2/2 | mesure 37600/60000 balayages | 31989.0 s
+chaîne 2/2 | mesure 37800/60000 balayages | 32018.9 s
+chaîne 2/2 | mesure 38000/60000 balayages | 32048.4 s
+chaîne 2/2 | mesure 38200/60000 balayages | 32078.0 s
+chaîne 2/2 | mesure 38400/60000 balayages | 32107.4 s
+chaîne 2/2 | mesure 38600/60000 balayages | 32137.4 s
+chaîne 2/2 | mesure 38800/60000 balayages | 32167.0 s
+chaîne 2/2 | mesure 39000/60000 balayages | 32196.7 s
+chaîne 2/2 | mesure 39200/60000 balayages | 32226.1 s
+chaîne 2/2 | mesure 39400/60000 balayages | 32255.3 s
+chaîne 2/2 | mesure 39600/60000 balayages | 32284.9 s
+chaîne 2/2 | mesure 39800/60000 balayages | 32314.5 s
+chaîne 2/2 | mesure 40000/60000 balayages | 32344.5 s
+chaîne 2/2 | mesure 40200/60000 balayages | 32374.0 s
+chaîne 2/2 | mesure 40400/60000 balayages | 32403.7 s
+chaîne 2/2 | mesure 40600/60000 balayages | 32433.4 s
+chaîne 2/2 | mesure 40800/60000 balayages | 32462.9 s
+chaîne 2/2 | mesure 41000/60000 balayages | 32492.5 s
+chaîne 2/2 | mesure 41200/60000 balayages | 32521.9 s
+chaîne 2/2 | mesure 41400/60000 balayages | 32551.7 s
+chaîne 2/2 | mesure 41600/60000 balayages | 32581.1 s
+chaîne 2/2 | mesure 41800/60000 balayages | 32610.8 s
+chaîne 2/2 | mesure 42000/60000 balayages | 32640.4 s
+chaîne 2/2 | mesure 42200/60000 balayages | 32670.0 s
+chaîne 2/2 | mesure 42400/60000 balayages | 32699.5 s
+chaîne 2/2 | mesure 42600/60000 balayages | 32728.7 s
+chaîne 2/2 | mesure 42800/60000 balayages | 32758.0 s
+chaîne 2/2 | mesure 43000/60000 balayages | 32787.6 s
+chaîne 2/2 | mesure 43200/60000 balayages | 32818.0 s
+chaîne 2/2 | mesure 43400/60000 balayages | 32848.4 s
+chaîne 2/2 | mesure 43600/60000 balayages | 32879.2 s
+chaîne 2/2 | mesure 43800/60000 balayages | 32909.8 s
+chaîne 2/2 | mesure 44000/60000 balayages | 32941.7 s
+chaîne 2/2 | mesure 44200/60000 balayages | 32977.8 s
+chaîne 2/2 | mesure 44400/60000 balayages | 33008.4 s
+chaîne 2/2 | mesure 44600/60000 balayages | 33039.3 s
+chaîne 2/2 | mesure 44800/60000 balayages | 33070.1 s
+chaîne 2/2 | mesure 45000/60000 balayages | 33100.4 s
+chaîne 2/2 | mesure 45200/60000 balayages | 33130.2 s
+chaîne 2/2 | mesure 45400/60000 balayages | 33160.0 s
+chaîne 2/2 | mesure 45600/60000 balayages | 33189.5 s
+chaîne 2/2 | mesure 45800/60000 balayages | 33221.4 s
+chaîne 2/2 | mesure 46000/60000 balayages | 33252.4 s
+chaîne 2/2 | mesure 46200/60000 balayages | 33282.7 s
+chaîne 2/2 | mesure 46400/60000 balayages | 33314.2 s
+chaîne 2/2 | mesure 46600/60000 balayages | 33344.8 s
+chaîne 2/2 | mesure 46800/60000 balayages | 33376.0 s
+chaîne 2/2 | mesure 47000/60000 balayages | 33406.8 s
+chaîne 2/2 | mesure 47200/60000 balayages | 33437.7 s
+chaîne 2/2 | mesure 47400/60000 balayages | 33469.2 s
+chaîne 2/2 | mesure 47600/60000 balayages | 33499.6 s
+chaîne 2/2 | mesure 47800/60000 balayages | 33531.0 s
+chaîne 2/2 | mesure 48000/60000 balayages | 33562.5 s
+chaîne 2/2 | mesure 48200/60000 balayages | 33593.6 s
+chaîne 2/2 | mesure 48400/60000 balayages | 33624.8 s
+chaîne 2/2 | mesure 48600/60000 balayages | 33655.4 s
+chaîne 2/2 | mesure 48800/60000 balayages | 33686.4 s
+chaîne 2/2 | mesure 49000/60000 balayages | 33716.9 s
+chaîne 2/2 | mesure 49200/60000 balayages | 33748.0 s
+chaîne 2/2 | mesure 49400/60000 balayages | 33778.5 s
+chaîne 2/2 | mesure 49600/60000 balayages | 33809.4 s
+chaîne 2/2 | mesure 49800/60000 balayages | 33840.3 s
+chaîne 2/2 | mesure 50000/60000 balayages | 33871.3 s
+chaîne 2/2 | mesure 50200/60000 balayages | 33902.8 s
+chaîne 2/2 | mesure 50400/60000 balayages | 33933.6 s
+chaîne 2/2 | mesure 50600/60000 balayages | 33964.2 s
+chaîne 2/2 | mesure 50800/60000 balayages | 33995.0 s
+chaîne 2/2 | mesure 51000/60000 balayages | 34025.6 s
+chaîne 2/2 | mesure 51200/60000 balayages | 34056.3 s
+chaîne 2/2 | mesure 51400/60000 balayages | 34087.4 s
+chaîne 2/2 | mesure 51600/60000 balayages | 34118.3 s
+chaîne 2/2 | mesure 51800/60000 balayages | 34149.4 s
+chaîne 2/2 | mesure 52000/60000 balayages | 34181.0 s
+chaîne 2/2 | mesure 52200/60000 balayages | 34210.6 s
+chaîne 2/2 | mesure 52400/60000 balayages | 34240.4 s
+chaîne 2/2 | mesure 52600/60000 balayages | 34270.5 s
+chaîne 2/2 | mesure 52800/60000 balayages | 34300.2 s
+chaîne 2/2 | mesure 53000/60000 balayages | 34329.8 s
+chaîne 2/2 | mesure 53200/60000 balayages | 34359.1 s
+chaîne 2/2 | mesure 53400/60000 balayages | 34388.7 s
+chaîne 2/2 | mesure 53600/60000 balayages | 34418.0 s
+chaîne 2/2 | mesure 53800/60000 balayages | 34447.7 s
+chaîne 2/2 | mesure 54000/60000 balayages | 34477.6 s
+chaîne 2/2 | mesure 54200/60000 balayages | 34507.1 s
+chaîne 2/2 | mesure 54400/60000 balayages | 34536.6 s
+chaîne 2/2 | mesure 54600/60000 balayages | 34566.4 s
+chaîne 2/2 | mesure 54800/60000 balayages | 34596.1 s
+chaîne 2/2 | mesure 55000/60000 balayages | 34625.6 s
+chaîne 2/2 | mesure 55200/60000 balayages | 34655.3 s
+chaîne 2/2 | mesure 55400/60000 balayages | 34684.7 s
+chaîne 2/2 | mesure 55600/60000 balayages | 34717.8 s
+chaîne 2/2 | mesure 55800/60000 balayages | 34747.6 s
+chaîne 2/2 | mesure 56000/60000 balayages | 34777.0 s
+chaîne 2/2 | mesure 56200/60000 balayages | 34806.5 s
+chaîne 2/2 | mesure 56400/60000 balayages | 34836.4 s
+chaîne 2/2 | mesure 56600/60000 balayages | 34865.9 s
+chaîne 2/2 | mesure 56800/60000 balayages | 34895.0 s
+chaîne 2/2 | mesure 57000/60000 balayages | 34924.5 s
+chaîne 2/2 | mesure 57200/60000 balayages | 34954.1 s
+chaîne 2/2 | mesure 57400/60000 balayages | 34983.8 s
+chaîne 2/2 | mesure 57600/60000 balayages | 35013.1 s
+chaîne 2/2 | mesure 57800/60000 balayages | 35042.8 s
+chaîne 2/2 | mesure 58000/60000 balayages | 35072.5 s
+chaîne 2/2 | mesure 58200/60000 balayages | 35102.7 s
+chaîne 2/2 | mesure 58400/60000 balayages | 35134.1 s
+chaîne 2/2 | mesure 58600/60000 balayages | 35167.8 s
+chaîne 2/2 | mesure 58800/60000 balayages | 35199.8 s
+chaîne 2/2 | mesure 59000/60000 balayages | 35231.7 s
+chaîne 2/2 | mesure 59200/60000 balayages | 35263.3 s
+chaîne 2/2 | mesure 59400/60000 balayages | 35293.1 s
+chaîne 2/2 | mesure 59600/60000 balayages | 35322.6 s
+chaîne 2/2 | mesure 59800/60000 balayages | 35352.3 s
+chaîne 2/2 | mesure 60000/60000 balayages | 35382.0 s
+L12 complete: archives validated, figures and both size comparisons generated.

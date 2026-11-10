@@ -1,0 +1,171 @@
+\subsection{Partie 4 -- Chauffage et refroidissement : comparaison des tailles}
+
+\label{sec:cycles-tailles}
+
+Les cycles séquentiels additionnels conservent le protocole L6 : 46 températures dans chaque sens, deux trajectoires indépendantes, 6000 balayages écartés puis 30000 mesurés par palier, pas 10 et aucun échange de répliques. Les états sont transmis sans réinitialisation du chauffage au refroidissement. Chaque palier achevé est sauvegardé pour permettre une reprise exacte. Les tailles sont comparées à même budget de balayages, ce qui ne garantit pas un même effectif indépendant.
+
+\fig{croise_10_cycles_global}{1}{Superposition des cycles chauffage/refroidissement L6, L9, L12 entre 1000 et 1100 K : couleurs pour les tailles et triangles opposés pour les deux sens du parcours.}
+
+\begin{center}\small\begin{tabular}{lrrrr}\toprule
+
+Taille & Pic chauffage (K) & Pic retour (K) & Paliers insuffisants aller & retour\\\midrule
+
+L6 & 1050 & 1055 & 9 & 10\\
+
+L9 & 1055 & 1055 & 5 & 5\\
+
+L12 & 1055 & 1050 & 2 & 2\\
+
+\bottomrule\end{tabular}\end{center}
+
+Le plus grand écart de moyenne $\Delta q=q_\downarrow-q_\uparrow$ sur les températures mesurées vaut L6 : $\Delta q=-0.068$ à 1050 K; L9 : $\Delta q=0.080$ à 1050 K; L12 : $\Delta q=-0.469$ à 1050 K.
+
+Ces extrêmes sont sélectionnés après inspection de la grille et n’ont pas un statut de test statistique. Les différences appariées par trajectoire restent disponibles dans chaque \texttt{paired\_differences.csv}. Les deux trajectoires d’un même volume sont indépendantes ; leurs deux branches ne le sont pas, et les volumes ne sont pas appariés configuration par configuration.
+
+Une évolution de l’écart des branches avec L peut associer une barrière plus coûteuse et une relaxation moins complète. Les paliers signalés insuffisants empêchent de transformer ces boucles en coexistence d’équilibre, en spinodales expérimentales ou en taux de nucléation. L’acceptation globale Au--Cu ne constitue pas une dynamique de diffusion locale. La comparaison aux productions canoniques se fait avec ces réserves de protocole.
+
+\fig{croise_11_cycles_diagnostics}{1}{Écarts appariés entre branches pour chaque taille et contrôles ESS/R-hat. La dispersion entre deux trajectoires ne constitue pas un test robuste de significativité.}
+
+\subsubsection{L9 terminé : distinguer accord des maxima et équilibre des branches}
+
+Les 184 paliers L9 sont achevés. Les contrôles des énergies, de composition, des neuf observables et de continuité entre paliers passent. Le maximum des fluctuations est à 1055 K dans les deux sens, comme dans la production canonique L9. Cet accord porte sur une case de la grille de 5 K ; il ne démontre ni disparition de toute mémoire ni équilibre complet.
+
+\fig{croise_12_cycle_L9_reference}{1}{À L9 fixé, superposition de la production canonique et des branches séquentielles. Les différences de moyennes et de réponses se lisent avec leurs erreurs et les diagnostics.}
+
+\begin{center}\small\begin{tabular}{llrrrr}\toprule
+
+Protocole L9 & $T$ (K) & $\langle q\rangle$ & SE$(q)$ & $c_V^{\rm fluct}/k_B$ & ESS\\\midrule
+
+Canonique & 1050 & 0.661 & 0.046 & 13.63 & 80.4\\
+
+Chauffage & 1050 & 0.598 & 0.158 & 11.81 & 124.7\\
+
+Retour & 1050 & 0.677 & 0.038 & 12.20 & 24.4\\
+
+Canonique & 1055 & 0.367 & 0.034 & 17.68 & 37.0\\
+
+Chauffage & 1055 & 0.304 & 0.052 & 14.56 & 14.5\\
+
+Retour & 1055 & 0.333 & 0.067 & 16.19 & 14.3\\
+
+\bottomrule\end{tabular}\end{center}
+
+À 1050 K, le refroidissement L9 reste en moyenne plus ordonné que le chauffage : $\Delta q=+0.0796$. Mais l’erreur de dispersion entre les deux cycles appariés vaut 0.1538, supérieure à cet écart. L6 donne au même point un écart négatif, $-0.0684$, avec dispersion 0.0557. Le changement de signe interdit d’affirmer que l’hystérésis augmente régulièrement avec le volume. Il peut refléter les temps de résidence, les passages aléatoires entre populations et le faible nombre de répétitions. On ne déduit aucune largeur d’hystérésis significative de ces seuls extrêmes.
+
+Le lien avec l’énergie est cohérent : à 1050 K en L9, le retour a un $u$ inférieur de 0.001924 eV/atome, $\Delta\alpha_1=-0.00861$ et $\Delta\alpha_2=+0.05137$. La population plus ordonnée favorise donc les voisinages de $L1_2$ et abaisse l’énergie. L’identité énergie--Cowley expliquée dans la partie précédente relie ces écarts : ils ne constituent pas des confirmations indépendantes.
+
+\subsubsection{Pourquoi les contrôles critiques ne permettent pas une conclusion plus forte}
+
+\begin{center}\small\begin{tabular}{llrrrr}\toprule
+
+Branche L9 & $T$ (K) & ESS & R-hat max & Blocs/chaîne & Écart demi-séries\\\midrule
+
+Chauffage & 1045 & 56.3 & 1.020 & 16 & 0.98\\
+
+Chauffage & 1050 & 124.7 & 1.291 & 5 & 1.32\\
+
+Chauffage & 1055 & 14.5 & 1.098 & 5 & 1.39\\
+
+Chauffage & 1060 & 88.6 & 1.005 & 37 & 1.20\\
+
+Retour & 1045 & 203.9 & 1.094 & 5 & 1.09\\
+
+Retour & 1050 & 24.4 & 1.042 & 9 & 1.23\\
+
+Retour & 1055 & 14.3 & 1.112 & 4 & 1.19\\
+
+Retour & 1060 & 296.1 & 1.086 & 19 & 1.25\\
+
+\bottomrule\end{tabular}\end{center}
+
+Au chauffage à 1050 K, R-hat atteint environ 1.29 ; au maximum de 1055 K, l’ESS est inférieur à 15 dans les deux branches. Inversement, un ESS additionné supérieur à 200 au retour à 1060 K coexiste avec R-hat supérieur à 1.08 : un critère isolé ne suffit pas. La présence de seulement cinq températures signalées par branche L9, contre neuf et dix pour L6, ne mesure pas une meilleure précision au maximum ; la fenêtre affectée est plus étroite mais le ralentissement y est sévère. La production canonique L9 reste elle aussi insuffisante près de son maximum.
+
+\subsubsection{Trajectoires individuelles, variantes et régimes froid/chaud}
+
+\begin{center}\small\begin{tabular}{lrrrr}\toprule
+
+À 1050 K, L9 & $q_\uparrow$ & $q_\downarrow$ & $\Delta q$ & Fraction $q>0.5$ aller/retour\\\midrule
+
+Cycle 1 & 0.756 & 0.682 & -0.074 & 0.974/0.854\\
+
+Cycle 2 & 0.439 & 0.672 & +0.233 & 0.472/0.830\\
+
+\bottomrule\end{tabular}\end{center}
+
+Le premier cycle donne ainsi un écart de signe opposé au second. Le seuil $q>0.5$ sert uniquement à décrire les populations visitées ; il n’est pas une frontière de phase ajustée. Leur pondération explique une grande partie du désaccord de l’ordre moyen, sans mettre en cause le label géométrique $\mu$.
+
+\fig{cycle_L9_sous_reseaux}{1}{Occupations L9 séparées par trajectoire et par sens. Les moyennes ne doivent pas être fusionnées en un instantané ; au retour, la seconde trajectoire sélectionne une autre variante.}
+
+À 300 K, la première trajectoire retrouve la variante 0 ; la seconde part de la variante 2 et finit sur la variante 3. Dans les deux cas $q=1$ à la précision numérique : changer de sous-réseau privilégié n’est pas perdre l’ordre. Le diagnostic insuffisant à 500 K appartient à un autre régime : la moyenne de $q$ reste supérieure à 0.9995 dans chaque trajectoire, avec seulement six ou sept valeurs distinctes d’énergie. La statistique des excitations rares est limitée ; ce signalement ne localise pas une seconde transition.
+
+À 1300 K, les branches L9 coïncident pratiquement ($q\simeq0.0624$, $\alpha_1\simeq-0.152$, $\alpha_2\simeq0.153$), avec des diagnostics favorables. À 4000 K, $q\simeq0.0354$, contre environ 0.0657 pour L6 : la diminution suit le biais de norme finie décrit dans la partie 3. Les ordres locaux restent non nuls. Les zones éloignées du pic sont donc plus reproductibles entre protocoles que la pondération des populations critiques.
+
+\begin{oral}{Cycle L9 -- Quelle conclusion retenir après le calcul ?}
+
+\begin{itemize}
+
+\item \textbf{Un résultat terminé n’est pas un équilibre garanti.} Les archives sont complètes et cohérentes ; les deux branches placent leur maximum à 1055 K. Mais les longues corrélations et les différences entre trajectoires limitent les valeurs quantitatives au pic. Une barre d’erreur conditionnelle ne corrige pas un temps de résidence mal exploré.
+
+\item \textbf{La mémoire apparente doit être répétée.} À 1050 K, les deux trajectoires donnent des écarts de signes opposés. Il faut davantage de trajectoires et des paliers critiques plus longs avant d’attribuer un sens et une largeur robustes à la boucle. Ce protocole à échanges globaux n’établit pas une vitesse physique de nucléation.
+
+\end{itemize}\end{oral}
+
+\subsubsection{L12 achevé : une mémoire plus marquée, des poids d’équilibre encore incertains}
+
+Les 184 paliers L12 sont achevés et validés techniquement. Le maximum de variance est à 1055 K au chauffage et 1050 K au refroidissement. La production avec échanges de répliques présente son maximum à 1052.5 K, avec une grille deux fois plus fine et deux fois plus de balayages. Ces trois nombres désignent des critères observés dans des protocoles différents. Le milieu des deux maxima de branche n’est pas un nouvel estimateur validé de la transition, même s’il coïncide ici avec le maximum de la production à répliques.
+
+\fig{croise_13_cycle_L12_reference}{1}{L12 à taille fixée : comparaison de la production à répliques et des deux branches. Les points à 1052.5 K appartiennent uniquement à la grille canonique.}
+
+\begin{center}\small\begin{tabular}{llrrrr}\toprule
+
+Protocole L12 & $T$ (K) & $\langle q\rangle$ & SE$(q)$ & ESS & R-hat max\\\midrule
+
+Répliques & 1050 & 0.695 & 0.071 & 2236.8 & 1.064\\
+
+Chauffage & 1050 & 0.772 & 0.002 & 373.0 & 1.008\\
+
+Retour & 1050 & 0.302 & 0.178 & 20.0 & 1.452\\
+
+Répliques & 1055 & 0.111 & 0.018 & 8983.8 & 1.004\\
+
+Chauffage & 1055 & 0.310 & 0.226 & 464.6 & 1.442\\
+
+Retour & 1055 & 0.083 & 0.002 & 944.8 & 1.002\\
+
+\bottomrule\end{tabular}\end{center}
+
+À 1050 K, le chauffage reste presque entièrement ordonné ($\langle q\rangle=0.772$), tandis que le retour mélange des populations et donne 0.302. Les deux trajectoires apparient chacune leurs branches :
+
+\begin{center}\small\begin{tabular}{lrrrr}\toprule
+
+L12, 1050 K & $q_\uparrow$ & $q_\downarrow$ & $\Delta q$ & Fraction $q>0.5$ aller/retour\\\midrule
+
+Trajectoire 1 & 0.771 & 0.480 & -0.291 & 0.996/0.566\\
+
+Trajectoire 2 & 0.772 & 0.124 & -0.648 & 1.000/0.052\\
+
+\bottomrule\end{tabular}\end{center}
+
+Les deux écarts L12 ont le même signe, contrairement au cas L9 à cette température. Leur moyenne est $\Delta q=-0.4695$, avec une erreur de dispersion entre seulement deux trajectoires de 0.1781. C’est une mémoire de parcours nette dans les trajectoires observées ; cela ne donne ni un intervalle de confiance fiable à 95\,\%, ni une loi de taille. Avec deux répétitions, il ne faut pas transformer automatiquement « moyenne $\pm2$ SE » en intervalle de confiance.
+
+L’écart énergétique est cohérent : au retour à 1050 K, $\Delta u=+0.01048$ eV/atome, $\Delta\alpha_1=+0.04695$ et $\Delta\alpha_2=-0.27893$. L’état moyen de retour est donc moins ordonné et plus coûteux énergétiquement. Cette différence de moyennes hors équilibre n’est pas une chaleur latente mesurée.
+
+\fig{croise_14_cycle_L12_populations}{1}{Traces et distributions L12 à 1050 et 1055 K. Un écart de moyennes peut provenir de temps de résidence différents dans les populations ; les données ne sont pas fusionnées.}
+
+Au chauffage à 1055 K, une trajectoire donne $\langle q\rangle\simeq0.536$, l’autre 0.084. R-hat atteint environ 1.44. Au retour à 1050 K, l’ESS est proche de 20 et R-hat de 1.45. Dans ces deux paliers, le choix des blocs est plafonné à 750 mesures, avec seulement quatre blocs par chaîne : l’incertitude conditionnelle elle-même reste fragile.
+
+Inversement, le chauffage à 1050 K et le retour à 1055 K passent les diagnostics locaux, tout en restant presque entièrement dans des populations opposées. Une petite erreur et R-hat proche de 1 signifient alors que les trajectoires se ressemblent \emph{dans la population visitée}. Ils ne prouvent pas que son poids canonique soit correct. Le passage de neuf/dix températures signalées en L6 à seulement deux par branche en L12 ne prouve donc pas une meilleure exploration de la transition.
+
+À 300 K, les deux trajectoires retrouvent $q=1$ : la première passe de la variante 0 à la variante 3, la seconde conserve la variante 2. Au chaud, les branches redeviennent proches et $q\simeq0.023$ à 4000 K, ce qui complète la tendance de taille finie observée en L6/L9. Les GIF restent ceux de L6, et les longueurs L12 de la partie 3 viennent des captures canoniques, pas d’un nouveau GIF ou d’une analyse spatiale du cycle.
+
+\begin{oral}{Bilan final -- Que permettent réellement les trois tailles ?}
+
+\begin{itemize}
+
+\item \textbf{Résultats solides dans le modèle.} Le fondamental et sa normalisation sont établis ; l’ordre global diminue au chaud, les préférences locales persistent et le résidu de norme décroît avec le volume. Les protocoles situent la transformation dans la même zone de 1050--1055 K.
+
+\item \textbf{Limite principale restante.} Les grandes boîtes ressèrent la transition et accentuent la dépendance au parcours, mais les poids des populations ne sont pas assez bien contrôlés au pic. Il faut davantage de trajectoires, des paliers critiques plus longs et des vérifications du mélange avant une extrapolation de température ou une largeur d’hystérésis quantitative.
+
+\item \textbf{Portée physique.} Augmenter L ne rétablit ni vibrations, ni dilatation, ni diffusion par lacunes. Une longueur spectrale n’est pas un rayon de germe ; un balayage n’est pas une seconde ; les maxima du modèle ne sont pas ceux du matériau réel.
+
+\end{itemize}\end{oral}

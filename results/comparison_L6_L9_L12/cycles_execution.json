@@ -1,0 +1,13 @@
+{
+  "state": "complete",
+  "pid": 4784,
+  "updated_at": "2026-11-10T02:24:01.556981+01:00",
+  "planned_sizes": [
+    12
+  ],
+  "completed_sizes": [
+    6,
+    9,
+    12
+  ]
+}

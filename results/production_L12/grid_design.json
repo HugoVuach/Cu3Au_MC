@@ -1,0 +1,282 @@
+{
+  "source": "configs\\production_L9.json",
+  "source_results": "results/production_L9/summary.json",
+  "subdivisions": [
+    {
+      "low_K": 300,
+      "high_K": 500,
+      "L9_mean_acceptance": 0.9723333333333333,
+      "subintervals": 1
+    },
+    {
+      "low_K": 500,
+      "high_K": 650,
+      "L9_mean_acceptance": 0.073,
+      "subintervals": 4
+    },
+    {
+      "low_K": 650,
+      "high_K": 800,
+      "L9_mean_acceptance": 0.0036666666666666666,
+      "subintervals": 5
+    },
+    {
+      "low_K": 800,
+      "high_K": 900,
+      "L9_mean_acceptance": 0.016333333333333335,
+      "subintervals": 4
+    },
+    {
+      "low_K": 900,
+      "high_K": 950,
+      "L9_mean_acceptance": 0.14616666666666667,
+      "subintervals": 3
+    },
+    {
+      "low_K": 950,
+      "high_K": 980,
+      "L9_mean_acceptance": 0.32133333333333336,
+      "subintervals": 2
+    },
+    {
+      "low_K": 980,
+      "high_K": 990,
+      "L9_mean_acceptance": 0.7186666666666667,
+      "subintervals": 1
+    },
+    {
+      "low_K": 990,
+      "high_K": 995,
+      "L9_mean_acceptance": 0.8623333333333333,
+      "subintervals": 1
+    },
+    {
+      "low_K": 995,
+      "high_K": 1000,
+      "L9_mean_acceptance": 0.8521666666666667,
+      "subintervals": 1
+    },
+    {
+      "low_K": 1000,
+      "high_K": 1005,
+      "L9_mean_acceptance": 0.846,
+      "subintervals": 1
+    },
+    {
+      "low_K": 1005,
+      "high_K": 1010,
+      "L9_mean_acceptance": 0.8436666666666667,
+      "subintervals": 1
+    },
+    {
+      "low_K": 1010,
+      "high_K": 1015,
+      "L9_mean_acceptance": 0.8431666666666666,
+      "subintervals": 1
+    },
+    {
+      "low_K": 1015,
+      "high_K": 1020,
+      "L9_mean_acceptance": 0.8486666666666667,
+      "subintervals": 1
+    },
+    {
+      "low_K": 1020,
+      "high_K": 1025,
+      "L9_mean_acceptance": 0.8323333333333334,
+      "subintervals": 1
+    },
+    {
+      "low_K": 1025,
+      "high_K": 1030,
+      "L9_mean_acceptance": 0.8318333333333334,
+      "subintervals": 1
+    },
+    {
+      "low_K": 1030,
+      "high_K": 1035,
+      "L9_mean_acceptance": 0.8275,
+      "subintervals": 2
+    },
+    {
+      "low_K": 1035,
+      "high_K": 1040,
+      "L9_mean_acceptance": 0.8108333333333333,
+      "subintervals": 2
+    },
+    {
+      "low_K": 1040,
+      "high_K": 1045,
+      "L9_mean_acceptance": 0.7805,
+      "subintervals": 2
+    },
+    {
+      "low_K": 1045,
+      "high_K": 1050,
+      "L9_mean_acceptance": 0.6631666666666667,
+      "subintervals": 2
+    },
+    {
+      "low_K": 1050,
+      "high_K": 1055,
+      "L9_mean_acceptance": 0.4661666666666666,
+      "subintervals": 2
+    },
+    {
+      "low_K": 1055,
+      "high_K": 1060,
+      "L9_mean_acceptance": 0.6499999999999999,
+      "subintervals": 2
+    },
+    {
+      "low_K": 1060,
+      "high_K": 1065,
+      "L9_mean_acceptance": 0.8069999999999999,
+      "subintervals": 2
+    },
+    {
+      "low_K": 1065,
+      "high_K": 1070,
+      "L9_mean_acceptance": 0.8756666666666667,
+      "subintervals": 2
+    },
+    {
+      "low_K": 1070,
+      "high_K": 1075,
+      "L9_mean_acceptance": 0.8976666666666666,
+      "subintervals": 2
+    },
+    {
+      "low_K": 1075,
+      "high_K": 1080,
+      "L9_mean_acceptance": 0.8986666666666667,
+      "subintervals": 2
+    },
+    {
+      "low_K": 1080,
+      "high_K": 1085,
+      "L9_mean_acceptance": 0.9045000000000001,
+      "subintervals": 1
+    },
+    {
+      "low_K": 1085,
+      "high_K": 1090,
+      "L9_mean_acceptance": 0.9121666666666667,
+      "subintervals": 1
+    },
+    {
+      "low_K": 1090,
+      "high_K": 1095,
+      "L9_mean_acceptance": 0.9153333333333333,
+      "subintervals": 1
+    },
+    {
+      "low_K": 1095,
+      "high_K": 1100,
+      "L9_mean_acceptance": 0.9079999999999999,
+      "subintervals": 1
+    },
+    {
+      "low_K": 1100,
+      "high_K": 1105,
+      "L9_mean_acceptance": 0.9096666666666666,
+      "subintervals": 1
+    },
+    {
+      "low_K": 1105,
+      "high_K": 1110,
+      "L9_mean_acceptance": 0.9123333333333333,
+      "subintervals": 1
+    },
+    {
+      "low_K": 1110,
+      "high_K": 1115,
+      "L9_mean_acceptance": 0.9205,
+      "subintervals": 1
+    },
+    {
+      "low_K": 1115,
+      "high_K": 1120,
+      "L9_mean_acceptance": 0.9211666666666667,
+      "subintervals": 1
+    },
+    {
+      "low_K": 1120,
+      "high_K": 1140,
+      "L9_mean_acceptance": 0.6883333333333332,
+      "subintervals": 1
+    },
+    {
+      "low_K": 1140,
+      "high_K": 1170,
+      "L9_mean_acceptance": 0.5891666666666666,
+      "subintervals": 2
+    },
+    {
+      "low_K": 1170,
+      "high_K": 1200,
+      "L9_mean_acceptance": 0.6106666666666667,
+      "subintervals": 1
+    },
+    {
+      "low_K": 1200,
+      "high_K": 1250,
+      "L9_mean_acceptance": 0.4435,
+      "subintervals": 2
+    },
+    {
+      "low_K": 1250,
+      "high_K": 1300,
+      "L9_mean_acceptance": 0.486,
+      "subintervals": 2
+    },
+    {
+      "low_K": 1300,
+      "high_K": 1400,
+      "L9_mean_acceptance": 0.21150000000000002,
+      "subintervals": 3
+    },
+    {
+      "low_K": 1400,
+      "high_K": 1550,
+      "L9_mean_acceptance": 0.12383333333333332,
+      "subintervals": 3
+    },
+    {
+      "low_K": 1550,
+      "high_K": 1750,
+      "L9_mean_acceptance": 0.09716666666666667,
+      "subintervals": 4
+    },
+    {
+      "low_K": 1750,
+      "high_K": 2050,
+      "L9_mean_acceptance": 0.0625,
+      "subintervals": 4
+    },
+    {
+      "low_K": 2050,
+      "high_K": 2500,
+      "L9_mean_acceptance": 0.041999999999999996,
+      "subintervals": 4
+    },
+    {
+      "low_K": 2500,
+      "high_K": 3200,
+      "L9_mean_acceptance": 0.035333333333333335,
+      "subintervals": 4
+    },
+    {
+      "low_K": 3200,
+      "high_K": 4000,
+      "L9_mean_acceptance": 0.1125,
+      "subintervals": 3
+    }
+  ],
+  "heuristic": "5/4/3/2/1 subdivisions for L9 mean exchange acceptance below .01/.1/.3/.6/otherwise; at least 2 for 1030-1080 K",
+  "estimated_compute_hours": 7.209921035233392,
+  "notes": [
+    "No guaranteed equilibrium or acceptance target.",
+    "Changed temperature grid and sweep budget must be accounted for when comparing sizes."
+  ]
+}

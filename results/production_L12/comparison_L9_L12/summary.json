@@ -1,0 +1,95 @@
+{
+  "sizes": [
+    {
+      "L": 9,
+      "N": 2916,
+      "T_peak_grid_K": 1055.0,
+      "critical_diagnostics_ok": false,
+      "min_critical_ess": 37.04176489653888,
+      "max_critical_rhat": 1.0258509174760073,
+      "mean_swap_acceptance": 0.611,
+      "total_roundtrips": 0,
+      "spatial_capture_every": 100
+    },
+    {
+      "L": 12,
+      "N": 6912,
+      "T_peak_grid_K": 1052.5,
+      "critical_diagnostics_ok": false,
+      "min_critical_ess": 44.66176031392517,
+      "max_critical_rhat": 1.267918516692413,
+      "mean_swap_acceptance": 0.6133230337078652,
+      "total_roundtrips": 0,
+      "spatial_capture_every": 200
+    }
+  ],
+  "same_temperature_grid": false,
+  "common_temperatures_K": [
+    300,
+    500,
+    650,
+    800,
+    900,
+    950,
+    980,
+    990,
+    995,
+    1000,
+    1005,
+    1010,
+    1015,
+    1020,
+    1025,
+    1030,
+    1035,
+    1040,
+    1045,
+    1050,
+    1055,
+    1060,
+    1065,
+    1070,
+    1075,
+    1080,
+    1085,
+    1090,
+    1095,
+    1100,
+    1105,
+    1110,
+    1115,
+    1120,
+    1140,
+    1170,
+    1200,
+    1250,
+    1300,
+    1400,
+    1550,
+    1750,
+    2050,
+    2500,
+    3200,
+    4000
+  ],
+  "sweep_budgets": [
+    {
+      "burn_sweeps": 6000,
+      "sample_sweeps": 30000,
+      "sample_every": 10
+    },
+    {
+      "burn_sweeps": 12000,
+      "sample_sweeps": 60000,
+      "sample_every": 10
+    }
+  ],
+  "peak_shift_grid_K": -2.5,
+  "caveats": [
+    "Same sweep count does not imply the same effective sample count.",
+    "Two sizes do not establish a thermodynamic extrapolation.",
+    "Global exchanges, rigid lattice and fixed pair interactions are unchanged.",
+    "Spatial states are saved for larger sizes; dedicated L6 correlation data use a different sampling protocol.",
+    "Temperature grids and sweep budgets may differ; only actually measured points are drawn."
+  ]
+}

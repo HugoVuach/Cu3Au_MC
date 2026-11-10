@@ -1,0 +1,15 @@
+{
+  "state": "simulating",
+  "pid": 18368,
+  "updated_at": "2026-11-08T23:20:12.277978+01:00",
+  "config": "C:\\Users\\vuache_h\\Desktop\\perso\\Cu3Au_MC\\configs\\production_L12.json",
+  "L": 12,
+  "n_atoms": 6912,
+  "temperatures": 90,
+  "chain": 1,
+  "chains": 2,
+  "phase": "mesure",
+  "sweeps_done": 10800,
+  "sweeps_target": 60000,
+  "spatial_captures": 54
+}

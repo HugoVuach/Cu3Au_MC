@@ -48,7 +48,7 @@ def save_csv(path, rows):
         writer.writerows(rows)
 
 
-def campaign(cfg, output, progress=None):
+def campaign(cfg, output, progress=None, checkpoint=False, resume=False):
     out = Path(output)
     out.mkdir(parents=True, exist_ok=True)
     lat = build_lattice(cfg['L'])
@@ -57,7 +57,26 @@ def campaign(cfg, output, progress=None):
     n = lat.n
     all_samples, all_labels, diagnostics = [], [], []
     start = time.perf_counter()
+    previous_elapsed = 0.
+    if resume and not checkpoint:
+        raise ValueError('resume=True requires checkpoint=True.')
     for chain, seed in enumerate(cfg['seeds']):
+        destination = out/f'chain_{chain+1:02d}.npz'
+        store = None
+        if checkpoint:
+            from .checkpoints import ChainCheckpoints
+            store = ChainCheckpoints(out, chain, cfg, resume=resume)
+        if destination.exists():
+            if not resume or store is None:
+                raise FileExistsError(f'Existing chain: {destination}')
+            with np.load(destination, allow_pickle=False) as a:
+                store.validate(a)
+                all_samples.append(a['samples'].copy())
+                all_labels.append(a['labels'].copy())
+                diagnostics.append(json.loads(str(a['diagnostics_json'])))
+                previous_elapsed = max(previous_elapsed, float(a['elapsed_seconds']))
+            print(f'chaîne {chain+1} complète : archive réutilisée', flush=True)
+            continue
         rng = np.random.default_rng(seed)
         # Deux variantes différentes et, pour la seconde chaîne, départs chauds
         # désordonnés. Aux très basses T, un départ aléatoire serait piégé.
@@ -75,9 +94,37 @@ def campaign(cfg, output, progress=None):
         count_ok = np.zeros(nr-1, dtype=np.int64)
         count_n = np.zeros(nr-1, dtype=np.int64)
         local_ok = np.zeros(nr, dtype=np.int64)
-        for mode, length in [('equilibration', cfg['burn_sweeps']),
-                             ('mesure', cfg['sample_sweeps'])]:
-            done = 0
+        resume_mode, resume_done = 0, 0
+        restored = store.restore() if store is not None else None
+        if restored is not None:
+            states, energies = restored['states'], restored['energies']
+            labels = restored['replica_labels']
+            phase = int(restored['exchange_phase'])
+            rng.bit_generator.state = json.loads(str(restored['rng_state_json']))
+            records, lab_records = restored['records'], restored['lab_records']
+            burn_records = restored['burn_records']
+            spatial_states, spatial_sweeps = restored['spatial_states'], restored['spatial_sweeps']
+            count_ok, count_n, local_ok = restored['count_ok'], restored['count_n'], restored['local_ok']
+            resume_mode, resume_done = int(restored['mode_index']), int(restored['sweeps_done'])
+            previous_elapsed = max(previous_elapsed, float(restored['elapsed_seconds']))
+            check = np.array([energy_int(s, lat.neighbors) for s in states])
+            if (not np.array_equal(check, energies) or not np.all(states.sum(axis=1) == n//4)
+                    or not np.array_equal(np.sort(labels), np.arange(nr))):
+                raise ValueError('Checkpoint energy/composition/replica labels invalid.')
+            print(f'Reprise chaîne {chain+1}, phase {resume_mode}, balayage {resume_done}', flush=True)
+        elif store is not None:
+            store.save(states=states, energies=energies, labels=labels, phase=phase, rng=rng,
+                mode=0, done=0, count_ok=count_ok, count_n=count_n, local_ok=local_ok,
+                observations=np.empty((0, nr, 9)), record_labels=np.empty((0, nr), dtype=np.int32),
+                captures=np.empty((0, nr, n), dtype=np.int8), capture_sweeps=np.empty(0, dtype=int),
+                elapsed=previous_elapsed+time.perf_counter()-start)
+        for mode_index, (mode, length) in enumerate([('equilibration', cfg['burn_sweeps']),
+                                                    ('mesure', cfg['sample_sweeps'])]):
+            if mode_index < resume_mode:
+                continue
+            done = resume_done if mode_index == resume_mode else 0
+            if store is not None and progress is not None:
+                progress(chain+1, mode, done, length, len(spatial_states))
             while done < length:
                 chunk = min(cfg['chunk_sweeps'], length-done)
                 capture = cfg.get('store_states_every', 0) if mode == 'mesure' else 0
@@ -109,6 +156,14 @@ def campaign(cfg, output, progress=None):
                 if capture and done % capture == 0:
                     spatial_states.append(states.copy())
                     spatial_sweeps.append(done)
+                if store is not None:
+                    captured = bool(capture and done % capture == 0)
+                    store.save(states=states, energies=energies, labels=labels, phase=phase,
+                        rng=rng, mode=mode_index, done=done, count_ok=count_ok, count_n=count_n,
+                        local_ok=local_ok, observations=rec, record_labels=lab,
+                        captures=states[None, ...] if captured else np.empty((0, nr, n), dtype=np.int8),
+                        capture_sweeps=np.array([done], dtype=int) if captured else np.empty(0, dtype=int),
+                        elapsed=previous_elapsed+time.perf_counter()-start)
                 if progress is not None:
                     progress(chain+1, mode, done, length, len(spatial_states))
                 print(f'chaîne {chain+1}/{len(cfg["seeds"])} | {mode} '
@@ -122,14 +177,6 @@ def campaign(cfg, output, progress=None):
             extra = dict(spatial_states=np.array(spatial_states),
                          spatial_sample_sweeps=np.array(spatial_sweeps),
                          spatial_capture_every=cfg['store_states_every'])
-        destination = out/f'chain_{chain+1:02d}.npz'
-        temporary = destination.with_suffix('.npz.tmp')
-        with temporary.open('wb') as stream:
-            np.savez_compressed(stream, samples=samples,
-                                burn_samples=np.concatenate(burn_records), labels=trace,
-                                final_states=states, temperatures=temperatures,
-                                xyz=lat.xyz, sublattice=lat.sublattice, **extra)
-        temporary.replace(destination)
         # Nombre de trajets froid -> chaud -> froid, par identité de réplique.
         roundtrips = np.zeros(nr, dtype=int)
         stage = np.zeros(nr, dtype=int)
@@ -149,6 +196,22 @@ def campaign(cfg, output, progress=None):
             'roundtrips': roundtrips.tolist(),
             'energy_checks': 'exact integer agreement after every chunk',
             'composition_checks': 'N_Au=N/4 after every chunk'})
+        if store is not None:
+            extra.update(checkpoint_schema=1, config_json=store.config,
+                         trajectory_signature=store.signature,
+                         diagnostics_json=json.dumps(diagnostics[-1]),
+                         elapsed_seconds=previous_elapsed+time.perf_counter()-start)
+        temporary = destination.with_suffix('.npz.tmp')
+        with temporary.open('wb') as stream:
+            np.savez_compressed(stream, samples=samples,
+                                burn_samples=np.concatenate(burn_records), labels=trace,
+                                final_states=states, temperatures=temperatures,
+                                xyz=lat.xyz, sublattice=lat.sublattice, **extra)
+            stream.flush()
+            if store is not None:
+                import os
+                os.fsync(stream.fileno())
+        temporary.replace(destination)
     samples = np.array(all_samples)
     rows = summarize(samples, temperatures, n, bootstrap=cfg.get('bootstrap', 200))
     save_csv(out/'observables.csv', rows)
@@ -166,7 +229,7 @@ def campaign(cfg, output, progress=None):
         'critical_window_rows': critical_indices,
         'ordered_energy_eV_atom': -3.813,
         'random_limit_eV_atom_finite_N': random_energy_limit(n),
-        'elapsed_seconds': time.perf_counter()-start,
+        'elapsed_seconds': previous_elapsed+time.perf_counter()-start,
         'runtime': {'python': platform.python_version(), 'platform': platform.platform(),
                     'numpy': np.__version__},
         'chains': diagnostics,

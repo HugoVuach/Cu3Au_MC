@@ -1,0 +1,6024 @@
+Modélisation et simulation numérique
+Transition ordre–désordre de Cu3Au
+Étude Monte-Carlo sur réseau rigide : méthode, résultats et limites
+Système étudié : 63 mailles, N = 864 sites, cAu = 1/4, interactions de premiers et seconds voisins.
+Résultat exact : u0 = −3.813 eV/atome.
+Maximum de la production canonique L6 : T ∗
+CV = 1050 K sur la grille.
+Diagnostics de cette production près du maximum : critères locaux satisfaits.
+Complément achevé : comparaison croisée L = 6, 9, 12 en section 10.3. Les diagnostics L9 et L12 près du pic
+restent insuffisants ; le maximum canonique L12 observé vaut 1052.5 K. Les cycles chauffage–refroidissement sont
+achevés pour L = 6, 9, 12.
+Traçabilité. Tous les résultats numériques, tableaux et figures de ce rapport proviennent des fichiers du dossier
+de résultats associé. Le code recalcule les résultats à partir des paramètres du modèle ; aucune valeur de transition
+n’est imposée à la simulation.
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+Table des matières
+Cadre du projet et conventions
+3
+Méthodologie et portée des mesures
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3
+1
+Question 1 – Réseau, énergie et algorithme de Metropolis
+4
+1.1
+Construction exacte de la géométrie
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4
+1.2
+Énergie et tendance à l’ordre
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4
+1.3
+Échanges à composition fixée et variation locale . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+6
+1.4
+Balance détaillée . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+6
+2
+Question 2 – Ordre à courte portée : paramètres de Cowley
+6
+3
+Question 3 – Ordre à longue portée et variantes équivalentes
+8
+4
+Question 4 – Vérifications du programme
+10
+4.1
+Création d’une paire d’antisites . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+10
+4.2
+Contrôles indépendants
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+11
+5
+Question 5 – Énergie de cohésion à température nulle
+11
+5.1
+Preuve que L12 est un état fondamental . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+11
+6
+Question 6 – Équilibrer à différentes températures
+12
+6.1
+Échanges de répliques et mesure canonique
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+12
+6.2
+Protocole réellement exécuté
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+12
+7
+Question 7 – Grandeurs physiques et incertitudes
+14
+7.1
+Capacité calorifique et fluctuations d’ordre . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+14
+7.2
+Autocorrélation, erreurs et comparaison des chaînes . . . . . . . . . . . . . . . . . . . . . . . . . .
+15
+7.3
+Vérification de la limite de haute température . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+17
+8
+Question 8 – Repérer la transition et comparer au champ moyen
+17
+8.1
+Résultat Monte-Carlo et résolution de la grille . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+17
+8.2
+Incertitude statistique du maximum et concordance des indices . . . . . . . . . . . . . . . . . . .
+17
+8.3
+Estimation analytique de Bragg-Williams
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+19
+9
+Question 9 – Discussion des résultats et limites
+21
+9.1
+Comparaison critique avec Cu3Au réel . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+21
+9.2
+Approximations statistiques et spatiales à ne pas confondre
+. . . . . . . . . . . . . . . . . . . . .
+22
+9.3
+Ce que les tailles supplémentaires permettent de tester . . . . . . . . . . . . . . . . . . . . . . . .
+22
+9.4
+Conclusion physique . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+22
+10 Bonus – Histoire thermique, visualisation et corrélations spatiales
+23
+10.1 Partie 1 – Cycle thermique et visualisation des configurations . . . . . . . . . . . . . . . . . . . .
+23
+10.2 Partie 2 – Longueur de corrélation et analyse de Fourier . . . . . . . . . . . . . . . . . . . . . . .
+29
+10.3 Partie 3 – Analyse croisée et superpositions L6/L9/L12
+. . . . . . . . . . . . . . . . . . . . . . .
+33
+10.4 Partie 4 – Chauffage et refroidissement : comparaison des tailles
+. . . . . . . . . . . . . . . . . .
+41
+A Correspondance entre les questions et les fichiers
+47
+B Algorithme
+48
+B.1
+Notations, données et niveaux de boucle . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+48
+B.2 Algorithme 1 : préparer la géométrie et les configurations
+. . . . . . . . . . . . . . . . . . . . . .
+48
+Réseau CFC rigide / ensemble canonique
+1
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+B.3 Algorithme 2 : organiser équilibration et production
+. . . . . . . . . . . . . . . . . . . . . . . . .
+49
+B.4 Algorithme 3 : boucles à l’intérieur d’un segment . . . . . . . . . . . . . . . . . . . . . . . . . . .
+50
+B.5 Algorithme 4 : proposition Au–Cu et test de Metropolis . . . . . . . . . . . . . . . . . . . . . . .
+50
+B.6 Algorithme 5 : échange de répliques voisines . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+51
+B.7 Algorithme 6 : observables d’une configuration instantanée . . . . . . . . . . . . . . . . . . . . . .
+51
+B.8 Algorithme 7 : moyennes et fluctuations à température fixe
+. . . . . . . . . . . . . . . . . . . . .
+52
+B.9 Algorithme 8 : autocorrélation, incertitudes et diagnostics . . . . . . . . . . . . . . . . . . . . . .
+53
+B.10 Chronologie concrète avec les paramètres de production
+. . . . . . . . . . . . . . . . . . . . . . .
+54
+B.11 Validation finale, champ moyen et coût du calcul . . . . . . . . . . . . . . . . . . . . . . . . . . .
+54
+B.12 Version en pseudocode . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+55
+Réseau CFC rigide / ensemble canonique
+2
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+Cadre du projet et conventions
+Le projet étudie le désordre chimique d’un alliage Cu3Au. Les sites du réseau ne se déplacent pas : l’état d’un
+site est seulement son occupation par Au ou Cu. La composition et le volume sont fixés. Les températures sont
+en kelvins, les énergies en eV et kB = 8.617333262 × 10−5 eV/K. Dans le code, si = 1 désigne Au et si = 0 Cu.
+Une paire non orientée est comptée une seule fois. Le paramètre a est le côté de la maille conventionnelle. Les
+longueurs sont données en unités de a ; une conversion en nanomètres demanderait une valeur physique de a, qui
+n’est pas imposée dans cette simulation.
+Coquille
+Distance
+Coordination
+Énergies de paire (eV)
+Premiers voisins
+a/
+√
+2
+12
+JAuAu = −0.635
+JCuCu = −0.582, JAuCu = −0.689
+Seconds voisins
+a
+6
+IAuAu = ICuCu = 0
+IAuCu = +0.0063
+Repères de vocabulaire
+Un site est une position fixe du réseau ; son occupation est Au ou Cu. Une maille est le motif géométrique répété
+dans l’espace. Les quatre sous-réseaux, repérés par µ = 0, 1, 2, 3, distinguent les positions de base de la maille
+CFC. Une coquille regroupe les voisins à une même distance d’un site choisi. Une configuration donne l’espèce
+sur chacun des sites à un instant du calcul.
+Une réplique est une configuration qui peut voyager entre les températures. Une chaîne désigne ici une campagne
+indépendante avec sa graine et son ensemble de répliques (46 dans la production L6). Dans le cycle séquentiel, une
+chaîne est au contraire une seule trajectoire transmise d’une température à la suivante. Un balayage effectue N
+propositions Au–Cu par température, refus compris. L’équilibration est la phase initiale écartée des moyennes ;
+la production est la phase dont on utilise les mesures pour estimer les grandeurs thermiques. Un domaine est
+une région spatiale partageant une variante d’ordre ; ce n’est ni une chaîne ni un sous-réseau. Le symbole µ est ici
+un indice géométrique de sous-réseau, pas un potentiel chimique : aucun terme de potentiel chimique n’entre dans
+le test de Metropolis à composition fixée. Enfin, L12 est le nom de la structure ordonnée ; L = 12 est la taille de
+la boîte. Les abréviations L6, L9 et L12 du rapport désignent respectivement L = 6, 9, 12, et non trois structures
+cristallines différentes.
+Méthodologie : quatre expériences numériques distinctes
+Le Hamiltonien, la composition et les conditions périodiques sont communs, mais les objectifs et les données ne
+sont pas interchangeables. Les résultats de référence des questions 1–9 proviennent de la production canonique
+principale L6. La comparaison achevée avec L9 et L12 est regroupée en section 10.3. Les expériences du bonus sont
+identifiées séparément ; leurs nombres de balayages et leurs diagnostics ne remplacent pas ceux de la campagne
+principale.
+Campagne L = 6
+Protocole par chaîne et température
+Données et usage légitime
+Canonique principale
+46 températures, 2 chaînes ; 6000
+balayages écartés, 30000 mesurés, pas
+10 ; échanges de répliques tous les 5
+balayages
+Énergie, ordre, fluctuations et T ∗(L) ;
+états atomiques finaux seulement.
+Cycle thermique
+46 températures dans chaque sens, 2
+trajectoires ; 6000 + 30000 balayages,
+pas 10 ; aucun échange de répliques
+Mémoire du parcours à budget fini ; un
+état final par palier pour le GIF.
+Trempe isotherme
+Une trajectoire, consigne 4000 →1000
+K ; 6000 balayages, états tous les 20,
+aucun transitoire retiré
+Relaxation hors équilibre ; pas de
+distribution de temps de nucléation.
+Corrélations canoniques
+14 températures, 2 chaînes ; 3000 +
+12000 balayages, états tous les 20 ;
+échanges de répliques tous les 5
+600 états par chaîne et température ;
+spectres et longueurs conditionnels aux
+diagnostics.
+Les productions canoniques supplémentaires utilisent le même modèle : L = 9 conserve les 46 températures et
+le budget L6 ; L = 12 utilise 90 températures, 12000 balayages écartés et 60000 de production par chaîne. Les
+captures spatiales de L9 et L12 sont espacées de 100 et 200 balayages. Ces productions simultanées en température
+ne sont pas des cycles : les tailles dont les branches séquentielles sont entièrement achevées dans cette version sont
+L = 6, 9, 12.
+Réseau CFC rigide / ensemble canonique
+3
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+Une graine indépendante crée une nouvelle trajectoire ; les répliques d’une même chaîne restent couplées par
+leurs échanges. Les mesures sont classées par température, après les éventuels échanges. Écarter un nombre fixé
+de balayages ne démontre pas l’équilibre : les tests de correction, la stationnarité observée et l’exploration des
+variantes répondent à des questions différentes. Une série gelée peut réussir un test de stabilité tout en manquant
+les excitations rares. Les variances thermiques sont calculées dans chaque chaîne ; une divergence entre chaînes ne
+doit pas être convertie en chaleur spécifique.
+Trois niveaux de certitude. La géométrie, les différences d’énergie et les références à T = 0 sont exactes pour le
+Hamiltonien donné. Les moyennes et intervalles Monte-Carlo sont des estimations conditionnelles à la durée, aux
+états visités et à la grille. La comparaison à un alliage réel ajoute une erreur de modèle, qui n’est pas contenue
+dans les barres statistiques. Le calcul en micro-eV évite la dérive d’accumulation ; il ne rend pas les paramètres
+physiques plus précis que ceux de l’énoncé.
+Comment lire les résultats sans mélanger les protocoles
+— Questions 1–9 : référence L6. Sauf mention contraire, les figures, les nombres et les diagnostics de ces
+questions concernent la production canonique de 864 sites. Les résultats des grandes tailles ne remplacent
+pas silencieusement cette référence.
+— Bonus : quatre questions complémentaires. La partie 1 explique le cycle et les GIF L6 ; la partie 2
+définit les corrélations spatiales ; la partie 3 compare les productions canoniques L6/L9/L12 ; la partie 4
+compare leurs cycles séquentiels achevés. Les GIF restent L6.
+— Toujours lire valeur, protocole et réserve ensemble. q mesure une amplitude globale, α1, α2 deux
+voisinages, ξ/a une portée spectrale. Le temps d’autocorrélation τ mesure une dépendance entre mesures
+successives, en mesures ou en balayages : ce n’est pas une longueur ni un temps physique en secondes.
+1
+Question 1 – Réseau, énergie et algorithme de Metropolis
+1.1
+Construction exacte de la géométrie
+Une maille conventionnelle porte les quatre positions
+b0 = (0, 0, 0),
+b1 = (0, 1
+2, 1
+2),
+b2 = ( 1
+2, 0, 1
+2),
+b3 = ( 1
+2, 1
+2, 0).
+Les sites sont r/a = (i, j, k) + bµ, avec i, j, k = 0, . . . , L −1. Ainsi N = 4L3, NAu = L3 et NCu = 3L3. La boîte
+demandée correspond à L = 6, donc 864 sites dont 216 Au.
+Le changement de coordonnées (X, Y, Z) = 2r/a permet de travailler avec des entiers. Les sites CFC vérifient
+X, Y, Z ∈{0, . . . , 2L −1},
+X + Y + Z pair.
+En effet, les parités possibles sont (0, 0, 0), (0, 1, 1), (1, 0, 1) et (1, 1, 0), soit exactement les quatre positions de
+base. Pour L = 6, les coordonnées vont de 0 à 11. La coordonnée 12 est identifiée à 0.
+Les déplacements de premiers voisins sont
+(±1, ±1, 0),
+(±1, 0, ±1),
+(0, ±1, ±1),
+et ceux de seconds voisins sont
+(±2, 0, 0),
+(0, ±2, 0),
+(0, 0, ±2).
+Toutes les coordonnées sont réduites modulo 2L. Le tableau des voisins est calculé une fois et reste fixe. Les tailles
+L < 3 sont refusées dans cette implémentation pour éviter les ambiguïtés d’images périodiques multiples.
+1.2
+Énergie et tendance à l’ordre
+L’énergie est
+E =
+X
+{i,j}∈P1
+Jσiσj +
+X
+{i,j}∈P2
+Iσiσj.
+(1)
+Si l’on utilise les listes de voisins orientées, il faut un facteur 1/2. On obtient Nz1/2 = 5184 paires de premiers
+voisins et Nz2/2 = 2592 paires de seconds voisins pour N = 864.
+Pour comparer les préférences chimiques, on définit
+w1 = JAuAu + JCuCu −2JAuCu = 0.161 eV.
+Deux contacts Au–Cu coûtent donc 0.161 eV de moins qu’un contact Au–Au et un contact Cu–Cu. Au second
+voisinage, chaque paire Au–Cu coûte 0.0063 eV, tandis qu’une paire identique coûte zéro. L’ordre L12 satisfait ces
+deux tendances.
+Réseau CFC rigide / ensemble canonique
+4
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+x/a
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+y/a
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+z/a
+Maille conventionnelle ordonnée
+Au : sommets
+Cu : faces
+Cu3Au · structure L12
+1 Au + 3 Cu par maille
+8 sommets × 1/8 = 1 Au
+6 faces × 1/2 = 3 Cu
+Boîte : 6³ mailles = 864 sites
+Positions figées · occupations variables
+Le désordre chimique se produit sur un réseau fixe
+Les sphères de bord sont partagées avec les mailles voisines.
+Figure 1 – La maille L12 et le partage des sites de bord. Les positions sont celles du réseau CFC, quelle que soit
+l’occupation chimique.
+−1.0
+−0.5
+0.0
+0.5
+1.0
+x/a
+−1.0
+−0.5
+0.0
+0.5
+1.0
+y/a
+−1.0
+−0.5
+0.0
+0.5
+1.0
+z/a
+Première coquille : 12 Cu à a/√2
+Au de référence
+−1.0
+−0.5
+0.0
+0.5
+1.0
+x/a
+−1.0
+−0.5
+0.0
+0.5
+1.0
+y/a
+−1.0
+−0.5
+0.0
+0.5
+1.0
+z/
+Deuxième coquille : 6 Au à a
+Au de référence
+Deux distances, deux voisinages chimiques dans L1₂
+Géométrie fixe : la coquille dépend de la distance, son occupation dépend de la configuration.
+Figure 2 – Les deux coquilles autour d’un Au dans la référence ordonnée L12. Les douze premiers voisins sont
+Cu et les six seconds voisins sont Au. Les coquilles sont définies par leurs distances, même si leurs occupations
+changent pendant la simulation.
+Réseau CFC rigide / ensemble canonique
+5
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+1.3
+Échanges à composition fixée et variation locale
+Un mouvement échange un Au et un Cu, choisis uniformément parmi les paires d’espèces différentes. Cela conserve
+exactement la stœchiométrie. Pour des sites i et j, initialement Au et Cu,
+∆E =
+2
+X
+n=1
+X
+k∈Vn(i)\{j}
+[Un(Cu, σk) −Un(Au, σk)]
++
+2
+X
+n=1
+X
+k∈Vn(j)\{i}
+[Un(Au, σk) −Un(Cu, σk)],
+(2)
+où Vn(i) est la liste des voisins et U1 = J, U2 = I les énergies de paire. Si les sites sont voisins, leur liaison mutuelle
+reste Au–Cu : sa variation est nulle. Elle ne doit pas être recalculée comme si une seule extrémité changeait.
+Le noyau rapide exploite aussi l’identité démontrée à la question 5. Si ai, aj sont les nombres de voisins Au de
+première coquille, et bi, bj ceux de seconde coquille, en excluant le partenaire échangé,
+∆E = 0.161(aj −ai) + 0.0126(bi −bj)
+eV.
+(3)
+Les énergies sont stockées en micro-eV entiers. La somme locale est ainsi exacte, sans accumulation d’erreurs
+d’arrondi. Les exponentielles d’acceptation restent naturellement évaluées en nombres réels.
+1.4
+Balance détaillée
+Avec β = 1/(kBT), la mesure canonique sur les configurations de composition fixée est
+πT (C) = Z−1e−E(C)/(kBT ).
+Comme la proposition d’échange est symétrique, l’acceptation de Metropolis est
+A(C →C′) = min[1, e−∆E/(kBT )].
+(4)
+On a A(C →C′)/A(C′ →C) = e−β∆E = π(C′)/π(C), ce qui établit la balance détaillée. Accepter certains
+mouvements défavorables est nécessaire pour reproduire les excitations thermiques.
+Un balayage représente ici N propositions Au–Cu. Les propositions triviales entre deux espèces identiques sont
+retirées avant le comptage. Cette convention modifie l’unité de temps Monte-Carlo, mais pas la mesure d’équilibre.
+Les échanges à longue distance sont un outil d’échantillonnage ; ils ne décrivent pas une cinétique réaliste de
+diffusion par lacunes.
+Approfondissement pédagogique : Question 1 – Pourquoi cet algorithme et dans quel ordre ?
+— Échanger pour conserver la composition. Changer un seul Au en Cu ferait sortir de l’ensemble de
+configurations demandé. En choisissant un Au et un Cu, on garde exactement N/4 Au. La probabilité de
+proposer l’échange inverse est identique : l’acceptation dépend seulement du rapport des poids de Boltzmann.
+Le label géométrique µ reste celui du site ; seule son occupation change.
+— Calculer avant de modifier. On évalue ∆E sur l’état courant en examinant les liaisons touchées, puis on
+applique Metropolis. Si ∆E > 0, accepter parfois évite une simple descente vers un minimum. À 1000 K,
+un défaut de 0.5586 eV serait accepté avec une probabilité exp[−0.5586/(kB1000)] ≃0.00153 pour cette
+proposition. Un refus compte comme une tentative et conserve le temps de séjour de l’état.
+— Mesurer après une durée fixée. Un balayage contient N propositions, pas N acceptations. Les échanges
+de répliques éventuels viennent après les mouvements, puis la mesure est rangée à température fixe. Mesurer
+uniquement les changements acceptés surreprésenterait les états faciles à quitter. Les voisins sont précalculés
+car la géométrie ne change jamais ; le facteur 1/2 intervient dans les sommes où une même paire est vue
+depuis ses deux extrémités.
+2
+Question 2 – Ordre à courte portée : paramètres de Cowley
+Pour une référence Au, l’énoncé définit
+αn = 1 −pCu|Au
+n
+cCu
+,
+cCu = 3
+4.
+Réseau CFC rigide / ensemble canonique
+6
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+Configuration courante et énergie à température fixée
+Tirer un Au et un Cu ; calculer ΔE sans modifier l’état
+ΔE ≤ 0 ou u < exp[−ΔE/(kBT)] ?
+Permuter Au et Cu
+E ← E + ΔE
+Conserver l’état
+et l’énergie
+oui
+non
+Compter la tentative, acceptée ou refusée
+Répéter N tentatives par température : un balayage
+Après le balayage : échanges de répliques si échéance
+Puis mesurer si échéance : E, η, q, α₁, α₂ et pμ
+Poursuivre les balayages ; contrôler énergie et composition après le segment.
+Équilibration : conserver les traces ; production : calculer les moyennes.
+De la proposition à la mesure
+Figure 3 – Organisation du calcul : proposition, décision, comptage des tentatives, fin de balayage, échanges puis
+mesures. Le dessin résume les étapes ; les boucles complètes sont données en annexe.
+Si Bn est le nombre de paires Au–Cu non orientées de la coquille n, chaque paire possède exactement une extrémité
+Au. On obtient
+pCu|Au
+n
+=
+Bn
+NAuzn
+,
+αn = 1 −
+Bn
+NAuzncCu
+.
+Pour la boîte de l’énoncé,
+α1 = 1 −B1
+1944,
+α2 = 1 −B2
+972.
+Du comptage à la probabilité puis à Cowley
+À première coquille, les 216 Au donnent 216 × 12 = 2592 positions voisines examinées. Si 1944 de ces
+positions portent Cu, alors
+pCu|Au
+1
+= 1944
+2592 = 0.75,
+α1 = 1 −0.75
+0.75 = 0.
+La première division mesure une probabilité conditionnelle ; la seconde la compare à la concentration
+globale cCu = 0.75. Si les 2592 positions portent Cu, pCu|Au
+1
+= 1 et α1 = −1/3. À seconde coquille, on
+examine 216 × 6 = 1296 positions : si aucune ne porte Cu, pCu|Au
+2
+= 0 et α2 = 1. Le code effectue ce
+comptage autour de tous les Au, à chaque mesure, puis moyenne les paramètres obtenus sur la production.
+Dans L12, les premiers voisins d’un Au sont tous Cu, donc α1 = 1 −1/(3/4) = −1/3. Les seconds voisins sont
+tous Au, donc α2 = 1.
+Un paramètre négatif indique un excès de voisins d’espèce opposée. Un paramètre positif indique leur déficit. Zéro
+est la référence d’un mélange indépendant pour cette coquille dans la limite d’un grand système. La nullité de
+deux paramètres ne prouverait pas, à elle seule, l’absence de toute corrélation à d’autres distances.
+À composition fixée dans une boîte finie, conditionner la référence à être Au laisse NCu Cu parmi N −1 autres
+sites. Ainsi
+⟨αn⟩T →∞= 1 −NCu/(N −1)
+NCu/N
+= −
+1
+N −1 .
+Pour N = 864, cette correction vaut environ −0.00116.
+Réseau CFC rigide / ensemble canonique
+7
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+500
+1000
+1500
+2000
+2500
+3000
+3500
+4000
+Température (K)
+−0.35
+−0.30
+−0.25
+−0.20
+−0.15
+−0.10
+−0.05
+α1
+Première coquille : 12 voisins
+Ordre parfait L12
+Monte-Carlo
+500
+1000
+1500
+2000
+2500
+3000
+3500
+4000
+Température (K)
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+α2
+Deuxième coquille : 6 voisins
+Ordre parfait L12
+Monte-Carlo
+Ordre chimique local : paramètres de Cowley
+Barres : ±1 erreur-type. Les références horizontales correspondent à l’ordre parfait L1₂.
+Figure 4 – Évolution des paramètres de Cowley α1 et α2 avec la température. Les barres représentent une
+erreur-type. Les lignes horizontales indiquent l’ordre parfait L12.
+À basse température, les courbes rejoignent les valeurs de l’ordre parfait : α1 = −1/3 et α2 = 1. Lorsque la
+température augmente, les deux paramètres s’éloignent de ces valeurs et se rapprochent de zéro. Un α1 encore
+négatif au-dessus de la zone de perte d’ordre global signifie que les voisins Cu restent favorisés autour d’Au :
+l’ordre local peut donc persister après la disparition de l’ordre à longue portée. La limite aléatoire correspond à
+T →∞; les mesures à température finie ne sont pas contraintes à l’atteindre.
+Approfondissement pédagogique : Question 2 – Des voisins comptés à la probabilité puis à Cowley
+— Identifier la population de référence. On ne compte les voisins qu’autour des sites actuellement
+Au. Pour la première coquille L6, il existe 216 × 12 = 2592 places de voisinage. Si 2160 portent Cu,
+pCu|Au
+1
+= 2160/2592 = 5/6. C’est une probabilité conditionnelle, comprise entre 0 et 1 ; ce n’est pas encore
+α1.
+— Comparer à la concentration. Avec cCu = 3/4, α1 = 1 −(5/6)/(3/4) = −1/9. Le signe négatif indique
+que Cu est plus fréquent autour d’Au que dans la composition globale. Dans l’ordre parfait, les douze voisins
+sont Cu, donc α1 = −1/3 ; dans la seconde coquille, aucun n’est Cu, donc α2 = 1. Deux coquilles peuvent
+ainsi avoir des signes opposés sans contradiction.
+— Distinguer ordre local et ordre de la boîte. Cowley ignore quel sous-réseau porte globalement les Au ;
+il est invariant entre les quatre variantes. Des voisinages préférentiels peuvent survivre lorsque les domaines
+se compensent dans l’ordre global. Une moyenne proche de zéro est une référence de mélange, avec correction
+canonique −1/(N −1) à température infinie ; à température finie, les interactions empêchent en général
+d’atteindre exactement cette limite.
+3
+Question 3 – Ordre à longue portée et variantes équivalentes
+Le sous-réseau des sommets comprend N/4 sites. En notant n(0)
+Au son nombre d’Au,
+p0 = n(0)
+Au
+N/4,
+η = p0 −1/4
+3/4
+.
+Pour N = 864, cela s’écrit η = (n(0)
+Au −54)/162. Dans la variante de référence, p0 = 1 et η = 1. Dans un mélange
+aléatoire, ⟨p0⟩= 1/4 et ⟨η⟩= 0.
+Il existe quatre variantes équivalentes : Au peut occuper chacun des quatre sous-réseaux CFC. Dans une autre
+variante parfaitement ordonnée, p0 = 0 et η = −1/3. Pour éviter une mauvaise interprétation, le code conserve le
+paramètre du sujet et calcule aussi
+q =
+v
+u
+u
+t4
+3
+3
+X
+µ=0
+(pµ −1/4)2,
+3
+X
+µ=0
+pµ = 1.
+(5)
+On a q = 1 dans les quatre variantes et q = 0 pour les occupations moyennes uniformes. Mais ⟨q⟩est légèrement
+positif dans une boîte finie désordonnée, car il mesure une amplitude de fluctuations. Inversement, un q faible ne
+Réseau CFC rigide / ensemble canonique
+8
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+prouve pas une occupation indépendante : plusieurs domaines de variantes différentes peuvent réduire l’ordre
+global tout en conservant des voisinages localement ordonnés.
+Au sur μ = 0
+η = 1 ; q = 1
+Au sur μ = 1
+η = −1/3 ; q = 1
+Au sur μ = 2
+η = −1/3 ; q = 1
+Au sur μ = 3
+η = −1/3 ; q = 1
+Quatre variantes ordonnées équivalentes : Au en or, Cu en bleu
+États de référence construits : chaque panneau représente une configuration parfaitement ordonnée.
+Figure 5 – Les quatre variantes parfaitement ordonnées sont équivalentes : seul le sous-réseau qui porte les Au
+change. η dépend du sous-réseau de référence, tandis que q = 1 dans les quatre cas. Ces dessins sont des états de
+référence construits, pas des mesures Monte-Carlo.
+Configuration
+(p0, p1, p2, p3)
+η
+q
+Au sur le sous-réseau 0
+(1, 0, 0, 0)
+1
+1
+Au sur le sous-réseau 1
+(0, 1, 0, 0)
+−1/3
+1
+Au sur le sous-réseau 2
+(0, 0, 1, 0)
+−1/3
+1
+Au sur le sous-réseau 3
+(0, 0, 0, 1)
+−1/3
+1
+Si ces quatre états sont visités aussi souvent, leur occupation moyenne vaut (1/4, 1/4, 1/4, 1/4). Pourtant, chaque
+instantané est ordonné :
+⟨q(p)⟩= 1
+alors que
+q(⟨p⟩) = 0.
+Les courbes de gauche de la figure suivante sont des moyennes sur les mesures et les chaînes. Leur proximité avec
+1/4 à basse température reflète la visite de plusieurs variantes ; elle ne suffit pas à conclure au désordre. Il faut les
+lire avec ⟨q⟩, qui reste proche de 1.
+500
+1000
+1500
+2000
+2500
+3000
+3500
+4000
+Température (K)
+0.18
+0.20
+0.22
+0.24
+0.26
+0.28
+0.30
+Occupation moyenne par Au
+Moyennes sur les mesures et les deux chaînes
+Sous-réseau 0
+Sous-réseau 1
+Sous-réseau 2
+Sous-réseau 3
+500
+1000
+1500
+2000
+2500
+3000
+3500
+4000
+Température (K)
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Paramètre d’ordre
+Une variante différente peut changer le signe de η
+η signé · chaîne 1
+η signé · chaîne 2
+Amplitude q · moyenne
+La symétrie entre quatre variantes doit être prise en compte
+Une moyenne sur plusieurs variantes peut égaliser les occupations malgré un ordre instantané fort.
+Figure 6 – Paramètre signé de l’énoncé, amplitude invariante et occupations des sous-réseaux. Une moyenne
+entre variantes ne doit pas être confondue avec une configuration instantanée désordonnée.
+Réseau CFC rigide / ensemble canonique
+9
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+Approfondissement pédagogique : Question 3 – Une occupation moyenne peut-elle masquer l’ordre ?
+— Partir d’un instantané. Dans (1, 0, 0, 0), tous les Au sont sur les sommets ; dans (0, 0, 1, 0), ils occupent un
+autre sous-réseau. Les deux configurations ont q = 1, mais η vaut respectivement 1 et −1/3. Le paramètre
+du sujet est conservé ; il suit une variante choisie et ne reconnaît pas les quatre variantes avec le même signe.
+— Faire la bonne moyenne. Si une chaîne ou deux chaînes indépendantes visitent ces deux états, les
+occupations moyennes peuvent valoir (1/2, 0, 1/2, 0). Cela ne signifie pas qu’un instantané contient deux
+sous-réseaux à moitié occupés. Il faut moyenner q calculé sur chaque instantané. La norme des occupations
+moyennes perd l’information sur les changements de variante. Une bosse de p1(T) peut donc provenir d’un
+transfert de variante alors que q décroît.
+— Tenir compte du volume. Dans un mélange désordonné fini, les occupations fluctuent autour de 1/4 ;
+leur norme a une moyenne positive. Au chaud, un q plus faible pour L12 que pour L6 ne signifie pas que
+l’algorithme a détruit un ordre stable : une partie du résidu L6 était un effet de taille. La comparaison des
+trois tailles et des occupations séparées par chaîne est développée dans le bonus.
+4
+Question 4 – Vérifications du programme
+Le dossier contient une suite de tests automatiques : 34 tests ont été relancés avec succès pour la présente mise à
+jour. Leur date, leurs valeurs de référence et leur environnement sont précisés ci-dessous. Ils contrôlent la géométrie
+périodique, la réciprocité des voisinages, les quatre variantes, les valeurs analytiques, les différences d’énergie
+locales et globales, la conservation de composition et la reproductibilité. Les tests supplémentaires vérifient le
+bootstrap du maximum, sa reproductibilité et son invariance à une constante ajoutée à l’énergie. Ils vérifient
+également la continuité du cycle thermique et l’identité des trajectoires après reprise à un palier sauvegardé.
+Les tests de checkpoints vérifient aussi la reprise exacte au milieu d’une campagne canonique et le refus d’une
+configuration incompatible. Trois tests de l’analyse croisée contrôlent l’identité énergie–Cowley, la décomposition
+avec covariance sans ajout de dispersion entre chaînes, et le comptage des populations sans franchir artificiellement
+les frontières entre chaînes.
+Test
+Attendu
+Résultat
+Environnement
+Date
+Sites et voisinages
+864 ; 12 + 6
+864 ; 12 + 6 : OK
+Windows
+Python 3.11.9
+2026-11-10
+Énergie ordonnée (eV)
+−3294.432
+−3294.432
+Windows
+Python 3.11.9
+2026-11-10
+Cowley ordonné
+(−1/3, 1)
+(−1/3, 1) : OK
+Windows
+Python 3.11.9
+2026-11-10
+Ordre de référence
+η = q = 1
+η = q = 1 : OK
+Windows
+Python 3.11.9
+2026-11-10
+Défaut Au–Cu (eV)
+0.5586
+0.5586
+Windows
+Python 3.11.9
+2026-11-10
+Écart énergie locale/globale
+0 micro-eV
+0 : OK
+Windows
+Python 3.11.9
+2026-11-10
+Observables compilées/référence
+Écart < 10−12
+OK (30 états)
+Windows
+Python 3.11.9
+2026-11-10
+Suite automatique
+34 tests
+Tous réussis
+Windows
+Python 3.11.9
+2026-11-10
+Versions : NumPy 2.3.5, SciPy 1.17.0, Numba 0.68.0. La validation actuelle est distincte des journaux historiques
+de la campagne.
+4.1
+Création d’une paire d’antisites
+Échangeons un Au et un Cu premiers voisins dans l’état L12. En excluant leur liaison mutuelle, le premier site a
+onze voisins Cu, et le second trois Au et huit Cu. La variation de première coquille vaut
+∆E1 = 11(JCuCu −JAuCu) + 3(JAuAu −JAuCu)
++ 8(JAuCu −JCuCu) = 3w1 = 0.483 eV.
+Douze liaisons identiques de seconde coquille deviennent Au–Cu :
+∆E2 = 12(0.0063) = 0.0756 eV.
+Ainsi
+∆Eéchange 1er voisin = 0.5586 eV.
+L’échange inverse rend exactement l’énergie opposée.
+Réseau CFC rigide / ensemble canonique
+10
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+4.2
+Contrôles indépendants
+Le noyau rapide par comptage est confronté à une somme explicite des matrices de paire pour des échanges
+aléatoires, voisins et non voisins, sur plusieurs tailles. Un petit ensemble restreint de configurations est énuméré
+exactement pour vérifier la stationnarité canonique de la matrice de Metropolis. Le signe de l’acceptation des
+échanges de répliques est également vérifié par balance détaillée.
+Pendant la campagne, à la fin de chaque segment, le code recalcule l’énergie complète de chaque réplique et
+impose l’égalité entière avec l’énergie suivie localement. Il vérifie également la composition et la borne E ≥E0.
+Une incohérence arrête immédiatement le calcul.
+Approfondissement pédagogique : Question 4 – Qu’est-ce qui valide le code et qu’est-ce qui valide une
+mesure ?
+— Tester une valeur connue. Le défaut d’antisites précis coûte 0.5586 eV. Un test compare cette valeur
+analytique à deux calculs : la variation locale rapide et la différence de deux énergies globales. Un test de
+géométrie vérifie aussi la réciprocité et les 12 + 6 voisins. Ces contrôles peuvent déceler une liaison oubliée,
+un signe erroné ou un double comptage qu’une courbe d’apparence régulière cacherait.
+— Tester la loi et la reprise. Une petite matrice de transition énumérée vérifie la mesure canonique dans un
+espace restreint, sans résoudre exactement les 864 sites. Les tests de reprise interrompent puis restaurent un
+calcul et exigent la même trajectoire que sans arrêt. Sauvegarder les occupations seules ne suffirait pas : il
+faut aussi les générateurs, les énergies, les identités et la parité des échanges.
+— Ne pas confondre exactitude et exploration. Un code correct peut rester très longtemps dans un
+bassin. Les tests automatiques et les contrôles d’archives passent pour L12, alors que ses chaînes divergent
+près du pic. R-hat, effectif utile, blocs, demi-séries et circulation répondent à cette autre question : les
+mesures disponibles représentent-elles suffisamment la distribution cible ?
+5
+Question 5 – Énergie de cohésion à température nulle
+Chaque Au a douze voisins Cu. Il y a donc 216 × 12 = 2592 paires Au–Cu, aucune paire Au–Au de première
+coquille, et 5184 −2592 = 2592 paires Cu–Cu. Les seconds voisins sont de même espèce et ne contribuent pas à
+l’énergie. Le tableau compte les paires non orientées, une seule fois chacune :
+Coquille
+Au–Au
+Au–Cu
+Cu–Cu
+Total
+Première
+0
+2592
+2592
+5184
+Deuxième
+648
+0
+1944
+2592
+Par exemple, les 216 × 6 contacts Au–Au de seconde coquille sont comptés depuis les deux extrémités, soit
+216 × 6/2 = 648 paires.
+E0 = 2592(−0.689) + 2592(−0.582) = −3294.432 eV.
+Donc
+u0 = E0
+N = −3294.432
+864
+= −3.813 eV/atome ,
+ECu3Au
+0
+= E0
+N/4 = −3294.432
+216
+= 4u0 = −15.252 eV/formule .
+(6)
+Une unité de formule Cu3Au contient trois Cu et un Au, donc quatre atomes ; la boîte contient 864/4 = 216 unités
+de formule. La cohésion exprimée comme énergie positive de dissociation vaut 3.813 eV/atome, relativement au
+zéro énergétique du modèle.
+5.1
+Preuve que L12 est un état fondamental
+Soient A1, B1, C1 les nombres de paires Au–Au, Au–Cu et Cu–Cu de première coquille et M1 = Nz1/2 leur
+nombre total. À composition fixée,
+2A1 + B1 = 12NAu,
+A1 + B1 + C1 = M1.
+En éliminant B1 et C1 dans l’énergie, on trouve
+E1 = JCuCuM1 + (JAuCu −JCuCu)12NAu + w1A1.
+Pour les seconds voisins, E2 = 0.0063B2. Puisque L12 possède A1 = B2 = 0,
+E −E0 = 0.161A1 + 0.0063B2 ≥0.
+(7)
+C’est une preuve du minimum global pour les paramètres donnés. Elle ne nécessite aucune simulation.
+Réseau CFC rigide / ensemble canonique
+11
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+Approfondissement pédagogique : Question 5 – De la boîte à l’atome puis à la formule
+— Choisir le dénominateur physique. E0 est l’énergie de tous les sites ; diviser par N = 864 donne l’énergie
+d’un atome en moyenne, u0 = −3.813 eV/atome. Une formule Cu3Au compte quatre atomes : il existe 216
+formules dans la boîte, d’où E0/216 = 4u0 = −15.252 eV par unité de formule. Pour L12, E0 est huit fois
+plus grand en valeur absolue, mais ces quantités normalisées restent les mêmes.
+— Lire le signe. Une énergie de liaison négative abaisse l’énergie relativement au zéro du modèle. L’énergie
+positive nécessaire pour dissocier ce fondamental est son opposé par atome. Ce zéro et les paramètres de
+paire appartiennent au modèle ; ils ne remplacent pas une mesure complète de cohésion de l’alliage réel.
+— Distinguer preuve et recherche numérique. L’identité E −E0 = 0.161A1 + 0.0063B2 est positive pour
+toute configuration de même composition. Comme L12 annule les deux termes, il réalise un minimum global.
+Observer seulement la plus basse énergie d’une simulation n’aurait pas constitué cette preuve ; inversement,
+la preuve du fondamental ne détermine pas la température de désordre à entropie finie.
+6
+Question 6 – Équilibrer à différentes températures
+La simulation doit échantillonner
+PT (C) =
+e−βE(C)
+P
+C′ de même composition e−βE(C′) .
+Une configuration finale seule n’est pas une moyenne thermique. À chaque température, on distingue une phase
+d’équilibration, écartée de l’analyse, et une phase de production.
+6.1
+Échanges de répliques et mesure canonique
+Pour faciliter les passages entre états métastables, plusieurs répliques évoluent à des températures Tr. La mesure
+jointe est le produit Π({Cr}) ∝Q
+r e−βrE(Cr). L’échange de deux configurations à températures voisines est
+accepté avec
+Ar,r+1 = min [1, exp{(βr −βr+1)(Er −Er+1)}] .
+(8)
+Le rapport des poids après et avant échange donne directement cet exposant. La marginale à chaque température
+reste canonique. La mesure doit être classée par température fixe, et non par identité de réplique.
+Une session d’échange a lieu tous les 5 balayages. Le code alterne les liens pairs et impairs : un lien donné est donc
+testé toutes les deux sessions, soit tous les 10 balayages dans cette campagne. Les noyaux de Metropolis restent
+ceux demandés par l’énoncé ; les échanges de répliques ajoutent un mécanisme d’échantillonnage qui conserve la
+mesure cible [1, 2].
+6.2
+Protocole réellement exécuté
+Paramètre
+Valeur
+Nombre de sites
+864
+Nombre de températures
+46
+Chaînes indépendantes
+2
+Balayages d’équilibration par chaîne
+6000
+Balayages de production par chaîne
+30000
+Intervalle entre mesures
+10
+Mesures par température et par chaîne
+3000
+Maximum sur la grille
+1050 K
+Les graines et toutes les températures figurent dans le fichier de configuration et dans summary.json. Les chaînes
+démarrent dans des variantes ordonnées différentes ; dans la seconde chaîne, les répliques chaudes démarrent
+désordonnées. Un départ entièrement aléatoire à très basse température risquerait de se figer avant d’atteindre
+l’état fondamental.
+Pour M ′ mesures de production, la courbe cumulée est A(M ′) = (1/M ′) PM ′
+m=1 Am. Sa stabilisation et l’accord
+des chaînes complètent les traces instantanées, sans prouver à eux seuls l’absence de bassins métastables non
+visités. Les contrôles de circulation donnent 4 puis 3 allers-retours complets froid–chaud–froid pour les deux
+chaînes de cette campagne ; leur faible nombre reste une limite à considérer.
+Réseau CFC rigide / ensemble canonique
+12
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+x/a
+0
+2
+4
+y/a
+300 K ; z/a = 0
+x/a
+y/a
+1050 K ; z/a = 0
+x/a
+y/a
+4000 K ; z/a = 0
+0
+2
+4
+x/a
+0
+2
+4
+y/a
+300 K ; z/a = 0.5
+0
+2
+4
+x/a
+y/a
+1050 K ; z/a = 0.5
+0
+2
+4
+x/a
+y/a
+4000 K ; z/a = 0.5
+Coupes des configurations finales : Au en or, Cu en bleu
+Deux plans adjacents montrent les quatre sous-réseaux ; un instantané ne remplace pas une moyenne thermique.
+Figure 7 – Deux plans adjacents des mêmes configurations de la première chaîne. Les deux hauteurs sont
+nécessaires pour montrer les quatre sous-réseaux : une seule coupe peut ne contenir aucun Au dans une variante
+pourtant parfaitement ordonnée. L’ordre est plus lisible ici que dans le nuage tridimensionnel, conservé comme
+fichier complémentaire 07_configurations.pdf sans seconde reproduction des mêmes états.
+−3.795
+−3.790
+−3.785
+Moyenne cumulée de u (eV/atome)
+Chaîne 1
+Chaîne 2
+0
+5000
+10000
+15000
+20000
+25000
+30000
+Balayages de production depuis la fin de l’équilibration
+0.2
+0.4
+0.6
+0.8
+Moyenne cumulée de q
+Chaîne 1
+Chaîne 2
+Accord progressif des moyennes à 1050 K
+Les points successifs partagent leurs mesures : ces courbes sont corrélées et ne prouvent pas à elles seules l’équilibre.
+Figure 8 – Comparaison des moyennes cumulées de production dans les deux chaînes à 1050 K. Une moyenne
+cumulée utilise toutes les mesures précédentes ; ses points ne sont donc pas indépendants.
+Réseau CFC rigide / ensemble canonique
+13
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+0
+5000
+10000
+15000
+20000
+25000
+30000
+Balayages de production
+500
+1000
+1500
+2000
+2500
+3000
+3500
+4000
+Température de la réplique (K)
+Identité 0
+Identité 15
+Identité 30
+Identité 45
+Les configurations voyagent entre les températures
+Les répliques chaudes facilitent la sortie des états métastables ; les trajectoires restent corrélées.
+Figure 9 – Trajectoires de quelques identités de répliques. La circulation en température complète les contrôles
+locaux d’équilibre.
+Approfondissement pédagogique : Question 6 – Quand peut-on appeler les configurations « d’équilibre » ?
+— Séparer cible et durée. Metropolis possède la bonne distribution stationnaire, mais cela ne donne pas le
+nombre de balayages nécessaire pour l’approcher. Les états initiaux sont d’abord relaxés ; leurs mesures sont
+écartées. La production continue ensuite sans réinitialisation. Un état final bien ordonné ou une moyenne
+stabilisée ne suffisent pas à exclure un bassin jamais visité.
+— Expliquer l’aide des répliques chaudes. Une configuration peut franchir des barrières à haute température
+puis rejoindre un emplacement plus froid par échanges. Les probabilités d’échange préservent les marginales
+canoniques. On doit enregistrer les mesures à température fixe, et suivre séparément les identités pour
+mesurer leur circulation. Une même identité n’est pas une série à température fixe.
+— Reconnaître les limites observées. L6 satisfait les critères locaux autour du pic, avec seulement sept allers-
+retours complets au total. L9 et L12 n’en enregistrent aucun et présentent des séries critiques insuffisantes.
+Un taux moyen d’échange élevé peut masquer un lien limitant. Les résultats sont donc qualifiés d’estimations
+canoniques avec diagnostics, plutôt que d’équilibre garanti par le seul nombre de balayages.
+7
+Question 7 – Grandeurs physiques et incertitudes
+Les moyennes numériques approchent ⟨A⟩T = P
+C A(C)PT (C). On calcule l’énergie par atome, les deux paramètres
+de Cowley, η, q et les occupations des quatre sous-réseaux.
+7.1
+Capacité calorifique et fluctuations d’ordre
+T (K)
+u (eV/atome)
+q
+α1
+α2
+cV /kB
+300
+-3.813000
+1.000
+-0.333
+1.000
+0.000
+1000
+-3.802578
+0.881
+-0.283
+0.803
+1.041
+1050
+-3.791393
+0.575
+-0.233
+0.527
+5.873
+1100
+-3.779922
+0.192
+-0.180
+0.242
+0.694
+4000
+-3.757820
+0.065
+-0.067
+0.026
+0.028
+Ce tableau est calculé à partir du CSV des mesures. La valeur observée cV = 0 au froid signifie qu’aucune
+fluctuation d’énergie n’a été mesurée dans cette série ; elle ne démontre pas que la capacité calorifique exacte est
+strictement nulle à une température finie.
+La capacité calorifique mesure la variation d’énergie moyenne quand on chauffe à volume constant :
+CV =
+∂⟨E⟩
+∂T
+
+V
+,
+cV = CV /N.
+Le déroulement concret est
+configurations Metropolis −→{E1, . . . , EM} −→⟨E2⟩−⟨E⟩2 −→cV .
+Réseau CFC rigide / ensemble canonique
+14
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+Metropolis fournit les configurations avec leurs poids thermiques ; le post-traitement utilise les énergies mesurées,
+pas le taux d’acceptation. Dans l’ensemble canonique, Z = P
+C e−βE(C) et ⟨E⟩= −∂β ln Z. En dérivant une
+seconde fois, on obtient la variance d’énergie. À Hamiltonien indépendant de la température,
+∂⟨E⟩
+∂β
+= −
+ ⟨E2⟩−⟨E⟩2
+.
+Comme dβ/dT = −1/(kBT 2),
+cV
+kB
+= ⟨E2⟩−⟨E⟩2
+N(kBT)2
+.
+(9)
+Il faut utiliser l’énergie totale dans cette formule. La contribution calculée est configuratoire : elle n’inclut pas la
+chaleur des vibrations.
+On suit aussi
+Xq =
+N
+kBT
+ ⟨q2⟩−⟨q⟩2
+,
+Uq = 1 −
+⟨q4⟩
+3⟨q2⟩2 .
+Xq est une réponse à un champ artificiel couplé comme −Nhq ; il ne faut pas l’identifier sans précaution à une
+susceptibilité d’un composant du paramètre d’ordre. Le cumulant est fourni comme diagnostic complémentaire.
+Le facteur 3 est une convention scalaire ; sa limite désordonnée n’est pas supposée nulle pour cette amplitude
+à plusieurs composantes. Par exemple, si les trois composantes de l’ordre sont gaussiennes, indépendantes et
+de même variance, leurs moments donnent ⟨q4⟩/⟨q2⟩2 = 5/3, donc Uq = 4/9. Cette référence explique la valeur
+chaude proche de 0.44, sans supposer que toutes les distributions à température finie soient gaussiennes. Xq est
+exprimé en eV−1 ; q, Uq et cV /kB sont sans dimension.
+7.2
+Autocorrélation, erreurs et comparaison des chaînes
+Les mesures successives ne sont pas indépendantes. Pour une série At,
+τint = 1
+2 +
+X
+ℓ≥1
+ρA(ℓ),
+Neff ≃
+M
+2τint
+.
+L’ESS est ce nombre estimé d’informations indépendantes ; ce n’est pas le nombre de lignes enregistrées. Le
+diagnostic bR compare les distributions des chaînes et de leurs moitiés : une valeur proche de 1 indique un accord
+observé, tandis qu’une valeur élevée signale des moyennes ou des dispersions différentes. Le bootstrap par blocs
+rééchantillonne des morceaux contigus de trajectoire afin de conserver une partie de leur dépendance temporelle.
+Une erreur-type, notée SE dans les tableaux, mesure l’incertitude estimée de la grandeur calculée ; ce n’est pas la
+fluctuation thermique de cette grandeur. Le code utilise une troncature par paires positives de l’autocorrélation et
+un bootstrap par blocs circulaires. Les blocs ont une longueur d’au moins 2τint, estimée à partir de l’énergie et de
+q, sauf lorsque la série est trop courte pour le permettre ; ce cas est signalé par le faible nombre de blocs. Les
+erreurs retiennent aussi la dispersion entre chaînes. Les variances thermiques sont calculées dans chaque chaîne
+avant moyennage pour éviter de transformer une divergence entre chaînes en capacité calorifique artificielle.
+Les contrôles indicatifs demandent bR < 1.05 pour l’énergie et q, un effectif indépendant estimé d’au moins
+200, au moins 20 blocs par chaîne, et un écart entre demi-séries inférieur à trois unités d’erreur estimée. Les
+graines indépendantes ne rendent pas les températures d’une même campagne indépendantes. Ces seuils sont des
+filtres d’alerte. Deux chaînes restées dans la même population métastable peuvent présenter un bon accord et
+manquer ensemble une autre population. Réussir les contrôles locaux ne certifie donc pas les poids de toutes les
+configurations à l’équilibre.
+Lorsque E et q sont constants dans une série froide, le code attribue τ = 1/2 et peut obtenir bR = 1 : ce traitement
+numérique ne prouve pas que toutes les excitations ou variantes ont été explorées. Le choix des blocs utilise E et
+q ; il reste utile de tester également la corrélation des paramètres de Cowley et la stabilité des erreurs lorsque la
+longueur des blocs est augmentée.
+Les paramètres de Cowley sont représentés une seule fois en figure 4. L’énergie, q et les réponses au voisinage de
+la transition sont regroupés en figure 12 ; les occupations et q sur la gamme complète figurent en figure 6. Les
+barres donnent une erreur-type estimée, pas une enveloppe de l’erreur de modèle. Les exports 02_ordres.pdf et
+03_thermodynamique.pdf restent disponibles, sans reproduire une deuxième fois ces courbes dans le PDF.
+Réseau CFC rigide / ensemble canonique
+15
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+500
+1000
+1500
+2000
+2500
+3000
+3500
+4000
+Température (K)
+1.00
+1.01
+1.02
+1.03
+1.04
+1.05
+R-hat séparé par rangs
+Accord entre chaînes
+Seuil de contrôle 1,05
+Énergie
+Ordre q
+500
+1000
+1500
+2000
+2500
+3000
+3500
+4000
+Température (K)
+103
+Effectif indépendant estimé
+Autocorrélation prise en compte
+500
+1000
+1500
+2000
+2500
+3000
+3500
+Température (K)
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Fraction acceptée
+Échanges entre températures
+Chaîne 1
+Chaîne 2
+500
+1000
+1500
+2000
+2500
+3000
+3500
+4000
+Température (K)
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Fraction acceptée
+Échanges Au-Cu
+Contrôler la simulation avant d’interpréter les courbes
+Diagnostics locaux satisfaits · R-hat et ESS sont des indicateurs, pas des garanties absolues d’équilibre.
+Figure 10 – Diagnostics par température. Un indicateur favorable ne prouve pas l’exploration de tous les états
+métastables.
+−3.810
+−3.805
+−3.800
+−3.795
+−3.790
+−3.785
+−3.780
+−3.775
+Énergie (eV/atome)
+Chaîne 1
+Chaîne 2
+Équilibration écartée
+0
+5000
+10000
+15000
+20000
+25000
+30000
+35000
+Balayages Monte-Carlo (N échanges proposés chacun)
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Amplitude q
+Historique au voisinage du maximum thermique · 1050 K
+Une trace appartient à une température fixe : les configurations peuvent y arriver par échange de répliques.
+Figure 11 – Énergie et ordre à température fixe. La phase initiale grisée est exclue des statistiques.
+Réseau CFC rigide / ensemble canonique
+16
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+7.3
+Vérification de la limite de haute température
+Dans un mélange indépendant de grande taille, P(AuAu) = 1/16, P(CuCu) = 9/16 et P(AuCu) = 3/8. Ainsi
+u∞= 6
+JAuAu
+16
++ 9JCuCu
+16
++ 3JAuCu
+8
+
++ 3
+3IAuCu
+8
+
+= −3.7455375 eV/atome.
+À N fini, les probabilités exactes sont
+P(AuAu) = NAu(NAu −1)
+N(N −1)
+,
+P(CuCu) = NCu(NCu −1)
+N(N −1)
+,
+P(AuCu) = 2NAuNCu
+N(N −1).
+Le code utilise ces corrections pour les tests. La limite exacte pour la boîte étudiée vaut −3.745739166 eV/atome.
+Même à plusieurs milliers de kelvins, les interactions peuvent encore créer des corrélations : il ne faut pas forcer
+les courbes à rejoindre la limite T →∞.
+Approfondissement pédagogique : Question 7 – De la trajectoire aux grandeurs et à leurs erreurs
+— Une mesure n’est pas une température. À T fixé, Metropolis fournit une succession de configurations.
+Chaque configuration donne une énergie totale et des paramètres d’ordre ; on moyenne ces valeurs pendant
+la production. cV demande en plus les fluctuations de l’énergie : des séjours dans deux populations éloignées
+produisent une grande variance, même si leurs énergies moyennes sont stables.
+— Utiliser la bonne normalisation. La formule écrite ici contient Var(E), puis une division par N(kBT)2. Si
+les données sont déjà en énergie par atome, il faut au contraire multiplier Var(u) par N/(kBT)2. Metropolis
+sert à donner les poids canoniques ; aucun tirage supplémentaire n’est requis pour calculer ensuite la variance
+archivée. Hors équilibre, cette même variance reste calculable mais n’est pas nécessairement la dérivée
+thermique d’équilibre.
+— Compter les informations indépendantes. Des mesures voisines peuvent décrire presque le même état.
+Pour M = 3000 et τ = 50 mesures, l’effectif utile d’une chaîne n’est qu’environ 30, pas 3000. Les blocs
+préservent cette dépendance lors du bootstrap. L’erreur de moyenne et la fluctuation thermique ne sont pas
+la même chose : allonger la série peut réduire la première sans faire disparaître la seconde. Les bassins non
+visités restent une erreur systématique que le bootstrap ne reconstruit pas.
+8
+Question 8 – Repérer la transition et comparer au champ moyen
+8.1
+Résultat Monte-Carlo et résolution de la grille
+Le maximum de capacité calorifique sur les températures échantillonnées est
+T ∗
+CV (L = 6) = 1050 K.
+(10)
+Les deux températures voisines de ce maximum sont 1045 et 1055 K. L’intervalle [1045, 1055] K décrit le voisinage
+sur la grille : ce n’est pas un intervalle de confiance statistique. Il ne couvre ni une éventuelle erreur
+systématique d’équilibration ni le déplacement avec la taille.
+Les maxima trouvés séparément dans les chaînes sont : chaîne 1 : 1050 K, chaîne 2 : 1050 K. Les diagnostics
+des cinq températures centrées sur le maximum sont résumés ci-dessous. Leur statut global est : critères locaux
+satisfaits.
+T (K)
+q
+cV /kB
+ESS
+bRE
+bRq
+1040
+0.715
+4.35
+2114
+1.003
+1.005
+1045
+0.652
+5.31
+1476
+1.003
+1.004
+1050
+0.575
+5.87
+1191
+1.003
+1.003
+1055
+0.491
+5.69
+1253
+1.004
+1.003
+1060
+0.417
+4.93
+1688
+1.002
+1.002
+Une boîte finie n’a pas de singularité thermodynamique. Une seule taille permet de repérer un maximum apparent,
+mais pas d’extrapoler Tc à la limite N →∞. La comparaison des trois tailles en section 10.3 examine distributions
+et déplacements des maxima, avec les réserves d’échantillonnage nécessaires [3].
+8.2
+Incertitude statistique du maximum et concordance des indices
+La hauteur du pic possède une erreur-type, mais celle-ci n’est pas une erreur en kelvins sur sa position. On estime
+cette dernière par un bootstrap conjoint des températures : dans chaque chaîne, les mêmes indices de blocs sont
+Réseau CFC rigide / ensemble canonique
+17
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+Température (K)
+0.2
+0.4
+0.6
+0.8
+1.0
+Amplitude q
+Perte de l’ordre global
+Température (K)
+−3.81
+−3.80
+−3.79
+−3.78
+−3.77
+−3.76
+Énergie (eV/atome)
+Énergie interne
+1000
+1020
+1040
+1060
+1080
+1100
+Température (K)
+0
+1
+2
+3
+4
+5
+6
+cV/kB par atome
+Réponse thermique
+1000
+1020
+1040
+1060
+1080
+1100
+Température (K)
+0
+200
+400
+600
+Xq (eV−1)
+Fluctuations de l’amplitude
+La grille fine résout le voisinage du maximum · 1050 K
+Zone grisée : températures voisines du maximum, pas un intervalle de confiance. Barres : ±1 erreur-type.
+Figure 12 – Agrandissement de la zone de transition : ordre, énergie et fluctuations. La zone grisée représente
+les voisins de grille, sans interprétation comme intervalle de confiance.
+−3.810 −3.805 −3.800 −3.795 −3.790 −3.785 −3.780 −3.775
+Énergie (eV/atome)
+0
+20
+40
+60
+80
+Densité de probabilité
+1040 K
+1050 K
+1060 K
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Amplitude d’ordre q
+0
+1
+2
+3
+4
+5
+Densité de probabilité
+1040 K
+1050 K
+1060 K
+Les distributions révèlent les fluctuations et la coexistence éventuelle
+Chaînes regroupées pour la visualisation ; une double bosse seule ne constitue pas une preuve thermodynamique.
+Figure 13 – Distributions près de la zone de transition. L’inspection de la coexistence complète celle du maximum
+de capacité calorifique ; les histogrammes restent sensibles à la durée du calcul.
+Réseau CFC rigide / ensemble canonique
+18
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+appliqués simultanément à toutes les températures. Les deux chaînes sont rééchantillonnées séparément. Pour
+chaque tirage, on recalcule les variances d’énergie dans chaque chaîne, on moyenne leurs capacités calorifiques puis
+on recherche le maximum sur la grille initiale. Cette synchronisation conserve les dépendances entre températures
+induites par les échanges de répliques.
+La longueur de référence vaut b = ⌈2 maxT,c,A∈{E,q} τc,A⌉, avec les bornes numériques décrites en annexe. On
+la compare à une longueur environ deux fois plus petite et deux fois plus grande. Les résultats sont obtenus
+uniquement à partir des archives de production : Sur les archives, 1000 tirages par blocs circulaires de 37 mesures
+(370 balayages) donnent un intervalle percentile à 95 % de [1050, 1055] K et un écart-type de 0.94 K pour la
+position du maximum sur la grille.
+Bloc (mesures)
+Intervalle percentile 95 % (K)
+Écart-type (K)
+18
+[1050, 1055]
+0.85
+37
+[1050, 1055]
+0.94
+74
+[1050, 1055]
+1.16
+Indicateur sur la grille
+Température (K)
+Maximum de capacité calorifique
+1050
+Pente la plus forte de q
+1050
+Pente la plus forte de l’énergie
+1050
+Maximum des fluctuations d’ordre
+1055
+1050
+1055
+Température du maximum sur la grille (K)
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Fréquence bootstrap
+Blocs de 18 mesures
+Blocs de 37 mesures
+Blocs de 74 mesures
+Incertitude statistique sur la position du maximum
+1 000 rééchantillonnages par longueur de bloc ; températures synchronisées dans chaque chaîne ; taille et grille fixées.
+Figure 14 – Fréquence de la position du maximum parmi les tirages bootstrap pour trois longueurs de bloc. Les
+températures possibles sont celles de la grille : aucune précision sous la maille de température n’est créée par ce
+calcul.
+Un écart-type inférieur au pas de 5 K traduit ici des changements rares de la case de maximum ; il ne localise pas
+le pic entre les températures simulées. L’intervalle percentile est une estimation statistique conditionnelle à la
+taille, aux deux chaînes observées et à la grille. Il ne couvre ni le déplacement avec L, ni les états métastables
+éventuellement non visités. S’il se réduit à un point, cela ne signifie pas que la vraie température de transition est
+connue exactement. Les changements de pente et les maxima de fluctuations ne définissent pas exactement le
+même critère : leur proximité identifie une zone cohérente, pas plusieurs mesures indépendantes d’une température
+critique unique.
+Une étude de plusieurs tailles à précision statistique contrôlée renforcerait l’interprétation thermodynamique. Les
+résultats de cette question concernent L = 6. Les campagnes L = 9 et L = 12 sont achevées et techniquement
+validées ; leurs résultats, avec leurs réserves statistiques, sont présentés en section 10.3.
+8.3
+Estimation analytique de Bragg-Williams
+Pour une famille d’états à un sous-réseau privilégié, avec 0 ≤η ≤1 dans cette comparaison d’amplitudes,
+p0 = 1 + 3η
+4
+,
+p1 = p2 = p3 = pf = 1 −η
+4
+.
+Réseau CFC rigide / ensemble canonique
+19
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+Le champ moyen néglige les corrélations entre occupations. Les premiers voisins relient des sous-réseaux distincts ;
+les seconds voisins appartiennent au même sous-réseau. Le comptage donne
+B1
+N = 9
+4 + 3
+4η2,
+B2
+N = 9
+8(1 −η2).
+L’énergie moyenne s’écrit
+uMF(η) = u∞−Aη2,
+A = 3
+8w1 −9
+16w2 = 0.0674625 eV,
+avec w2 = IAuAu + ICuCu −2IAuCu = −0.0126 eV.
+L’entropie de mélange par site d’un sous-réseau vaut −kBh(p), où h(p) = p ln p + (1 −p) ln(1 −p) et 0 ln 0 = 0.
+Donc
+fMF(η, T) = u∞−Aη2 + kBTg(η),
+g(η) = 1
+4h(p0) + 3
+4h(pf).
+La coexistence vérifie à la fois la stationnarité du minimum ordonné et l’égalité de son énergie libre à celle du
+minimum désordonné :
+2Aηt = kBTtg′(ηt),
+Aη2
+t = kBTt[g(ηt) −g(0)].
+En éliminant Tt,
+ηtg′(ηt) = 2[g(ηt) −g(0)],
+g′(η) = 3
+16 ln (1 + 3η)(3 + η)
+3(1 −η)2
+.
+La résolution donne ηt ≃0.46358 et
+T MF
+t
+≃1712.18 K.
+L’annulation de f ′′(0, T) donne seulement la perte de stabilité locale de l’état désordonné : Tsp = 2A/kB ≃1565.74
+K. Cette spinodale est distincte de la coexistence. Le saut d’ordre prédit ici est une propriété de l’approximation
+de champ moyen, et ne remplace pas une étude de la nature de la transition du modèle spatial.
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+η
+0
+5
+10
+15
+20
+f(η) − f(0) (meV/atome)
+Énergie libre de Bragg-Williams
+1592 K
+1712 K
+1832 K
+0
+500
+1000
+1500
+2000
+2500
+3000
+3500
+4000
+Température (K)
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Amplitude d’ordre
+Une approximation à comparer au calcul
+Champ moyen
+T coexistence MF ≈ 1712 K
+Monte-Carlo : q
+Le champ moyen néglige les corrélations spatiales
+Dans la famille à un sous-réseau privilégié, q = η ; les deux courbes comparent des amplitudes.
+Figure 15 – Énergies libres approchées et comparaison entre amplitudes d’ordre. L’estimation de champ moyen
+n’est pas utilisée pour fixer le résultat Monte-Carlo.
+Approfondissement pédagogique : Question 8 – Quelle température avons-nous effectivement déterminée ?
+— Nommer le critère. Le maximum de cV sur la grille définit T ∗(L), un repère de boîte finie. Les voisins
+de grille décrivent la résolution, tandis que le bootstrap décrit les déplacements de la case de maximum
+compatibles avec les trajectoires observées. Ni l’un ni l’autre ne couvre un bassin absent, une extrapolation
+en volume ou l’erreur du Hamiltonien. L12 donne ainsi 1052.5 K observés, avec une statistique encore
+insuffisante au maximum.
+— Croiser les symptômes. Une chute de q, une montée de l’énergie, des fluctuations fortes et deux populations
+sont cohérentes avec une transition dans la même zone. Elles utilisent toutefois les mêmes mesures, et
+énergie et Cowley sont liés exactement. Les maxima de Xq ou les creux du cumulant ne sont donc pas des
+expériences indépendantes donnant chacune une valeur exacte de Tc.
+— Comprendre le champ moyen. Bragg–Williams remplace les voisinages corrélés par des probabilités
+indépendantes. Il peut donner une coexistence, où deux minima d’énergie libre sont égaux, et une spinodale,
+où l’un perd sa stabilité locale. Ces températures diffèrent entre elles et du maximum Monte-Carlo fini.
+Réseau CFC rigide / ensemble canonique
+20
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+L’écart avec Monte-Carlo renseigne sur l’approximation ; il ne suffit pas à accuser l’implémentation. Aucune
+de ces températures ne devient automatiquement celle de Cu3Au réel.
+9
+Question 9 – Discussion des résultats et limites
+À 300 K, le calcul donne u = −3.813000 eV/atome et q = 1.0000. La comparaison à la borne exacte vérifie l’état
+ordonné de basse température.
+Au maximum thermique, à 1050 K, q = 0.575 et cV /kB = 5.87 par atome. Les historiques et les distributions
+permettent d’évaluer l’exploration des configurations dans cette zone.
+À 4000 K, on obtient u = −3.757820 eV/atome, q = 0.065, α1 = −0.067 et α2 = 0.026. Ces valeurs sont celles
+d’une température finie ; elles ne doivent pas être remplacées par les limites de mélange indépendant.
+Les critères locaux fixés avant l’analyse sont satisfaits dans la fenêtre du maximum. Cela appuie la cohérence
+statistique du résultat à cette taille, tout en laissant ouvertes les erreurs systématiques liées à des états métastables
+non visités.
+Le mécanisme général est une compétition entre énergie et entropie : F = U −TS. L’ordre minimise l’énergie,
+tandis que le nombre très élevé de configurations désordonnées favorise leur poids statistique à haute température.
+La disparition de l’ordre global peut précéder la disparition des préférences chimiques locales : un q faible ne
+contraint pas α1 et α2 à être exactement nuls.
+Les limites principales sont explicites : tailles finies, durées de simulation finies, grille de températures discrète, et
+approximation physique du réseau rigide. Les vibrations, la dilatation et les relaxations autour des antisites sont
+absentes. Les constantes de paire sont supposées indépendantes de la température. On ne présente donc pas la
+température du modèle comme une prédiction expérimentale exacte.
+9.1
+Comparaison critique avec Cu3Au réel
+Les mesures de calorimétrie et de diffusion situent le désordre chimique de Cu3Au près de 660–663 K, et non à 1050
+K [4, 7]. L’écart d’environ 390 K est de l’ordre de 60 % : le maximum du présent modèle est donc qualitativement
+pertinent mais quantitativement non calibré au matériau. Passer de L = 6 à L = 9 ou 12 ne constitue pas une
+correction des interactions du Hamiltonien. On ne peut pas attribuer cet écart à la seule taille finie, ni aux seules
+vibrations, sans calculs de contrôle séparant ces contributions. Un maximum calorimétrique expérimental dépend
+aussi du protocole : Benisek et Dachs rapportent un pic à 675 K pour leur échantillon le plus ordonné et une
+réaction vers 660 K pour des échantillons initialement désordonnés [4]. Il faut donc distinguer température de
+transition de référence et maximum mesuré pendant une histoire thermique. La transition réelle est décrite comme
+du premier ordre [7]. L’arrondi des courbes dans notre boîte finie ne démontre donc pas une transition continue,
+et l’on ne doit pas exiger une divergence critique de ξ pour conclure à l’existence d’une transition.
+Observation ou attente
+physique
+Ce que donne le modèle
+Limite ou interprétation
+Ordre chimique au froid
+L12, quatre variantes, défauts d’antisites
+et préférence pour les liaisons Au–Cu
+Accord structurel et énergétique pour ce
+modèle ; les positions atomiques ne se
+relaxent pas.
+Ordre local après perte
+d’ordre global
+q devient faible alors que α1, α2 restent
+mesurables
+Accord qualitatif avec la diffusion
+expérimentale sensible à l’ordre à courte
+portée [5].
+Chaleur mesurée en
+calorimétrie
+Pic de la seule contribution configuratoire
+cV
+Une expérience mesure généralement
+CP , avec vibrations et autres
+contributions ; ni le fond thermique, ni
+le pic total ne sont prédits ici [4].
+Diffusion et croissance de
+domaines
+Mise en ordre rapide avec des échanges
+Au–Cu à toute distance
+Pas de lacunes ni de barrières de saut
+calibrées ; aucun temps physique ni
+coefficient de diffusion ne peut être
+déduit du GIF [6].
+Volume, surfaces et
+interfaces
+Boîte périodique, volume fixé et
+interfaces chimiques possibles
+Pas de surface libre, joint de grain ou
+contrainte élastique relaxable ; les
+images périodiques peuvent interagir.
+Très haute température
+Le réseau reste artificiellement solide
+même à 4000 K
+Cette borne sert à explorer la limite
+mathématique désordonnée ; le modèle
+n’a aucun mécanisme de fusion et ne
+représente pas un solide réel à cette
+température.
+Réseau CFC rigide / ensemble canonique
+21
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+Ce qui est observé malgré les simplifications. La compétition énergie–entropie, les quatre variantes, la
+création de défauts, la perte d’ordre global et la persistance de préférences locales sont des mécanismes capturés
+par les occupations et les interactions de paires. Leur présence ne valide pas automatiquement leurs amplitudes,
+leur température ou leur vitesse dans le matériau réel.
+Ce que les animations ne résolvent pas. Selon la température de trempe et la dynamique choisie, un
+modèle d’alliage peut présenter une incubation par nucléation ou une mise en ordre plus homogène [6]. Une seule
+trajectoire, sans temps d’attente apparent à la résolution de 20 balayages, ne permet pas de choisir entre ces
+scénarios. Les échanges globaux peuvent faciliter une réorganisation collective que la diffusion locale réaliserait
+autrement. Inversement, un pic ou une bosse d’occupation de sous-réseau peut provenir d’un changement de
+variante, sans constituer un germe géométrique nouveau.
+9.2
+Approximations statistiques et spatiales à ne pas confondre
+Un q résiduel au chaud n’est pas nécessairement un défaut : q est une norme positive, dont la moyenne ne s’annule
+pas exactement dans une petite boîte désordonnée. Une absence de fluctuations au froid borne seulement ce qui
+a été vu pendant cette production. Les erreurs par blocs corrigent la dépendance temporelle observée ; elles ne
+reconstruisent pas un bassin métastable jamais visité.
+Les longueurs du bonus sont celles d’une enveloppe d’ordre définie par maille, avec moyenne sur les trois
+composantes et sur les directions équivalentes. Ce choix fournit un indicateur scalaire ; il peut masquer une
+anisotropie des domaines. Le premier vecteur accessible à L = 6 vaut kmina ≃1.047, loin d’une résolution continue
+de très petits k. Les distances périodiques et la petite gamme de r interdisent un ajustement robuste d’une
+décroissance exponentielle ou d’un exposant critique. Une longueur canonique supérieure à la boîte peut refléter le
+mélange des variantes et l’ordre uniforme ; ce n’est pas la taille d’un domaine mesuré dans les coupes. La longueur
+intra-variante est un diagnostic conditionnel, sans intervalle de confiance calculé dans cette étude.
+9.3
+Ce que les tailles supplémentaires permettent de tester
+Le côté passe de 6a à 9a, soit un facteur 1.5 ; le nombre de sites passe de 864 à 2916, soit un facteur 3.375, avec
+729 Au et 2187 Cu. Le plus petit décalage réciproque passe de 1.047/a à 0.698/a. Cette augmentation peut réduire
+l’arrondi des pics et l’influence des images périodiques, et offrir plus de place aux domaines. Elle ne garantit
+aucune amélioration de l’équilibre : les temps de relaxation et les barrières peuvent augmenter, tandis que les
+échanges de répliques deviennent moins efficaces à grille inchangée.
+La comparaison L6/L9 conserve le Hamiltonien, les 46 températures, 6000 balayages initiaux et 30000 de production
+par chaîne. Les moyennes sont comparées par atome ; les maxima T ∗(L), leurs intervalles, les histogrammes, R-hat,
+ESS et la circulation des répliques sont examinés ensemble en section 10.3. Les valeurs de q ne sont pas comparées
+comme si leur biais de norme finie était indépendant de N. Des états atomiques espacés de 100 balayages ont été
+conservés pour permettre une analyse spatiale après le calcul. Ce budget identique de balayages n’est pas une
+garantie de nombres identiques d’états indépendants.
+L12 porte ensuite la boîte à 6912 sites, avec un plus petit vecteur accessible kmina = 0.524. Sa grille est densifiée
+et sa production doublée ; les effets de taille et de protocole ne sont donc pas séparés parfaitement. Les trois
+tailles permettent d’observer des tendances, mais leurs diagnostics critiques inégaux ne justifient ni extrapolation
+quantitative ni loi universelle. L’analyse croisée de la section 10.3 détaille ce que l’augmentation améliore et
+les défauts d’échantillonnage qu’elle n’a pas supprimés. L’absence de phonons, de dilatation, de lacunes et de
+dynamique de diffusion reste la même pour les trois tailles.
+Une distribution à deux pics est compatible avec une coexistence ; une hystérésis est compatible avec une
+métastabilité. Aucune de ces observations isolées n’est une preuve suffisante de l’ordre thermodynamique de la
+transition. Il faudrait renforcer les statistiques et comparer plusieurs tailles pour conclure sur ce point.
+9.4
+Conclusion physique
+Au froid, l’énergie rejoint le minimum exact u0 = −3.813 eV/atome, q ≃1 et les deux paramètres de Cowley
+prennent les valeurs de L12. En chauffant, les défauts chimiques augmentent et l’ordre global chute dans la zone
+du maximum de capacité calorifique, situé à 1050 K sur cette grille. Au chaud, q devient faible alors que les
+corrélations locales restent mesurables : perdre l’ordre à longue portée ne rend pas immédiatement les occupations
+indépendantes. La valeur 1050 K caractérise donc ce modèle de réseau rigide dans la boîte de 864 sites ; elle n’est
+ni une extrapolation à taille infinie ni une mesure expérimentale de Cu3Au. Les grandes tailles situent elles aussi
+leur maximum dans la zone 1050–1055 K, tout en révélant un ralentissement important. Leur ajout consolide les
+tendances qualitatives ; il ne supprime pas l’incertitude sur les poids des populations ni l’erreur de modèle.
+Réseau CFC rigide / ensemble canonique
+22
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+Approfondissement pédagogique : Question 9 – Que retrouve-t-on du matériau réel et que manque-t-il ?
+— Les accords qualitatifs ont une origine identifiable. Les liaisons de première coquille favorisent les
+voisins chimiques différents et celles de seconde coquille favorisent les espèces identiques. Le modèle peut
+donc retrouver la structure L12, les quatre variantes, les antisites, une perte d’ordre global et un ordre local
+persistant. Ces résultats expliquent le mécanisme énergie–entropie sans supposer que toutes leurs amplitudes
+sont quantitativement correctes.
+— Une plus grande boîte ne change pas la physique absente. Dans le matériau réel, les atomes vibrent
+et les positions se relaxent, le volume varie, les défauts migrent par des mécanismes locaux et les contributions
+électroniques peuvent compter. Ici les positions sont fixes, les paires sont constantes et les échanges peuvent
+relier deux sites éloignés. L9 puis L12 améliorent l’espace disponible, pas ces hypothèses. Le décalage entre
+660–663 K expérimental et environ 1050–1055 K dans le modèle ne peut donc pas être corrigé par la seule
+augmentation du nombre d’atomes.
+— La critique concerne aussi les résultats numériques. L6 fournit le repère le mieux contrôlé statistique-
+ment près du maximum ; les grandes boîtes montrent un pic plus étroit et des populations plus distinctes,
+mais elles explorent moins bien leur coexistence. La conclusion doit garder les deux constats : la tendance de
+taille est intéressante, son extrapolation n’est pas validée. De même, le GIF montre une mise en ordre sous
+la dynamique choisie ; il ne mesure pas une vitesse de nucléation dans l’alliage réel.
+Approfondissement pédagogique : Fil conducteur pour une présentation de 8 à 10 minutes
+1. Décrire le réseau fixe, la composition et la structure L12.
+2. Montrer les préférences de paire et la preuve du fondamental.
+3. Expliquer un échange et la balance détaillée de Metropolis.
+4. Définir Cowley et l’ordre global ; montrer les quatre variantes.
+5. Présenter les tests avant les résultats numériques.
+6. Montrer énergie, capacité calorifique et perte d’ordre.
+7. Donner le maximum apparent avec sa résolution et ses diagnostics.
+8. Terminer par les limites physiques et les diagnostics des trois tailles.
+10
+Bonus – Histoire thermique, visualisation et corrélations spatiales
+Le bonus étudie la mémoire du trajet thermique à budget de simulation fixé. Il complète l’étude canonique
+précédente par un protocole séquentiel de chauffage puis de refroidissement.
+10.1
+Partie 1 – Cycle thermique et visualisation des configurations
+10.1.1
+Protocole séquentiel et conservation de la mémoire
+Le cycle porte sur L = 6, soit 864 sites, avec 2 trajectoires indépendantes et 46 températures entre 300 et 4000 K.
+À chaque température et dans chaque sens, on écarte 6000 balayages initiaux, puis on mesure pendant 30000
+balayages, à raison d’une mesure tous les 10 balayages. Chaque trajectoire part d’une variante ordonnée. La
+configuration finale d’un palier est transmise au suivant ; après le palier le plus chaud, le programme parcourt les
+températures en sens inverse sans réinitialiser les occupations. Le sommet chaud fait l’objet d’un second palier
+mesuré au début de la branche retour : aucune mesure n’est dupliquée. Il n’y a pas d’échange de répliques dans ce
+bonus : l’objectif est de comparer deux histoires thermiques avec le même budget de balayages. Les déplacements
+restent des échanges Au–Cu globaux ; ce cycle ne représente donc pas une vitesse de chauffage expérimentale ni
+une cinétique de diffusion réelle.
+10.1.2
+Mesures sauvegardées et reprise
+Chaque archive de palier conserve les séries d’équilibration et de production (E, η, q, α1, α2, p0, p1, p2, p3), les états
+initial et final, les compteurs d’acceptation et l’état du générateur aléatoire. L’énergie et la composition sont
+vérifiées après chaque segment. Les archives sont écrites atomiquement après un palier complet. L’option –resume
+reprend au dernier palier achevé ; un palier interrompu est recalculé depuis son début.
+Pseudocode du cycle chauffage–refroidissement
+POUR chaque graine independante :
+initialiser une configuration ordonnee
+POUR branche dans [chauffage, refroidissement] :
+parcourir les temperatures dans le sens de la branche
+Réseau CFC rigide / ensemble canonique
+23
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+POUR chaque temperature :
+conserver la configuration du palier precedent
+equilibrer par Metropolis a temperature fixee
+mesurer les neuf observables en production
+sauvegarder mesures, etat final et generateur
+FIN POUR
+FIN POUR
+FIN POUR
+comparer les branches a temperature identique, cycle par cycle
+10.1.3
+Interprétation des différences entre branches
+On compare principalement u, q, les deux paramètres de Cowley et les fluctuations. L’ordre signé η dépend aussi
+de la variante et ne suffit pas à identifier une hystérésis. Les branches sont appariées au sein d’un même cycle :
+∆Ac(T) = Ac,↓(T) −Ac,↑(T). Une différence persistante à budget fini peut révéler une métastabilité ou une
+relaxation insuffisante. À équilibre complet, les observables canoniques ne dépendent pas du sens de parcours.
+Une boucle ne prouve donc pas, à elle seule, une transition du premier ordre. La capacité calculée par variance est
+notée cfluct
+V
+: son interprétation comme réponse thermique d’équilibre exige des diagnostics satisfaisants.
+10.1.4
+Résultats du cycle terminé
+Branche
+Maximum de cfluct
+V
+(K)
+Paliers avec diagnostic insuffisant
+Chauffage
+1050
+9
+Refroidissement
+1055
+10
+L’écart refroidissement moins chauffage des maxima vaut 5 K sur la grille. Il décrit ce protocole, sans fournir une
+température critique extrapolée. Les barres indiquent une erreur-type calculée séparément par branche. Dans
+les comparaisons des moyennes par branche, les cercles creux représentent le chauffage et les carrés creux le
+refroidissement ; les vues rapprochées couvrent 100 K autour du maximum au chauffage. Pour les différences, les
+courbes individuelles montrent la dispersion entre cycles ; avec seulement deux graines, elle ne constitue pas un test
+robuste de significativité. Les paliers dont les diagnostics échouent doivent être prolongés avant une interprétation
+d’équilibre.
+10.1.5
+Occupations des Au : distinguer les cycles et les variantes
+Le label µ ∈{0, 1, 2, 3} repère une position géométrique dans la base CFC ; il ne change pas pendant le calcul.
+Chaque sous-réseau contient L3 sites et son occupation vaut pµ = NAu,µ/L3. Ainsi P
+µ pµ = 1 à la composition
+étudiée. Un état parfaitement ordonné présente une occupation égale à 1 et trois égales à 0. La figure des
+occupations sépare les cycles indépendants : une colonne par cycle et une ligne par sens du parcours. Chaque
+point est la moyenne temporelle des seules mesures de production de ce cycle à cette température. Les mêmes
+couleurs et symboles désignent les mêmes sous-réseaux dans tous les panneaux. Au chauffage, à 300 K, les archives
+donnent :
+Cycle
+⟨p0⟩
+⟨p1⟩
+⟨p2⟩
+⟨p3⟩
+⟨q⟩
+1
+1.000
+0.000
+0.000
+0.000
+1.000
+2
+0.000
+0.000
+1.000
+0.000
+1.000
+Moyenne des cycles
+0.500
+0.000
+0.500
+0.000
+1.000
+Moyenner des cycles partis dans des variantes différentes peut donc répartir l’occupation moyenne entre plusieurs
+sous-réseaux, même si chacun des états est ordonné. Par exemple, la moyenne de (1, 0, 0, 0) et (0, 0, 1, 0) vaut
+(1/2, 0, 1/2, 0) : ce vecteur moyen ne décrit aucune des deux configurations. Il ne signale pas une erreur de
+définition de µ. Près de la transition, un même cycle peut aussi changer de variante au cours du temps : séparer les
+cycles ne supprime pas cet effet de moyenne temporelle. Pour comparer le degré d’ordre, on calcule q sur chaque
+configuration puis on moyenne les valeurs obtenues. En général, ⟨q(p)⟩̸ = q(⟨p⟩) ; une occupation moyenne uniforme
+ne suffit donc pas à conclure au désordre instantané.
+Les exports complémentaires bonus_05_traces.pdf
+(historiques denses, transitoires compris) et bonus_07_configurations.pdf (coupes à 1050 K) restent dans
+results/thermal_cycle_L6/figures. Les neuf coupes fixes et l’évolution sont examinées dans les GIF, sans
+répéter ces vues dans le corps du rapport.
+Réseau CFC rigide / ensemble canonique
+24
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+500
+1000
+1500
+2000
+2500
+3000
+3500
+4000
+Température (K)
+−3.81
+−3.80
+−3.79
+−3.78
+−3.77
+−3.76
+Énergie (eV/atome)
+Énergie : cycle complet
+Chauffage
+Refroidissement
+500
+1000
+1500
+2000
+2500
+3000
+3500
+4000
+Température (K)
+0
+1
+2
+3
+4
+5
+6
+cfluct
+V
+/kB par atome
+Réponse par fluctuations : cycle complet
+Chauffage
+Refroidissement
+1000
+1020
+1040
+1060
+1080
+1100
+Température (K)
+−3.81
+−3.80
+−3.79
+−3.78
+−3.77
+−3.76
+Énergie (eV/atome)
+Énergie : zone de transition
+Chauffage
+Refroidissement
+1000
+1020
+1040
+1060
+1080
+1100
+Température (K)
+0
+1
+2
+3
+4
+5
+6
+cfluct
+V
+/kB par atome
+Fluctuations : zone de transition
+Chauffage
+Refroidissement
+Cycle thermique : énergie et fluctuations
+Barres : ±1 erreur-type par branche ; cercles : chauffage, carrés : refroidissement ; stationnarité requise pour les fluctuations.
+Figure 16 – Énergie et réponse par fluctuations, sur le cycle complet et dans la zone de transition.
+1000
+1020
+1040
+1060
+1080
+1100
+Température (K)
+0.2
+0.4
+0.6
+0.8
+1.0
+Amplitude q
+Chauffage
+Refroidissement
+1000
+1020
+1040
+1060
+1080
+1100
+Température (K)
+−0.4
+−0.2
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Ordre signé η
+Chauffage
+Refroidissement
+1000
+1020
+1040
+1060
+1080
+1100
+Température (K)
+−0.30
+−0.25
+−0.20
+−0.15
+−0.10
+Cowley α₁
+Chauffage
+Refroidissement
+1000
+1020
+1040
+1060
+1080
+1100
+Température (K)
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Cowley α₂
+Chauffage
+Refroidissement
+1000
+1020
+1040
+1060
+1080
+1100
+Température (K)
+0
+100
+200
+300
+400
+500
+600
+700
+Fluctuations Xq (eV⁻¹)
+Chauffage
+Refroidissement
+1000
+1020
+1040
+1060
+1080
+1100
+Température (K)
+0.0
+0.2
+0.4
+0.6
+Cumulant Uq
+Chauffage
+Refroidissement
+Ordre global et local au chauffage et au refroidissement
+η dépend de la variante choisie ; q est l’amplitude à privilégier pour comparer les branches.
+Figure 17 – Comparaison de l’ordre global, de l’ordre local et des fluctuations.
+Réseau CFC rigide / ensemble canonique
+25
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+Température (K)
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Occupation temporelle moyenne par Au
+Chauffage · cycle 1
+μ = 0
+μ = 1
+μ = 2
+μ = 3
+Température (K)
+Occupation temporelle moyenne par Au
+Chauffage · cycle 2
+μ = 0
+μ = 1
+μ = 2
+μ = 3
+500
+1000
+1500
+2000
+2500
+3000
+3500
+4000
+Température (K)
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Occupation temporelle moyenne par Au
+Refroidissement · cycle 1
+μ = 0
+μ = 1
+μ = 2
+μ = 3
+500
+1000
+1500
+2000
+2500
+3000
+3500
+4000
+Température (K)
+Occupation temporelle moyenne par Au
+Refroidissement · cycle 2
+μ = 0
+μ = 1
+μ = 2
+μ = 3
+Occupations des sous-réseaux : chaque cycle séparément
+Chaque point : moyenne temporelle d’un seul cycle, sans moyenne entre cycles.
+Les couleurs et symboles identifient μ ; des changements de variante peuvent subsister dans une moyenne temporelle.
+Figure 18 – Occupations des Au séparées par cycle et par sens du parcours. Chaque point est une moyenne
+temporelle au sein d’un seul cycle ; couleurs et symboles identifient les sous-réseaux, sans moyenne entre cycles.
+1000
+1020
+1040
+1060
+1080
+1100
+Température (K)
+−0.003
+−0.002
+−0.001
+0.000
+0.001
+0.002
+0.003
+Δu (eV/atome)
+Cycle 1
+Cycle 2
+Moyenne appariée
+1000
+1020
+1040
+1060
+1080
+1100
+Température (K)
+−0.10
+−0.05
+0.00
+0.05
+0.10
+Δq
+Cycle 1
+Cycle 2
+Moyenne appariée
+1000
+1020
+1040
+1060
+1080
+1100
+Température (K)
+−0.010
+−0.005
+0.000
+0.005
+0.010
+0.015
+Δα₁
+Cycle 1
+Cycle 2
+Moyenne appariée
+1000
+1020
+1040
+1060
+1080
+1100
+Température (K)
+−0.05
+0.00
+0.05
+Δα₂
+Cycle 1
+Cycle 2
+Moyenne appariée
+Mémoire du trajet : refroidissement moins chauffage
+Les branches sont appariées ; les symboles distinguent les cycles et leur moyenne, sans test de significativité.
+Figure 19 – Différences appariées refroidissement moins chauffage ; les symboles distinguent les cycles indépendants
+et leur moyenne.
+Réseau CFC rigide / ensemble canonique
+26
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+500
+1000
+1500
+2000
+2500
+3000
+3500
+4000
+Température (K)
+1.00
+1.01
+1.02
+1.03
+1.04
+1.05
+Maximum de R-hat(E,q)
+Chauffage
+Refroidissement
+500
+1000
+1500
+2000
+2500
+3000
+3500
+4000
+Température (K)
+102
+103
+ESS minimal estimé
+500
+1000
+1500
+2000
+2500
+3000
+3500
+4000
+Température (K)
+0
+20
+40
+60
+80
+τ maximal (mesures)
+500
+1000
+1500
+2000
+2500
+3000
+3500
+4000
+Température (K)
+0.0
+0.2
+0.4
+0.6
+Fraction de mouvements acceptés
+Diagnostics séparés des deux branches
+Une hystérésis peut refléter une relaxation insuffisante ; des séries constantes ne prouvent pas un mélange efficace.
+Figure 20 – Autocorrélation, accord des chaînes, effectif utile et acceptation des mouvements.
+−3.81
+−3.80
+−3.79
+−3.78
+Énergie (eV/atome)
+0
+20
+40
+60
+Densité
+1045 K
+Chauffage
+Refroidissement
+−3.80
+−3.79
+−3.78
+Énergie (eV/atome)
+0
+20
+40
+60
+Densité
+1050 K
+−3.80
+−3.79
+−3.78
+Énergie (eV/atome)
+0
+20
+40
+60
+Densité
+1055 K
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Amplitude q
+0
+1
+2
+3
+4
+Densité
+1045 K
+Chauffage
+Refroidissement
+0.0
+0.2
+0.4
+0.6
+0.8
+Amplitude q
+0
+1
+2
+3
+Densité
+1050 K
+0.0
+0.2
+0.4
+0.6
+0.8
+Amplitude q
+0.0
+0.5
+1.0
+1.5
+2.0
+2.5
+Densité
+1055 K
+Distributions au voisinage des maxima de fluctuations
+Cycles regroupés pour la visualisation ; à chaque température les deux branches utilisent les mêmes classes d’histogramme.
+Figure 21 – Distributions d’énergie et d’ordre au voisinage des maxima, comparées à température égale.
+Réseau CFC rigide / ensemble canonique
+27
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+10.1.6
+Deux plaquettes animées : protocole et accès aux fichiers
+Les fichiers GIF accompagnent le PDF dans le sous-dossier animations. Le PDF présente des images fixes et des
+liens vers les animations externes ; il ne joue pas lui-même les GIF. Les liens supposent de conserver ce sous-dossier
+à côté du rapport.
+— Ouvrir la plaquette du cycle chauffage–refroidissement.
+— Ouvrir la plaquette de relaxation à température fixe.
+Chaque plaquette contient neuf couches atomiques exactes : trois couches parallèles pour chacune des orientations
+(001), (110) et (111). Les positions des coupes et le cadrage restent fixes ; Au est en or et Cu en bleu. Pour (001),
+on suit z/a = 2, 2.5, 3 ; pour (110), (x + y)/a = 5, 5.5, 6 ; pour (111), (x + y + z)/a = 7, 8, 9. Ces trois orientations
+sont des vues complémentaires du même volume, pas trois simulations distinctes. Le GIF thermique comporte
+93 images : l’état initial puis les 92 fins de palier du premier cycle, de 300 à 4000 K puis en sens inverse. Les
+événements à l’intérieur d’un palier ne sont pas sauvegardés dans cette campagne historique. Le compteur cumule
+équilibration et production. Le GIF isotherme comporte 301 états. Il part de l’état final à 4000 K du chauffage du
+cycle 1, puis impose immédiatement 1000 K. Un calcul dédié de 6000 balayages, graine 20261104, sauvegarde les
+occupations tous les 20 balayages. Aucun transitoire n’est éliminé. La première image est l’état chaud juste après
+le changement de température, avant toute relaxation ; l’étiquette 1000 K indique la consigne. Les 200 premiers
+balayages sont ralentis à la lecture, sans modifier les valeurs du compteur.
+10.1.7
+Ce que montrent les animations et ce qu’elles ne démontrent pas
+Le cycle thermique rend visible le passage entre un motif ordonné et une occupation désordonnée. La variante
+retrouvée au refroidissement peut différer de celle du départ : un changement de variante n’est pas, à lui seul, une
+perte d’ordre. Une seule couche peut paraître pauvre en Au parce que le sous-réseau privilégié se trouve dans
+une couche voisine. Dans la relaxation, q passe de 0.049 à 0.944 entre 0 et 6000 balayages. Les premiers états
+enregistrés avec q ≥0.8 et q ≥0.9 apparaissent respectivement à 80 et 100 balayages (résolution de capture :
+20 balayages). L’évolution ultérieure fluctue et n’est pas strictement monotone. Cette trajectoire montre une
+mise en ordre rapide de la petite boîte. Elle ne suffit pas à identifier un rayon critique, un temps d’attente
+de nucléation ou une loi de croissance de domaines. Il faudrait définir un domaine local, suivre ses interfaces
+et répéter les trempes avec plusieurs graines et tailles. Les échanges Au–Cu sont globaux : les balayages ne
+constituent pas une durée physique ni une cinétique de diffusion atomique calibrée. Les plaquettes fixes initiale
+0.0
+0.5
+1.0
+1.5
+2.0
+2.5
+3.0
+Millions de balayages cumulés
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Ordre global q
+Cycle thermique : fins de palier
+Chauffage
+Refroidissement
+0
+1000
+2000
+3000
+4000
+5000
+6000
+Balayages depuis la trempe
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Ordre global q
+Relaxation à 1000 K
+0
+25
+50
+75
+100
+125
+150
+175
+200
+Balayages depuis la trempe
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Ordre global q
+Les 200 premiers balayages
+Les instants sont ceux des configurations des GIF ; aucune interpolation temporelle des positions ou des espèces.
+Figure 22 – Ordre global des configurations présentes dans les deux GIF et agrandissement du début de la
+relaxation.
+et finale sont disponibles avec les GIF dans results/thermal_cycle_L6/visualisation/animations (fichiers
+plaquette_relaxation_isotherme_debut.pdf et plaquette_relaxation_isotherme_fin.pdf). Elles ne sont
+pas reproduites une seconde fois comme grandes figures de neuf panneaux.
+Approfondissement pédagogique : Bonus 1 – Comment lire un cycle et une animation ?
+— Lire le temps dans le bon sens. Au chauffage, les températures sont parcourues de gauche à droite ; au
+refroidissement, le temps avance lorsque T diminue. Le GIF thermique montre des fins de paliers, séparées
+par beaucoup de balayages, et ne résout pas les événements entre ces images. Le GIF isotherme conserve
+T à 1000 K : seul le temps Monte-Carlo avance. Les neuf coupes sont des vues du même état, pas neuf
+trajectoires indépendantes.
+— Relier image, ordre et histoire. Une couche pauvre en Au peut appartenir à un cristal ordonné dont
+les Au occupent les couches voisines. On confronte donc les coupes à q et aux occupations, séparées par
+cycle. Une différence chauffage–refroidissement montre une mémoire à budget fini. Elle doit être vérifiée
+Réseau CFC rigide / ensemble canonique
+28
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+en allongeant les paliers, et ne constitue ni une nouvelle température d’équilibre ni une preuve isolée de
+nucléation. Seules des branches réellement calculées peuvent être comparées ; les productions canoniques
+L9/L12 n’en sont pas.
+10.2
+Partie 2 – Longueur de corrélation et analyse de Fourier
+10.2.1
+Pourquoi mesurer une longueur spatiale ?
+L’amplitude q décrit l’ordre global, tandis que α1 et α2 décrivent les deux premières coquilles. La longueur de
+corrélation ξ caractérise la portée spatiale des corrélations de l’ordre chimique. Elle n’est pas automatiquement le
+rayon d’un germe ni la taille géométrique d’un domaine.
+10.2.2
+Champ local : conserver les quatre variantes L12
+On numérote les mailles conventionnelles par R, de pas a, et leurs quatre sites par µ. Avec nRµ = 1 pour Au et 0
+pour Cu, on définit trois composantes signées :
+ψα(R) =
+3
+X
+µ=0
+ϵαµ(nRµ −1/4),
+ϵ =
+
+
+1
+1
+−1
+−1
+1
+−1
+1
+−1
+1
+−1
+−1
+1
+
+.
+Dans les quatre états parfaitement ordonnés, le champ vaut (1, 1, 1), (1, −1, −1), (−1, 1, −1) ou (−1, −1, 1). Le
+signe distingue donc la variante, ce que ne ferait pas une amplitude locale toujours positive. Avec V = L3 et
+m = V −1 P
+R ψ(R), on retrouve exactement q2 = |m|2/3. Ce champ représente les enveloppes, par maille,
+des trois ondes d’ordre Qx = (2π/a)(1, 0, 0), Qy = (2π/a)(0, 1, 0) et Qz = (2π/a)(0, 0, 1). À décalage nul, ses
+composantes sont exactement les amplitudes de ces ondes. À décalage non nul, on étudie la FFT du champ par
+maille : cette convention d’enveloppe est explicitement distincte d’un calcul de diffraction atomique incluant les
+phases de position internes à la base. La concentration totale étant fixée, son mode uniforme ne fluctue pas. Le
+mode k = 0 utilisé ci-dessous est celui du champ d’ordre, pas celui de la concentration brute.
+10.2.3
+Corrélation réelle, FFT et second moment
+Fα(k) =
+X
+R
+ψα(R)e−ik·R,
+Sbrut(k) = 1
+3V
+X
+α
+⟨|Fα(k)|2⟩.
+Sc(k) = 1
+3V
+X
+α
+
+⟨|Fα(k)|2⟩−|⟨Fα(k)⟩|2
+.
+La soustraction se fait sur la moyenne temporelle complexe de chaque chaîne, puis les spectres des chaînes sont
+moyennés. On ne soustrait jamais la moyenne spatiale de chaque configuration : cela annulerait artificiellement le
+mode dont on veut mesurer les fluctuations. La FFT inverse donne exactement, sur la boîte périodique,
+Cc(r) = 1
+3V
+X
+R
+[⟨ψ(R) · ψ(R + r)⟩−⟨ψ(R)⟩· ⟨ψ(R + r)⟩] .
+Dans la limite de volume infini et pour une corrélation isotrope sommable, la longueur de second moment vérifie
+ξ 2
+2nd =
+P
+r |r|2Cc(r)
+6 P
+r Cc(r) .
+Le mot moment désigne ici une pondération par la distance au carré, pas la variance d’énergie de cV . Sur une
+boîte périodique, une somme naïve en r2 dépend du choix des images. Le code emploie l’estimateur spectral fini,
+avec S1 la moyenne sur les six vecteurs ±(2π/(La))ej :
+ξ2,L
+a
+=
+1
+2 sin(π/L)
+s
+Sc(0)
+S1
+−1 .
+Le facteur sinus correspond au réseau de mailles de pas a. Cet estimateur compare le pic d’ordre et ses premiers
+voisins réciproques ; une FFT complète n’est pas indispensable pour ces sept modes, mais elle permet aussi de
+reconstruire C(r). Il ne prouve pas une forme lorentzienne à tous les vecteurs d’onde. La longueur de second
+moment n’est pas strictement identique à la longueur de décroissance exponentielle. On n’ajuste donc pas une
+exponentielle sur les quelques distances accessibles ici.
+Réseau CFC rigide / ensemble canonique
+29
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+10.2.4
+Retirer une moyenne ne supprime pas nécessairement le mélange de variantes
+La part cohérente |⟨F⟩|2 est sauvegardée séparément. Cependant, si la chaîne visite plusieurs variantes ordonnées,
+⟨ψ⟩peut être proche de zéro alors que q reste élevé. Le spectre connexe canonique contient alors encore la
+fluctuation collective entre variantes : une grande valeur de ξ2,L ne décrit pas les petits défauts d’une phase pure.
+Un diagnostic supplémentaire calcule la variance de Fourier conditionnellement au sous-réseau majoritaire, puis
+moyenne ces variances avec les fréquences des variantes. Ce diagnostic intra-variante enlève la variation entre leurs
+moyennes. Il est affiché uniquement pour T ≤1000 K, ⟨q⟩> 0.8 et au moins 90 % de couverture par des groupes
+de huit états ou plus. Il s’agit d’un conditionnement explicite, pas d’un remplacement de la corrélation canonique ;
+il serait biaisant dans le régime désordonné. Aucune incertitude statistique n’est attribuée ici à ce seul diagnostic.
+10.2.5
+Campagne dédiée, incertitudes et contrôles
+La configuration configs/correlation_L6.json utilise L = 6, 14 températures entre 900 et 2000 K, deux
+chaînes de graines 202611041 et 202611042. Après 3000 balayages d’équilibration, 12000 balayages produisent 600
+configurations par chaîne et température, espacées de 20 balayages. Les échanges de répliques ont lieu tous les 5
+balayages. Les états de départ sont les configurations finales de la campagne canonique antérieure à la température
+disponible la plus proche ; les nouvelles mesures proviennent uniquement de la nouvelle production. Contrairement
+aux anciennes archives contenant surtout des observables, les nouvelles archives conservent chaque état atomique
+échantillonné. Les intervalles sont les percentiles 2.5 et 97.5 d’un bootstrap circulaire de 400 répétitions, par blocs
+contigus dans chaque chaîne, avec recalcul de la moyenne complexe et du rapport à chaque répétition. La longueur
+des blocs vaut environ deux fois le plus grand temps d’autocorrélation estimé parmi E, q, les puissances des
+modes et les composantes signées. Une sensibilité à demi/double longueur est conservée autour de la transition.
+Ces intervalles sont conditionnels aux trajectoires observées et ne corrigent ni une phase non visitée ni la taille
+finie. À basse température, les composantes signées peuvent rester corrélées bien plus longtemps que l’énergie
+et la norme q ; l’effectif utile ou le nombre de blocs deviennent alors insuffisants. Un intervalle étroit malgré
+ce signalement reste une incertitude conditionnelle fragile, et non une mesure validée à haute précision. Les
+diagnostics comprennent R-hat de E, q, S(0) et des composantes signées, l’effectif utile, les échanges acceptés
+et la fraction de rapports bootstrap définis. Une racine négative ou un dénominateur nul produit une valeur
+manquante, jamais un zéro fabriqué. Une longueur supérieure à L/2 est signalée sans être écrêtée : ce seuil est un
+repère prudent, pas une borne mathématique de l’estimateur.
+Pseudocode : mesures spatiales et analyse
+POUR chaque chaine et temperature :
+equilibrer, puis capturer les etats pendant la production
+verifier composition et energie exacte a chaque capture
+construire les trois champs signes psi sur les mailles
+calculer F = FFT(psi)
+accumuler <abs(F)^2> et <F> complexe separement
+S_connexe = (<abs(F)^2> - abs(<F>)^2) / (3*V)
+conserver aussi S_brut et la part coherente
+moyenner les spectres des chaines, puis calculer le rapport
+reconstruire C = IFFT(S_connexe)
+reechantillonner des blocs, recalculer les moyennes et xi
+signaler ratios indefinis, diagnostics et taille finie
+10.2.6
+Résultats à taille finie et comparaison des définitions
+T (K)
+ξbrut/a
+ξc/a
+IC 95 % de ξc/a
+Intra-variante/a
+Réserve
+900
+41.344
+40.722
+[35.942, 43.461]
+0.687
+taille finie, ESS faible
+980
+24.609
+24.327
+[22.754, 25.768]
+0.759
+taille finie, ESS faible
+1000
+18.587
+18.445
+[17.039, 20.036]
+1.097
+taille finie, ESS faible
+1020
+14.071
+13.968
+[12.672, 15.314]
+—
+taille finie, ESS faible
+1030
+11.379
+11.322
+[10.277, 12.462]
+—
+taille finie, ESS faible
+1040
+8.794
+8.732
+[8.051, 9.428]
+—
+taille finie, ESS faible
+1045
+7.320
+7.276
+[6.853, 7.724]
+—
+taille finie, ESS faible
+1050
+6.220
+6.193
+[5.868, 6.509]
+—
+taille finie, ESS faible
+1055
+5.052
+5.037
+[4.775, 5.356]
+—
+taille finie, ESS faible
+1060
+4.009
+4.002
+[3.775, 4.202]
+—
+taille finie
+1080
+1.854
+1.844
+[1.710, 1.956]
+—
+aucune détectée
+1100
+1.374
+1.370
+[1.283, 1.460]
+—
+aucune détectée
+1300
+0.662
+0.663
+[0.599, 0.712]
+—
+aucune détectée
+2000
+0.374
+0.376
+[0.295, 0.441]
+—
+aucune détectée
+Dans la phase froide, la grande longueur canonique et la longueur intra-variante beaucoup plus courte répondent
+Réseau CFC rigide / ensemble canonique
+30
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+à des questions différentes : cohérence de l’ordre à l’échelle de la boîte, ou fluctuations conditionnelles autour
+d’une variante. L’augmentation du rapport spectral ne constitue pas la mesure d’un domaine géométrique plus
+grand que le volume. Au-dessus de la transition, la longueur devient plus courte. Avec seulement six mailles par
+direction, le premier décalage accessible est kmina = 2π/6 ≃1.047 : le régime des très petits vecteurs d’onde est
+peu résolu. Cette campagne ne détermine ni un exposant critique, ni une divergence, ni une température critique
+extrapolée. Il faudrait plusieurs tailles et étudier notamment ξ/(La) en conservant la même définition.
+1000
+1200
+1400
+1600
+1800
+2000
+Température (K)
+0
+10
+20
+30
+40
+Longueur / a
+Estimation canonique, L = 6
+L/2 : repère de taille finie
+Spectre brut
+Partie connexe
+Intra-variante (phase froide)
+1000
+1020
+1040
+1060
+1080
+1100
+Température (K)
+0.0
+2.5
+5.0
+7.5
+10.0
+12.5
+15.0
+17.5
+20.0
+Longueur / a
+Voisinage de la transition
+L/2 : repère de taille finie
+Spectre brut
+Partie connexe
+Intra-variante (phase froide)
+Traits verticaux : bootstrap 95 % conditionnel aux chaînes ; croix : réserve statistique ou taille finie ; pas de barre pour le diagnostic intra-variante.
+Figure 23 – Longueurs spectrales brute et connexe, et diagnostic conditionnel intra-variante à basse température.
+Les grandes valeurs doivent être interprétées avec les réserves de taille finie.
+0
+1
+2
+3
+4
+5
+Distance minimale r/a
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+C connecté(r) / C connecté(0)
+Espace réel : moyennes par coquille
+900 K
+1040 K
+1050 K
+1060 K
+1300 K
+0.0
+0.5
+1.0
+1.5
+2.0
+2.5
+3.0
+Décalage |k| a autour des ondes d’ordre
+0
+25
+50
+75
+100
+125
+150
+175
+200
+S connecté(k)
+Fourier : moyenne des trois axes
+900 K
+1040 K
+1050 K
+1060 K
+1300 K
+FFT du champ d’ordre par maille ; aucune hypothèse de décroissance exponentielle ajustée à ces quelques distances.
+Figure 24 – Corrélations réelles connexes obtenues par FFT inverse et spectres des enveloppes d’ordre. Un
+plateau à basse température peut subsister du fait des fluctuations collectives entre variantes.
+10.2.7
+Après la trempe : distinguer croissance de l’ordre et longueur de fluctuation
+Les 301 configurations du GIF isotherme permettent une analyse spatiale instantanée à 1000 K. On calcule le
+même rapport de puissances sans moyenne d’ensemble, noté ℓapp(t). Ce n’est pas ξc(T) : le système relaxe et
+aucune moyenne d’ensemble à temps fixé sur plusieurs trempes n’est disponible. On enregistre aussi la fraction
+f0 = S(0)/ P
+k S(k) et une longueur de largeur diffuse, en excluant explicitement le mode uniforme :
+ℓdiff
+a
+=
+" P
+k̸=0 S(k)
+P
+k̸=0 bk 2
+a S(k)
+#1/2
+,
+bk 2
+a = 4
+X
+j
+sin2(kja/2).
+Cette largeur est un second moment dans l’espace réciproque, distinct du second moment en espace réel qui
+définit ξ. Elle sonde le spectre diffus restant, incluant les défauts et les courtes distances, et n’est pas un rayon de
+Réseau CFC rigide / ensemble canonique
+31
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+1000
+1200
+1400
+1600
+1800
+2000
+Température (K)
+100
+1.01 × 100
+1.02 × 100
+1.03 × 100
+1.04 × 100
+1.05 × 100
+R-hat (échelle logarithmique)
+Accord des deux chaînes
+q
+S(0) brut
+Composantes signées
+1000
+1200
+1400
+1600
+1800
+2000
+Température (K)
+0
+200
+400
+600
+800
+1000
+ESS conservateur estimé
+Autocorrélation E, q et puissances
+1000
+1200
+1400
+1600
+1800
+2000
+Température (K)
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Fraction des ratios définis
+Stabilité du bootstrap
+Un désaccord des composantes signées peut signaler des variantes différentes ; un bon accord de q ne prouve pas leur exploration.
+Figure 25 – Diagnostics de la campagne spatiale ; l’accord statistique ne supprime pas les effets de taille finie.
+domaine. Dans cette trajectoire, ℓapp > L/2 pour 299 des 301 images. Dès 40 balayages, sa valeur est dominée
+par l’ordre qui se forme à l’échelle de la boîte ; à l’instant initial, le rapport ne définit pas de longueur réelle.
+Ces observations empêchent d’interpréter une courbe croissante comme une loi de croissance de germes. Elles
+expliquent pourquoi les GIF doivent être accompagnés d’une analyse quantitative et de plusieurs répétitions.
+0
+1000
+2000
+3000
+4000
+5000
+6000
+Balayages depuis la trempe
+0
+10
+20
+30
+40
+50
+60
+70
+Longueur / a
+Relaxation à 1000 K : 6000 balayages
+L/2
+Longueur apparente brute
+Largeur diffuse, mode zéro exclu
+0
+25
+50
+75
+100
+125
+150
+175
+200
+Balayages depuis la trempe
+0
+10
+20
+30
+40
+50
+60
+70
+Longueur / a
+Début de la transformation
+L/2
+Longueur apparente brute
+Largeur diffuse, mode zéro exclu
+0
+1000
+2000
+3000
+4000
+5000
+6000
+Balayages
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+S(0) / somme des S(k)
+1000
+1200
+1400
+1600
+1800
+2000
+Température (K)
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Part cohérente du mode zéro
+Hors équilibre : ni longueur de fluctuation canonique, ni rayon de germe ; le mode uniforme peut dominer la longueur apparente.
+Figure 26 – Longueur apparente, largeur diffuse et poids de l’ordre uniforme pendant la relaxation, avec zoom
+initial ; comparaison à la part cohérente de la campagne canonique.
+10.2.8
+Fichiers, vérifications et références de méthode
+Le module correlation.py définit les observables. Le lancement se fait par correlation_campaign.py ;
+correlation_analysis.py analyse les états, et correlation_report.py produit cette partie du rapport. Les
+configurations, CSV, spectres complets et diagnostics sont dans results/correlation_L6. Les tests vérifient les
+quatre variantes, S(0) = V ⟨q2⟩, FFT contre somme directe, FFT inverse contre corrélation de paires, valeurs
+indéfinies et séparation d’un mélange de variantes parfaitement ordonnées. Pour la définition de second moment
+sur un réseau périodique : Edwards et al., Multi-Grid Monte Carlo III, équations (3.14)–(3.18). Pour les trois
+composantes d’ordre Cu3Au et les domaines : Reichert et al., Europhysics Letters 53, 570–576 (2001). Ce dernier
+travail porte sur une surface expérimentale : ses mécanismes cinétiques ne sont pas assimilés à notre boîte
+Réseau CFC rigide / ensemble canonique
+32
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+périodique rigide.
+Approfondissement pédagogique : Bonus 2 – Que mesure la longueur de corrélation ?
+— Poser une question spatiale. Deux configurations de même énergie ou de même Cowley peuvent répartir
+leur ordre sur des distances différentes. Le champ signé par maille distingue les quatre variantes ; sa corrélation
+demande si connaître l’organisation ici renseigne encore sur celle d’une maille éloignée. Le mode zéro utilisé
+est celui de l’ordre chimique, pas celui du nombre total d’Au, fixé par construction.
+— Comprendre le rapport de Fourier. Un grand pic au centre comparé à ses voisins réciproques correspond
+à un ordre cohérent sur de grandes distances. Le second moment convertit ce rapport en une longueur,
+avec une convention de réseau explicite. Dans une petite boîte, un ordre uniforme ou des changements
+collectifs de variante peuvent rendre cette longueur supérieure au côté : ce n’est pas un rayon géométrique.
+Les fluctuations autour d’une variante, la corrélation canonique et la croissance hors équilibre sont trois
+objets distincts.
+— Lire ensemble la valeur et sa validité. Une racine non réelle reste manquante ; une grande valeur n’est
+pas écrêtée pour la rendre plausible. On examine les blocs, les composantes signées et ξ/(La) avant une
+interprétation. Les trois tailles améliorent la résolution des modes accessibles, mais leurs budgets et leurs
+mélanges de variantes différents interdisent ici un exposant critique fiable.
+10.3
+Partie 3 – Analyse croisée et superpositions L6/L9/L12
+10.3.1
+Question commune : que change réellement l’augmentation de taille ?
+Les trois productions sont terminées et techniquement validées. Les contrôles de composition, d’énergie et d’identité
+des observables passent pour L = 6, 9, 12 ; les diagnostics statistiques près du maximum passent pour L6 mais
+restent insuffisants pour L9 et L12. La comparaison ci-dessous exploite les archives brutes, y compris des observables
+qui n’étaient pas représentées dans les anciennes figures. Elle remplace la précédente synthèse à deux tailles ; les
+exports L6/L9 et L6/L12 restent disponibles sans être reproduits une seconde fois.
+Protocole
+L = 6
+L = 9
+L = 12
+Nombre de sites
+864
+2916
+6912
+Températures simulées
+46
+46
+90
+Balayages écartés par chaîne
+6000
+6000
+12000
+Balayages de production
+30000
+30000
+60000
+Maximum sur la grille (K)
+1050.0
+1055.0
+1052.5
+Hauteur du maximum cV /kB
+5.87
+17.68
+26.85
+ESS minimal dans la fenêtre du pic
+1190.8
+37.0
+44.7
+R-hat maximal (E, q)
+1.005
+1.026
+1.268
+Allers-retours froid–chaud–froid
+7
+0
+0
+Les deux premières campagnes utilisent 46 températures et le même budget. L12 utilise 90 températures, un
+pas de 2.5 K près du pic et deux fois plus de balayages. Les observables sont mesurées tous les 10 balayages, les
+sessions d’échange tous les 5, avec deux chaînes par taille. L12 ne constitue donc pas un contrôle où seule la taille
+change. Les points sont les températures effectivement simulées ; aucune interpolation ne crée une mesure entre
+deux points.
+Approfondissement pédagogique : 1. Comment comparer trois tailles sans confondre volume et précision ?
+— Commencer par les quantités intensives. Doubler le côté de L6 à L12 multiplie le nombre d’atomes par
+huit, mais ne doit pas multiplier l’énergie par atome par huit. On compare donc u = E/N, cV = CV /N et
+les paramètres normalisés. Un balayage effectue en revanche N propositions : un même nombre de balayages
+représente davantage de calcul, sans assurer davantage d’états indépendants.
+— Lire les contrôles avant de conclure. Une barre d’erreur petite est conditionnelle aux bassins visités.
+L’augmentation du volume peut diminuer l’arrondi de la transition tout en augmentant les séjours métastables.
+Un désaccord des chaînes interdit de présenter le déplacement du maximum comme une mesure précise de la
+limite infinie.
+10.3.2
+Ordre global et local : augmentation sous la transition, diminution au chaud
+À 1045 K, avant le pic, les amplitudes moyennes sont respectivement 0.652, 0.784, 0.795. L’augmentation de q
+avec la taille est compatible avec une phase ordonnée moins contaminée par l’arrondi de taille finie. À 1000 K, les
+trois valeurs restent proches de 0.88–0.89 : augmenter la boîte ne crée donc pas un ordre supplémentaire à toutes
+les températures. À 1055 K, L6 est encore dans une zone large de mélange, alors que L12 est surtout dans la
+population peu ordonnée. Comparer les courbes à température fixe et comparer leurs valeurs au maximum propre
+de chaque taille répondent ainsi à deux questions différentes.
+Réseau CFC rigide / ensemble canonique
+33
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+1040
+1050
+1060
+1070
+Température (K)
+0.2
+0.4
+0.6
+0.8
+Ordre global q
+L = 6
+L = 9
+L = 12
+1040
+1050
+1060
+1070
+Température (K)
+−3.81
+−3.80
+−3.79
+−3.78
+−3.77
+u (eV/atome)
+L = 6
+L = 9
+L = 12
+1040
+1050
+1060
+1070
+Température (K)
+0
+10
+20
+30
+cV/kB par atome
+L = 6
+L = 9
+L = 12
+1040
+1050
+1060
+1070
+Température (K)
+−0.26
+−0.24
+−0.22
+−0.20
+−0.18
+Cowley α₁
+L = 6
+L = 9
+L = 12
+1040
+1050
+1060
+1070
+Température (K)
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+Cowley α₂
+L = 6
+L = 9
+L = 12
+1040
+1050
+1060
+1070
+Température (K)
+0
+2000
+4000
+6000
+Xq (eV⁻¹)
+L = 6
+L = 9
+L = 12
+L6, L9 et L12 : même figure, trois tailles
+Symboles creux, barres ±1 erreur-type ; grilles réelles, sans interpolation. Près du pic, L9/L12 restent sous-échantillonnés.
+Figure 27 – Superposition des trois tailles : amplitude d’ordre, énergie, capacité calorifique, Cowley et fluctuations
+de q. La fenêtre 1035–1070 K rend visible la transition sans traits reliant les mesures.
+Les deux paramètres de Cowley se rapprochent dans les phases éloignées de la transition, alors que q présente une
+forte dépendance en taille au chaud. À 1300 K, α1 ≃−0.152 et α2 ≃0.153 pour les trois tailles : les préférences
+chimiques locales persistent après la perte de l’ordre global. Ce constat associe deux échelles spatiales distinctes ;
+il ne faut pas appeler les paramètres de Cowley des fractions de phase.
+700
+800
+900
+1000
+1100
+1200
+1300
+Température (K)
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Ordre global q
+L = 6
+L = 9
+L = 12
+1500
+2000
+2500
+3000
+3500
+4000
+Température (K)
+2
+3
+4
+5
+q √N
+L = 6
+L = 9
+L = 12
+1035
+1040
+1045
+1050
+1055
+1060
+1065
+1070
+Température (K)
+−4
+−3
+−2
+−1
+0
+1
+Cumulant Uq (convention scalaire)
+L = 6
+L = 9
+L = 12
+1000
+1020
+1040
+1060
+1080
+1100
+Température (K)
+−1.0
+−0.8
+−0.6
+−0.4
+−0.2
+Corrélation temporelle E–q
+L = 6
+L = 9
+L = 12
+Ordre global, biais de taille et fluctuations complémentaires
+q est une norme positive ; un cumulant négatif signale des distributions larges, sans prouver à lui seul une transition de premier ordre.
+Figure 28 – Ordre sur une gamme élargie, amplitude multipliée par la racine de N au chaud, cumulant et
+corrélation énergie–ordre. Les deux derniers diagnostics complètent les courbes moyennes.
+Dans un mélange strictement aléatoire à composition fixée, le nombre d’Au d’un sous-réseau suit une loi
+Réseau CFC rigide / ensemble canonique
+34
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+hypergéométrique. Elle donne Var(pµ) = 9/[16(N −1)], donc ⟨q2⟩= 3/(N −1). On attend une amplitude résiduelle
+d’ordre N −1/2, même sans ordre macroscopique. À 4000 K, les valeurs mesurées de ⟨q⟩sont 0.06538, 0.03563,
+0.02317 ; les produits
+√
+N⟨q⟩valent 1.922, 1.924, 1.926. Cette quasi-superposition soutient l’interprétation en
+fluctuations finies. Ce n’est pas un ajustement d’exposant critique : 4000 K est encore une température finie, avec
+des corrélations locales.
+10.3.3
+Réponses, coexistence et rôle des poids des populations
+Le maximum de cV est successivement à 1050, 1055 et 1052.5 K : il ne se déplace pas de façon monotone avec L.
+Sa hauteur augmente fortement, ce qui est compatible avec un arrondi moindre et avec une variance due à des
+populations d’énergie différentes. Il serait prématuré d’en déduire une loi cmax
+V
+∝L3, une chaleur latente ou un
+ordre thermodynamique de transition : la résolution de grille et surtout les poids d’équilibre ne sont pas contrôlés
+avec une précision comparable.
+Critère sur la grille (K)
+L6
+L9
+L12
+Maximum cV
+1050.0
+1055.0
+1052.5
+Maximum Xq
+1055.0
+1055.0
+1052.5
+Minimum Uq près du pic
+1080.0
+1065.0
+1055.0
+Les maxima de réponse ne sont pas plusieurs mesures indépendantes : ils utilisent les mêmes configurations.
+Le minimum négatif de Uq, particulièrement marqué pour L12, renseigne sur une distribution large ou très
+asymétrique de q. La convention 1 −⟨q4⟩/(3⟨q2⟩2) est scalaire alors que q est une norme à trois composantes ; sa
+limite chaude n’est pas zéro. Un creux négatif ne suffit donc pas, seul, à établir une coexistence thermodynamique.
+0
+5000 10000 15000 20000 25000 30000
+Balayages de production
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+q
+L=6 · 1050 K
+Chaîne 1
+Chaîne 2
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+q
+0
+1
+2
+3
+Densité
+−3.80
+−3.79
+−3.78
+u (eV/atome)
+0
+20
+40
+60
+Densité
+0
+5000 10000 15000 20000 25000 30000
+Balayages de production
+0.0
+0.2
+0.4
+0.6
+0.8
+q
+L=9 · 1055 K
+Chaîne 1
+Chaîne 2
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+q
+0
+1
+2
+3
+4
+Densité
+−3.800 −3.795 −3.790 −3.785 −3.780
+u (eV/atome)
+0
+50
+100
+150
+Densité
+0
+10000 20000 30000 40000 50000 60000
+Balayages de production
+0.0
+0.2
+0.4
+0.6
+0.8
+q
+L=12 · 1052.5 K
+Chaîne 1
+Chaîne 2
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+q
+0
+2
+4
+6
+8
+Densité
+−3.800 −3.795 −3.790 −3.785 −3.780
+u (eV/atome)
+0
+100
+200
+300
+Densité
+Au maximum de chaque taille : traces et distributions par chaîne
+Températures des lignes différentes ; les histogrammes ne sont pas fusionnés. Les passages à T fixe incluent les échanges de répliques.
+Figure 29 – Traces et distributions séparées par chaîne, au maximum propre à chaque taille. Les deux populations
+deviennent plus distinctes, mais les temps de séjour et leurs poids diffèrent entre chaînes.
+Pour chiffrer cette difficulté, on classe à titre descriptif les mesures selon q > 0.5. Ce seuil commun n’est pas une
+séparatrice de phase déterminée par une énergie libre. Au maximum propre à chaque taille, on obtient :
+Taille
+T (K)
+Fraction chaîne 1
+Fraction chaîne 2
+Changements
+L6
+1050
+0.604
+0.634
+2575
+L9
+1055
+0.362
+0.366
+1042
+L12
+1052.5
+0.826
+0.159
+1469
+Réseau CFC rigide / ensemble canonique
+35
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+À L12, les fractions des deux chaînes diffèrent de 66.6 points de pourcentage. C’est un désaccord majeur sur les
+populations visitées, malgré la présence de passages dans les deux séries. Un histogramme fusionné aurait masqué
+cette asymétrie.
+Le comptage de changements dépend du seuil et du pas de mesure, et inclut des changements par échange de
+répliques. Il ne mesure ni un taux de nucléation ni un temps de basculement atomique. Un désaccord de fractions
+explique simultanément le désaccord de ⟨q⟩, celui de l’énergie et l’instabilité des variances.
+10.3.4
+Audit statistique : ce que L12 n’a pas réparé
+1040
+1050
+1060
+1070
+Température (K)
+100
+101
+102
+103
+104
+ESS estimé (E,q)
+L = 6
+L = 9
+L = 12
+1040
+1050
+1060
+1070
+Température (K)
+100
+1.05 × 100
+1.1 × 100
+1.15 × 100
+1.2 × 100
+1.25 × 100
+R-hat(q)
+L = 6
+L = 9
+L = 12
+1040
+1050
+1060
+1070
+Température (K)
+10−1
+100
+101
+102
+103
+Blocs par chaîne
+L = 6
+L = 9
+L = 12
+1040
+1050
+1060
+1070
+Température (K)
+10−2
+10−1
+100
+101
+102
+τ(α₁), en mesures
+L = 6
+L = 9
+L = 12
+1040
+1050
+1060
+1070
+Température (K)
+10−2
+10−1
+100
+101
+102
+Maximum τ(pμ), en mesures
+L = 6
+L = 9
+L = 12
+950
+1000
+1050
+1100
+Milieu du lien en température (K)
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Acceptation des échanges
+L = 6
+L = 9
+L = 12
+Pourquoi une boîte plus grande ne garantit pas un meilleur équilibre
+τ(pμ) suit aussi les variantes ; la moyenne des taux d’échange peut masquer un lien presque infranchissable.
+Figure 30 – Diagnostics croisés : effectif utile, R-hat, nombre de blocs, lenteur de Cowley et des sous-réseaux,
+acceptation par lien en température. La moyenne des acceptations ne résume pas la circulation.
+Taille, T (K)
+ESS
+R-hat max
+Blocs
+Écart demi-séries
+Statut
+L9, 1045
+1834.3
+1.004
+750
+1.95
+satisfait
+L9, 1050
+80.4
+1.026
+16
+0.62
+insuffisant
+L9, 1055
+37.0
+1.013
+16
+0.93
+insuffisant
+L9, 1060
+59.9
+1.000
+26
+0.22
+insuffisant
+L9, 1065
+1539.7
+1.001
+600
+0.80
+satisfait
+L12, 1047.5
+5617.5
+1.001
+2000
+2.78
+satisfait
+L12, 1050
+2236.8
+1.064
+7
+1.02
+insuffisant
+L12, 1052.5
+44.7
+1.268
+13
+0.92
+insuffisant
+L12, 1055
+8983.8
+1.004
+3000
+1.18
+satisfait
+L12, 1057.5
+9577.9
+1.000
+3000
+0.32
+satisfait
+L12 résout mieux les températures voisines de la transition et augmente les séries, mais à 1052.5 K le maximum
+de R-hat dépasse 1.26 et l’ESS minimal reste inférieur à 45. À 1050 K, un ESS additionné apparemment élevé
+coexiste avec seulement sept blocs par chaîne : une chaîne rapide peut masquer la lenteur de l’autre dans une
+somme d’ESS. Le contrôle de la chaîne la plus lente et le désaccord entre chaînes restent indispensables.
+La moyenne des acceptations est proche de 61 % pour L9 et L12, mais aucun aller-retour complet froid–chaud–froid
+n’est enregistré. Les liens les moins efficaces sont :
+Taille
+Lien (K)
+Acceptation minimale
+Acceptation moyenne
+L6
+650–800
+14.417 %
+73.9 %
+L9
+650–800
+0.367 %
+61.1 %
+L12
+875–900
+29.242 %
+61.3 %
+Réseau CFC rigide / ensemble canonique
+36
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+La densification de L12 a donc réellement amélioré le plus mauvais lien : environ 29 % d’acceptation minimale,
+contre 0.37 % pour L9. Le maintien de séjours lents et l’absence d’aller-retour montrent cependant qu’un
+chevauchement suffisant entre températures voisines ne supprime pas les barrières entre populations. Avec
+davantage de températures, il faut aussi davantage de déplacements le long de l’échelle pour la parcourir.
+Le manque d’allers-retours est un indicateur global, sans être une preuve que toutes les moyennes à chaque
+température soient fausses. Il faut allonger les fenêtres critiques, vérifier les temps de résidence et adapter la
+grille aux liens réellement limitants. Les trois tailles actuelles ne justifient aucune extrapolation quantitative vers
+L →∞.
+La nouvelle analyse estime aussi τα1, τα2 et maxµ τpµ : ces colonnes n’étaient pas toutes tracées auparavant.
+Une occupation signée peut relaxer plus lentement que la norme q lorsque la boîte change de variante. Un
+R-hat des occupations élevé au froid peut simplement signaler des variantes différentes dans les chaînes ; il limite
+l’estimation de l’occupation canonique moyenne, sans invalider automatiquement une énergie invariante. Les
+erreurs des moyennes de q ont été recalculées pour des blocs disjoints de longueurs moitié, référence et double
+dans block_sensitivity.csv. Ce contrôle reste conditionnel aux trajectoires et devient fragile lorsqu’il ne reste
+que quelques blocs.
+Au maximum de chaque taille
+b
+SEb/2(q)
+SEb(q)
+SE2b(q)
+L6
+7
+0.0037
+0.0044
+0.0052
+L9
+183
+0.0278
+0.0366
+0.0425
+L12
+446
+0.0239
+0.0337
+0.0491
+Ces erreurs par moyennes de blocs n’incluent pas une correction de dispersion entre chaînes. Elles augmentent
+encore avec la longueur des blocs, surtout pour L12 ; on ne peut donc pas affirmer une stabilité complète. Les
+barres publiées conservent par ailleurs le maximum entre bootstrap et dispersion des chaînes.
+Position du pic : bootstrap conditionnel
+Bloc (mesures)
+IC 95 % (K)
+SE (K)
+L6
+37
+[1050, 1055]
+0.94
+L9
+187
+[1050, 1055]
+1.36
+L12
+779
+[1050, 1052.5]
+1.04
+Le bootstrap du maximum rééchantillonne les températures conjointement dans chaque chaîne. Ses intervalles se
+chevauchent, mais ils ignorent les bassins manqués et le désaccord de poids d’équilibre. Le résultat L12 n’acquiert
+donc pas une précision physique de 2.5 K simplement parce que sa grille est plus fine.
+10.3.5
+Analyse croisée exacte : Cowley, défauts et capacité calorifique
+Le comptage des paires relie exactement l’énergie et les deux paramètres de Cowley. En notant A1 le nombre de
+paires Au–Au de première coquille et B2 celui des paires Au–Cu de seconde coquille,
+A1
+N = 3
+8 + 9
+8α1,
+B2
+N = 9
+8(1 −α2),
+u = −3.813 + 0.161
+3
+8 + 9
+8α1
+
++ 0.00639
+8(1 −α2)
+eV/atome.
+Cette identité est vérifiée sur toutes les mesures des trois productions : les accords entre énergie et Cowley ne sont
+donc pas trois preuves indépendantes de transition. Ils constituent un contrôle de cohérence du calcul et relient
+les défauts locaux au coût énergétique.
+Pour E1 = 0.161A1 et E2 = 0.0063B2, les fluctuations satisfont
+cV
+kB
+= Var(E1) + Var(E2) + 2 Cov(E1, E2)
+N(kBT)2
+.
+La covariance est indispensable, même si la seconde interaction est petite : les deux défauts se développent sur
+les mêmes configurations. Le budget ci-dessous est calculé dans chaque chaîne avant moyenne et reproduit le cV
+archivé.
+Au pic
+Var(E1)
+Var(E2)
+2 Cov(E1, E2)
+Somme
+L6
+3.933
+0.199
+1.741
+5.873
+L9
+11.687
+0.622
+5.367
+17.676
+L12
+17.732
+0.947
+8.171
+26.850
+Réseau CFC rigide / ensemble canonique
+37
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+1035 1040 1045 1050 1055 1060 1065 1070
+T (K)
+0
+1
+2
+3
+4
+Contribution à cV/kB
+L=6 : budget exact de cV
+Var(E₁)
+Var(E₂)
+2 Cov(E₁,E₂)
+1035 1040 1045 1050 1055 1060 1065 1070
+T (K)
+0
+2
+4
+6
+8
+10
+12
+Contribution à cV/kB
+L=9 : budget exact de cV
+Var(E₁)
+Var(E₂)
+2 Cov(E₁,E₂)
+1035 1040 1045 1050 1055 1060 1065 1070
+T (K)
+0
+5
+10
+15
+Contribution à cV/kB
+L=12 : budget exact de cV
+Var(E₁)
+Var(E₂)
+2 Cov(E₁,E₂)
+1035 1040 1045 1050 1055 1060 1065 1070
+T (K)
+0
+1
+2
+3
+4
+5
+6
+cV/kB par atome
+Variance de E
+Différence finie de u(T)/kB
+1035 1040 1045 1050 1055 1060 1065 1070
+T (K)
+0
+5
+10
+15
+cV/kB par atome
+Variance de E
+Différence finie de u(T)/kB
+1035 1040 1045 1050 1055 1060 1065 1070
+T (K)
+0
+5
+10
+15
+20
+25
+30
+cV/kB par atome
+Variance de E
+Différence finie de u(T)/kB
+Relier les paires, Cowley et les fluctuations d’énergie
+Les covariances sont indispensables. La dérivée est une différence finie sur la grille, sans barre d’erreur ni valeur de test statistique.
+Figure 31 – Décomposition exacte des fluctuations entre première coquille, seconde coquille et covariance. En
+bas, confrontation descriptive à la pente discrète de l’énergie moyenne.
+Les valeurs sont sans dimension, en unités de cV /kB par atome. La comparaison à ∆u/(kB∆T) sert de contrôle
+descriptif : une dérivée discrète arrondit un pic étroit et utilise des moyennes corrélées entre températures. Un
+désaccord au pic peut venir de cette discrétisation, des poids des populations ou de l’équilibration ; il ne démontre
+pas, seul, une erreur de formule de capacité calorifique.
+Un contrôle supplémentaire mesure le terme artificiel qui serait ajouté si l’on fusionnait les chaînes avant de
+calculer la variance : Varc(Ec)/[N(kBT)2]. Ce terme n’est pas inclus dans les résultats thermiques. Au pic propre
+à chaque taille, il vaudrait respectivement 0.009, 0.000, 20.859. Une divergence des chaînes aurait ainsi gonflé
+artificiellement le pic L12 si cette précaution méthodologique n’avait pas été prise.
+L’acceptation des échanges Au–Cu locaux, distincte de celle des échanges de répliques, vaut au maximum
+respectivement 9.19 %, 11.89 %, 10.91 %. Un mouvement accepté n’est pas une information indépendante : ces
+taux ne remplacent ni le temps d’autocorrélation ni le nombre de passages entre bassins.
+10.3.6
+Variantes et occupations : relire les bosses sans inventer d’ordre
+Une augmentation d’une occupation particulière peut signaler un changement de variante et non une augmentation
+de l’ordre global. Les tableaux sauvegardent maintenant p0, . . . , p3 par chaîne et les fréquences des variantes
+dominantes conditionnées à q > 0.8. À faible ordre, l’argument maximal de pµ est ambigu ; on ne l’interprète donc
+pas comme une variante physiquement bien formée. L’écart entre ⟨q⟩et q(⟨p⟩) est un diagnostic de moyenne, pas
+une mesure directe du nombre de domaines.
+10.3.7
+Superposition avec le chauffage et le refroidissement réellement disponibles
+Une production par échanges de répliques mesure des températures fixes simultanément ; ce n’est pas une rampe
+de chauffage, même si son CSV est trié par température croissante. Le cycle séquentiel propage au contraire
+le dernier état d’un palier vers le suivant, puis revient depuis le véritable état chaud. Les deux branches sont
+appariées à l’intérieur d’un cycle et portent sa mémoire.
+La figure précédente garde les trois productions canoniques et le cycle L6 comme références de protocole. Les
+cycles L6, L9, L12 sont maintenant achevés ; leurs branches de chauffage et de refroidissement sont superposées en
+section 10.4, avec leurs diagnostics propres. Les fluctuations d’un palier ne peuvent être interprétées comme une
+capacité calorifique d’équilibre que si la stationnarité et l’exploration sont suffisantes.
+Réseau CFC rigide / ensemble canonique
+38
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+900
+950
+1000
+1050
+1100
+T (K)
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Amplitude
+L=6 : moyenne et norme
+⟨q⟩, chaîne 1
+q(⟨p⟩), chaîne 1
+⟨q⟩, chaîne 2
+q(⟨p⟩), chaîne 2
+900
+950
+1000
+1050
+1100
+T (K)
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Amplitude
+L=9 : moyenne et norme
+⟨q⟩, chaîne 1
+q(⟨p⟩), chaîne 1
+⟨q⟩, chaîne 2
+q(⟨p⟩), chaîne 2
+900
+950
+1000
+1050
+1100
+T (K)
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Amplitude
+L=12 : moyenne et norme
+⟨q⟩, chaîne 1
+q(⟨p⟩), chaîne 1
+⟨q⟩, chaîne 2
+q(⟨p⟩), chaîne 2
+1035 1040 1045 1050 1055 1060 1065 1070
+T (K)
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Fraction des mesures avec q > 0,5
+Chaîne 1
+Chaîne 2
+1035 1040 1045 1050 1055 1060 1065 1070
+T (K)
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Fraction des mesures avec q > 0,5
+Chaîne 1
+Chaîne 2
+1035 1040 1045 1050 1055 1060 1065 1070
+T (K)
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Fraction des mesures avec q > 0,5
+Chaîne 1
+Chaîne 2
+Variantes, amplitude d’ordre et poids des populations
+q > 0,5 est un seuil descriptif commun, pas une frontière de phase ajustée. Une moyenne temporelle peut effacer les variantes.
+Figure 32 – Moyenne de la norme q et norme des occupations moyennes, séparées par chaîne et par taille ;
+fractions descriptives des deux populations autour de la transition.
+1000
+1020
+1040
+1060
+1080
+1100
+Température (K)
+0.0
+0.2
+0.4
+0.6
+0.8
+Ordre q
+L = 6
+L = 9
+L = 12
+L6 chauffage
+L6 refroidissement
+1000
+1020
+1040
+1060
+1080
+1100
+Température (K)
+−3.82
+−3.81
+−3.80
+−3.79
+−3.78
+−3.77
+−3.76
+u (eV/atome)
+L = 6
+L = 9
+L = 12
+L6 chauffage
+L6 refroidissement
+1000
+1020
+1040
+1060
+1080
+1100
+Température (K)
+0
+10
+20
+30
+Fluctuations cV/kB
+L = 6
+L = 9
+L = 12
+L6 chauffage
+L6 refroidissement
+1000
+1020
+1040
+1060
+1080
+1100
+Température (K)
+−0.28
+−0.26
+−0.24
+−0.22
+−0.20
+−0.18
+Cowley α₁
+L = 6
+L = 9
+L = 12
+L6 chauffage
+L6 refroidissement
+1000
+1020
+1040
+1060
+1080
+1100
+Température (K)
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+Cowley α₂
+L = 6
+L = 9
+L = 12
+L6 chauffage
+L6 refroidissement
+1000
+1020
+1040
+1060
+1080
+1100
+Température (K)
+0
+2000
+4000
+6000
+Xq (eV⁻¹)
+L = 6
+L = 9
+L = 12
+L6 chauffage
+L6 refroidissement
+Trois productions canoniques et les deux branches disponibles du cycle L6
+Cette plaquette conserve le cycle L6 comme référence ; les cycles des autres tailles sont comparés séparément après leur achèvement.
+Figure 33 – Superposition des trois productions canoniques et des branches de chauffage/refroidissement L6.
+Chaque symbole indique aussi le protocole ; aucune branche L9 ou L12 n’est fabriquée à partir d’une production
+canonique.
+Réseau CFC rigide / ensemble canonique
+39
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+10.3.8
+Données spatiales jusque-là inexploitées : première comparaison des trois tailles
+Les productions L9 et L12 conservent chacune 300 configurations par température et par chaîne, séparées
+respectivement de 100 et 200 balayages. Les états sélectionnés à 15 températures cibles sont analysés ici avec le
+même champ local à trois composantes que dans la partie 2. L6 utilise la campagne spatiale dédiée déjà décrite :
+les budgets ne sont pas identiques. La comparaison illustre une tendance, sans constituer une étude de convergence
+à précision statistique égale.
+On calcule les amplitudes aux sept modes 0 et ±kminej, on soustrait les moyennes complexes dans chaque chaîne,
+puis on moyenne les puissances connexes avant de former le rapport de second moment. Les captures sont vérifiées
+contre les mesures de q au même balayage via S(0) = L3⟨q2⟩. Les incertitudes utilisent 300 tirages de blocs
+circulaires avec longueur choisie aussi d’après les trois composantes signées lentes. Le nombre de blocs, les racines
+indéfinies et les désaccords de chaînes sont signalés dans spatial_comparison.csv.
+980
+1000
+1020
+1040
+1060
+1080
+1100
+T (K)
+100
+101
+ξ connexe / a
+Grandes valeurs : ordre et mélange de variantes
+L=6 (campagne dédiée)
+L=9 (captures production)
+L=12 (captures production)
+980
+1000
+1020
+1040
+1060
+1080
+1100
+T (K)
+0
+2
+4
+6
+8
+ξ connexe / (La)
+Rapport à la taille de la boîte
+L=6 (campagne dédiée)
+L=9 (captures production)
+L=12 (captures production)
+1100
+1150
+1200
+1250
+1300
+T (K)
+0
+1
+2
+3
+4
+5
+ξ connexe / a
+Phase chaude : barres conditionnelles
+L=6 (campagne dédiée)
+L=9 (captures production)
+L=12 (captures production)
+Première comparaison spatiale L6/L9/L12
+Même définition du champ, protocoles et captures différents ; ξ n’est pas un rayon de germe. Les grands rapports et erreurs sont à contrôler.
+Figure 34 – Comparaison des longueurs connexes : valeurs absolues, rapport à la boîte et régime chaud avec
+erreurs-types conditionnelles. L6 vient d’une campagne dédiée ; L9 et L12 de captures des productions principales.
+Taille et température
+ξ/a
+ESS spatial
+R-hat signé max
+Limites détectées
+L9, 1000 K
+34.31
+122.1
+1.43
+boîte, statistique, variantes
+L9, 1050 K
+11.53
+31.6
+1.45
+boîte, statistique, variantes
+L9, 1060 K
+3.83
+49.2
+1.02
+statistique
+L9, 1300 K
+0.77
+336.1
+1.00
+aucune détectée
+L12, 1000 K
+23.92
+309.6
+1.76
+boîte, variantes
+L12, 1050 K
+12.70
+15.8
+1.84
+boîte, statistique, variantes
+L12, 1060 K
+1.53
+436.6
+1.00
+aucune détectée
+L12, 1300 K
+0.72
+403.5
+1.00
+aucune détectée
+La longueur ne croît pas nécessairement avec L : à 1000 K, la valeur connexe L12 est inférieure à celle de L9,
+malgré la boîte plus grande. Les réserves sur les composantes signées montrent que cette comparaison mélange
+des fluctuations intra-variante et des visites collectives de variantes. Ce n’est pas une mesure d’un domaine qui
+rétrécirait en augmentant le volume. À 1060 K, L12 a simultanément un q plus faible et une longueur plus courte
+que L6/L9 : sa population est déjà surtout peu ordonnée, tandis que les autres boîtes restent davantage dans
+la queue de transition. Il faut donc croiser ξ, les distributions et les poids, plutôt que comparer seulement trois
+longueurs.
+Une grande valeur froide reflète aussi l’ordre uniforme et la visite incomplète des variantes. Un ξ supérieur au
+côté de la boîte n’est pas le rayon d’un domaine plus grand que le système. À haute température, les longueurs
+beaucoup plus courtes et les paramètres de Cowley proches entre tailles sont compatibles avec un ordre local de
+portée finie. On ne lit pas un croisement universel de ξ/(La) dans ces quelques points, et l’on n’ajuste ni exposant
+critique ni loi de croissance des germes.
+10.3.9
+Bilan croisé et données complémentaires accessibles
+— Concordance physique. Le fondamental reste le même par atome pour toutes les tailles. La chute de q,
+la hausse de l’énergie, les changements de Cowley, les distributions et les réponses situent tous une zone
+proche de 1050–1055 K. Cette concordance est physiquement cohérente, mais les identités énergie–Cowley
+et les données partagées empêchent de la compter comme autant de preuves statistiques indépendantes.
+Réseau CFC rigide / ensemble canonique
+40
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+— Ce que le volume améliore. L’ordre résiduel au chaud diminue comme une amplitude de taille finie ; la
+variation près de la transition se resserre et la résolution réciproque kmina = 2π/L s’améliore de 1.047 à
+0.698 puis 0.524. Les préférences locales loin du pic sont beaucoup moins sensibles au volume que l’ordre
+global.
+— Ce que le volume n’améliore pas ici. Les passages entre populations deviennent trop lents pour
+le budget disponible. L12 conserve un désaccord important des chaînes malgré la grille densifiée et la
+production doublée. Le maximum de 1052.5 K reste provisoire. Le réseau rigide, les paires fixes, l’absence
+de phonons et la dynamique d’échanges globaux restent identiques : aucune de ces omissions n’est corrigée
+en augmentant L.
+— Ce qu’il faut ensuite mesurer. Allonger les séries critiques et vérifier leurs poids de population ; comparer
+des tailles à diagnostics satisfaits ; réaliser les cycles additionnels pour étudier l’hystérésis en taille ; répéter
+plusieurs trempes avec une dynamique locale si l’objectif devient la nucléation physique. Une différence
+entre deux courbes seule ne permet pas de choisir entre ces mécanismes.
+Les fichiers de results/comparison_L6_L9_L12 contiennent : overview.csv (budgets et diagnostics),
+all_observables_cross.csv (moments, covariances, autocorrélations et contrôle exact énergie–Cowley à toutes
+les températures), chain_variant_statistics.csv (occupations et populations par chaîne),
+block_sensitivity.csv (stabilité des erreurs), spatial_comparison.csv (modes de Fourier et limites). Les
+neuf observables instantanées, Xq, le cumulant, les identités et acceptations de répliques, les erreurs, les
+demi-séries et les captures spatiales ont ainsi été examinés. Les historiques bruts d’équilibration gardent leur rôle
+de diagnostic, sans être incorporés aux moyennes de production.
+Approfondissement pédagogique : 1. Quelle conclusion défendre à partir de toutes les données ?
+— Dire ce qui est robuste et ce qui reste conditionnel. La structure froide et son énergie sont vérifiées
+analytiquement. Au chaud, diminuer le biais de q en augmentant N et conserver un Cowley non nul sont
+deux observations compatibles : l’ordre global disparaît tandis que des préférences de voisinage survivent.
+Près du pic, la cohérence entre ordres et énergie est forte, mais le poids des deux populations n’est pas assez
+stable dans les grandes boîtes. On rapporte donc des maxima observés, pas une température expérimentale
+ni une limite infinie précise.
+— Ne pas transformer une amélioration géométrique en validation complète. L12 laisse davantage
+de place aux fluctuations et résout mieux Fourier, mais il ralentit aussi l’exploration. La question suivante
+n’est pas seulement « encore plus grand ? » : c’est « davantage de passages indépendants, avec quel protocole
+et quels diagnostics ? ». La réponse guide les calculs utiles.
+10.4
+Partie 4 – Chauffage et refroidissement : comparaison des tailles
+Les cycles séquentiels additionnels conservent le protocole L6 : 46 températures dans chaque sens, deux trajectoires
+indépendantes, 6000 balayages écartés puis 30000 mesurés par palier, pas 10 et aucun échange de répliques. Les
+états sont transmis sans réinitialisation du chauffage au refroidissement. Chaque palier achevé est sauvegardé
+pour permettre une reprise exacte. Les tailles sont comparées à même budget de balayages, ce qui ne garantit pas
+un même effectif indépendant.
+Taille
+Pic chauffage (K)
+Pic retour (K)
+Paliers insuffisants aller
+retour
+L6
+1050
+1055
+9
+10
+L9
+1055
+1055
+5
+5
+L12
+1055
+1050
+2
+2
+Le plus grand écart de moyenne ∆q = q↓−q↑sur les températures mesurées vaut L6 : ∆q = −0.068 à 1050 K ;
+L9 : ∆q = 0.080 à 1050 K ; L12 : ∆q = −0.469 à 1050 K.
+Ces extrêmes sont sélectionnés après inspection de la grille et n’ont pas un statut de test statistique. Les différences
+appariées par trajectoire restent disponibles dans chaque paired_differences.csv. Les deux trajectoires d’un
+même volume sont indépendantes ; leurs deux branches ne le sont pas, et les volumes ne sont pas appariés
+configuration par configuration.
+Une évolution de l’écart des branches avec L peut associer une barrière plus coûteuse et une relaxation moins
+complète. Les paliers signalés insuffisants empêchent de transformer ces boucles en coexistence d’équilibre, en
+spinodales expérimentales ou en taux de nucléation. L’acceptation globale Au–Cu ne constitue pas une dynamique
+de diffusion locale. La comparaison aux productions canoniques se fait avec ces réserves de protocole.
+10.4.1
+L9 terminé : distinguer accord des maxima et équilibre des branches
+Les 184 paliers L9 sont achevés. Les contrôles des énergies, de composition, des neuf observables et de continuité
+entre paliers passent. Le maximum des fluctuations est à 1055 K dans les deux sens, comme dans la production
+Réseau CFC rigide / ensemble canonique
+41
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+1000
+1020
+1040
+1060
+1080
+1100
+T (K)
+0.2
+0.4
+0.6
+0.8
+Ordre q
+L6 chauffage
+L6 refroidissement
+L9 chauffage
+L9 refroidissement
+L12 chauffage
+L12 refroidissement
+1000
+1020
+1040
+1060
+1080
+1100
+T (K)
+−3.800
+−3.795
+−3.790
+−3.785
+−3.780
+u (eV/atome)
+L6 chauffage
+L6 refroidissement
+L9 chauffage
+L9 refroidissement
+L12 chauffage
+L12 refroidissement
+1000
+1020
+1040
+1060
+1080
+1100
+T (K)
+0
+10
+20
+30
+40
+50
+cV fluct / kB
+L6 chauffage
+L6 refroidissement
+L9 chauffage
+L9 refroidissement
+L12 chauffage
+L12 refroidissement
+1000
+1020
+1040
+1060
+1080
+1100
+T (K)
+−0.28
+−0.26
+−0.24
+−0.22
+−0.20
+−0.18
+Cowley α₁
+L6 chauffage
+L6 refroidissement
+L9 chauffage
+L9 refroidissement
+L12 chauffage
+L12 refroidissement
+1000
+1020
+1040
+1060
+1080
+1100
+T (K)
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+Cowley α₂
+L6 chauffage
+L6 refroidissement
+L9 chauffage
+L9 refroidissement
+L12 chauffage
+L12 refroidissement
+1000
+1020
+1040
+1060
+1080
+1100
+T (K)
+0
+2000
+4000
+6000
+8000
+Xq (eV⁻¹)
+L6 chauffage
+L6 refroidissement
+L9 chauffage
+L9 refroidissement
+L12 chauffage
+L12 refroidissement
+Cycles thermiques : zoom 1000–1100 K
+Couleur = taille ; triangle vers le haut = chauffage, vers le bas = refroidissement. Barres conditionnelles ±1 erreur-type.
+Figure 35 – Superposition des cycles chauffage/refroidissement L6, L9, L12 entre 1000 et 1100 K : couleurs pour
+les tailles et triangles opposés pour les deux sens du parcours.
+1040
+1050
+1060
+1070
+T (K)
+−0.6
+−0.4
+−0.2
+0.0
+0.2
+Δq
+L6
+L9
+L12
+1040
+1050
+1060
+1070
+T (K)
+−0.005
+0.000
+0.005
+0.010
+0.015
+Δu (eV/atome)
+L6
+L9
+L12
+1040
+1050
+1060
+1070
+T (K)
+−0.02
+0.00
+0.02
+0.04
+0.06
+Δα₁
+L6
+L9
+L12
+1040
+1050
+1060
+1070
+T (K)
+−0.4
+−0.3
+−0.2
+−0.1
+0.0
+0.1
+Δα₂
+L6
+L9
+L12
+1040
+1050
+1060
+1070
+T (K)
+102
+103
+ESS (E,q)
+L6 chauffage
+L6 retour
+L9 chauffage
+L9 retour
+L12 chauffage
+L12 retour
+1040
+1050
+1060
+1070
+T (K)
+1.0
+1.1
+1.2
+1.3
+1.4
+Maximum R-hat(E,q)
+L6 chauffage
+L6 retour
+L9 chauffage
+L9 retour
+L12 chauffage
+L12 retour
+Écarts appariés des branches et fiabilité statistique
+Δ = refroidissement − chauffage ; barres des écarts : dispersion entre deux cycles seulement. Les seuils de diagnostic ne prouvent pas l’équilibre.
+Figure 36 – Écarts appariés entre branches pour chaque taille et contrôles ESS/R-hat. La dispersion entre deux
+trajectoires ne constitue pas un test robuste de significativité.
+Réseau CFC rigide / ensemble canonique
+42
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+canonique L9. Cet accord porte sur une case de la grille de 5 K ; il ne démontre ni disparition de toute mémoire ni
+équilibre complet.
+1040
+1050
+1060
+1070
+T (K)
+0.2
+0.4
+0.6
+0.8
+Ordre q
+Canonique avec répliques
+Chauffage séquentiel
+Refroidissement séquentiel
+1040
+1050
+1060
+1070
+T (K)
+−3.800
+−3.795
+−3.790
+−3.785
+−3.780
+u (eV/atome)
+Canonique avec répliques
+Chauffage séquentiel
+Refroidissement séquentiel
+1040
+1050
+1060
+1070
+T (K)
+0
+5
+10
+15
+20
+cV fluct / kB
+Canonique avec répliques
+Chauffage séquentiel
+Refroidissement séquentiel
+1040
+1050
+1060
+1070
+T (K)
+−0.26
+−0.24
+−0.22
+−0.20
+−0.18
+Cowley α₁
+Canonique avec répliques
+Chauffage séquentiel
+Refroidissement séquentiel
+1040
+1050
+1060
+1070
+T (K)
+0.3
+0.4
+0.5
+0.6
+0.7
+Cowley α₂
+Canonique avec répliques
+Chauffage séquentiel
+Refroidissement séquentiel
+1040
+1050
+1060
+1070
+T (K)
+−1.5
+−1.0
+−0.5
+0.0
+0.5
+Cumulant Uq
+Canonique avec répliques
+Chauffage séquentiel
+Refroidissement séquentiel
+L9 : trois protocoles comparés à taille fixée
+Même Hamiltonien, même taille et même grille ; protocoles distincts. La production canonique elle-même reste insuffisante près du pic.
+Figure 37 – À L9 fixé, superposition de la production canonique et des branches séquentielles. Les différences de
+moyennes et de réponses se lisent avec leurs erreurs et les diagnostics.
+Protocole L9
+T (K)
+⟨q⟩
+SE(q)
+cfluct
+V
+/kB
+ESS
+Canonique
+1050
+0.661
+0.046
+13.63
+80.4
+Chauffage
+1050
+0.598
+0.158
+11.81
+124.7
+Retour
+1050
+0.677
+0.038
+12.20
+24.4
+Canonique
+1055
+0.367
+0.034
+17.68
+37.0
+Chauffage
+1055
+0.304
+0.052
+14.56
+14.5
+Retour
+1055
+0.333
+0.067
+16.19
+14.3
+À 1050 K, le refroidissement L9 reste en moyenne plus ordonné que le chauffage : ∆q = +0.0796. Mais l’erreur de
+dispersion entre les deux cycles appariés vaut 0.1538, supérieure à cet écart. L6 donne au même point un écart
+négatif, −0.0684, avec dispersion 0.0557. Le changement de signe interdit d’affirmer que l’hystérésis augmente
+régulièrement avec le volume. Il peut refléter les temps de résidence, les passages aléatoires entre populations et le
+faible nombre de répétitions. On ne déduit aucune largeur d’hystérésis significative de ces seuls extrêmes.
+Le lien avec l’énergie est cohérent : à 1050 K en L9, le retour a un u inférieur de 0.001924 eV/atome, ∆α1 = −0.00861
+et ∆α2 = +0.05137. La population plus ordonnée favorise donc les voisinages de L12 et abaisse l’énergie. L’identité
+énergie–Cowley expliquée dans la partie précédente relie ces écarts : ils ne constituent pas des confirmations
+indépendantes.
+10.4.2
+Pourquoi les contrôles critiques ne permettent pas une conclusion plus forte
+Branche L9
+T (K)
+ESS
+R-hat max
+Blocs/chaîne
+Écart demi-séries
+Chauffage
+1045
+56.3
+1.020
+16
+0.98
+Chauffage
+1050
+124.7
+1.291
+5
+1.32
+Chauffage
+1055
+14.5
+1.098
+5
+1.39
+Chauffage
+1060
+88.6
+1.005
+37
+1.20
+Retour
+1045
+203.9
+1.094
+5
+1.09
+Retour
+1050
+24.4
+1.042
+9
+1.23
+Retour
+1055
+14.3
+1.112
+4
+1.19
+Retour
+1060
+296.1
+1.086
+19
+1.25
+Réseau CFC rigide / ensemble canonique
+43
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+Au chauffage à 1050 K, R-hat atteint environ 1.29 ; au maximum de 1055 K, l’ESS est inférieur à 15 dans les deux
+branches. Inversement, un ESS additionné supérieur à 200 au retour à 1060 K coexiste avec R-hat supérieur à
+1.08 : un critère isolé ne suffit pas. La présence de seulement cinq températures signalées par branche L9, contre
+neuf et dix pour L6, ne mesure pas une meilleure précision au maximum ; la fenêtre affectée est plus étroite mais
+le ralentissement y est sévère. La production canonique L9 reste elle aussi insuffisante près de son maximum.
+10.4.3
+Trajectoires individuelles, variantes et régimes froid/chaud
+À 1050 K, L9
+q↑
+q↓
+∆q
+Fraction q > 0.5 aller/retour
+Cycle 1
+0.756
+0.682
+-0.074
+0.974/0.854
+Cycle 2
+0.439
+0.672
++0.233
+0.472/0.830
+Le premier cycle donne ainsi un écart de signe opposé au second. Le seuil q > 0.5 sert uniquement à décrire les
+populations visitées ; il n’est pas une frontière de phase ajustée. Leur pondération explique une grande partie du
+désaccord de l’ordre moyen, sans mettre en cause le label géométrique µ.
+Température (K)
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Occupation temporelle moyenne par Au
+Chauffage · cycle 1
+μ = 0
+μ = 1
+μ = 2
+μ = 3
+Température (K)
+Occupation temporelle moyenne par Au
+Chauffage · cycle 2
+μ = 0
+μ = 1
+μ = 2
+μ = 3
+500
+1000
+1500
+2000
+2500
+3000
+3500
+4000
+Température (K)
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Occupation temporelle moyenne par Au
+Refroidissement · cycle 1
+μ = 0
+μ = 1
+μ = 2
+μ = 3
+500
+1000
+1500
+2000
+2500
+3000
+3500
+4000
+Température (K)
+Occupation temporelle moyenne par Au
+Refroidissement · cycle 2
+μ = 0
+μ = 1
+μ = 2
+μ = 3
+Occupations des sous-réseaux : chaque cycle séparément
+Chaque point : moyenne temporelle d’un seul cycle, sans moyenne entre cycles.
+Les couleurs et symboles identifient μ ; des changements de variante peuvent subsister dans une moyenne temporelle.
+Figure 38 – Occupations L9 séparées par trajectoire et par sens. Les moyennes ne doivent pas être fusionnées en
+un instantané ; au retour, la seconde trajectoire sélectionne une autre variante.
+À 300 K, la première trajectoire retrouve la variante 0 ; la seconde part de la variante 2 et finit sur la variante
+3. Dans les deux cas q = 1 à la précision numérique : changer de sous-réseau privilégié n’est pas perdre l’ordre.
+Le diagnostic insuffisant à 500 K appartient à un autre régime : la moyenne de q reste supérieure à 0.9995 dans
+chaque trajectoire, avec seulement six ou sept valeurs distinctes d’énergie. La statistique des excitations rares est
+limitée ; ce signalement ne localise pas une seconde transition.
+À 1300 K, les branches L9 coïncident pratiquement (q ≃0.0624, α1 ≃−0.152, α2 ≃0.153), avec des diagnostics
+favorables. À 4000 K, q ≃0.0354, contre environ 0.0657 pour L6 : la diminution suit le biais de norme finie décrit
+dans la partie 3. Les ordres locaux restent non nuls. Les zones éloignées du pic sont donc plus reproductibles entre
+protocoles que la pondération des populations critiques.
+Approfondissement pédagogique : Cycle L9 – Quelle conclusion retenir après le calcul ?
+— Un résultat terminé n’est pas un équilibre garanti. Les archives sont complètes et cohérentes ; les deux
+branches placent leur maximum à 1055 K. Mais les longues corrélations et les différences entre trajectoires
+limitent les valeurs quantitatives au pic. Une barre d’erreur conditionnelle ne corrige pas un temps de
+résidence mal exploré.
+— La mémoire apparente doit être répétée. À 1050 K, les deux trajectoires donnent des écarts de signes
+Réseau CFC rigide / ensemble canonique
+44
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+opposés. Il faut davantage de trajectoires et des paliers critiques plus longs avant d’attribuer un sens et
+une largeur robustes à la boucle. Ce protocole à échanges globaux n’établit pas une vitesse physique de
+nucléation.
+10.4.4
+L12 achevé : une mémoire plus marquée, des poids d’équilibre encore incertains
+Les 184 paliers L12 sont achevés et validés techniquement. Le maximum de variance est à 1055 K au chauffage et
+1050 K au refroidissement. La production avec échanges de répliques présente son maximum à 1052.5 K, avec
+une grille deux fois plus fine et deux fois plus de balayages. Ces trois nombres désignent des critères observés
+dans des protocoles différents. Le milieu des deux maxima de branche n’est pas un nouvel estimateur validé de la
+transition, même s’il coïncide ici avec le maximum de la production à répliques.
+1040
+1050
+1060
+1070
+T (K)
+0.2
+0.4
+0.6
+0.8
+Ordre q
+Production avec répliques
+Chauffage
+Refroidissement
+1040
+1050
+1060
+1070
+T (K)
+−3.800
+−3.795
+−3.790
+−3.785
+−3.780
+u (eV/atome)
+Production avec répliques
+Chauffage
+Refroidissement
+1040
+1050
+1060
+1070
+T (K)
+0
+10
+20
+30
+40
+50
+cV fluct / kB
+Production avec répliques
+Chauffage
+Refroidissement
+1040
+1050
+1060
+1070
+T (K)
+−0.26
+−0.24
+−0.22
+−0.20
+−0.18
+Cowley α₁
+Production avec répliques
+Chauffage
+Refroidissement
+1040
+1050
+1060
+1070
+T (K)
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+Cowley α₂
+Production avec répliques
+Chauffage
+Refroidissement
+1040
+1050
+1060
+1070
+T (K)
+−4
+−3
+−2
+−1
+0
+1
+Cumulant Uq
+Production avec répliques
+Chauffage
+Refroidissement
+L12 : mémoire thermique et production canonique
+La production à répliques a une grille plus fine et deux fois plus de balayages ; un bon diagnostic dans une seule population ne prouve pas son poids d’équilibre.
+Figure 39 – L12 à taille fixée : comparaison de la production à répliques et des deux branches. Les points à
+1052.5 K appartiennent uniquement à la grille canonique.
+Protocole L12
+T (K)
+⟨q⟩
+SE(q)
+ESS
+R-hat max
+Répliques
+1050
+0.695
+0.071
+2236.8
+1.064
+Chauffage
+1050
+0.772
+0.002
+373.0
+1.008
+Retour
+1050
+0.302
+0.178
+20.0
+1.452
+Répliques
+1055
+0.111
+0.018
+8983.8
+1.004
+Chauffage
+1055
+0.310
+0.226
+464.6
+1.442
+Retour
+1055
+0.083
+0.002
+944.8
+1.002
+À 1050 K, le chauffage reste presque entièrement ordonné (⟨q⟩= 0.772), tandis que le retour mélange des
+populations et donne 0.302. Les deux trajectoires apparient chacune leurs branches :
+L12, 1050 K
+q↑
+q↓
+∆q
+Fraction q > 0.5 aller/retour
+Trajectoire 1
+0.771
+0.480
+-0.291
+0.996/0.566
+Trajectoire 2
+0.772
+0.124
+-0.648
+1.000/0.052
+Les deux écarts L12 ont le même signe, contrairement au cas L9 à cette température. Leur moyenne est
+∆q = −0.4695, avec une erreur de dispersion entre seulement deux trajectoires de 0.1781. C’est une mémoire de
+parcours nette dans les trajectoires observées ; cela ne donne ni un intervalle de confiance fiable à 95 %, ni une loi
+de taille. Avec deux répétitions, il ne faut pas transformer automatiquement « moyenne ±2 SE » en intervalle de
+confiance.
+Réseau CFC rigide / ensemble canonique
+45
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+L’écart énergétique est cohérent : au retour à 1050 K, ∆u = +0.01048 eV/atome, ∆α1 = +0.04695 et ∆α2 =
+−0.27893. L’état moyen de retour est donc moins ordonné et plus coûteux énergétiquement. Cette différence de
+moyennes hors équilibre n’est pas une chaleur latente mesurée.
+0
+5000 10000 15000 20000 25000 30000
+Balayages de production
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+q
+1050 K · chauffage
+Trajectoire 1
+Trajectoire 2
+0
+5000 10000 15000 20000 25000 30000
+Balayages de production
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+q
+1050 K · refroidissement
+Trajectoire 1
+Trajectoire 2
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+q
+0
+2
+4
+6
+8
+10
+Densité
+1050 K · distributions séparées
+Chauffage 1
+Chauffage 2
+Retour 1
+Retour 2
+0
+5000 10000 15000 20000 25000 30000
+Balayages de production
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+q
+1055 K · chauffage
+Trajectoire 1
+Trajectoire 2
+0
+5000 10000 15000 20000 25000 30000
+Balayages de production
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+q
+1055 K · refroidissement
+Trajectoire 1
+Trajectoire 2
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+q
+0
+2
+4
+6
+8
+10
+12
+Densité
+1055 K · distributions séparées
+Chauffage 1
+Chauffage 2
+Retour 1
+Retour 2
+L12 : des poids de populations très différents selon le trajet
+Séries temporelles sans échange de répliques ; les balayages ne sont pas un temps physique. Les histogrammes gardent les trajectoires et branches séparées.
+Figure 40 – Traces et distributions L12 à 1050 et 1055 K. Un écart de moyennes peut provenir de temps de
+résidence différents dans les populations ; les données ne sont pas fusionnées.
+Au chauffage à 1055 K, une trajectoire donne ⟨q⟩≃0.536, l’autre 0.084. R-hat atteint environ 1.44. Au retour
+à 1050 K, l’ESS est proche de 20 et R-hat de 1.45. Dans ces deux paliers, le choix des blocs est plafonné à 750
+mesures, avec seulement quatre blocs par chaîne : l’incertitude conditionnelle elle-même reste fragile.
+Inversement, le chauffage à 1050 K et le retour à 1055 K passent les diagnostics locaux, tout en restant presque
+entièrement dans des populations opposées. Une petite erreur et R-hat proche de 1 signifient alors que les
+trajectoires se ressemblent dans la population visitée. Ils ne prouvent pas que son poids canonique soit correct. Le
+passage de neuf/dix températures signalées en L6 à seulement deux par branche en L12 ne prouve donc pas une
+meilleure exploration de la transition.
+À 300 K, les deux trajectoires retrouvent q = 1 : la première passe de la variante 0 à la variante 3, la seconde
+conserve la variante 2. Au chaud, les branches redeviennent proches et q ≃0.023 à 4000 K, ce qui complète la
+tendance de taille finie observée en L6/L9. Les GIF restent ceux de L6, et les longueurs L12 de la partie 3 viennent
+des captures canoniques, pas d’un nouveau GIF ou d’une analyse spatiale du cycle.
+Approfondissement pédagogique : Bilan final – Que permettent réellement les trois tailles ?
+— Résultats solides dans le modèle. Le fondamental et sa normalisation sont établis ; l’ordre global diminue
+au chaud, les préférences locales persistent et le résidu de norme décroît avec le volume. Les protocoles
+situent la transformation dans la même zone de 1050–1055 K.
+— Limite principale restante. Les grandes boîtes ressèrent la transition et accentuent la dépendance au
+parcours, mais les poids des populations ne sont pas assez bien contrôlés au pic. Il faut davantage de
+trajectoires, des paliers critiques plus longs et des vérifications du mélange avant une extrapolation de
+température ou une largeur d’hystérésis quantitative.
+— Portée physique. Augmenter L ne rétablit ni vibrations, ni dilatation, ni diffusion par lacunes. Une
+longueur spectrale n’est pas un rayon de germe ; un balayage n’est pas une seconde ; les maxima du modèle
+ne sont pas ceux du matériau réel.
+Réseau CFC rigide / ensemble canonique
+46
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+A
+Correspondance entre les questions et les fichiers
+Question
+Réponse numérique
+Fichier principal
+1
+Réseau, énergie, échanges, Metropolis
+lattice.py, model.py, kernel.py
+2
+Cowley des deux coquilles
+model.py : cowley
+3
+Ordre signé, amplitude, sous-réseaux
+model.py : ordre
+4
+Tests analytiques et probabilistes
+tests/test_physics.py
+5
+Énergie exacte, preuve et tests
+model.py, présent rapport
+6
+Configurations, répliques, graines
+simulation.py, chain_*.npz
+7
+Moyennes, erreurs, figures
+statistics.py, figures.py
+8
+Maximum sur la grille, champ moyen
+summary.json, meanfield.py
+9
+Discussion fondée sur les données
+Rapport et diagnostics CSV
+10
+Cycle chauffage–refroidissement
+thermal_cycle.py, run_thermal_cycle.py
+Le lanceur run_project.py enchaîne les tests, la simulation, les statistiques, les figures et le rapport. L’option
+–reuse réutilise uniquement une campagne dont la configuration correspond exactement. La compilation PDF
+demande une installation LaTeX, mais les fichiers .tex et les figures sont produits même sans compilation.
+Réseau CFC rigide / ensemble canonique
+47
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+B
+Algorithme
+Cette partie décrit le calcul effectivement implémenté, depuis la construction du réseau jusqu’aux erreurs statistiques. Les
+algorithmes numérotés forment un pseudocode commenté : les noms de fonctions permettent de retrouver chaque opération
+dans les sources. Les commentaires expliquent à la fois le choix physique et le moment où l’opération doit être exécutée.
+B.1
+Notations, données et niveaux de boucle
+On note C le nombre de chaînes indépendantes, R le nombre de températures, Seq et Sprod les nombres de balayages des
+deux phases, dm l’intervalle de mesure, dx l’intervalle d’échange et K la taille maximale d’un segment. Dans une chaîne,
+les R configurations sont couplées par les échanges de répliques ; ce ne sont donc pas R chaînes indépendantes. L’indice
+r = 0, . . . , R −1 désigne un emplacement à température fixe Tr, avec T0 < · · · < TR−1.
+Donnée en mémoire
+Signification et unité
+states[r,i]
+Occupation sr,i ∈{0, 1} : Cu ou Au.
+neighbors[i,k]
+Indices des 12 premiers puis des 6 seconds voisins.
+sub[i]
+Sous-réseau µ ∈{0, 1, 2, 3} du site i.
+energies[r]
+Énergie totale entière Er en micro-eV.
+labels[r]
+Identité de la configuration présente à Tr.
+phase
+Nombre de sessions d’échange déjà exécutées ; sa parité choisit les liens.
+records[m,r,:]
+Neuf observables à la mesure m et à la température Tr.
+Posons Q = 106, le nombre de micro-eV par eV. Ainsi Er = Er/Q en eV et
+eβr =
+1
+QkBTr ,
+eβr∆E = ∆E
+kBTr .
+Cette conversion est indispensable : utiliser une énergie entière en micro-eV directement avec 1/(kBT) fausserait l’exposant
+d’un facteur 106. Le code nomme beta la quantité eβ.
+L’emboîtement exact est
+chaîne →phase →segment →balayage →température →proposition.
+À la fin de chaque balayage viennent, dans cet ordre, les échanges de répliques puis les mesures si leurs échéances sont
+atteintes. Les statistiques de production sont calculées après les simulations, à partir des séries sauvegardées, et non après
+chaque proposition.
+B.2
+Algorithme 1 : préparer la géométrie et les configurations
+Algorithme 1 — Initialisation d’une chaîne
+Entrées : configuration JSON et indice de chaîne c = 0, . . . , C −1. Sorties : géométrie fixe, occupations, énergies
+et identités initiales.
+1. Vérifier L ≥3, les températures positives strictement croissantes, au moins deux graines distinctes et les
+longueurs de phases strictement positives. Exiger que Seq, Sprod et K soient divisibles par dm et, si dx > 0,
+par dx.
+Commentaire : ces multiples empêchent le redémarrage du compteur local de balayages à chaque segment de
+décaler les mesures ou les échanges. Le dernier segment, éventuellement plus court, conserve cette propriété.
+2. Construire une seule fois les N
+=
+4L3 coordonnées entières X
+=
+2(i, j, k) + bµ, avec bµ
+∈
+{(0, 0, 0), (0, 1, 1), (1, 0, 1), (1, 1, 0)}. Attribuer sub[i] et construire la correspondance coordonnées–indice.
+Commentaire : l’arithmétique entière évite les tests d’égalité approchée sur des coordonnées. La géométrie
+est commune à toutes les chaînes.
+3. Pour chaque site, ajouter les déplacements des deux coquilles, réduire chaque coordonnée modulo 2L et
+stocker les 18 indices voisins.
+Commentaire : la périodicité supprime les surfaces libres. Les listes restent valables pendant tout le calcul
+puisque les atomes échangent leurs espèces sans déplacer les sites.
+4. Initialiser un générateur avec la graine de la chaîne c. Pour chaque température Tr, choisir l’état initial
+suivant le code :
+— si c = 0 ou Tr < Tdépart, remplir d’Au le sous-réseau µ = (2c) mod 4 et de Cu les trois autres ;
+— sinon, tirer sans remise exactement N/4 sites Au parmi les N sites.
+Commentaire : les deux chaînes de production commencent dans les variantes 0 et 2. Les départs aléatoires de
+la seconde chaîne concernent Tr ≥1060 K. Les départs froids ordonnés évitent de partir d’un état aléatoire
+difficile à réorganiser à basse température ; ils ne dispensent pas de vérifier l’équilibration.
+Réseau CFC rigide / ensemble canonique
+48
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+5. Calculer pour chaque configuration l’énergie entière de référence
+Er = 1
+2
+N−1
+X
+i=0
+" 11
+X
+k=0
+Jint
+sr,i,sr,V (i,k) +
+17
+X
+k=12
+Iint
+sr,i,sr,V (i,k)
+#
+,
+où Jint = QJ et Iint = QI. Initialiser labels[r] = r et phase = 0.
+Commentaire : le facteur 1/2 corrige le double comptage des paires orientées. Ce calcul global fournit l’énergie
+initiale ; les propositions ultérieures utilisent seulement une différence locale.
+Sources : simulation.py : load_config, campaign ; lattice.py ; model.py : energy_int.
+B.3
+Algorithme 2 : organiser équilibration et production
+Algorithme 2 — Campagne complète et contrôles par segment
+Entrées : géométrie, paramètres et graines. Sorties : archives par chaîne, moyennes, erreurs et diagnostics.
+1. Pour chaque chaîne c = 0, . . . , C −1 : exécuter l’algorithme 1 et créer des listes séparées pour les mesures
+d’équilibration et de production.
+Commentaire : chaque chaîne possède sa graine et son propre ensemble de R répliques ; aucun échange n’a
+lieu entre chaînes.
+2. Pour chaque phase, d’abord équilibration de longueur Seq, puis production de longueur Sprod :
+(a) Mettre le compteur done = 0.
+(b) Tant que done est inférieur à la longueur de phase : choisir S = min(K, longueur −done), tirer une
+graine de segment dans {1, . . . , 231 −2} avec le générateur de la chaîne, puis appeler l’algorithme 3 pour
+S balayages.
+Commentaire : le noyau Numba réinitialise son générateur à chaque appel avec cette graine nouvellement
+tirée. On conserve en revanche states, energies, labels et phase entre appels ; les segments découpent
+une même trajectoire, sans recréer les états.
+(c) Après chaque segment, recalculer indépendamment toutes les énergies avec les matrices Jint et Iint.
+Arrêter si elles diffèrent des énergies mises à jour, si P
+i sr,i̸ = N/4, ou si Er < QN(−3.813) pour une
+réplique.
+Commentaire : ces contrôles exacts détectent une erreur de variation locale, une mauvaise permutation
+ou une violation de composition. Les effectuer par segment évite un recalcul global à chaque tentative.
+(d) En équilibration, ajouter les mesures à burn_samples seulement. En production, ajouter mesures et
+identités aux séries d’analyse, et cumuler les compteurs d’acceptation locale et d’échange. Augmenter
+done de S.
+Commentaire : les mesures initiales servent aux historiques mais n’entrent pas dans les moyennes ther-
+miques. Le passage à la production continue avec les configurations atteintes, sans nouvelle initialisation.
+3. Concaténer les segments et sauvegarder chain_XX.npz : mesures de production, mesures d’équilibration,
+identités, configurations finales, températures, coordonnées et sous-réseaux.
+4. Après toutes les chaînes, analyser les séries avec les algorithmes 7 et 8 ; écrire observables.csv et
+summary.json.
+Commentaire : conserver les données brutes permet de refaire les analyses et les figures sans relancer les
+trajectoires Monte-Carlo.
+Source : simulation.py : campaign.
+Captures spatiales et reprise de la campagne L12
+Les options supplémentaires de L9 et L12 n’altèrent pas la règle de Metropolis. Une capture recopie les occupations après
+la mesure au balayage choisi ; ses dates permettent de retrouver exactement les observables correspondantes. À L12, les
+captures tous les 200 balayages fixent aussi les limites de segments de production, dont la longueur maximale reste une
+limite et non une durée imposée.
+La reprise optionnelle sauvegarde après chaque segment validé les états, les énergies, les identités, la parité, la position
+dans les phases, les mesures nouvelles et l’état du générateur hôte. Le noyau reçoit une nouvelle graine à chaque segment :
+restaurer le générateur hôte et les limites de segment restaure donc aussi la suite des graines. Chaque checkpoint est écrit
+dans un fichier temporaire puis publié atomiquement ; une écriture inachevée n’est pas utilisée. Une signature des paramètres,
+des sources et de l’environnement empêche de reprendre silencieusement avec un autre noyau. Les tests comparent la
+trajectoire reprise à la trajectoire ininterrompue. Le pseudocode P2 décrit le chemin sans reprise ; la restauration se place
+avant la boucle de phase et la sauvegarde après ses contrôles de segment.
+Réseau CFC rigide / ensemble canonique
+49
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+B.4
+Algorithme 3 : boucles à l’intérieur d’un segment
+Algorithme 3 — Metropolis, échanges et mesures dans le bon ordre
+Entrées : états courants, énergies, identités, parité et S balayages. Sorties : mêmes états mis à jour, séries et
+compteurs du segment.
+1. Initialiser le générateur du noyau avec la graine reçue ; calculer eβr = 1/(QkBTr) ; allouer S/dm lignes de
+mesures par température et mettre les compteurs du segment à zéro.
+Commentaire : les températures sont fixes ; leurs inverses n’ont pas besoin d’être recalculés dans la boucle
+des propositions.
+2. Pour s = 1, . . . , S :
+(a) Pour r = 0, . . . , R −1 : effectuer exactement N appels à l’algorithme 4 sur la configuration présente à
+Tr.
+Commentaire : un balayage contient N propositions Au–Cu, acceptées ou refusées. Le tirage se fait avec
+remise : certains sites peuvent intervenir plusieurs fois et d’autres pas du tout.
+(b) Si dx > 0 et s mod dx = 0, exécuter l’algorithme 5 pour les liens de la parité courante, puis incrémenter
+phase.
+Commentaire : toutes les températures ont d’abord subi le même nombre de propositions locales. dx = 0
+désactive les échanges.
+(c) Si s mod dm = 0, calculer l’algorithme 6 pour chaque emplacement r, enregistrer les neuf valeurs et
+labels[r], puis avancer l’indice de mesure.
+Commentaire : si les deux échéances coïncident, la mesure porte sur l’état après l’échange. Elle est rangée
+sous Tr, même si l’identité de la configuration vient de changer.
+3. Retourner les séries, les compteurs locaux, les compteurs de liens et la valeur courante de phase.
+Commentaire : conserver cette parité au segment suivant évite de recommencer systématiquement par les
+mêmes liens.
+Source : kernel.py : run_segment.
+Les mouvements locaux et les échanges préservent chacun la mesure jointe Π ∝Q
+r exp[−Er/(kBTr)]. Leur composition
+dans cet ordre préserve donc cette mesure ; il n’est pas nécessaire de prétendre que la composition complète satisfait
+elle-même la balance détaillée. Les échanges de répliques accélèrent la circulation entre températures, tandis que l’étiquette
+permet d’en vérifier l’efficacité.
+B.5
+Algorithme 4 : proposition Au–Cu et test de Metropolis
+Algorithme 4 — Une tentative locale à température fixée
+Entrées : occupation s, énergie E et eβr. Sortie : état inchangé ou état échangé avec énergie cohérente.
+1. Tirer indépendamment i, j uniformément dans {0, . . . , N −1}. Tant que si = sj, retirer les deux indices.
+Commentaire : un tirage d’espèces identiques, y compris i = j, n’est pas compté comme tentative. Chaque
+paire non orientée Au–Cu a alors la probabilité 1/(NAuNCu). La composition étant conservée, la proposition
+inverse a exactement la même probabilité : aucun rapport de proposition supplémentaire n’apparaît dans
+Metropolis.
+2. Pour le calcul local, nommer i le site initialement Au et j le site initialement Cu, en permutant les noms si
+nécessaire. Sans modifier l’état, calculer
+ai =
+X
+v∈V1(i), v̸=j
+sv,
+aj =
+X
+v∈V1(j), v̸=i
+sv,
+bi =
+X
+v∈V2(i), v̸=j
+sv,
+bj =
+X
+v∈V2(j), v̸=i
+sv.
+Commentaire : seules les liaisons incidentes aux sites échangés peuvent changer. Leur éventuelle liaison
+mutuelle reste Au–Cu, donc on l’exclut. Un voisin commun peut contribuer aux deux sites : ce sont deux
+liaisons distinctes et leurs variations doivent toutes deux être comptées.
+3. Évaluer la différence entière
+∆E = 161000(aj −ai) + 12600(bi −bj).
+Commentaire : déplacer l’Au de i vers j change le nombre de paires Au–Au de première coquille de aj −ai.
+Pour les secondes coquilles, le nombre de paires Au–Cu change de 2(bi −bj) : perdre un voisin Au et gagner
+un voisin Cu ont des contributions opposées. D’où 12600 = 2 × 6300. La formule est exacte à composition
+fixée et ne requiert que deux listes de 18 voisins.
+Réseau CFC rigide / ensemble canonique
+50
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+4. Si ∆E ≤0, accepter. Sinon, tirer u uniforme sur [0, 1) et accepter si
+u < exp(−eβr∆E).
+Commentaire : les mouvements qui abaissent l’énergie et ceux d’énergie égale sont toujours acceptés. Un
+mouvement défavorable reste possible avec le poids de Boltzmann ; sans cela, le calcul chercherait seulement
+un minimum d’énergie au lieu d’échantillonner une température. Le test conditionnel évite de calculer
+l’exponentielle pour ∆E ≤0.
+5. Si accepté, permuter simultanément si, sj, effectuer E ←E + ∆E et incrémenter le compteur. Sinon,
+conserver exactement l’état et l’énergie précédents.
+Commentaire : la mise à jour doit suivre la décision. Un refus représente un temps de séjour dans la chaîne
+et compte dans le balayage ; ne mesurer que les mouvements acceptés biaiserait les poids d’équilibre.
+Sources : kernel.py : delta_fast, run_segment.
+B.6
+Algorithme 5 : échange de répliques voisines
+Algorithme 5 — Une session d’échange entre températures
+Entrées : les R états, énergies, identités et phase. Sorties : configurations éventuellement permutées ; températures
+fixes.
+1. Poser p = phase mod 2. Pour les liens r = p, p + 2, p + 4, . . . tels que r + 1 < R, incrémenter le nombre de
+tentatives sur le lien (r, r + 1).
+Commentaire : une session teste (0, 1), (2, 3), . . ., la suivante (1, 2), (3, 4), . . .. Les liens d’une session ne
+partagent pas de réplique ; l’alternance permet de parcourir toute l’échelle de températures.
+2. Calculer le logarithme du rapport des poids :
+ℓ= (eβr −eβr+1)(Er −Er+1).
+Commentaire : en effet,
+log exp[−βrEr+1 −βr+1Er]
+exp[−βrEr −βr+1Er+1] = (βr −βr+1)(Er −Er+1),
+avec βr = 1/(kBTr). Les propositions d’échange sont symétriques.
+3. Accepter si ℓ≥0 ; sinon tirer u uniforme sur [0, 1) et accepter si log(max(u, 10−300)) < ℓ.
+Commentaire : travailler en logarithmes évite de former une exponentielle pouvant déborder. La borne du
+code évite log 0 ; elle ne modifie le test usuel que pour des probabilités numériquement extrêmes.
+4. Si accepté, permuter les lignes complètes de states, les deux énergies et les deux identités ; incrémenter le
+nombre d’échanges acceptés sur ce lien. Laisser Tr et Tr+1 à leurs emplacements.
+Commentaire : énergie et identité doivent suivre la configuration. Permuter seulement les occupations
+produirait une énergie incorrecte pour le mouvement local suivant.
+5. Après tous les liens de la session, incrémenter phase.
+Source : kernel.py : run_segment, bloc d’échange.
+B.7
+Algorithme 6 : observables d’une configuration instantanée
+Algorithme 6 — Mesure après un balayage sélectionné
+Entrées : s, énergie entière courante, voisins et sous-réseaux.
+Sortie : (E, η, q, α1, α2, p0, p1, p2, p3).
+1. Mettre pµ = 0 pour les quatre sous-réseaux et B1 = B2 = 0.
+2. Pour chaque site i tel que si = 1 :
+(a) ajouter 4/N à psub[i] ;
+(b) ajouter 1 −sv à B1 pour chacun des 12 premiers voisins et à B2 pour chacun des 6 seconds voisins.
+Commentaire : chaque sous-réseau contient N/4 sites ; ainsi pµ = NAu,µ/(N/4) est une fraction d’occupation,
+avec P
+µ pµ = 1 à cette composition. Partir seulement des sites Au compte chaque paire mixte exactement
+une fois : il n’y a pas de facteur 1/2 à appliquer à Bn.
+Réseau CFC rigide / ensemble canonique
+51
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+3. Calculer l’ordre signé et l’amplitude :
+η = p0 −1/4
+3/4
+,
+q =
+v
+u
+u
+t4
+3
+3
+X
+µ=0
+(pµ −1/4)2.
+Commentaire : η suit le sous-réseau 0 et change selon la variante ; q reconnaît les quatre variantes ordonnées
+sans choisir de sous-réseau privilégié. Il faut calculer q pour chaque configuration puis moyenner : le calcul à
+partir des ⟨pµ⟩pourrait effacer un ordre réel lorsque la variante change au cours de la trajectoire.
+4. Pour n = 1, 2, calculer
+αn = 1 −
+Bn
+(N/4)zn(3/4),
+z1 = 12, z2 = 6.
+Commentaire : Bn/[(N/4)zn] est la probabilité conditionnelle de trouver Cu autour d’Au. Diviser par
+cCu = 3/4 compare ce voisinage à la composition globale ; on mesure ici l’ordre local.
+5. Former la ligne avec E = E/Q en eV totaux, puis η, q, α1, α2, p0, . . . , p3. Enregistrer séparément l’identité.
+Commentaire : l’énergie n’est pas recalculée ici : sa valeur est tenue à jour après chaque mouvement et
+vérifiée après le segment. Le parcours global des occupations sert aux observables structurales. L’énergie par
+atome sera obtenue au stade des statistiques.
+Source : kernel.py : sample_observables.
+L’intervalle dm réduit le coût des parcours de tous les sites et la taille des archives. Il ne garantit pas l’indépendance
+des mesures. Mesurer moins souvent ne remplace donc pas l’estimation de l’autocorrélation. De même, une configuration
+inchangée entre deux échéances doit être enregistrée à nouveau : son temps de séjour fait partie de la mesure canonique.
+B.8
+Algorithme 7 : moyennes et fluctuations à température fixe
+Notons M = Sprod/dm le nombre de mesures par chaîne et Ac = M −1 PM
+m=1 Ac,m la moyenne de production à une
+température donnée. Pour les variances thermiques, le code utilise vc(A) = A2c −A
+2
+c, équivalent à numpy.var avec le
+diviseur M ; les barres d’erreur sont ensuite estimées par rééchantillonnage.
+Algorithme 7 — Estimer les observables thermiques
+Entrées : séries de production [C, M, R, 9], températures et N. Sorties : huit estimations par température.
+1. Pour chaque température Tr, extraire les séries à emplacement fixe r des C chaînes.
+Commentaire : suivre une identité de réplique mélangerait plusieurs températures et ne donnerait pas une
+moyenne canonique à Tr.
+2. Dans chaque chaîne, calculer
+uc = Ec/N,
+ηc,
+qc,
+α1,c,
+α2,c,
+cV
+kB
+
+c
+=
+vc(E)
+N(kBTr)2 ,
+(Xq)c = Nvc(q)
+kBTr ,
+(Uq)c = 1 −
+q4
+c
+3(q2
+c)2 .
+Si q2
+c = 0, enregistrer un cumulant non défini.
+Commentaire : cV est une variance d’énergie totale divisée par N ; remplacer E par E/N dans la même
+formule ferait perdre un facteur N 2. Xq et Uq exigent des moments de la série de q ; ils ne se déduisent pas
+de la seule moyenne q.
+3. Moyenner les huit estimations sur les chaînes : bθr = C−1 P
+c bθc,r.
+Commentaire : les variances sont calculées avant ce moyennage. La variance d’un mélange de chaînes ajouterait
+la variance de leurs moyennes à la fluctuation interne et pourrait transformer un défaut d’équilibration en
+pic artificiel de capacité calorifique.
+4. Transmettre estimations et séries à l’algorithme 8 pour les erreurs et les diagnostics. Après analyse de toutes
+les températures, choisir T ∗= Targ maxr(cV /kB)r et sauvegarder ses voisins sur la grille.
+Commentaire : cette recherche intervient après les mesures ; aucune température de transition n’est imposée
+à la dynamique. Les deux voisins décrivent une résolution de grille, pas une erreur-type sur T ∗.
+Sources : statistics.py : moments, summarize ; simulation.py : campaign.
+Réseau CFC rigide / ensemble canonique
+52
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+B.9
+Algorithme 8 : autocorrélation, incertitudes et diagnostics
+Algorithme 8 — Analyse statistique des séries corrélées
+Entrées : séries de production à Tr, B tirages bootstrap. Sorties : erreurs-types, temps de corrélation et critères
+de suivi.
+1. Pour chaque chaîne et pour A = E, q, centrer la série. Calculer par transformée de Fourier sa covariance aux
+retards ℓ, en divisant par M −ℓ, puis normaliser par la covariance à retard nul pour obtenir ρA(ℓ).
+Commentaire : le remplissage de zéros de la transformée évite une corrélation circulaire parasite ; la FFT
+accélère le calcul de tous les retards. Une série de moins de huit valeurs ou de variance numérique quasi nulle
+reçoit τ = 1/2 dans le code ; ce retour conventionnel ne constitue pas une preuve de mélange si la trajectoire
+est figée.
+2. Accumuler les paires Pj = ρA(2j −1) + ρA(2j) tant qu’elles sont positives. Arrêter à la première paire non
+positive ou selon la fenêtre du code, 2j −1 > 10[1/2 + P
+h≤j Ph]. Poser
+τc,A = max
+ 
+1
+2, 1
+2 +
+X
+j retenus
+Pj
+!
+,
+τmax =
+max
+c,A∈{E,q} τc,A.
+Commentaire : les grands retards sont bruyants ; sommer sans troncature rendrait l’estimation instable. τ
+est exprimé en mesures enregistrées ; multiplier par dm pour l’exprimer en balayages.
+3. Choisir exactement comme dans summarize la longueur de bloc
+b = min(max(2, ⌈2τmax⌉), max(2, ⌊M/4⌋)) .
+Commentaire : on vise des blocs au moins aussi longs que 2τmax pour conserver la dépendance temporelle.
+Le plafond lié à M/4 limite cette longueur pour les séries courtes ; si ce plafond devient actif, la longueur
+souhaitée n’est plus garantie.
+4. Pour chaque tirage bootstrap h = 1, . . . , B et chaque chaîne : tirer ⌈M/b⌉débuts de blocs uniformément,
+construire les indices consécutifs modulo M, concaténer et garder les M premiers. Rééchantillonner ensemble
+les neuf colonnes avec ces indices ; recalculer les huit fonctions de l’algorithme 7 puis moyenner sur les
+chaînes.
+Commentaire : les blocs circulaires évitent de sous-représenter les bords. Recalculer les variances et le
+cumulant à chaque tirage transmet l’incertitude à ces fonctions non linéaires. Le rééchantillonnage est fait
+séparément dans chaque chaîne et à chaque température.
+5. Pour chaque estimation θ, retenir
+SE(θ) = max
+
+sdh(bθ∗(h)), sdc(bθc)
+√
+C
+
+,
+avec des écarts-types à diviseur effectif nombre de valeurs moins un.
+Commentaire : le second terme empêche d’afficher une erreur plus petite que la dispersion observée entre
+chaînes. Ce maximum reste une estimation d’erreur-type, sans corriger une éventuelle métastabilité commune
+aux deux chaînes.
+6. Calculer l’effectif utile rapporté
+ESSmin =
+min
+A∈{E,q}
+C
+X
+c=1
+M
+2τc,A ,
+ainsi que bRE, bRq et le nombre de blocs ⌊M/b⌋par chaîne.
+7. Comparer les deux demi-séries d’énergie de chaque chaîne et retenir
+zmax = max
+c
+|Ec,première moitié −Ec,seconde moitié|
+max[sc(E)
+p
+8τmax/M, 10−12]
+,
+où sc(E) est l’écart-type à diviseur M −1. Déclarer le critère local satisfait si simultanément
+ESSmin ≥200,
+bRE < 1.05,
+bRq < 1.05,
+⌊M/b⌋≥20,
+zmax < 3.
+Commentaire : ces seuils signalent les séries à renforcer ; ils ne garantissent pas que tous les bassins métastables
+ont été visités.
+Sources : statistics.py : tau_int, split_rhat, summarize.
+Pour préciser le calcul de bR, le code partage chaque chaîne en deux moitiés de longueur nh = ⌊M/2⌋, puis normalise les
+Réseau CFC rigide / ensemble canonique
+53
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+rangs de leurs valeurs par
+z = Φ−1
+
+rang −3/8
+2Cnh + 1/4
+
+.
+Il calcule W, la moyenne des variances internes, et Binter = nh Var(zdemi-chaîne), puis
+bR = max
+ 
+1,
+r
+(nh −1)W/nh + Binter/nh
+W
+!
+.
+Le résultat retenu est le maximum de cette version et de celle obtenue en remplaçant les valeurs initiales par leurs écarts
+absolus à la médiane globale, avant de recalculer les rangs. Cette seconde version recherche des différences de dispersion.
+Les cas dégénérés W ≃0 et les séries trop courtes sont traités séparément par split_rhat. L’ordre signé η n’est pas utilisé
+ici car deux variantes ordonnées peuvent avoir des valeurs signées différentes tout en décrivant le même degré d’ordre.
+Les identités fournissent un autre contrôle, calculé sur la production : pour chaque étiquette, un automate attend
+successivement une présence au froid, au chaud, puis au froid, et compte alors un aller-retour. Ce comptage utilise les
+seules dates enregistrées et peut manquer des visites entre deux mesures. Les taux locaux sont Nacceptés,r/(NSprod) et les
+taux d’échange sont Néchanges acceptés,r/Ntentatives,r par lien. Ces contrôles de circulation complètent les critères de séries
+temporelles.
+B.10
+Chronologie concrète avec les paramètres de production
+Le fichier configs/production.json, également recopié dans summary.json, fixe N = 864, R = 46, C = 2, Seq = 6000,
+Sprod = 30000, K = 500, dx = 5, dm = 10 et B = 250. Un segment contient donc 500 balayages, 100 sessions d’échange et
+50 dates de mesure. Une session ne teste qu’une parité de liens : un lien donné est sollicité toutes les deux sessions, soit
+tous les 10 balayages dans cette campagne.
+Balayage local
+Opérations après les N propositions à chacune des R températures
+1 à 4
+Pas d’échange et pas de mesure enregistrée.
+5
+Tester (0, 1), (2, 3), . . . , (44, 45) ; aucune mesure.
+6 à 9
+Poursuivre les mouvements locaux.
+10
+Tester (1, 2), (3, 4), . . . , (43, 44) ; mesurer ensuite les 46 états.
+15
+Reprendre la première parité de liens.
+20
+Tester la seconde parité puis mesurer.
+500
+Échanges, dernière mesure du segment, puis vérification globale des énergies et
+de la composition.
+Ce tableau décrit le premier segment ; les suivants poursuivent la valeur de phase. Ici les 100 sessions par segment ramènent à
+la même parité, mais le code conserve explicitement cette variable pour les autres configurations admissibles. La production
+comporte 60 segments par chaîne et M = 3000 mesures par température et par chaîne. L’équilibration comporte 12
+segments et 600 mesures diagnostiques par température et par chaîne, écartées des estimations thermiques.
+Au total, hors tirages rejetés d’espèces identiques, la campagne comporte
+CRN(Seq + Sprod) = 2 × 46 × 864 × 36000 = 2 861 568 000
+propositions Au–Cu. Ce total compte les tests de Metropolis, et non le nombre de mouvements finalement acceptés.
+B.11
+Validation finale, champ moyen et coût du calcul
+Après la campagne, validation.py vérifie notamment, pour toutes les mesures archivées, les identités sur pµ, η et q, puis
+reconstruit l’énergie à partir des paramètres de Cowley :
+B1 = (1 −α1)(N/4)12(3/4),
+A1 = 12(N/4) −B1
+2
+,
+B2 = (1 −α2)(N/4)6(3/4),
+Ereconstruit = −3.813N + 0.161A1 + 0.0063B2.
+Cette comparaison indépendante associe les observables structurales à l’énergie effectivement mesurée. La validation
+compare aussi les moyennes d’énergie du CSV aux archives et contrôle les bornes analytiques ainsi que les régimes froid et
+chaud. Le lanceur exécute auparavant les tests physiques et statistiques ; un échec interrompt le calcul.
+La référence de champ moyen est obtenue séparément dans meanfield.py. L’algorithme de Brent recherche une racine de
+h(η) = ηg′(η) −2[g(η) −g(0)] sur [0.01, 0.999999], puis calcule TMF = 2Aη/[kBg′(η)] et Tsp = 2A/kB. L’intervalle évite la
+solution triviale η = 0 et la singularité de g′ à η = 1 ; les termes entropiques p log p utilisent une fonction qui applique
+0 log 0 = 0. Ce calcul fournit une comparaison analytique sans modifier les probabilités de transition Monte-Carlo.
+À nombre de voisins fixé, une différence d’énergie locale coûte O(1) et un balayage de toutes les températures coûte O(RN)
+en moyenne. Le contrôle global d’énergie coûte également O(RN), une seule fois par segment ; le calcul des observables
+coûte O(RN) à chaque date de mesure. La précalculation des voisins et la compilation Numba réduisent le travail dans les
+boucles de propositions. Les configurations et voisinages occupent O(RN + 18N), tandis que les neuf séries de production
+occupent O(9CMR) valeurs, auxquelles s’ajoutent identités et équilibration. Le bootstrap, effectué après la dynamique,
+réévalue les statistiques sur des blocs pour propager les corrélations temporelles dans les erreurs.
+Réseau CFC rigide / ensemble canonique
+54
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+B.12
+Version en pseudocode
+Les blocs suivants donnent une lecture directement transposable en code des algorithmes précédents. L’indentation et les
+mots-clés POUR, TANT QUE, SI indiquent les boucles et les conditions ; <- désigne une affectation et # un commentaire. Les
+indices commencent à zéro. Les tableaux passés à une procédure sont modifiés sur place, sauf les données explicitement
+retournées.
+On conserve les conventions de l’annexe : Q = 1000000, Eint est une énergie totale en micro-eV entiers, E une énergie totale
+en eV, dm l’intervalle de mesure, dx l’intervalle d’échange et K la taille maximale d’un segment. UNIFORME() tire un réel
+dans [0, 1) et ENTIER(a,b) un entier uniforme dans {a, . . . , b}. Chaque commentaire signale le rôle de l’étape dans le calcul.
+Pseudocode P1 — Géométrie et énergie de référence
+FONCTION GEOMETRIE(L):
+EXIGER L entier ET L >= 3
+base <- [(0,0,0), (0,1,1), (1,0,1), (1,1,0)]
+xyz, sub <- listes vides
+POUR chaque maille (a,b,c) dans {0,...,L-1}^3:
+POUR mu = 0,...,3:
+AJOUTER 2*(a,b,c) + base[mu] A xyz
+AJOUTER mu A sub
+FIN POUR
+FIN POUR
+N <- longueur(xyz)
+index <- dictionnaire {coordonnees : indice du site}
+D1 <- deplacements entiers de norme carree 2
+D2 <- [(+/-2,0,0), (0,+/-2,0), (0,0,+/-2)]
+POUR i = 0,...,N-1:
+V1[i] <- [index[(xyz[i]+d) modulo (2*L)] pour d dans D1]
+V2[i] <- [index[(xyz[i]+d) modulo (2*L)] pour d dans D2]
+FIN POUR
+RETOURNER xyz, sub, V1, V2
+# Voisinages calcules une fois
+FONCTION ENERGIE_REFERENCE(s):
+total <- 0
+POUR i = 0,...,N-1:
+POUR v dans V1[i]: total <- total + Jint[s[i],s[v]]
+POUR v dans V2[i]: total <- total + Iint[s[i],s[v]]
+FIN POUR
+RETOURNER total / 2
+# Chaque paire est vue deux fois
+Jint et Iint sont les matrices de paires multipliées par Q. La division finale donne un entier exact. Les signes +/- du
+pseudocode signifient que les deux signes sont énumérés. La taille N = 4L3 est déduite du nombre de sites construits.
+Pseudocode P2 — Campagne : chaînes, phases et segments
+VERIFIER_PARAMETRES(cfg)
+# Multiples de dm et dx
+xyz, sub, V1, V2 <- GEOMETRIE(L)
+N <- longueur(xyz)
+archives <- liste vide
+POUR c = 0,...,C-1:
+rng <- GENERATEUR(graine[c])
+# Generateur de cette chaine
+POUR r = 0,...,R-1:
+SI c = 0 OU T[r] < Tdepart:
+s[r] <- (sub = (2*c) modulo 4)
+SINON:
+s[r] <- N/4 sites Au tires sans remise avec rng
+FIN SI
+Eint[r] <- ENERGIE_REFERENCE(s[r])
+FIN POUR
+labels <- [0,...,R-1]
+phase <- 0
+# Parite des liens a echanger
+burn, prod, ids <- listes vides
+acc_prod, ok_prod, essais_prod <- tableaux nuls
+POUR (mode, longueur) dans [(equilibration, Seq),
+Réseau CFC rigide / ensemble canonique
+55
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+(production, Sprod)]:
+fait <- 0
+TANT QUE fait < longueur:
+S <- min(K, longueur - fait)
+g <- TIRER_GRAINE(rng)
+# Nouvelle graine de segment
+rec, lab, acc, ok, essais, phase <- SEGMENT(
+s, Eint, labels, phase, S, g)
+POUR r = 0,...,R-1:
+EXIGER ENERGIE_REFERENCE(s[r]) = Eint[r]
+EXIGER somme(s[r]) = N/4
+EXIGER Eint[r] >= ARRONDIR(-3.813*N*Q)
+FIN POUR
+# Controle apres le segment
+SI mode = equilibration:
+CONCATENER rec A burn
+SINON:
+CONCATENER rec A prod ET lab A ids
+acc_prod <- acc_prod + acc
+ok_prod <- ok_prod + ok
+essais_prod <- essais_prod + essais
+FIN SI
+fait <- fait + S
+FIN TANT QUE
+FIN POUR
+# Pas de remise a zero des etats
+SAUVEGARDER(prod, burn, ids, s, T, xyz, sub)
+AJOUTER prod A archives
+CALCULER_ACCEPTATIONS_ET_ALLERS_RETOURS(ids,
+acc_prod, ok_prod, essais_prod)
+FIN POUR
+tableau <- ANALYSER(archives, T, N)
+Tetoile <- temperature du maximum de tableau.cv
+SAUVEGARDER(tableau, Tetoile, voisins_de_grille(Tetoile))
+VALIDER_ARCHIVES_ET_CSV()
+PRODUIRE_FIGURES_ET_RAPPORT()
+burn conserve seulement les historiques d’équilibration. ANALYSER reçoit uniquement prod, donc les mesures initiales sont
+exclues des estimations thermiques. Les fonctions de sauvegarde et de contrôle des allers-retours correspondent à celles
+décrites dans l’algorithme 2 et après l’algorithme 8.
+Pseudocode P3 — Un segment de balayages et d’échanges
+PROCEDURE SEGMENT(s, Eint, labels, phase, S, graine):
+INITIALISER_ALEATOIRE_NOYAU(graine)
+beta[r] <- 1 / (Q*kB*T[r]) pour chaque r
+rec, lab <- tableaux de S/dm dates
+acc, ok, essais <- tableaux nuls
+m <- 0
+POUR balayage = 1,...,S:
+POUR r = 0,...,R-1:
+POUR tentative = 1,...,N:
+accepte <- METROPOLIS(s[r], Eint[r], beta[r])
+SI accepte: acc[r] <- acc[r] + 1
+FIN POUR
+# N propositions, refus inclus
+FIN POUR
+SI dx > 0 ET balayage modulo dx = 0:
+POUR r = phase modulo 2,...,R-2 PAR PAS DE 2:
+essais[r] <- essais[r] + 1
+ell <- (beta[r]-beta[r+1])*(Eint[r]-Eint[r+1])
+SI ell >= 0:
+accepter <- VRAI
+SINON:
+u <- UNIFORME()
+accepter <- log(max(u, 1e-300)) < ell
+Réseau CFC rigide / ensemble canonique
+56
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+FIN SI
+SI accepter:
+PERMUTER s[r], s[r+1]
+# Lignes completes
+PERMUTER Eint[r], Eint[r+1]
+PERMUTER labels[r], labels[r+1]
+ok[r] <- ok[r] + 1
+FIN SI
+FIN POUR
+phase <- phase + 1
+# Alterner les liens testes
+FIN SI
+SI balayage modulo dm = 0:
+POUR r = 0,...,R-1:
+rec[m,r] <- OBSERVABLES(s[r], Eint[r])
+lab[m,r] <- labels[r]
+FIN POUR
+# Mesure APRES les echanges
+m <- m + 1
+FIN SI
+FIN POUR
+RETOURNER rec, lab, acc, ok, essais, phase
+Les températures ne sont jamais permutées : rec[m,r] désigne toujours Tr. Le compteur de balayages repart de 1 à chaque
+appel, mais les multiples exigés dans P2 assurent la continuité du calendrier des mesures et des échanges. La variable phase
+est retournée pour conserver l’alternance entre appels.
+Pseudocode P4 — Variation locale et décision de Metropolis
+FONCTION DELTA_LOCAL(s, i, j):
+SI s[i] = 0: PERMUTER les noms i, j
+# Ici i porte Au et j porte Cu ; s est encore inchange.
+ai <- somme(s[v] pour v dans V1[i] si v != j)
+aj <- somme(s[v] pour v dans V1[j] si v != i)
+bi <- somme(s[v] pour v dans V2[i] si v != j)
+bj <- somme(s[v] pour v dans V2[j] si v != i)
+RETOURNER 161000*(aj-ai) + 12600*(bi-bj)
+PROCEDURE METROPOLIS(s, Eint, beta):
+REPETER:
+i <- ENTIER(0,N-1)
+j <- ENTIER(0,N-1)
+JUSQU’A s[i] != s[j]
+# Proposer uniquement Au-Cu
+dE <- DELTA_LOCAL(s, i, j)
+# Energie entiere en micro-eV
+SI dE <= 0:
+accepter <- VRAI
+SINON:
+accepter <- UNIFORME() < exp(-beta*dE)
+FIN SI
+SI accepter:
+PERMUTER s[i], s[j]
+# Composition conservee
+Eint <- Eint + dE
+# Mise a jour apres decision
+FIN SI
+# Un refus garde l’ancien etat
+RETOURNER accepter
+Eint est ici un argument modifiable : sa nouvelle valeur est transmise à l’appelant. Dans DELTA_LOCAL, permuter les noms
+i,j ne modifie pas les occupations et ne change pas les indices de l’appelant. La liaison mutuelle des sites, si elle existe, est
+exclue des quatre sommes car elle reste Au–Cu après l’échange.
+Pseudocode P5 — Calcul des neuf observables instantanées
+FONCTION OBSERVABLES(s, Eint):
+p <- [0,0,0,0]
+B1, B2 <- 0, 0
+POUR i = 0,...,N-1:
+SI s[i] = 1:
+p[sub[i]] <- p[sub[i]] + 4/N
+POUR v dans V1[i]: B1 <- B1 + (1-s[v])
+Réseau CFC rigide / ensemble canonique
+57
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+POUR v dans V2[i]: B2 <- B2 + (1-s[v])
+FIN SI
+FIN POUR
+# Chaque paire mixte vue une fois
+eta <- (p[0]-1/4) / (3/4)
+q <- sqrt((4/3)*somme((p[mu]-1/4)^2 pour mu=0,...,3))
+alpha1 <- 1 - B1 / ((N/4)*12*(3/4))
+alpha2 <- 1 - B2 / ((N/4)*6*(3/4))
+E <- Eint / Q
+# Energie TOTALE en eV
+RETOURNER [E, eta, q, alpha1, alpha2, p[0],p[1],p[2],p[3]]
+Pseudocode P6 — Moyennes thermiques et bootstrap par blocs
+FONCTION MOMENTS(serie, T, N):
+E, eta, q, alpha1, alpha2 <- cinq premieres colonnes
+u
+<- moyenne(E)/N
+cv <- variance(E) / (N*(kB*T)^2) # Ici cv signifie cV/kB
+Xq <- N*variance(q) / (kB*T)
+SI moyenne(q^2) > 0:
+Uq <- 1 - moyenne(q^4)/(3*moyenne(q^2)^2)
+SINON:
+Uq <- NON_DEFINI
+FIN SI
+RETOURNER [u, moyenne(eta), moyenne(q), moyenne(alpha1),
+moyenne(alpha2), cv, Xq, Uq]
+FONCTION ANALYSER(archives, T, N):
+rng_boot <- GENERATEUR(318)
+POUR r = 0,...,R-1:
+a <- archives[:,:,r,:]
+# Temperature fixe, production
+M <- nombre de mesures par chaine
+POUR c = 0,...,C-1:
+tau[c,E] <- TAU_INT(a[c,:,E])
+tau[c,q] <- TAU_INT(a[c,:,q])
+theta[c] <- MOMENTS(a[c], T[r], N)
+FIN POUR
+tau_max <- maximum(tau)
+b <- min(max(2, plafond(2*tau_max)), max(2, plancher(M/4)))
+estimation <- moyenne(theta sur les chaines)
+POUR h = 1,...,B:
+POUR c = 0,...,C-1:
+debuts <- plafond(M/b) entiers dans [0,M-1]
+tires avec rng_boot
+ix <- CONCATENER((debut + [0,...,b-1]) modulo M
+pour chaque debut dans debuts)
+ix <- les M premiers indices
+tirage[c] <- MOMENTS(a[c,ix,:], T[r], N)
+FIN POUR
+# Blocs tires par chaine
+boot[h] <- moyenne(tirage sur les chaines)
+FIN POUR
+erreur <- max_composante(ecart_type(boot),
+ecart_type(theta)/sqrt(C))
+ess <- min_sur_E_et_q(somme_sur_c(M/(2*tau[c,A])))
+rE <- SPLIT_RHAT(a[:,:,E])
+rq <- SPLIT_RHAT(a[:,:,q])
+z <- ECART_DEMI_SERIES_ENERGIE(a, tau_max)
+diagnostic <- (ess >= 200 ET rE < 1.05 ET rq < 1.05
+ET plancher(M/b) >= 20 ET z < 3)
+AJOUTER T[r], estimation, erreur, tau_max, ess,
+rE, rq, b, z, diagnostic AU tableau
+FIN POUR
+RETOURNER tableau
+Dans P6, variance utilise le diviseur M, tandis que les ecart_type du bootstrap et de la dispersion entre chaînes utilisent
+le diviseur nombre de valeurs moins un. Le maximum des erreurs est pris séparément pour chacune des huit observables.
+Réseau CFC rigide / ensemble canonique
+58
+
+Cu3Au : ordre et désordre chimique
+Projet Monte-Carlo
+Les routines TAU_INT, SPLIT_RHAT et ECART_DEMI_SERIES_ENERGIE suivent les formules et les traitements des cas dégénérés
+explicités dans l’algorithme 8. Les énergies et q sont des colonnes de la série ; le symbole A de la ligne ess parcourt ces deux
+colonnes.
+Références
+[1] N. Metropolis, A. W. Rosenbluth, M. N. Rosenbluth, A. H. Teller et E. Teller, Equation of State Calculations
+by Fast Computing Machines, J. Chem. Phys. 21, 1087–1092 (1953). doi:10.1063/1.1699114.
+[2] K. Hukushima et K. Nemoto, Exchange Monte Carlo Method and Application to Spin Glass Simulations, J.
+Phys. Soc. Jpn. 65, 1604–1608 (1996). doi:10.1143/JPSJ.65.1604.
+[3] K. Binder, Theory of first-order phase transitions, Rep. Prog. Phys. 50, 783 (1987). doi:10.1088/0034-
+4885/50/7/001.
+[4] A. Benisek et E. Dachs, The vibrational and configurational entropy of disordering in Cu3Au, Journal of Alloys
+and Compounds 632, 585–590 (2015). doi:10.1016/j.jallcom.2014.12.215.
+[5] L. R. Owen, H. Y. Playford, H. J. Stone et M. G. Tucker, Analysis of short-range order in Cu3Au using X-ray
+pair distribution functions. Manuscrit accepté, dépôt de Cambridge.
+[6] M. Kessler, W. Dieterich et A. Majhofer, Ordering kinetics in an fcc A3B binary alloy model : Monte Carlo
+studies, Phys. Rev. B 67, 134201 (2003). Prépublication et protocole de sauts atome–lacune.
+[7] J. Paras et A. Allanore, Contribution of electronic entropy to the order-disorder transition of Cu3Au, Phys.
+Rev. Research 3, 023239 (2021). doi:10.1103/PhysRevResearch.3.023239.
+Réseau CFC rigide / ensemble canonique
+59

@@ -1,0 +1,161 @@
+cycle 1/2 | heating | 300 K | palier 1/6 sauvegardé | 0.0 s
+cycle 1/2 | heating | 1400 K | palier 2/6 sauvegardé | 0.0 s
+cycle 1/2 | heating | 4000 K | palier 3/6 sauvegardé | 0.0 s
+cycle 1/2 | cooling | 4000 K | palier 4/6 sauvegardé | 0.1 s
+cycle 1/2 | cooling | 1400 K | palier 5/6 sauvegardé | 0.1 s
+cycle 1/2 | cooling | 300 K | palier 6/6 sauvegardé | 0.1 s
+cycle 2/2 | heating | 300 K | palier 1/6 sauvegardé | 0.1 s
+cycle 2/2 | heating | 1400 K | palier 2/6 sauvegardé | 0.1 s
+cycle 2/2 | heating | 4000 K | palier 3/6 sauvegardé | 0.1 s
+cycle 2/2 | cooling | 4000 K | palier 4/6 sauvegardé | 0.2 s
+cycle 2/2 | cooling | 1400 K | palier 5/6 sauvegardé | 0.2 s
+cycle 2/2 | cooling | 300 K | palier 6/6 sauvegardé | 0.2 s
+cycle 1/2 | heating | 300 K | palier 1/6 sauvegardé | 0.0 s
+cycle 1/2 | heating | 1400 K | palier 2/6 sauvegardé | 0.1 s
+cycle 1/2 | heating | 4000 K | palier 3/6 sauvegardé | 0.1 s
+cycle 1/2 | cooling | 4000 K | palier 4/6 sauvegardé | 0.1 s
+cycle 1/2 | cooling | 1400 K | palier 5/6 sauvegardé | 0.1 s
+cycle 1/2 | cooling | 300 K | palier 6/6 sauvegardé | 0.1 s
+cycle 2/2 | heating | 300 K | palier 1/6 sauvegardé | 0.1 s
+cycle 2/2 | heating | 1400 K | palier 2/6 sauvegardé | 0.1 s
+cycle 2/2 | heating | 4000 K | palier 3/6 sauvegardé | 0.2 s
+cycle 2/2 | cooling | 4000 K | palier 4/6 sauvegardé | 0.2 s
+cycle 2/2 | cooling | 1400 K | palier 5/6 sauvegardé | 0.2 s
+cycle 2/2 | cooling | 300 K | palier 6/6 sauvegardé | 0.2 s
+cycle 1/2 | heating | 300 K | palier 1/6 sauvegardé | 0.0 s
+cycle 1/2 | heating | 1400 K | palier 2/6 sauvegardé | 0.0 s
+cycle 1/2 | heating | 4000 K | palier 3/6 sauvegardé | 0.0 s
+cycle 1/2 | cooling | 4000 K | palier 4/6 sauvegardé | 0.0 s
+cycle 1/2 | cooling | 1400 K | palier 5/6 sauvegardé | 0.1 s
+cycle 1/2 | cooling | 300 K | palier 6/6 sauvegardé | 0.1 s
+cycle 2/2 | heating | 300 K | palier 1/6 sauvegardé | 0.1 s
+cycle 2/2 | heating | 1400 K | palier 2/6 sauvegardé | 0.1 s
+cycle 2/2 | heating | 4000 K | palier 3/6 sauvegardé | 0.1 s
+cycle 2/2 | cooling | 4000 K | palier 4/6 sauvegardé | 0.1 s
+cycle 2/2 | cooling | 1400 K | palier 5/6 sauvegardé | 0.1 s
+cycle 2/2 | cooling | 300 K | palier 6/6 sauvegardé | 0.2 s
+cycle 1/2 | heating | 300 K | palier 1/6 sauvegardé | 0.0 s
+cycle 1/2 | heating | 1400 K | palier 2/6 sauvegardé | 0.0 s
+cycle 1/2 | heating | 4000 K | palier 3/6 sauvegardé | 0.1 s
+cycle 1/2 | cooling | 4000 K | palier 4/6 sauvegardé | 0.1 s
+cycle 1/2 | cooling | 1400 K | palier 5/6 sauvegardé | 0.1 s
+cycle 1/2 | cooling | 300 K | palier 6/6 sauvegardé | 0.1 s
+cycle 2/2 | heating | 300 K | palier 1/6 sauvegardé | 0.1 s
+cycle 2/2 | heating | 1400 K | palier 2/6 sauvegardé | 0.2 s
+cycle 2/2 | heating | 4000 K | palier 3/6 sauvegardé | 0.2 s
+cycle 2/2 | cooling | 4000 K | palier 4/6 sauvegardé | 0.2 s
+cycle 2/2 | cooling | 1400 K | palier 5/6 sauvegardé | 0.2 s
+cycle 2/2 | cooling | 300 K | palier 6/6 sauvegardé | 0.2 s
+test_fft_matches_direct_sum_and_real_space_pairs (test_correlation.CorrelationTests.test_fft_matches_direct_sum_and_real_space_pairs) ... ok
+test_four_variants_and_order_normalization (test_correlation.CorrelationTests.test_four_variants_and_order_normalization) ... ok
+test_length_known_spectrum_and_undefined_cases (test_correlation.CorrelationTests.test_length_known_spectrum_and_undefined_cases) ... ok
+test_variant_mixture_is_not_intra_variant_fluctuation (test_correlation.CorrelationTests.test_variant_mixture_is_not_intra_variant_fluctuation) ... ok
+test_grid_support_reproducibility_and_invalid_parameters (test_peak_bootstrap.PeakBootstrapTests.test_grid_support_reproducibility_and_invalid_parameters) ... ok
+test_known_peak_and_energy_offset_invariance (test_peak_bootstrap.PeakBootstrapTests.test_known_peak_and_energy_offset_invariance) ... ok
+test_exact_restricted_canonical_detailed_balance (test_physics.PhysicsTests.test_exact_restricted_canonical_detailed_balance) ... ok
+test_four_equivalent_variants (test_physics.PhysicsTests.test_four_equivalent_variants) ... ok
+test_geometry_and_periodic_distances (test_physics.PhysicsTests.test_geometry_and_periodic_distances) ... ok
+test_ground_state_bound_identity (test_physics.PhysicsTests.test_ground_state_bound_identity) ... ok
+test_high_temperature_limit (test_physics.PhysicsTests.test_high_temperature_limit) ... ok
+test_meanfield_reference (test_physics.PhysicsTests.test_meanfield_reference) ... ok
+test_nearest_neighbor_defect (test_physics.PhysicsTests.test_nearest_neighbor_defect) ... ok
+test_ordered_exact_energy_and_cowley (test_physics.PhysicsTests.test_ordered_exact_energy_and_cowley) ... ok
+test_random_swaps_against_full_energy (test_physics.PhysicsTests.test_random_swaps_against_full_energy) ... ok
+test_replica_exchange_sign_and_balance (test_physics.PhysicsTests.test_replica_exchange_sign_and_balance) ... ok
+test_short_actual_kernel_and_reproducibility (test_physics.PhysicsTests.test_short_actual_kernel_and_reproducibility) ... ok
+test_capture_config_rejects_incompatible_intervals (test_spatial_capture.SpatialCaptureTests.test_capture_config_rejects_incompatible_intervals) ... ok
+test_captures_match_measured_observables (test_spatial_capture.SpatialCaptureTests.test_captures_match_measured_observables) ... ok
+test_autocorrelation_known_ar1 (test_statistics.StatisticsTests.test_autocorrelation_known_ar1) ... ok
+test_invalid_temperature_grid_rejected (test_statistics.StatisticsTests.test_invalid_temperature_grid_rejected) ... ok
+test_rhat_detects_separated_chains (test_statistics.StatisticsTests.test_rhat_detects_separated_chains) ... ok
+test_total_energy_heat_capacity_units (test_statistics.StatisticsTests.test_total_energy_heat_capacity_units) ... ok
+test_a_locked_monitoring_file_does_not_abort_the_cycle (test_thermal_cycle.ThermalCycleTests.test_a_locked_monitoring_file_does_not_abort_the_cycle) ... ok
+test_complete_cycle_continuity_and_observable_archives (test_thermal_cycle.ThermalCycleTests.test_complete_cycle_continuity_and_observable_archives) ... ok
+test_restart_replays_the_identical_trajectory (test_thermal_cycle.ThermalCycleTests.test_restart_replays_the_identical_trajectory) ... ok
+test_schedule_and_invalid_replica_exchange (test_thermal_cycle.ThermalCycleTests.test_schedule_and_invalid_replica_exchange) ... ok
+test_validation_rejects_a_broken_handoff (test_thermal_cycle.ThermalCycleTests.test_validation_rejects_a_broken_handoff) ... ok
+
+----------------------------------------------------------------------
+Ran 28 tests in 4.360s
+
+OK
+
+Starting L=12: 6912 sites, 90 temperatures, 2 chains; burn=12000, production=60000.
+chaîne 1/2 | equilibration 500/12000 balayages | 73.5 s
+chaîne 1/2 | equilibration 1000/12000 balayages | 145.3 s
+chaîne 1/2 | equilibration 1500/12000 balayages | 217.4 s
+chaîne 1/2 | equilibration 2000/12000 balayages | 289.8 s
+chaîne 1/2 | equilibration 2500/12000 balayages | 365.6 s
+chaîne 1/2 | equilibration 3000/12000 balayages | 439.8 s
+chaîne 1/2 | equilibration 3500/12000 balayages | 513.0 s
+chaîne 1/2 | equilibration 4000/12000 balayages | 588.0 s
+chaîne 1/2 | equilibration 4500/12000 balayages | 661.6 s
+chaîne 1/2 | equilibration 5000/12000 balayages | 736.1 s
+chaîne 1/2 | equilibration 5500/12000 balayages | 811.9 s
+chaîne 1/2 | equilibration 6000/12000 balayages | 886.5 s
+chaîne 1/2 | equilibration 6500/12000 balayages | 958.8 s
+chaîne 1/2 | equilibration 7000/12000 balayages | 1030.1 s
+chaîne 1/2 | equilibration 7500/12000 balayages | 1102.0 s
+chaîne 1/2 | equilibration 8000/12000 balayages | 1173.6 s
+chaîne 1/2 | equilibration 8500/12000 balayages | 1244.9 s
+chaîne 1/2 | equilibration 9000/12000 balayages | 1317.3 s
+chaîne 1/2 | equilibration 9500/12000 balayages | 1388.2 s
+chaîne 1/2 | equilibration 10000/12000 balayages | 1463.8 s
+chaîne 1/2 | equilibration 10500/12000 balayages | 1542.1 s
+chaîne 1/2 | equilibration 11000/12000 balayages | 1619.2 s
+chaîne 1/2 | equilibration 11500/12000 balayages | 1700.0 s
+chaîne 1/2 | equilibration 12000/12000 balayages | 1777.0 s
+chaîne 1/2 | mesure 200/60000 balayages | 1809.5 s
+chaîne 1/2 | mesure 400/60000 balayages | 1839.8 s
+chaîne 1/2 | mesure 600/60000 balayages | 1871.1 s
+chaîne 1/2 | mesure 800/60000 balayages | 1902.6 s
+chaîne 1/2 | mesure 1000/60000 balayages | 1933.6 s
+chaîne 1/2 | mesure 1200/60000 balayages | 1964.3 s
+chaîne 1/2 | mesure 1400/60000 balayages | 1995.6 s
+chaîne 1/2 | mesure 1600/60000 balayages | 2026.9 s
+chaîne 1/2 | mesure 1800/60000 balayages | 2059.1 s
+chaîne 1/2 | mesure 2000/60000 balayages | 2090.4 s
+chaîne 1/2 | mesure 2200/60000 balayages | 2121.1 s
+chaîne 1/2 | mesure 2400/60000 balayages | 2152.2 s
+chaîne 1/2 | mesure 2600/60000 balayages | 2183.6 s
+chaîne 1/2 | mesure 2800/60000 balayages | 2214.5 s
+chaîne 1/2 | mesure 3000/60000 balayages | 2245.7 s
+chaîne 1/2 | mesure 3200/60000 balayages | 2276.5 s
+chaîne 1/2 | mesure 3400/60000 balayages | 2309.4 s
+chaîne 1/2 | mesure 3600/60000 balayages | 2340.9 s
+chaîne 1/2 | mesure 3800/60000 balayages | 2373.2 s
+chaîne 1/2 | mesure 4000/60000 balayages | 2405.4 s
+chaîne 1/2 | mesure 4200/60000 balayages | 2436.7 s
+chaîne 1/2 | mesure 4400/60000 balayages | 2468.3 s
+chaîne 1/2 | mesure 4600/60000 balayages | 2500.5 s
+chaîne 1/2 | mesure 4800/60000 balayages | 2532.1 s
+chaîne 1/2 | mesure 5000/60000 balayages | 2563.3 s
+chaîne 1/2 | mesure 5200/60000 balayages | 2594.8 s
+chaîne 1/2 | mesure 5400/60000 balayages | 2627.8 s
+chaîne 1/2 | mesure 5600/60000 balayages | 2659.6 s
+chaîne 1/2 | mesure 5800/60000 balayages | 2697.1 s
+chaîne 1/2 | mesure 6000/60000 balayages | 2732.3 s
+chaîne 1/2 | mesure 6200/60000 balayages | 2765.2 s
+chaîne 1/2 | mesure 6400/60000 balayages | 2796.8 s
+chaîne 1/2 | mesure 6600/60000 balayages | 2828.5 s
+chaîne 1/2 | mesure 6800/60000 balayages | 2861.0 s
+chaîne 1/2 | mesure 7000/60000 balayages | 2892.4 s
+chaîne 1/2 | mesure 7200/60000 balayages | 2923.9 s
+chaîne 1/2 | mesure 7400/60000 balayages | 2955.5 s
+chaîne 1/2 | mesure 7600/60000 balayages | 2988.6 s
+chaîne 1/2 | mesure 7800/60000 balayages | 3020.3 s
+chaîne 1/2 | mesure 8000/60000 balayages | 3052.2 s
+chaîne 1/2 | mesure 8200/60000 balayages | 3084.2 s
+chaîne 1/2 | mesure 8400/60000 balayages | 3116.4 s
+chaîne 1/2 | mesure 8600/60000 balayages | 3148.5 s
+chaîne 1/2 | mesure 8800/60000 balayages | 3179.5 s
+chaîne 1/2 | mesure 9000/60000 balayages | 3211.9 s
+chaîne 1/2 | mesure 9200/60000 balayages | 3244.2 s
+chaîne 1/2 | mesure 9400/60000 balayages | 3275.4 s
+chaîne 1/2 | mesure 9600/60000 balayages | 3307.3 s
+chaîne 1/2 | mesure 9800/60000 balayages | 3339.7 s
+chaîne 1/2 | mesure 10000/60000 balayages | 3371.8 s
+chaîne 1/2 | mesure 10200/60000 balayages | 3403.9 s
+chaîne 1/2 | mesure 10400/60000 balayages | 3436.9 s
+chaîne 1/2 | mesure 10600/60000 balayages | 3469.5 s
+chaîne 1/2 | mesure 10800/60000 balayages | 3500.8 s

@@ -1,0 +1,18 @@
+{
+  "state": "simulating",
+  "pid": 25344,
+  "updated_at": "2026-11-09T19:02:07.578555+01:00",
+  "L": 9,
+  "n_atoms": 2916,
+  "chain": 1,
+  "chains": 2,
+  "branch": "heating",
+  "temperature_K": 1120.0,
+  "step": 34,
+  "steps_per_chain": 92,
+  "phase": "production",
+  "sweeps_done": 6500,
+  "sweeps_target": 30000,
+  "completed_plateaus": 33,
+  "total_plateaus": 184
+}

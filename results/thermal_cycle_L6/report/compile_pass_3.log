@@ -285,27 +285,33 @@ s/vuache_h/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users
 ers/vuache_h/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}]
 (C:\Users\vuache_h\Desktop\perso\Cu3Au_MC\results\thermal_cycle_L6\report\build
 \rapport_template.toc [1]) [2] [3] [4{C:/Users/vuache_h/AppData/Local/Programs/
-MiKTeX/fonts/enc/dvips/lm/lm-mathex.enc} <./figures/01_reseau.pdf>] [5 <./figur
-es/13_coquilles.pdf>] [6 <./figures/14_organigramme.pdf>] [7 <./figures/12_cowl
-ey.pdf>] (current_validation.tex [8 <./figures/15_variantes.pdf>]) [9 <./figure
-s/09_sous_reseaux.pdf>] [10]
+MiKTeX/fonts/enc/dvips/lm/lm-mathex.enc}] [5 <./figures/01_reseau.pdf> <./figur
+es/13_coquilles.pdf>] [6] [7 <./figures/14_organigramme.pdf>] [8 <./figures/12_
+cowley.pdf>] [9 <./figures/15_variantes.pdf> <./figures/09_sous_reseaux.pdf>]
+(current_validation.tex) [10] [11]
 (C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd)
-(representative_results.tex) [11] [12 <./figures/16_coupes_2D.pdf> <./figures/1
-7_moyennes_cumulees.pdf>] [13 <./figures/10_repliques.pdf>] [14 <./figures/05_d
-iagnostics.pdf>] (critical_table.tex) [15 <./figures/06_traces.pdf>] [16 <./fig
-ures/11_zoom_transition.pdf> <./figures/04_distributions.pdf>]
-(peak_uncertainty.tex) [17 <./figures/18_incertitude_pic.pdf>]
-(discussion_results.tex [18 <./figures/08_champ_moyen.pdf>]) [19] [20]
-(bonus_cycle.tex [21]) (bonus_animations.tex [22 <./figures/bonus_01_thermodyna
-mique.pdf>] [23 <./figures/bonus_02_ordres.pdf> <./figures/bonus_03_sous_reseau
-x.pdf>] [24 <./figures/bonus_04_ecarts.pdf> <./figures/bonus_06_diagnostics.pdf
->]) (bonus_correlation.tex [25 <./figures/bonus_08_distributions.pdf>] [26 <./f
-igures/animations_01_evolution.pdf>] [27]) [28 <./figures/correlation_01_xi.pdf
->] (bonus_sizes.tex [29 <./figures/correlation_02_real_fourier.pdf> <./figures/
-correlation_04_diagnostics.pdf>] [30 <./figures/correlation_03_relaxation.pdf>]
-) [31 <./figures/tailles_01_comparaison.pdf>] [32 <./figures/tailles_02_histori
-ques.pdf> <./figures/tailles_03_distributions.pdf>] [33] [34] [35] [36]
-[37] [38] [39] [40] [41] [42] [43] [44] [45] [46]
+[12] [13 <./figures/16_coupes_2D.pdf> <./figures/17_moyennes_cumulees.pdf>]
+(representative_results.tex) [14 <./figures/10_repliques.pdf>] [15] [16 <./figu
+res/05_diagnostics.pdf> <./figures/06_traces.pdf>] (critical_table.tex)
+[17] [18 <./figures/11_zoom_transition.pdf> <./figures/04_distributions.pdf>]
+(peak_uncertainty.tex) [19 <./figures/18_incertitude_pic.pdf>] [20 <./figures/0
+8_champ_moyen.pdf>] (discussion_results.tex) [21] [22] (bonus_cycle.tex
+[23]) (bonus_animations.tex [24] [25 <./figures/bonus_01_thermodynamique.pdf> <
+./figures/bonus_02_ordres.pdf>] [26 <./figures/bonus_03_sous_reseaux.pdf> <./fi
+gures/bonus_04_ecarts.pdf>] [27 <./figures/bonus_06_diagnostics.pdf> <./figures
+/bonus_08_distributions.pdf>]) [28 <./figures/animations_01_evolution.pdf>]
+(bonus_correlation.tex [29] [30] [31 <./figures/correlation_01_xi.pdf> <./figur
+es/correlation_02_real_fourier.pdf>]) [32 <./figures/correlation_04_diagnostics
+.pdf> <./figures/correlation_03_relaxation.pdf>] (bonus_sizes.tex [33] [34 <./f
+igures/croise_01_transition.pdf> <./figures/croise_02_ordres.pdf>] [35 <./figur
+es/croise_04_populations.pdf>] [36 <./figures/croise_03_diagnostics.pdf>]
+[37] [38 <./figures/croise_05_energie.pdf>] [39 <./figures/croise_07_variantes.
+pdf> <./figures/croise_06_protocoles.pdf>] [40 <./figures/croise_08_spatial.pdf
+>]) (bonus_size_cycles.tex [41] [42 <./figures/croise_10_cycles_global.pdf> <./
+figures/croise_11_cycles_diagnostics.pdf>] [43 <./figures/croise_12_cycle_L9_re
+ference.pdf>] [44 <./figures/cycle_L9_sous_reseaux.pdf>] [45 <./figures/croise_
+13_cycle_L12_reference.pdf>]) [46 <./figures/croise_14_cycle_L12_populations.pd
+f>] [47] [48] [49] [50] [51] [52] [53] [54] [55] [56] [57] [58] [59]
 (C:\Users\vuache_h\Desktop\perso\Cu3Au_MC\results\thermal_cycle_L6\report\build
 \rapport_template.aux) )<C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/
 type1/public/lm/lmbx10.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fon
@@ -343,7 +349,7 @@ lm/lmtt10.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/publ
 ic/lm/lmtt8.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/pu
 blic/lm/lmtt9.pfb>
 Output written on C:\Users\vuache_h\Desktop\perso\Cu3Au_MC\results\thermal_cycl
-e_L6\report\build\rapport_template.pdf (47 pages, 1903356 bytes).
+e_L6\report\build\rapport_template.pdf (60 pages, 2683209 bytes).
 Transcript written on C:\Users\vuache_h\Desktop\perso\Cu3Au_MC\results\thermal_
 cycle_L6\report\build\rapport_template.log.
 log4cxx: setFile(C:\Users\vuache_h\AppData\Local\MiKTeX\miktex\log/pdflatex.log,true) call failed.

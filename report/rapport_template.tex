@@ -6,6 +6,7 @@
 \usepackage[margin=19mm,headheight=14pt]{geometry}
 \usepackage{amsmath,amssymb,graphicx,booktabs,array,xcolor}
 \usepackage{microtype,fancyhdr,tcolorbox}
+\AtBeginEnvironment{itemize}{\setlength{\itemsep}{3pt}\setlength{\parskip}{1pt}}
 \tcbuselibrary{breakable}
 \usepackage[colorlinks=true,linkcolor=blue!45!black,urlcolor=blue!60!black,citecolor=blue!45!black]{hyperref}
 \renewcommand{\contentsname}{Sommaire}
@@ -38,7 +39,7 @@
 \renewcommand{\floatpagefraction}{.75}
 \setcounter{tocdepth}{2}
 \newtcolorbox{oral}[1]{breakable,colback=pale,colframe=teal,boxrule=.6pt,
-  title={\textbf{Préparation à l'oral : #1}},fonttitle=\footnotesize,coltitle=white,
+  title={\textbf{Approfondissement pédagogique : #1}},fonttitle=\footnotesize,coltitle=white,
   fontupper=\small,top=2pt,bottom=2pt,before skip=5pt,after skip=5pt}
 \newtcolorbox{attention}{breakable,colback=gold!8,colframe=gold!80!black,boxrule=.6pt,
   title={Point d'interprétation},fonttitle=\small}
@@ -68,11 +69,13 @@
 \textbf{Système étudié :} $\Lbox^3$ mailles, $N=\Natoms$ sites,
 $c_{\Au}=1/4$, interactions de premiers et seconds voisins.\\[2mm]
 \textbf{Résultat exact :} $u_0=-3.813\ \mathrm{eV/atome}$.\\[2mm]
-\textbf{Maximum thermique observé :} $T^*_{C_V}=\Tpeak\ \mathrm K$ sur la grille.\\[2mm]
-\textbf{Statut des diagnostics près du maximum :} \DiagnosticStatus.
+\textbf{Maximum de la production canonique L6 :} $T^*_{C_V}=\Tpeak\ \mathrm K$ sur la grille.\\[2mm]
+\textbf{Diagnostics de cette production près du maximum :} \DiagnosticStatus.
 \IfFileExists{bonus_sizes.tex}{\par\small
-\textbf{Complément achevé :} résultats $L=9$ et comparaison L6/L9 en
-section~\ref{sec:tailles}. Les diagnostics L9 près du pic restent insuffisants.}{}
+\textbf{Complément achevé :} comparaison croisée $L=6,9,12$ en
+section~\ref{sec:tailles}. Les diagnostics L9 et L12 près du pic restent
+insuffisants ; le maximum canonique L12 observé vaut 1052.5 K.
+Les cycles chauffage--refroidissement sont achevés pour $L=\CompletedCycleSizes$.}{}
 \end{tcolorbox}
 \vfill
 \textbf{Traçabilité.} Tous les résultats numériques, tableaux et figures de ce
@@ -93,6 +96,9 @@ par Au ou Cu. La composition et le volume sont fixés. Les températures sont
 en kelvins, les énergies en eV et $\kb=8.617333262\times10^{-5}\ \mathrm{eV/K}$.
 Dans le code, $s_i=1$ désigne Au et $s_i=0$ Cu. Une paire non orientée est
 comptée une seule fois.
+Le paramètre $a$ est le côté de la maille conventionnelle. Les longueurs
+sont données en unités de $a$ ; une conversion en nanomètres demanderait
+une valeur physique de $a$, qui n'est pas imposée dans cette simulation.
 
 \begin{center}
 \begin{tabular}{lrrr}
@@ -117,17 +123,26 @@ sur chacun des sites à un instant du calcul.
 
 Une \textbf{réplique} est une configuration qui peut voyager entre les
 températures. Une \textbf{chaîne} désigne ici une campagne indépendante
-avec sa graine et ses \Ntemps\ répliques. Un \textbf{balayage} effectue
+avec sa graine et son ensemble de répliques (\Ntemps\ dans la production L6).
+Dans le cycle séquentiel, une chaîne est au contraire une seule trajectoire
+transmise d'une température à la suivante. Un \textbf{balayage} effectue
 $N$ propositions Au--Cu par température, refus compris. L'\textbf{équilibration}
 est la phase initiale écartée des moyennes ; la \textbf{production} est la
 phase dont on utilise les mesures pour estimer les grandeurs thermiques.
+Un \textbf{domaine} est une région spatiale partageant une variante d'ordre ;
+ce n'est ni une chaîne ni un sous-réseau. Le symbole $\mu$ est ici un
+indice géométrique de sous-réseau, pas un potentiel chimique : aucun terme
+de potentiel chimique n'entre dans le test de Metropolis à composition fixée.
+Enfin, $L1_2$ est le nom de la structure ordonnée ; $L=12$ est la taille
+de la boîte. Les abréviations L6, L9 et L12 du rapport désignent
+respectivement $L=6,9,12$, et non trois structures cristallines différentes.
 
 \subsection*{Méthodologie : quatre expériences numériques distinctes}
 \addcontentsline{toc}{subsection}{Méthodologie et portée des mesures}
 Le Hamiltonien, la composition et les conditions périodiques sont communs,
 mais les objectifs et les données ne sont pas interchangeables.
 Les résultats de référence des questions 1--9 proviennent de la production
-canonique principale L6. La comparaison achevée avec L9 est regroupée en
+canonique principale L6. La comparaison achevée avec L9 et L12 est regroupée en
 section~\ref{sec:tailles}.
 Les expériences du bonus sont identifiées séparément ; leurs nombres de
 balayages et leurs diagnostics ne remplacent pas ceux de la campagne principale.
@@ -149,6 +164,14 @@ Corrélations canoniques & 14 températures, 2 chaînes ; 3000 + 12000 balayages
 600 états par chaîne et température ; spectres et longueurs conditionnels aux diagnostics.\\
 \bottomrule
 \end{tabular}\end{center}
+Les productions canoniques supplémentaires utilisent le même modèle :
+$L=9$ conserve les 46 températures et le budget L6 ; $L=12$ utilise
+90 températures, 12000 balayages écartés et 60000 de production par chaîne.
+Les captures spatiales de L9 et L12 sont espacées de 100 et 200 balayages.
+Ces productions simultanées en température ne sont pas des cycles :
+les tailles dont les branches séquentielles sont entièrement achevées
+dans cette version sont $L=\CompletedCycleSizes$.
+
 Une graine indépendante crée une nouvelle trajectoire ; les répliques
 d'une même chaîne restent couplées par leurs échanges. Les mesures sont
 classées par température, après les éventuels échanges. Écarter un nombre
@@ -166,6 +189,23 @@ Les moyennes et intervalles Monte-Carlo sont des estimations conditionnelles
 réel ajoute une erreur de modèle, qui n'est pas contenue dans les barres
 statistiques. Le calcul en micro-eV évite la dérive d'accumulation ; il ne
 rend pas les paramètres physiques plus précis que ceux de l'énoncé.
+
+\subsection*{Comment lire les résultats sans mélanger les protocoles}
+\begin{itemize}
+\item \textbf{Questions 1--9 : référence L6.} Sauf mention contraire,
+les figures, les nombres et les diagnostics de ces questions concernent
+la production canonique de 864 sites. Les résultats des grandes tailles
+ne remplacent pas silencieusement cette référence.
+\item \textbf{Bonus : quatre questions complémentaires.} La partie 1
+explique le cycle et les GIF L6 ; la partie 2 définit les corrélations
+spatiales ; la partie 3 compare les productions canoniques L6/L9/L12 ;
+la partie 4 compare leurs cycles séquentiels achevés. Les GIF restent L6.
+\item \textbf{Toujours lire valeur, protocole et réserve ensemble.}
+$q$ mesure une amplitude globale, $\alpha_1,\alpha_2$ deux voisinages,
+$\xi/a$ une portée spectrale. Le temps d'autocorrélation $\tau$ mesure
+une dépendance entre mesures successives, en mesures ou en balayages :
+ce n'est pas une longueur ni un temps physique en secondes.
+\end{itemize}
 
 \section{Question 1 -- Réseau, énergie et algorithme de Metropolis}
 \subsection{Construction exacte de la géométrie}
@@ -234,11 +274,12 @@ d'espèces différentes. Cela conserve exactement la stœchiométrie.
 Pour des sites $i$ et $j$, initialement Au et Cu,
 \begin{align}
 \Delta E={}&\sum_{n=1}^2\sum_{k\in V_n(i)\setminus\{j\}}
-[V_n(\Cu,\sigma_k)-V_n(\Au,\sigma_k)]\notag\\
+[U_n(\Cu,\sigma_k)-U_n(\Au,\sigma_k)]\notag\\
 &+\sum_{n=1}^2\sum_{k\in V_n(j)\setminus\{i\}}
-[V_n(\Au,\sigma_k)-V_n(\Cu,\sigma_k)],
+[U_n(\Au,\sigma_k)-U_n(\Cu,\sigma_k)],
 \end{align}
-avec $V_1=J$ et $V_2=I$. Si les sites sont voisins, leur liaison mutuelle
+où $V_n(i)$ est la liste des voisins et $U_1=J$, $U_2=I$ les énergies de paire.
+Si les sites sont voisins, leur liaison mutuelle
 reste Au--Cu : sa variation est nulle. Elle ne doit pas être recalculée comme
 si une seule extrémité changeait.
 
@@ -253,7 +294,7 @@ exacte, sans accumulation d'erreurs d'arrondi. Les exponentielles
 d'acceptation restent naturellement évaluées en nombres réels.
 
 \subsection{Balance détaillée}
-La mesure canonique sur les configurations de composition fixée est
+Avec $\beta=1/(\kb T)$, la mesure canonique sur les configurations de composition fixée est
 \[
 \pi_T(C)=Z^{-1}e^{-E(C)/(\kb T)}.
 \]
@@ -275,11 +316,28 @@ ils ne décrivent pas une cinétique réaliste de diffusion par lacunes.
 comptage des tentatives, fin de balayage, échanges puis mesures. Le dessin
 résume les étapes ; les boucles complètes sont données en annexe.}
 
-\begin{oral}{Pourquoi ne pas changer un seul atome ?}
-Changer Au en Cu modifierait la composition. Notre ensemble est canonique :
-on doit permuter les occupations. Expliquer aussi pourquoi une énergie de
-paire plus négative est plus favorable, et pourquoi le facteur $1/2$ apparaît
-dans une somme sur des voisinages orientés.
+\begin{oral}{Question 1 -- Pourquoi cet algorithme et dans quel ordre ?}
+\begin{itemize}
+\item \textbf{Échanger pour conserver la composition.} Changer un seul Au
+en Cu ferait sortir de l'ensemble de configurations demandé. En choisissant
+un Au et un Cu, on garde exactement $N/4$ Au. La probabilité de proposer
+l'échange inverse est identique : l'acceptation dépend seulement du rapport
+des poids de Boltzmann. Le label géométrique $\mu$ reste celui du site ;
+seule son occupation change.
+\item \textbf{Calculer avant de modifier.} On évalue $\Delta E$ sur
+l'état courant en examinant les liaisons touchées, puis on applique
+Metropolis. Si $\Delta E>0$, accepter parfois évite une simple descente
+vers un minimum. À 1000 K, un défaut de 0.5586 eV serait accepté avec une
+probabilité $\exp[-0.5586/(k_B1000)]\simeq0.00153$ pour cette proposition.
+Un refus compte comme une tentative et conserve le temps de séjour de l'état.
+\item \textbf{Mesurer après une durée fixée.} Un balayage contient $N$
+propositions, pas $N$ acceptations. Les échanges de répliques éventuels
+viennent après les mouvements, puis la mesure est rangée à température
+fixe. Mesurer uniquement les changements acceptés surreprésenterait les
+états faciles à quitter. Les voisins sont précalculés car la géométrie
+ne change jamais ; le facteur $1/2$ intervient dans les sommes
+où une même paire est vue depuis ses deux extrémités.
+\end{itemize}
 \end{oral}
 
 \section{Question 2 -- Ordre à courte portée : paramètres de Cowley}
@@ -319,8 +377,10 @@ $\alpha_1=1-1/(3/4)=-1/3$. Les seconds voisins sont tous Au, donc
 $\alpha_2=1$.
 
 Un paramètre négatif indique un excès de voisins d'espèce opposée. Un
-paramètre positif indique leur déficit. Zéro décrit un mélange aléatoire
-dans la limite d'un grand système, et non l'état parfaitement ordonné.
+paramètre positif indique leur déficit. Zéro est la référence d'un mélange
+indépendant pour cette coquille dans la limite d'un grand système.
+La nullité de deux paramètres ne prouverait pas, à elle seule, l'absence
+de toute corrélation à d'autres distances.
 
 À composition fixée dans une boîte finie, conditionner la référence à être
 Au laisse $N_{\Cu}$ Cu parmi $N-1$ autres sites. Ainsi
@@ -344,11 +404,27 @@ peut donc persister après la disparition de l'ordre à longue portée.
 La limite aléatoire correspond à $T\to\infty$ ; les mesures à
 température finie ne sont pas contraintes à l'atteindre.
 
-\begin{oral}{Quel est le signe attendu dans l'état ordonné ?}
-Répondre sans mémoriser une formule : un Au a douze voisins Cu alors qu'un
-mélange aléatoire n'en aurait que neuf en moyenne. Les contacts Au--Cu sont
-surreprésentés, d'où $\alpha_1<0$. Au second voisinage, ils sont absents,
-d'où $\alpha_2=1$.
+\begin{oral}{Question 2 -- Des voisins comptés à la probabilité puis à Cowley}
+\begin{itemize}
+\item \textbf{Identifier la population de référence.} On ne compte les
+voisins qu'autour des sites actuellement Au. Pour la première coquille L6,
+il existe $216\times12=2592$ places de voisinage. Si 2160 portent Cu,
+$p_1^{\Cu|\Au}=2160/2592=5/6$. C'est une probabilité conditionnelle,
+comprise entre 0 et 1 ; ce n'est pas encore $\alpha_1$.
+\item \textbf{Comparer à la concentration.} Avec $c_{\Cu}=3/4$,
+$\alpha_1=1-(5/6)/(3/4)=-1/9$. Le signe négatif indique que Cu est
+plus fréquent autour d'Au que dans la composition globale. Dans l'ordre
+parfait, les douze voisins sont Cu, donc $\alpha_1=-1/3$ ; dans la
+seconde coquille, aucun n'est Cu, donc $\alpha_2=1$. Deux coquilles
+peuvent ainsi avoir des signes opposés sans contradiction.
+\item \textbf{Distinguer ordre local et ordre de la boîte.} Cowley ignore
+quel sous-réseau porte globalement les Au ; il est invariant entre les
+quatre variantes. Des voisinages préférentiels peuvent survivre lorsque
+les domaines se compensent dans l'ordre global. Une moyenne proche de
+zéro est une référence de mélange, avec correction canonique
+$-1/(N-1)$ à température infinie ; à température finie, les interactions
+empêchent en général d'atteindre exactement cette limite.
+\end{itemize}
 \end{oral}
 
 \section{Question 3 -- Ordre à longue portée et variantes équivalentes}
@@ -373,6 +449,9 @@ q=\sqrt{\frac43\sum_{\mu=0}^3(p_\mu-1/4)^2},
 On a $q=1$ dans les quatre variantes et $q=0$ pour les occupations moyennes
 uniformes. Mais $\langle q\rangle$ est légèrement positif dans une boîte finie
 désordonnée, car il mesure une amplitude de fluctuations.
+Inversement, un $q$ faible ne prouve pas une occupation indépendante :
+plusieurs domaines de variantes différentes peuvent réduire l'ordre global
+tout en conservant des voisinages localement ordonnés.
 
 \fig{15_variantes}{1}{Les quatre variantes parfaitement ordonnées sont
 équivalentes : seul le sous-réseau qui porte les Au change. $\eta$ dépend
@@ -403,11 +482,27 @@ au désordre. Il faut les lire avec $\langle q\rangle$, qui reste proche de 1.
 occupations des sous-réseaux. Une moyenne entre variantes ne doit pas être
 confondue avec une configuration instantanée désordonnée.}
 
-\begin{oral}{Pourquoi une moyenne de $\eta$ peut-elle être nulle à basse température ?}
-Dans une boîte finie, un échantillonnage parfaitement ergodique visite les
-quatre variantes. Leur moyenne donne $(1+3(-1/3))/4=0$, même si chaque
-configuration est ordonnée. C'est pourquoi l'amplitude $q$ complète le
-paramètre demandé. L'ordre de moyenne et de prise de norme compte.
+\begin{oral}{Question 3 -- Une occupation moyenne peut-elle masquer l'ordre ?}
+\begin{itemize}
+\item \textbf{Partir d'un instantané.} Dans $(1,0,0,0)$, tous les Au
+sont sur les sommets ; dans $(0,0,1,0)$, ils occupent un autre sous-réseau.
+Les deux configurations ont $q=1$, mais $\eta$ vaut respectivement
+$1$ et $-1/3$. Le paramètre du sujet est conservé ; il suit une variante
+choisie et ne reconnaît pas les quatre variantes avec le même signe.
+\item \textbf{Faire la bonne moyenne.} Si une chaîne ou deux chaînes
+indépendantes visitent ces deux états, les occupations moyennes peuvent
+valoir $(1/2,0,1/2,0)$. Cela ne signifie pas qu'un instantané contient deux
+sous-réseaux à moitié occupés. Il faut moyenner $q$ calculé sur chaque
+instantané. La norme des occupations moyennes perd l'information sur
+les changements de variante. Une bosse de $p_1(T)$ peut donc provenir
+d'un transfert de variante alors que $q$ décroît.
+\item \textbf{Tenir compte du volume.} Dans un mélange désordonné fini,
+les occupations fluctuent autour de $1/4$ ; leur norme a une moyenne
+positive. Au chaud, un $q$ plus faible pour L12 que pour L6 ne signifie
+pas que l'algorithme a détruit un ordre stable : une partie du résidu L6
+était un effet de taille. La comparaison des trois tailles et des
+occupations séparées par chaîne est développée dans le bonus.
+\end{itemize}
 \end{oral}
 
 \section{Question 4 -- Vérifications du programme}
@@ -422,6 +517,12 @@ Les tests supplémentaires vérifient le bootstrap du maximum, sa
 reproductibilité et son invariance à une constante ajoutée à l'énergie.
 Ils vérifient également la continuité du cycle thermique et l'identité
 des trajectoires après reprise à un palier sauvegardé.
+Les tests de checkpoints vérifient aussi la reprise exacte au milieu
+d'une campagne canonique et le refus d'une configuration incompatible.
+Trois tests de l'analyse croisée contrôlent l'identité énergie--Cowley,
+la décomposition avec covariance sans ajout de dispersion entre chaînes,
+et le comptage des populations sans franchir artificiellement les
+frontières entre chaînes.
 \input{current_validation.tex}
 
 \subsection{Création d'une paire d'antisites}
@@ -456,12 +557,27 @@ complète de chaque réplique et impose l'égalité entière avec l'énergie sui
 localement. Il vérifie également la composition et la borne $E\ge E_0$.
 Une incohérence arrête immédiatement le calcul.
 
-\begin{oral}{Qu'est-ce qu'un bon test physique ?}
-Une jolie courbe n'est pas un test de correction. Citer une valeur exacte,
-puis un contrôle indépendant : $\Delta E=0.5586$ eV pour un défaut précis,
-et égalité entre variation locale et différence de deux énergies globales.
-Le test canonique restreint ne constitue pas une résolution exacte de la
-boîte de 864 sites ; il vérifie la règle probabiliste.
+\begin{oral}{Question 4 -- Qu'est-ce qui valide le code et qu'est-ce qui valide une mesure ?}
+\begin{itemize}
+\item \textbf{Tester une valeur connue.} Le défaut d'antisites précis
+coûte 0.5586 eV. Un test compare cette valeur analytique à deux calculs :
+la variation locale rapide et la différence de deux énergies globales.
+Un test de géométrie vérifie aussi la réciprocité et les 12 + 6 voisins.
+Ces contrôles peuvent déceler une liaison oubliée, un signe erroné ou
+un double comptage qu'une courbe d'apparence régulière cacherait.
+\item \textbf{Tester la loi et la reprise.} Une petite matrice de
+transition énumérée vérifie la mesure canonique dans un espace restreint,
+sans résoudre exactement les 864 sites. Les tests de reprise interrompent
+puis restaurent un calcul et exigent la même trajectoire que sans arrêt.
+Sauvegarder les occupations seules ne suffirait pas : il faut aussi les
+générateurs, les énergies, les identités et la parité des échanges.
+\item \textbf{Ne pas confondre exactitude et exploration.} Un code correct
+peut rester très longtemps dans un bassin. Les tests automatiques et
+les contrôles d'archives passent pour L12, alors que ses chaînes
+divergent près du pic. R-hat, effectif utile, blocs, demi-séries et
+circulation répondent à cette autre question : les mesures disponibles
+représentent-elles suffisamment la distribution cible ?
+\end{itemize}
 \end{oral}
 
 \section{Question 5 -- Énergie de cohésion à température nulle}
@@ -496,7 +612,7 @@ $3.813\ \mathrm{eV/atome}$, relativement au zéro énergétique du modèle.
 
 \subsection{Preuve que \texorpdfstring{$L1_2$}{L12} est un état fondamental}
 Soient $A_1,B_1,C_1$ les nombres de paires Au--Au, Au--Cu et Cu--Cu de
-première coquille. À composition fixée,
+première coquille et $M_1=Nz_1/2$ leur nombre total. À composition fixée,
 \[
 2A_1+B_1=12N_{\Au},\qquad A_1+B_1+C_1=M_1.
 \]
@@ -512,11 +628,26 @@ $A_1=B_2=0$,
 C'est une preuve du minimum global pour les paramètres donnés. Elle ne
 nécessite aucune simulation.
 
-\begin{oral}{Le minimum observé est-il seulement numérique ?}
-Non : les deux nombres de paires sont positifs ou nuls et leurs coefficients
-sont positifs. La structure $L1_2$ annule simultanément les deux contributions.
-Cette démonstration vaut pour le modèle de l'énoncé ; elle ne prétend pas
-décrire toutes les contributions microscopiques d'un alliage réel.
+\begin{oral}{Question 5 -- De la boîte à l'atome puis à la formule}
+\begin{itemize}
+\item \textbf{Choisir le dénominateur physique.} $E_0$ est l'énergie
+de tous les sites ; diviser par $N=864$ donne l'énergie d'un atome en
+moyenne, $u_0=-3.813$ eV/atome. Une formule Cu$_3$Au compte quatre atomes :
+il existe 216 formules dans la boîte, d'où $E_0/216=4u_0=-15.252$
+eV par unité de formule. Pour L12, $E_0$ est huit fois plus grand
+en valeur absolue, mais ces quantités normalisées restent les mêmes.
+\item \textbf{Lire le signe.} Une énergie de liaison négative abaisse
+l'énergie relativement au zéro du modèle. L'énergie positive nécessaire
+pour dissocier ce fondamental est son opposé par atome. Ce zéro et les
+paramètres de paire appartiennent au modèle ; ils ne remplacent pas une
+mesure complète de cohésion de l'alliage réel.
+\item \textbf{Distinguer preuve et recherche numérique.} L'identité
+$E-E_0=0.161A_1+0.0063B_2$ est positive pour toute configuration de même
+composition. Comme $L1_2$ annule les deux termes, il réalise un minimum
+global. Observer seulement la plus basse énergie d'une simulation
+n'aurait pas constitué cette preuve ; inversement, la preuve du
+fondamental ne détermine pas la température de désordre à entropie finie.
+\end{itemize}
 \end{oral}
 
 \section{Question 6 -- Équilibrer à différentes températures}
@@ -590,12 +721,29 @@ chaînes de cette campagne ; leur faible nombre reste une limite à considérer.
 \fig{10_repliques}{1}{Trajectoires de quelques identités de répliques.
 La circulation en température complète les contrôles locaux d'équilibre.}
 
-\begin{oral}{Pourquoi ajouter des températures chaudes ?}
-Une réplique chaude franchit plus facilement une barrière d'énergie. Les
-échanges permettent ensuite à cette configuration de rejoindre une
-température plus basse. Cela améliore l'exploration mais ne garantit pas
-à lui seul un équilibre parfait : il faut examiner les trajectoires,
-l'autocorrélation et l'accord entre chaînes.
+\begin{oral}{Question 6 -- Quand peut-on appeler les configurations « d'équilibre » ?}
+\begin{itemize}
+\item \textbf{Séparer cible et durée.} Metropolis possède la bonne
+distribution stationnaire, mais cela ne donne pas le nombre de
+balayages nécessaire pour l'approcher. Les états initiaux sont d'abord
+relaxés ; leurs mesures sont écartées. La production continue ensuite
+sans réinitialisation. Un état final bien ordonné ou une moyenne
+stabilisée ne suffisent pas à exclure un bassin jamais visité.
+\item \textbf{Expliquer l'aide des répliques chaudes.} Une configuration
+peut franchir des barrières à haute température puis rejoindre un
+emplacement plus froid par échanges. Les probabilités d'échange
+préservent les marginales canoniques. On doit enregistrer
+les mesures à température fixe, et suivre séparément les identités
+pour mesurer leur circulation. Une même identité n'est pas une série
+à température fixe.
+\item \textbf{Reconnaître les limites observées.} L6 satisfait les
+critères locaux autour du pic, avec seulement sept allers-retours
+complets au total. L9 et L12 n'en enregistrent aucun et présentent
+des séries critiques insuffisantes. Un taux moyen d'échange élevé
+peut masquer un lien limitant. Les résultats sont donc qualifiés
+d'estimations canoniques avec diagnostics, plutôt que d'équilibre
+garanti par le seul nombre de balayages.
+\end{itemize}
 \end{oral}
 
 \section{Question 7 -- Grandeurs physiques et incertitudes}
@@ -652,6 +800,12 @@ faut pas l'identifier sans précaution à une susceptibilité d'un composant
 du paramètre d'ordre. Le cumulant est fourni comme diagnostic complémentaire.
 Le facteur $3$ est une convention scalaire ; sa limite désordonnée n'est
 pas supposée nulle pour cette amplitude à plusieurs composantes.
+Par exemple, si les trois composantes de l'ordre sont gaussiennes,
+indépendantes et de même variance, leurs moments donnent
+$\langle q^4\rangle/\langle q^2\rangle^2=5/3$, donc $U_q=4/9$.
+Cette référence explique la valeur chaude proche de 0.44, sans supposer
+que toutes les distributions à température finie soient gaussiennes.
+$X_q$ est exprimé en eV$^{-1}$ ; $q$, $U_q$ et $c_V/\kb$ sont sans dimension.
 
 \subsection{Autocorrélation, erreurs et comparaison des chaînes}
 Les mesures successives ne sont pas indépendantes. Pour une série $A_t$,
@@ -659,6 +813,15 @@ Les mesures successives ne sont pas indépendantes. Pour une série $A_t$,
 \tau_{\mathrm{int}}=\frac12+\sum_{\ell\ge1}\rho_A(\ell),\qquad
 N_{\mathrm{eff}}\simeq\frac{M}{2\tau_{\mathrm{int}}}.
 \]
+L'\textbf{ESS} est ce nombre estimé d'informations indépendantes ;
+ce n'est pas le nombre de lignes enregistrées. Le diagnostic
+$\widehat R$ compare les distributions des chaînes et de leurs moitiés :
+une valeur proche de 1 indique un accord observé, tandis qu'une valeur
+élevée signale des moyennes ou des dispersions différentes.
+Le \textbf{bootstrap par blocs} rééchantillonne des morceaux contigus
+de trajectoire afin de conserver une partie de leur dépendance temporelle.
+Une erreur-type, notée SE dans les tableaux, mesure l'incertitude estimée
+de la grandeur calculée ; ce n'est pas la fluctuation thermique de cette grandeur.
 Le code utilise une troncature par paires positives de l'autocorrélation
 et un bootstrap par blocs circulaires. Les blocs ont une longueur d'au moins
 $2\tau_{\mathrm{int}}$, estimée à partir de l'énergie et de $q$, sauf lorsque
@@ -673,6 +836,10 @@ un effectif indépendant estimé d'au moins $200$, au moins $20$ blocs par
 chaîne, et un écart entre demi-séries inférieur à trois unités d'erreur
 estimée. Les graines indépendantes ne rendent pas les températures d'une
 même campagne indépendantes.
+Ces seuils sont des filtres d'alerte. Deux chaînes restées dans la même
+population métastable peuvent présenter un bon accord et manquer ensemble
+une autre population. Réussir les contrôles locaux ne certifie donc pas
+les poids de toutes les configurations à l'équilibre.
 
 Lorsque E et q sont constants dans une série froide, le code attribue
 $\tau=1/2$ et peut obtenir $\widehat R=1$ : ce traitement numérique ne
@@ -714,11 +881,31 @@ boîte étudiée vaut $\RandomLimit\ \mathrm{eV/atome}$. Même à plusieurs
 milliers de kelvins, les interactions peuvent encore créer des corrélations :
 il ne faut pas forcer les courbes à rejoindre la limite $T\to\infty$.
 
-\begin{oral}{Pourquoi ne pas utiliser seulement l'écart-type divisé par $\sqrt M$ ?}
-Parce que deux mesures proches peuvent représenter presque la même
-configuration. L'effectif utile est $N_{\mathrm{eff}}$, plus petit que $M$.
-Une petite barre d'erreur n'est crédible que si le temps d'autocorrélation et
-les désaccords entre chaînes ont été examinés.
+\begin{oral}{Question 7 -- De la trajectoire aux grandeurs et à leurs erreurs}
+\begin{itemize}
+\item \textbf{Une mesure n'est pas une température.} À T fixé,
+Metropolis fournit une succession de configurations. Chaque configuration
+donne une énergie totale et des paramètres d'ordre ; on moyenne ces
+valeurs pendant la production. $c_V$ demande en plus les fluctuations
+de l'énergie : des séjours dans deux populations éloignées produisent
+une grande variance, même si leurs énergies moyennes sont stables.
+\item \textbf{Utiliser la bonne normalisation.} La formule écrite ici
+contient Var$(E)$, puis une division par $N(k_BT)^2$. Si les données
+sont déjà en énergie par atome, il faut au contraire multiplier
+Var$(u)$ par $N/(k_BT)^2$. Metropolis sert à donner les poids
+canoniques ; aucun tirage supplémentaire n'est requis pour calculer
+ensuite la variance archivée. Hors équilibre,
+cette même variance reste calculable mais n'est pas nécessairement
+la dérivée thermique d'équilibre.
+\item \textbf{Compter les informations indépendantes.} Des mesures
+voisines peuvent décrire presque le même état. Pour $M=3000$ et
+$\tau=50$ mesures, l'effectif utile d'une chaîne n'est qu'environ 30,
+pas 3000. Les blocs préservent cette dépendance lors du bootstrap.
+L'erreur de moyenne et la fluctuation thermique ne sont pas la même
+chose : allonger la série peut réduire la première sans faire
+disparaître la seconde. Les bassins non visités restent une erreur
+systématique que le bootstrap ne reconstruit pas.
+\end{itemize}
 \end{oral}
 
 \section{Question 8 -- Repérer la transition et comparer au champ moyen}
@@ -743,8 +930,9 @@ grille, sans interprétation comme intervalle de confiance.}
 
 Une boîte finie n'a pas de singularité thermodynamique. Une seule taille
 permet de repérer un maximum apparent, mais pas d'extrapoler $T_c$ à la limite
-$N\to\infty$. Une étude complémentaire pourrait comparer plusieurs $L$,
-les distributions et les déplacements des maxima \cite{binder}.
+$N\to\infty$. La comparaison des trois tailles en
+section~\ref{sec:tailles} examine distributions et déplacements des maxima,
+avec les réserves d'échantillonnage nécessaires \cite{binder}.
 
 \fig{04_distributions}{1}{Distributions près de la zone de transition.
 L'inspection de la coexistence complète celle du maximum de capacité
@@ -783,14 +971,16 @@ et les maxima de fluctuations ne définissent pas exactement le même
 critère : leur proximité identifie une zone cohérente, pas plusieurs
 mesures indépendantes d'une température critique unique.
 
-Une étude de plusieurs tailles renforcerait l'interprétation
-thermodynamique. Les résultats de cette question concernent $L=6$.
-La campagne $L=9$ est maintenant achevée et techniquement validée ;
-ses résultats, avec leurs réserves statistiques, sont présentés en
+Une étude de plusieurs tailles à précision statistique contrôlée
+renforcerait l'interprétation thermodynamique. Les résultats de cette
+question concernent $L=6$.
+Les campagnes $L=9$ et $L=12$ sont achevées et techniquement validées ;
+leurs résultats, avec leurs réserves statistiques, sont présentés en
 section~\ref{sec:tailles}.
 
 \subsection{Estimation analytique de Bragg-Williams}
 Pour une famille d'états à un sous-réseau privilégié,
+avec $0\leq\eta\leq1$ dans cette comparaison d'amplitudes,
 \[
 p_0=\frac{1+3\eta}{4},\qquad
 p_1=p_2=p_3=p_f=\frac{1-\eta}{4}.
@@ -840,12 +1030,30 @@ une propriété de l'approximation de champ moyen, et ne remplace pas une
 amplitudes d'ordre. L'estimation de champ moyen n'est pas utilisée pour
 fixer le résultat Monte-Carlo.}
 
-\begin{oral}{Pourquoi le champ moyen et Monte-Carlo donnent-ils des températures différentes ?}
-Le champ moyen remplace les voisins par des probabilités indépendantes.
-Il ignore les corrélations locales, pourtant mesurées par Cowley. Le Monte-Carlo
-échantillonne les configurations du modèle spatial. Une différence n'est donc
-pas automatiquement un défaut du code. Il faut distinguer coexistence,
-spinodale et maximum d'une boîte finie.
+\begin{oral}{Question 8 -- Quelle température avons-nous effectivement déterminée ?}
+\begin{itemize}
+\item \textbf{Nommer le critère.} Le maximum de $c_V$ sur la grille
+définit $T^*(L)$, un repère de boîte finie. Les voisins de grille
+décrivent la résolution, tandis que le bootstrap décrit les déplacements
+de la case de maximum compatibles avec les trajectoires observées.
+Ni l'un ni l'autre ne couvre un bassin absent, une extrapolation en
+volume ou l'erreur du Hamiltonien. L12 donne ainsi 1052.5 K observés,
+avec une statistique encore insuffisante au maximum.
+\item \textbf{Croiser les symptômes.} Une chute de $q$, une montée de
+l'énergie, des fluctuations fortes et deux populations sont cohérentes
+avec une transition dans la même zone. Elles utilisent toutefois
+les mêmes mesures, et énergie et Cowley sont liés exactement.
+Les maxima de $X_q$ ou les creux du cumulant ne sont donc pas
+des expériences indépendantes donnant chacune une valeur exacte de $T_c$.
+\item \textbf{Comprendre le champ moyen.} Bragg--Williams remplace
+les voisinages corrélés par des probabilités indépendantes. Il peut
+donner une coexistence, où deux minima d'énergie libre sont égaux,
+et une spinodale, où l'un perd sa stabilité locale. Ces températures
+diffèrent entre elles et du maximum Monte-Carlo fini. L'écart avec
+Monte-Carlo renseigne sur l'approximation ; il ne suffit pas à
+accuser l'implémentation. Aucune de ces températures ne devient
+automatiquement celle de Cu$_3$Au réel.
+\end{itemize}
 \end{oral}
 
 \section{Question 9 -- Discussion des résultats et limites}
@@ -858,7 +1066,7 @@ température. La disparition de l'ordre global peut précéder la disparition
 des préférences chimiques locales : un $q$ faible ne contraint pas
 $\alpha_1$ et $\alpha_2$ à être exactement nuls.
 
-Les limites principales sont explicites : taille finie unique, durées de
+Les limites principales sont explicites : tailles finies, durées de
 simulation finies, grille de températures discrète, et approximation physique
 du réseau rigide. Les vibrations, la dilatation et les relaxations autour des
 antisites sont absentes. Les constantes de paire sont supposées indépendantes
@@ -868,12 +1076,17 @@ une prédiction expérimentale exacte.
 \subsection{Comparaison critique avec \texorpdfstring{Cu$_3$Au}{Cu3Au} réel}
 Les mesures de calorimétrie et de diffusion situent le désordre chimique de
 Cu$_3$Au près de 660--663 K, et non à 1050 K
-\cite{benisek,owen}. L'écart d'environ 390 K est de l'ordre de 60\,\% :
+\cite{benisek,paras}. L'écart d'environ 390 K est de l'ordre de 60\,\% :
 le maximum du présent modèle est donc qualitativement pertinent mais
-quantitativement non calibré au matériau. Passer de $L=6$ à $L=9$ ne
+quantitativement non calibré au matériau. Passer de $L=6$ à $L=9$ ou $12$ ne
 constitue pas une correction des interactions du Hamiltonien. On ne peut
 pas attribuer cet écart à la seule taille finie, ni aux seules vibrations,
 sans calculs de contrôle séparant ces contributions.
+Un maximum calorimétrique expérimental dépend aussi du protocole :
+Benisek et Dachs rapportent un pic à 675 K pour leur échantillon le
+plus ordonné et une réaction vers 660 K pour des échantillons initialement
+désordonnés \cite{benisek}. Il faut donc distinguer température de
+transition de référence et maximum mesuré pendant une histoire thermique.
 La transition réelle est décrite comme du premier ordre
 \cite{paras}. L'arrondi des courbes dans notre boîte finie ne démontre
 donc pas une transition continue, et l'on ne doit pas exiger une divergence
@@ -943,7 +1156,7 @@ des variantes et l'ordre uniforme ; ce n'est pas la taille d'un domaine
 mesuré dans les coupes. La longueur intra-variante est un diagnostic
 conditionnel, sans intervalle de confiance calculé dans cette étude.
 
-\subsection{Ce que le passage à \texorpdfstring{$L=9$}{L=9} peut tester}
+\subsection{Ce que les tailles supplémentaires permettent de tester}
 Le côté passe de $6a$ à $9a$, soit un facteur 1.5 ; le nombre de sites
 passe de 864 à 2916, soit un facteur 3.375, avec 729 Au et 2187 Cu.
 Le plus petit décalage réciproque passe de $1.047/a$ à $0.698/a$.
@@ -953,7 +1166,7 @@ aucune amélioration de l'équilibre : les temps de relaxation et les
 barrières peuvent augmenter, tandis que les échanges de répliques
 deviennent moins efficaces à grille inchangée.
 
-La comparaison réalisée conserve le Hamiltonien, les 46 températures,
+La comparaison L6/L9 conserve le Hamiltonien, les 46 températures,
 6000 balayages initiaux et 30000 de production par chaîne. Les moyennes
 sont comparées par atome ; les maxima $T^*(L)$, leurs intervalles,
 les histogrammes, R-hat, ESS et la circulation des répliques sont
@@ -963,12 +1176,16 @@ atomiques espacés de 100 balayages ont été conservés pour permettre
 une analyse spatiale après le calcul. Ce budget identique de balayages
 n'est pas une garantie de nombres identiques d'états indépendants.
 
-Deux tailles permettront d'observer une tendance, pas de justifier à elles
-seules une extrapolation ou une loi universelle. Si les diagnostics se
-dégradent, il faudra allonger les séries ou densifier les températures
-avant d'interpréter une différence comme un effet physique de taille.
+L12 porte ensuite la boîte à 6912 sites, avec un plus petit vecteur
+accessible $k_{\min}a=0.524$. Sa grille est densifiée et sa production
+doublée ; les effets de taille et de protocole ne sont donc pas séparés
+parfaitement. Les trois tailles permettent d'observer des tendances,
+mais leurs diagnostics critiques inégaux ne justifient ni extrapolation
+quantitative ni loi universelle. L'analyse croisée de la
+section~\ref{sec:tailles} détaille ce que l'augmentation améliore et
+les défauts d'échantillonnage qu'elle n'a pas supprimés.
 L'absence de phonons, de dilatation, de lacunes et de dynamique de diffusion
-restera exactement la même à $L=9$.
+reste la même pour les trois tailles.
 
 Une distribution à deux pics est compatible avec une coexistence ; une
 hystérésis est compatible avec une métastabilité. Aucune de ces observations
@@ -988,9 +1205,42 @@ l'ordre à longue portée ne rend pas immédiatement les occupations
 indépendantes. La valeur $\Tpeak$ K caractérise donc ce modèle de réseau
 rigide dans la boîte de $\Natoms$ sites ; elle n'est ni une extrapolation
 à taille infinie ni une mesure expérimentale de Cu$_3$Au.
+Les grandes tailles situent elles aussi leur maximum dans la zone
+1050--1055 K, tout en révélant un ralentissement important. Leur ajout
+consolide les tendances qualitatives ; il ne supprime pas l'incertitude
+sur les poids des populations ni l'erreur de modèle.
 \end{samepage}
 
-\begin{oral}{Plan possible pour une présentation de 8 à 10 minutes}
+\begin{oral}{Question 9 -- Que retrouve-t-on du matériau réel et que manque-t-il ?}
+\begin{itemize}
+\item \textbf{Les accords qualitatifs ont une origine identifiable.}
+Les liaisons de première coquille favorisent les voisins chimiques
+différents et celles de seconde coquille favorisent les espèces identiques.
+Le modèle peut donc retrouver la structure $L1_2$, les quatre variantes,
+les antisites, une perte d'ordre global et un ordre local persistant.
+Ces résultats expliquent le mécanisme énergie--entropie sans supposer
+que toutes leurs amplitudes sont quantitativement correctes.
+\item \textbf{Une plus grande boîte ne change pas la physique absente.}
+Dans le matériau réel, les atomes vibrent et les positions se relaxent,
+le volume varie, les défauts migrent par des mécanismes locaux et les
+contributions électroniques peuvent compter. Ici les positions sont
+fixes, les paires sont constantes et les échanges peuvent relier deux
+sites éloignés. L9 puis L12 améliorent l'espace disponible, pas ces
+hypothèses. Le décalage entre 660--663 K expérimental et environ
+1050--1055 K dans le modèle ne peut donc pas être corrigé par la seule
+augmentation du nombre d'atomes.
+\item \textbf{La critique concerne aussi les résultats numériques.}
+L6 fournit le repère le mieux contrôlé statistiquement près du maximum ;
+les grandes boîtes montrent un pic plus étroit et des populations plus
+distinctes, mais elles explorent moins bien leur coexistence. La conclusion
+doit garder les deux constats : la tendance de taille est intéressante,
+son extrapolation n'est pas validée. De même, le GIF montre une mise en
+ordre sous la dynamique choisie ; il ne mesure pas une vitesse de
+nucléation dans l'alliage réel.
+\end{itemize}
+\end{oral}
+
+\begin{oral}{Fil conducteur pour une présentation de 8 à 10 minutes}
 \begin{enumerate}
 \item Décrire le réseau fixe, la composition et la structure $L1_2$.
 \item Montrer les préférences de paire et la preuve du fondamental.
@@ -999,7 +1249,7 @@ rigide dans la boîte de $\Natoms$ sites ; elle n'est ni une extrapolation
 \item Présenter les tests avant les résultats numériques.
 \item Montrer énergie, capacité calorifique et perte d'ordre.
 \item Donner le maximum apparent avec sa résolution et ses diagnostics.
-\item Terminer par les limites physiques et l'étude de taille à poursuivre.
+\item Terminer par les limites physiques et les diagnostics des trois tailles.
 \end{enumerate}
 \end{oral}
 
@@ -1015,14 +1265,58 @@ Le module \texttt{run\_thermal\_cycle.py} produit les mesures et les
 comparaisons des deux branches ; aucun résultat de cycle n'est joint
 à cette version du rapport.}
 \IfFileExists{bonus_animations.tex}{\input{bonus_animations.tex}}{}
+\begin{oral}{Bonus 1 -- Comment lire un cycle et une animation ?}
+\begin{itemize}
+\item \textbf{Lire le temps dans le bon sens.} Au chauffage, les
+températures sont parcourues de gauche à droite ; au refroidissement,
+le temps avance lorsque T diminue. Le GIF thermique montre des fins
+de paliers, séparées par beaucoup de balayages, et ne résout pas les
+événements entre ces images. Le GIF isotherme conserve T à 1000 K :
+seul le temps Monte-Carlo avance. Les neuf coupes sont des vues du même
+état, pas neuf trajectoires indépendantes.
+\item \textbf{Relier image, ordre et histoire.} Une couche pauvre en Au
+peut appartenir à un cristal ordonné dont les Au occupent les couches
+voisines. On confronte donc les coupes à $q$ et aux occupations, séparées
+par cycle. Une différence chauffage--refroidissement montre une mémoire
+à budget fini. Elle doit être vérifiée en allongeant les paliers, et
+ne constitue ni une nouvelle température d'équilibre ni une preuve
+isolée de nucléation. Seules des branches réellement calculées peuvent
+être comparées ; les productions canoniques L9/L12 n'en sont pas.
+\end{itemize}
+\end{oral}
 \subsection{Partie 2 -- Longueur de corrélation et analyse de Fourier}
 \IfFileExists{bonus_correlation.tex}{\input{bonus_correlation.tex}}{
 Le module de corrélations produit les champs d'ordre locaux, les spectres
 et les diagnostics de la longueur de second moment.}
-\subsection{Partie 3 -- Résultats achevés et comparaison L6/L9}
+\begin{oral}{Bonus 2 -- Que mesure la longueur de corrélation ?}
+\begin{itemize}
+\item \textbf{Poser une question spatiale.} Deux configurations de même
+énergie ou de même Cowley peuvent répartir leur ordre sur des distances
+différentes. Le champ signé par maille distingue les quatre variantes ;
+sa corrélation demande si connaître l'organisation ici renseigne encore
+sur celle d'une maille éloignée. Le mode zéro utilisé est celui de
+l'ordre chimique, pas celui du nombre total d'Au, fixé par construction.
+\item \textbf{Comprendre le rapport de Fourier.} Un grand pic au centre
+comparé à ses voisins réciproques correspond à un ordre cohérent sur
+de grandes distances. Le second moment convertit ce rapport en une
+longueur, avec une convention de réseau explicite. Dans une petite
+boîte, un ordre uniforme ou des changements collectifs de variante
+peuvent rendre cette longueur supérieure au côté : ce n'est pas un
+rayon géométrique. Les fluctuations autour d'une variante, la corrélation
+canonique et la croissance hors équilibre sont trois objets distincts.
+\item \textbf{Lire ensemble la valeur et sa validité.} Une racine non
+réelle reste manquante ; une grande valeur n'est pas écrêtée pour la
+rendre plausible. On examine les blocs, les composantes signées et
+$\xi/(La)$ avant une interprétation. Les trois tailles améliorent la
+résolution des modes accessibles, mais leurs budgets et leurs mélanges
+de variantes différents interdisent ici un exposant critique fiable.
+\end{itemize}
+\end{oral}
+\subsection{Partie 3 -- Analyse croisée et superpositions L6/L9/L12}
 \label{sec:tailles}
 \IfFileExists{bonus_sizes.tex}{\input{bonus_sizes.tex}}{
 Les résultats de taille supplémentaire ne sont pas disponibles dans cette version.}
+\IfFileExists{bonus_size_cycles.tex}{\input{bonus_size_cycles.tex}}{}
 \endgroup
 
 \appendix
@@ -1203,6 +1497,27 @@ les analyses et les figures sans relancer les trajectoires Monte-Carlo.
 \end{enumerate}
 \textbf{Source :} \texttt{simulation.py : campaign}.
 \end{algocode}
+
+\subsubsection*{Captures spatiales et reprise de la campagne L12}
+Les options supplémentaires de L9 et L12 n'altèrent pas la règle
+de Metropolis. Une capture recopie les occupations après la mesure au
+balayage choisi ; ses dates permettent de retrouver exactement les
+observables correspondantes. À L12, les captures tous les 200 balayages
+fixent aussi les limites de segments de production, dont la longueur
+maximale reste une limite et non une durée imposée.
+
+La reprise optionnelle sauvegarde après chaque segment validé les états,
+les énergies, les identités, la parité, la position dans les phases,
+les mesures nouvelles et l'état du générateur hôte. Le noyau reçoit
+une nouvelle graine à chaque segment : restaurer le générateur hôte
+et les limites de segment restaure donc aussi la suite des graines.
+Chaque checkpoint est écrit dans un fichier temporaire puis publié
+atomiquement ; une écriture inachevée n'est pas utilisée. Une signature
+des paramètres, des sources et de l'environnement empêche de reprendre
+silencieusement avec un autre noyau. Les tests comparent la trajectoire
+reprise à la trajectoire ininterrompue. Le pseudocode P2 décrit le chemin
+sans reprise ; la restauration se place avant la boucle de phase et
+la sauvegarde après ses contrôles de segment.
 
 \subsection{Algorithme 3 : boucles à l'intérieur d'un segment}
 \begin{algocode}{Algorithme 3 --- Metropolis, échanges et mesures dans le bon ordre}
@@ -1952,8 +2267,9 @@ Method and Application to Spin Glass Simulations}, J. Phys. Soc. Jpn.
 Rep. Prog. Phys. \textbf{50}, 783 (1987).
 \href{https://doi.org/10.1088/0034-4885/50/7/001}{doi:10.1088/0034-4885/50/7/001}.
 \bibitem{benisek} A. Benisek et E. Dachs, \emph{The vibrational and configurational
-entropy of disordering in Cu$_3$Au} (2015).
-\href{https://pmc.ncbi.nlm.nih.gov/articles/PMC4394139/}{Article et mesures calorimétriques}.
+entropy of disordering in Cu$_3$Au}, Journal of Alloys and Compounds
+\textbf{632}, 585--590 (2015).
+\href{https://doi.org/10.1016/j.jallcom.2014.12.215}{doi:10.1016/j.jallcom.2014.12.215}.
 \bibitem{owen} L. R. Owen, H. Y. Playford, H. J. Stone et M. G. Tucker,
 \emph{Analysis of short-range order in Cu$_3$Au using X-ray pair distribution functions}.
 \href{https://doi.org/10.17863/CAM.38392}{Manuscrit accepté, dépôt de Cambridge}.

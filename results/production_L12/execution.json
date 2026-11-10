@@ -1,0 +1,16 @@
+{
+  "state": "complete",
+  "pid": 12540,
+  "updated_at": "2026-11-09T18:15:00.712901+01:00",
+  "config": "C:\\Users\\vuache_h\\Desktop\\perso\\Cu3Au_MC\\configs\\production_L12.json",
+  "L": 12,
+  "n_atoms": 6912,
+  "temperatures": 90,
+  "T_peak_K": 1052.5,
+  "critical_diagnostics_ok": false,
+  "figures": 18,
+  "size_comparisons": [
+    "C:\\Users\\vuache_h\\Desktop\\perso\\Cu3Au_MC\\results\\production_L12\\comparison_L6_L12",
+    "C:\\Users\\vuache_h\\Desktop\\perso\\Cu3Au_MC\\results\\production_L12\\comparison_L9_L12"
+  ]
+}

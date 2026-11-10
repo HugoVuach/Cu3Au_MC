@@ -1,4 +1,4 @@
-"""Comparaison de tailles à Hamiltonien et grille identiques, sans extrapolation."""
+"""Comparaison de tailles sans extrapolation ni interpolation des températures."""
 import csv
 import json
 from pathlib import Path
@@ -28,9 +28,12 @@ def compare_sizes(reference, larger):
             mean_swap_acceptance=float(np.mean(accepted)),
             total_roundtrips=sum(sum(c['roundtrips']) for c in summary['chains']),
             spatial_capture_every=summary['config'].get('store_states_every', 0)))
-    if summaries[0]['config']['temperatures'] != summaries[1]['config']['temperatures']:
-        raise ValueError('Size comparison requires the same temperature grid.')
-    folder = roots[1]/'comparison_L6_L9'
+    same_grid = summaries[0]['config']['temperatures'] == summaries[1]['config']['temperatures']
+    common = sorted(set(summaries[0]['config']['temperatures']) & set(summaries[1]['config']['temperatures']))
+    if not common:
+        raise ValueError('No common sampled temperatures for size comparison.')
+    small, large = (s['config']['L'] for s in summaries)
+    folder = roots[1]/f'comparison_L{small}_L{large}'
     folder.mkdir(exist_ok=True)
     style()
     fig, axes = plt.subplots(2, 3, figsize=(14, 8))
@@ -50,17 +53,22 @@ def compare_sizes(reference, larger):
     axes[1, 2].set(xlim=(1000, 1100), xlabel='Température (K)', ylabel='Maximum R-hat(E,q)')
     for ax in axes.flat:
         ax.legend(fontsize=9)
-    fig.suptitle('Comparaison L = 6 et L = 9 : résultats et contrôle d’échantillonnage', fontsize=17)
+    fig.suptitle(f'Comparaison L = {small} et L = {large} : résultats et contrôle d’échantillonnage', fontsize=17)
     fig.tight_layout(rect=(0, .07, 1, .95))
     save(fig, folder, 'comparaison_thermodynamique',
-         'Même modèle et même grille ; différences à examiner avec ESS, circulation et erreurs, sans extrapolation à deux tailles.')
+         ('Même grille ; ' if same_grid else 'Grilles distinctes, points effectivement simulés ; ')+
+         'examiner ESS, circulation et budgets, sans interpolation ni extrapolation à deux tailles.')
     save_csv(folder/'diagnostics_comparison.csv', report_rows)
     comparison = dict(sizes=report_rows,
+        same_temperature_grid=same_grid, common_temperatures_K=common,
+        sweep_budgets=[{k:s['config'][k] for k in ['burn_sweeps','sample_sweeps','sample_every']}
+                      for s in summaries],
         peak_shift_grid_K=report_rows[1]['T_peak_grid_K']-report_rows[0]['T_peak_grid_K'],
         caveats=['Same sweep count does not imply the same effective sample count.',
                  'Two sizes do not establish a thermodynamic extrapolation.',
                  'Global exchanges, rigid lattice and fixed pair interactions are unchanged.',
-                 'Spatial states are saved for L9; dedicated L6 correlation data use a different sampling protocol.'])
+                 'Spatial states are saved for larger sizes; dedicated L6 correlation data use a different sampling protocol.',
+                 'Temperature grids and sweep budgets may differ; only actually measured points are drawn.'])
     (folder/'summary.json').write_text(json.dumps(comparison, indent=2), encoding='utf8')
     return folder
 

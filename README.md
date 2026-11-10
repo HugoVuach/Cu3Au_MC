@@ -339,3 +339,54 @@ distincts des figures L6. La synthèse comprend le déplacement du maximum,
 les diagnostics insuffisants, les historiques et les distributions. Les courbes
 de corrélation et GIF restent ceux de L6 ; la sauvegarde d'états L9 n'est pas
 présentée comme une nouvelle mesure de xi déjà effectuée.
+
+## Campagne L12
+
+`configs/production_L12.json` définit L=12 (6912 sites, 1728 Au, 5184 Cu), deux
+chaînes, 12000 balayages d'équilibration et 60000 de production. Les 90 températures
+conservent toutes les températures L9 et ajoutent des points dans les intervalles
+où ses échanges étaient difficiles, ainsi qu'un pas de 2.5 K entre 1030 et 1080 K.
+`results/production_L12/grid_design.json` documente la construction heuristique de
+cette grille à partir des acceptations L9 ; elle ne garantit pas une acceptation
+minimale ni l'équilibre du nouveau calcul.
+
+Le lancement se fait en PowerShell :
+
+```powershell
+.\.venv\Scripts\python.exe results/production_L12/run_simulation.py
+```
+
+Les sorties sont isolées dans `results/production_L12` : configuration figée, état
+`execution.json`, journaux, archives et figures. Les tests sont exécutés avant la
+simulation. Les états atomiques sont sauvegardés tous les 200 balayages de
+production, soit 300 par température et par chaîne. Les chaînes complètes sont
+écrites atomiquement ; la reprise en milieu de chaîne est assurée par les checkpoints ci-dessous.
+
+Depuis l'ajout des checkpoints, le lanceur L12 reprend automatiquement le dernier
+segment publié, y compris en milieu de chaîne. Les sauvegardes incrémentales sont
+dans `results/production_L12/checkpoints/chain_01` et `chain_02` : un fichier initial,
+puis un fichier par segment terminé (500 balayages d'équilibration, 200 de production
+avec cette configuration). L'écriture est synchronisée sur disque puis publiée par
+renommage atomique. Une interruption pendant un segment ou son écriture ne fait
+perdre que ce segment ; les fichiers `.tmp` ne sont jamais utilisés comme sauvegardes.
+
+Chaque segment conserve états atomiques et énergies de toutes les répliques,
+étiquettes, parité des échanges, état du générateur fournissant les graines des
+segments, mesures et captures nouvelles, compteurs cumulés et progression.
+Le noyau Numba étant réinitialisé par une graine au début de chaque segment,
+ce générateur et les frontières de segments suffisent à reproduire la trajectoire
+sur le même code/environnement. La reprise vérifie la configuration, la signature
+du code et des versions, la continuité des segments, l'énergie et la composition.
+Une chaîne complète déjà publiée est réutilisée sans être réécrite. Les checkpoints
+restent conservés après achèvement pour audit ; leur volume peut être important.
+
+Pour relancer après un arrêt, utiliser la même commande L12. Les archives d'un
+ancien calcul sans métadonnées de reprise ou une configuration modifiée ne sont
+pas mélangées aux sauvegardes. Le calcul interrompu le 8 novembre n'avait aucun
+checkpoint : la première relance repart donc de zéro, puis devient reprenable.
+
+Après achèvement et validation, le lanceur génère les comparaisons L6/L12 et
+L9/L12. Ces graphiques utilisent les points réellement simulés, sans interpolation,
+et indiquent les grilles et budgets différents. Un écart ne peut donc pas être
+attribué automatiquement à la taille seule. Le rapport principal demeure fondé
+sur les résultats terminés ; l'intégration de L12 attendra sa validation.

@@ -1,0 +1,98 @@
+{
+  "sizes": [
+    {
+      "L": 6,
+      "N": 864,
+      "temperatures": 46,
+      "burn": 6000,
+      "production": 30000,
+      "peak_T": 1050.0,
+      "peak_cv": 5.872977223254476,
+      "peak_q": 0.5753600247366616,
+      "min_ess": 1190.784061886844,
+      "max_rhat": 1.0045147224478908,
+      "critical_ok": true,
+      "min_swap": 0.14416666666666667,
+      "mean_swap": 0.7389925925925924,
+      "weakest_link_low": 650.0,
+      "weakest_link_high": 800.0,
+      "roundtrips": 7,
+      "hot_q": 0.06537863147109474,
+      "peak_weight_difference": 0.030333333333333323
+    },
+    {
+      "L": 9,
+      "N": 2916,
+      "temperatures": 46,
+      "burn": 6000,
+      "production": 30000,
+      "peak_T": 1055.0,
+      "peak_cv": 17.67646291420366,
+      "peak_q": 0.36710582271845627,
+      "min_ess": 37.04176489653888,
+      "max_rhat": 1.0258509174760073,
+      "critical_ok": false,
+      "min_swap": 0.0036666666666666666,
+      "mean_swap": 0.611,
+      "weakest_link_low": 650.0,
+      "weakest_link_high": 800.0,
+      "roundtrips": 0,
+      "hot_q": 0.035629358345445554,
+      "peak_weight_difference": 0.004333333333333356
+    },
+    {
+      "L": 12,
+      "N": 6912,
+      "temperatures": 90,
+      "burn": 12000,
+      "production": 60000,
+      "peak_T": 1052.5,
+      "peak_cv": 26.85007494276261,
+      "peak_q": 0.41918549820690143,
+      "min_ess": 44.66176031392517,
+      "max_rhat": 1.267918516692413,
+      "critical_ok": false,
+      "min_swap": 0.29241666666666666,
+      "mean_swap": 0.6133230337078652,
+      "weakest_link_low": 875.0,
+      "weakest_link_high": 900.0,
+      "roundtrips": 0,
+      "hot_q": 0.023165401757931865,
+      "peak_weight_difference": 0.6663333333333333
+    }
+  ],
+  "figures": [
+    "croise_01_transition",
+    "croise_02_ordres",
+    "croise_03_diagnostics",
+    "croise_04_populations",
+    "croise_05_energie",
+    "croise_06_protocoles",
+    "croise_07_variantes",
+    "croise_08_spatial"
+  ],
+  "sources": [
+    "production",
+    "production_L9",
+    "production_L12"
+  ],
+  "heating_cooling_completed_sizes": [
+    6,
+    9,
+    12
+  ],
+  "caveats": [
+    "L12 has a denser grid and twice the sweep budget.",
+    "Technical validation is not equilibrium validation.",
+    "L6 spatial correlation campaign has a separate protocol."
+  ],
+  "deferred_thermal_cycle_sizes": [],
+  "cycle_figures": [
+    "croise_09_cycles",
+    "croise_10_cycles_global",
+    "croise_11_cycles_diagnostics",
+    "croise_12_cycle_L9_reference",
+    "croise_13_cycle_L12_reference",
+    "croise_14_cycle_L12_populations"
+  ]
+}

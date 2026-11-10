@@ -1,0 +1,279 @@
+\subsubsection{Question commune : que change réellement l’augmentation de taille ?}
+
+Les trois productions sont terminées et techniquement validées. Les contrôles de composition, d’énergie et d’identité des observables passent pour $L=6,9,12$ ; les diagnostics statistiques près du maximum passent pour L6 mais restent insuffisants pour L9 et L12. La comparaison ci-dessous exploite les archives brutes, y compris des observables qui n’étaient pas représentées dans les anciennes figures. Elle remplace la précédente synthèse à deux tailles ; les exports L6/L9 et L6/L12 restent disponibles sans être reproduits une seconde fois.
+
+\begin{center}\small\begin{tabular}{lrrr}\toprule
+
+Protocole & $L=6$ & $L=9$ & $L=12$\\\midrule
+
+Nombre de sites & 864 & 2916 & 6912\\
+
+Températures simulées & 46 & 46 & 90\\
+
+Balayages écartés par chaîne & 6000 & 6000 & 12000\\
+
+Balayages de production & 30000 & 30000 & 60000\\
+
+Maximum sur la grille (K) & 1050.0 & 1055.0 & 1052.5\\
+
+Hauteur du maximum $c_V/k_B$ & 5.87 & 17.68 & 26.85\\
+
+ESS minimal dans la fenêtre du pic & 1190.8 & 37.0 & 44.7\\
+
+R-hat maximal $(E,q)$ & 1.005 & 1.026 & 1.268\\
+
+Allers-retours froid--chaud--froid & 7 & 0 & 0\\
+
+\bottomrule\end{tabular}\end{center}
+
+Les deux premières campagnes utilisent 46 températures et le même budget. L12 utilise 90 températures, un pas de 2.5 K près du pic et deux fois plus de balayages. Les observables sont mesurées tous les 10 balayages, les sessions d’échange tous les 5, avec deux chaînes par taille. L12 ne constitue donc pas un contrôle où seule la taille change. Les points sont les températures effectivement simulées ; aucune interpolation ne crée une mesure entre deux points.
+
+\begin{oral}{1. Comment comparer trois tailles sans confondre volume et précision ?}
+
+\begin{itemize}
+
+\item \textbf{Commencer par les quantités intensives.} Doubler le côté de L6 à L12 multiplie le nombre d’atomes par huit, mais ne doit pas multiplier l’énergie \emph{par atome} par huit. On compare donc $u=E/N$, $c_V=C_V/N$ et les paramètres normalisés. Un balayage effectue en revanche $N$ propositions : un même nombre de balayages représente davantage de calcul, sans assurer davantage d’états indépendants.
+
+\item \textbf{Lire les contrôles avant de conclure.} Une barre d’erreur petite est conditionnelle aux bassins visités. L’augmentation du volume peut diminuer l’arrondi de la transition tout en augmentant les séjours métastables. Un désaccord des chaînes interdit de présenter le déplacement du maximum comme une mesure précise de la limite infinie.
+
+\end{itemize}\end{oral}
+
+\subsubsection{Ordre global et local : augmentation sous la transition, diminution au chaud}
+
+\fig{croise_01_transition}{1}{Superposition des trois tailles : amplitude d’ordre, énergie, capacité calorifique, Cowley et fluctuations de q. La fenêtre 1035--1070 K rend visible la transition sans traits reliant les mesures.}
+
+À 1045 K, avant le pic, les amplitudes moyennes sont respectivement $0.652$, $0.784$, $0.795$. L’augmentation de $q$ avec la taille est compatible avec une phase ordonnée moins contaminée par l’arrondi de taille finie. À 1000 K, les trois valeurs restent proches de 0.88--0.89 : augmenter la boîte ne crée donc pas un ordre supplémentaire à toutes les températures. À 1055 K, L6 est encore dans une zone large de mélange, alors que L12 est surtout dans la population peu ordonnée. Comparer les courbes à température fixe et comparer leurs valeurs au maximum propre de chaque taille répondent ainsi à deux questions différentes.
+
+Les deux paramètres de Cowley se rapprochent dans les phases éloignées de la transition, alors que $q$ présente une forte dépendance en taille au chaud. À 1300 K, $\alpha_1\simeq-0.152$ et $\alpha_2\simeq0.153$ pour les trois tailles : les préférences chimiques locales persistent après la perte de l’ordre global. Ce constat associe deux échelles spatiales distinctes ; il ne faut pas appeler les paramètres de Cowley des fractions de phase.
+
+\fig{croise_02_ordres}{1}{Ordre sur une gamme élargie, amplitude multipliée par la racine de N au chaud, cumulant et corrélation énergie--ordre. Les deux derniers diagnostics complètent les courbes moyennes.}
+
+Dans un mélange strictement aléatoire à composition fixée, le nombre d’Au d’un sous-réseau suit une loi hypergéométrique. Elle donne $\operatorname{Var}(p_\mu)=9/[16(N-1)]$, donc $\langle q^2\rangle=3/(N-1)$. On attend une amplitude résiduelle d’ordre $N^{-1/2}$, même sans ordre macroscopique. À 4000 K, les valeurs mesurées de $\langle q\rangle$ sont $0.06538$, $0.03563$, $0.02317$ ; les produits $\sqrt N\langle q\rangle$ valent $1.922$, $1.924$, $1.926$. Cette quasi-superposition soutient l’interprétation en fluctuations finies. Ce n’est pas un ajustement d’exposant critique : 4000 K est encore une température finie, avec des corrélations locales.
+
+\subsubsection{Réponses, coexistence et rôle des poids des populations}
+
+Le maximum de $c_V$ est successivement à 1050, 1055 et 1052.5 K : il ne se déplace pas de façon monotone avec L. Sa hauteur augmente fortement, ce qui est compatible avec un arrondi moindre et avec une variance due à des populations d’énergie différentes. Il serait prématuré d’en déduire une loi $c_V^{\max}\propto L^3$, une chaleur latente ou un ordre thermodynamique de transition : la résolution de grille et surtout les poids d’équilibre ne sont pas contrôlés avec une précision comparable.
+
+\begin{center}\small\begin{tabular}{lrrr}\toprule
+
+Critère sur la grille (K) & L6 & L9 & L12\\\midrule
+
+Maximum $c_V$ & 1050.0 & 1055.0 & 1052.5\\
+
+Maximum $X_q$ & 1055.0 & 1055.0 & 1052.5\\
+
+Minimum $U_q$ près du pic & 1080.0 & 1065.0 & 1055.0\\
+
+\bottomrule\end{tabular}\end{center}
+
+Les maxima de réponse ne sont pas plusieurs mesures indépendantes : ils utilisent les mêmes configurations. Le minimum négatif de $U_q$, particulièrement marqué pour L12, renseigne sur une distribution large ou très asymétrique de $q$. La convention $1-\langle q^4\rangle/(3\langle q^2\rangle^2)$ est scalaire alors que $q$ est une norme à trois composantes ; sa limite chaude n’est pas zéro. Un creux négatif ne suffit donc pas, seul, à établir une coexistence thermodynamique.
+
+\fig{croise_04_populations}{1}{Traces et distributions séparées par chaîne, au maximum propre à chaque taille. Les deux populations deviennent plus distinctes, mais les temps de séjour et leurs poids diffèrent entre chaînes.}
+
+Pour chiffrer cette difficulté, on classe à titre descriptif les mesures selon $q>0.5$. Ce seuil commun n’est pas une séparatrice de phase déterminée par une énergie libre. Au maximum propre à chaque taille, on obtient :
+
+\begin{center}\small\begin{tabular}{lrrrr}\toprule
+
+Taille & $T$ (K) & Fraction chaîne 1 & Fraction chaîne 2 & Changements\\\midrule
+
+L6 & 1050 & 0.604 & 0.634 & 2575\\
+
+L9 & 1055 & 0.362 & 0.366 & 1042\\
+
+L12 & 1052.5 & 0.826 & 0.159 & 1469\\
+
+\bottomrule\end{tabular}\end{center}
+
+À L12, les fractions des deux chaînes diffèrent de 66.6 points de pourcentage. C’est un désaccord majeur sur les populations visitées, malgré la présence de passages dans les deux séries. Un histogramme fusionné aurait masqué cette asymétrie.
+
+Le comptage de changements dépend du seuil et du pas de mesure, et inclut des changements par échange de répliques. Il ne mesure ni un taux de nucléation ni un temps de basculement atomique. Un désaccord de fractions explique simultanément le désaccord de $\langle q\rangle$, celui de l’énergie et l’instabilité des variances.
+
+\subsubsection{Audit statistique : ce que L12 n’a pas réparé}
+
+\fig{croise_03_diagnostics}{1}{Diagnostics croisés : effectif utile, R-hat, nombre de blocs, lenteur de Cowley et des sous-réseaux, acceptation par lien en température. La moyenne des acceptations ne résume pas la circulation.}
+
+\begin{center}\small\begin{tabular}{lrrrrl}\toprule
+
+Taille, $T$ (K) & ESS & R-hat max & Blocs & Écart demi-séries & Statut\\\midrule
+
+L9, 1045 & 1834.3 & 1.004 & 750 & 1.95 & satisfait\\
+
+L9, 1050 & 80.4 & 1.026 & 16 & 0.62 & insuffisant\\
+
+L9, 1055 & 37.0 & 1.013 & 16 & 0.93 & insuffisant\\
+
+L9, 1060 & 59.9 & 1.000 & 26 & 0.22 & insuffisant\\
+
+L9, 1065 & 1539.7 & 1.001 & 600 & 0.80 & satisfait\\
+
+L12, 1047.5 & 5617.5 & 1.001 & 2000 & 2.78 & satisfait\\
+
+L12, 1050 & 2236.8 & 1.064 & 7 & 1.02 & insuffisant\\
+
+L12, 1052.5 & 44.7 & 1.268 & 13 & 0.92 & insuffisant\\
+
+L12, 1055 & 8983.8 & 1.004 & 3000 & 1.18 & satisfait\\
+
+L12, 1057.5 & 9577.9 & 1.000 & 3000 & 0.32 & satisfait\\
+
+\bottomrule\end{tabular}\end{center}
+
+L12 résout mieux les températures voisines de la transition et augmente les séries, mais à 1052.5 K le maximum de R-hat dépasse 1.26 et l’ESS minimal reste inférieur à 45. À 1050 K, un ESS additionné apparemment élevé coexiste avec seulement sept blocs par chaîne : une chaîne rapide peut masquer la lenteur de l’autre dans une somme d’ESS. Le contrôle de la chaîne la plus lente et le désaccord entre chaînes restent indispensables.
+
+La moyenne des acceptations est proche de 61\,\% pour L9 et L12, mais aucun aller-retour complet froid--chaud--froid n’est enregistré. Les liens les moins efficaces sont :
+
+\begin{center}\small\begin{tabular}{lrrr}\toprule
+
+Taille & Lien (K) & Acceptation minimale & Acceptation moyenne\\\midrule
+
+L6 & 650--800 & 14.417\,\% & 73.9\,\%\\
+
+L9 & 650--800 & 0.367\,\% & 61.1\,\%\\
+
+L12 & 875--900 & 29.242\,\% & 61.3\,\%\\
+
+\bottomrule\end{tabular}\end{center}
+
+La densification de L12 a donc réellement amélioré le plus mauvais lien : environ 29\,\% d’acceptation minimale, contre 0.37\,\% pour L9. Le maintien de séjours lents et l’absence d’aller-retour montrent cependant qu’un chevauchement suffisant entre températures voisines ne supprime pas les barrières entre populations. Avec davantage de températures, il faut aussi davantage de déplacements le long de l’échelle pour la parcourir.
+
+Le manque d’allers-retours est un indicateur global, sans être une preuve que toutes les moyennes à chaque température soient fausses. Il faut allonger les fenêtres critiques, vérifier les temps de résidence et adapter la grille aux liens réellement limitants. Les trois tailles actuelles ne justifient aucune extrapolation quantitative vers $L\to\infty$.
+
+La nouvelle analyse estime aussi $\tau_{\alpha_1}$, $\tau_{\alpha_2}$ et $\max_\mu\tau_{p_\mu}$ : ces colonnes n’étaient pas toutes tracées auparavant. Une occupation signée peut relaxer plus lentement que la norme $q$ lorsque la boîte change de variante. Un R-hat des occupations élevé au froid peut simplement signaler des variantes différentes dans les chaînes ; il limite l’estimation de l’occupation canonique moyenne, sans invalider automatiquement une énergie invariante. Les erreurs des moyennes de $q$ ont été recalculées pour des blocs disjoints de longueurs moitié, référence et double dans \texttt{block\_sensitivity.csv}. Ce contrôle reste conditionnel aux trajectoires et devient fragile lorsqu’il ne reste que quelques blocs.
+
+\begin{center}\small\begin{tabular}{lrrrr}\toprule
+
+Au maximum de chaque taille & $b$ & SE$_{b/2}(q)$ & SE$_b(q)$ & SE$_{2b}(q)$\\\midrule
+
+L6 & 7 & 0.0037 & 0.0044 & 0.0052\\
+
+L9 & 183 & 0.0278 & 0.0366 & 0.0425\\
+
+L12 & 446 & 0.0239 & 0.0337 & 0.0491\\
+
+\bottomrule\end{tabular}\end{center}
+
+Ces erreurs par moyennes de blocs n’incluent pas une correction de dispersion entre chaînes. Elles augmentent encore avec la longueur des blocs, surtout pour L12 ; on ne peut donc pas affirmer une stabilité complète. Les barres publiées conservent par ailleurs le maximum entre bootstrap et dispersion des chaînes.
+
+\begin{center}\small\begin{tabular}{lrrr}\toprule
+
+Position du pic : bootstrap conditionnel & Bloc (mesures) & IC 95\,\% (K) & SE (K)\\\midrule
+
+L6 & 37 & $[1050,1055]$ & 0.94\\
+
+L9 & 187 & $[1050,1055]$ & 1.36\\
+
+L12 & 779 & $[1050,1052.5]$ & 1.04\\
+
+\bottomrule\end{tabular}\end{center}
+
+Le bootstrap du maximum rééchantillonne les températures conjointement dans chaque chaîne. Ses intervalles se chevauchent, mais ils ignorent les bassins manqués et le désaccord de poids d’équilibre. Le résultat L12 n’acquiert donc pas une précision physique de 2.5 K simplement parce que sa grille est plus fine.
+
+\subsubsection{Analyse croisée exacte : Cowley, défauts et capacité calorifique}
+
+Le comptage des paires relie exactement l’énergie et les deux paramètres de Cowley. En notant $A_1$ le nombre de paires Au--Au de première coquille et $B_2$ celui des paires Au--Cu de seconde coquille,
+
+\[\frac{A_1}{N}=\frac38+\frac98\alpha_1,\qquad \frac{B_2}{N}=\frac98(1-\alpha_2),\]
+
+\[u=-3.813+0.161\left(\frac38+\frac98\alpha_1\right)+0.0063\frac98(1-\alpha_2)\quad\mathrm{eV/atome}.\]
+
+Cette identité est vérifiée sur toutes les mesures des trois productions : les accords entre énergie et Cowley ne sont donc pas trois preuves indépendantes de transition. Ils constituent un contrôle de cohérence du calcul et relient les défauts locaux au coût énergétique.
+
+Pour $E_1=0.161A_1$ et $E_2=0.0063B_2$, les fluctuations satisfont
+
+\[\frac{c_V}{k_B}=\frac{\operatorname{Var}(E_1)+\operatorname{Var}(E_2)+2\operatorname{Cov}(E_1,E_2)}{N(k_BT)^2}.\]
+
+La covariance est indispensable, même si la seconde interaction est petite : les deux défauts se développent sur les mêmes configurations. Le budget ci-dessous est calculé dans chaque chaîne avant moyenne et reproduit le $c_V$ archivé.
+
+\fig{croise_05_energie}{1}{Décomposition exacte des fluctuations entre première coquille, seconde coquille et covariance. En bas, confrontation descriptive à la pente discrète de l’énergie moyenne.}
+
+\begin{center}\small\begin{tabular}{lrrrr}\toprule
+
+Au pic & Var$(E_1)$ & Var$(E_2)$ & $2$ Cov$(E_1,E_2)$ & Somme\\\midrule
+
+L6 & 3.933 & 0.199 & 1.741 & 5.873\\
+
+L9 & 11.687 & 0.622 & 5.367 & 17.676\\
+
+L12 & 17.732 & 0.947 & 8.171 & 26.850\\
+
+\bottomrule\end{tabular}\end{center}
+
+Les valeurs sont sans dimension, en unités de $c_V/k_B$ par atome. La comparaison à $\Delta u/(k_B\Delta T)$ sert de contrôle descriptif : une dérivée discrète arrondit un pic étroit et utilise des moyennes corrélées entre températures. Un désaccord au pic peut venir de cette discrétisation, des poids des populations ou de l’équilibration ; il ne démontre pas, seul, une erreur de formule de capacité calorifique.
+
+Un contrôle supplémentaire mesure le terme artificiel qui serait ajouté si l’on fusionnait les chaînes avant de calculer la variance : $\operatorname{Var}_c(\overline E_c)/[N(k_BT)^2]$. Ce terme n’est pas inclus dans les résultats thermiques. Au pic propre à chaque taille, il vaudrait respectivement $0.009$, $0.000$, $20.859$. Une divergence des chaînes aurait ainsi gonflé artificiellement le pic L12 si cette précaution méthodologique n’avait pas été prise.
+
+L’acceptation des échanges Au--Cu locaux, distincte de celle des échanges de répliques, vaut au maximum respectivement $9.19\,\%$, $11.89\,\%$, $10.91\,\%$. Un mouvement accepté n’est pas une information indépendante : ces taux ne remplacent ni le temps d’autocorrélation ni le nombre de passages entre bassins.
+
+\subsubsection{Variantes et occupations : relire les bosses sans inventer d’ordre}
+
+\fig{croise_07_variantes}{1}{Moyenne de la norme q et norme des occupations moyennes, séparées par chaîne et par taille ; fractions descriptives des deux populations autour de la transition.}
+
+Une augmentation d’une occupation particulière peut signaler un changement de variante et non une augmentation de l’ordre global. Les tableaux sauvegardent maintenant $p_0,\ldots,p_3$ par chaîne et les fréquences des variantes dominantes conditionnées à $q>0.8$. À faible ordre, l’argument maximal de $p_\mu$ est ambigu ; on ne l’interprète donc pas comme une variante physiquement bien formée. L’écart entre $\langle q\rangle$ et $q(\langle\mathbf p\rangle)$ est un diagnostic de moyenne, pas une mesure directe du nombre de domaines.
+
+\subsubsection{Superposition avec le chauffage et le refroidissement réellement disponibles}
+
+\fig{croise_06_protocoles}{1}{Superposition des trois productions canoniques et des branches de chauffage/refroidissement L6. Chaque symbole indique aussi le protocole ; aucune branche L9 ou L12 n’est fabriquée à partir d’une production canonique.}
+
+Une production par échanges de répliques mesure des températures fixes simultanément ; ce n’est pas une rampe de chauffage, même si son CSV est trié par température croissante. Le cycle séquentiel propage au contraire le dernier état d’un palier vers le suivant, puis revient depuis le véritable état chaud. Les deux branches sont appariées à l’intérieur d’un cycle et portent sa mémoire.
+
+La figure précédente garde les trois productions canoniques et le cycle L6 comme références de protocole. Les cycles L6, L9, L12 sont maintenant achevés ; leurs branches de chauffage et de refroidissement sont superposées en section~\ref{sec:cycles-tailles}, avec leurs diagnostics propres. Les fluctuations d’un palier ne peuvent être interprétées comme une capacité calorifique d’équilibre que si la stationnarité et l’exploration sont suffisantes.
+
+\subsubsection{Données spatiales jusque-là inexploitées : première comparaison des trois tailles}
+
+Les productions L9 et L12 conservent chacune 300 configurations par température et par chaîne, séparées respectivement de 100 et 200 balayages. Les états sélectionnés à 15 températures cibles sont analysés ici avec le même champ local à trois composantes que dans la partie 2. L6 utilise la campagne spatiale dédiée déjà décrite : les budgets ne sont pas identiques. La comparaison illustre une tendance, sans constituer une étude de convergence à précision statistique égale.
+
+On calcule les amplitudes aux sept modes $0$ et $\pm k_{\min}\mathbf e_j$, on soustrait les moyennes complexes dans chaque chaîne, puis on moyenne les puissances connexes avant de former le rapport de second moment. Les captures sont vérifiées contre les mesures de $q$ au même balayage via $S(0)=L^3\langle q^2\rangle$. Les incertitudes utilisent 300 tirages de blocs circulaires avec longueur choisie aussi d’après les trois composantes signées lentes. Le nombre de blocs, les racines indéfinies et les désaccords de chaînes sont signalés dans \texttt{spatial\_comparison.csv}.
+
+\fig{croise_08_spatial}{1}{Comparaison des longueurs connexes : valeurs absolues, rapport à la boîte et régime chaud avec erreurs-types conditionnelles. L6 vient d’une campagne dédiée ; L9 et L12 de captures des productions principales.}
+
+\begin{center}\small\begin{tabular}{lrrrr}\toprule
+
+Taille et température & $\xi/a$ & ESS spatial & R-hat signé max & Limites détectées\\\midrule
+
+L9, 1000 K & 34.31 & 122.1 & 1.43 & boîte, statistique, variantes\\
+
+L9, 1050 K & 11.53 & 31.6 & 1.45 & boîte, statistique, variantes\\
+
+L9, 1060 K & 3.83 & 49.2 & 1.02 & statistique\\
+
+L9, 1300 K & 0.77 & 336.1 & 1.00 & aucune détectée\\
+
+L12, 1000 K & 23.92 & 309.6 & 1.76 & boîte, variantes\\
+
+L12, 1050 K & 12.70 & 15.8 & 1.84 & boîte, statistique, variantes\\
+
+L12, 1060 K & 1.53 & 436.6 & 1.00 & aucune détectée\\
+
+L12, 1300 K & 0.72 & 403.5 & 1.00 & aucune détectée\\
+
+\bottomrule\end{tabular}\end{center}
+
+La longueur ne croît pas nécessairement avec L : à 1000 K, la valeur connexe L12 est inférieure à celle de L9, malgré la boîte plus grande. Les réserves sur les composantes signées montrent que cette comparaison mélange des fluctuations intra-variante et des visites collectives de variantes. Ce n’est pas une mesure d’un domaine qui rétrécirait en augmentant le volume. À 1060 K, L12 a simultanément un $q$ plus faible et une longueur plus courte que L6/L9 : sa population est déjà surtout peu ordonnée, tandis que les autres boîtes restent davantage dans la queue de transition. Il faut donc croiser $\xi$, les distributions et les poids, plutôt que comparer seulement trois longueurs.
+
+Une grande valeur froide reflète aussi l’ordre uniforme et la visite incomplète des variantes. Un $\xi$ supérieur au côté de la boîte n’est pas le rayon d’un domaine plus grand que le système. À haute température, les longueurs beaucoup plus courtes et les paramètres de Cowley proches entre tailles sont compatibles avec un ordre local de portée finie. On ne lit pas un croisement universel de $\xi/(La)$ dans ces quelques points, et l’on n’ajuste ni exposant critique ni loi de croissance des germes.
+
+\subsubsection{Bilan croisé et données complémentaires accessibles}
+
+\begin{itemize}
+
+\item \textbf{Concordance physique.} Le fondamental reste le même par atome pour toutes les tailles. La chute de $q$, la hausse de l’énergie, les changements de Cowley, les distributions et les réponses situent tous une zone proche de 1050--1055 K. Cette concordance est physiquement cohérente, mais les identités énergie--Cowley et les données partagées empêchent de la compter comme autant de preuves statistiques indépendantes.
+
+\item \textbf{Ce que le volume améliore.} L’ordre résiduel au chaud diminue comme une amplitude de taille finie ; la variation près de la transition se resserre et la résolution réciproque $k_{\min}a=2\pi/L$ s’améliore de 1.047 à 0.698 puis 0.524. Les préférences locales loin du pic sont beaucoup moins sensibles au volume que l’ordre global.
+
+\item \textbf{Ce que le volume n’améliore pas ici.} Les passages entre populations deviennent trop lents pour le budget disponible. L12 conserve un désaccord important des chaînes malgré la grille densifiée et la production doublée. Le maximum de 1052.5 K reste provisoire. Le réseau rigide, les paires fixes, l’absence de phonons et la dynamique d’échanges globaux restent identiques : aucune de ces omissions n’est corrigée en augmentant L.
+
+\item \textbf{Ce qu’il faut ensuite mesurer.} Allonger les séries critiques et vérifier leurs poids de population ; comparer des tailles à diagnostics satisfaits ; réaliser les cycles additionnels pour étudier l’hystérésis en taille ; répéter plusieurs trempes avec une dynamique locale si l’objectif devient la nucléation physique. Une différence entre deux courbes seule ne permet pas de choisir entre ces mécanismes.
+
+\end{itemize}
+
+{\raggedright Les fichiers de \texttt{results/comparison\_L6\_L9\_L12} contiennent : \texttt{overview.csv} (budgets et diagnostics), \texttt{all\_observables\_cross.csv} (moments, covariances, autocorrélations et contrôle exact énergie--Cowley à toutes les températures), \texttt{chain\_variant\_statistics.csv} (occupations et populations par chaîne), \texttt{block\_sensitivity.csv} (stabilité des erreurs), \texttt{spatial\_comparison.csv} (modes de Fourier et limites). Les neuf observables instantanées, $X_q$, le cumulant, les identités et acceptations de répliques, les erreurs, les demi-séries et les captures spatiales ont ainsi été examinés. Les historiques bruts d’équilibration gardent leur rôle de diagnostic, sans être incorporés aux moyennes de production.\par}
+
+\begin{oral}{1. Quelle conclusion défendre à partir de toutes les données ?}
+
+\begin{itemize}
+
+\item \textbf{Dire ce qui est robuste et ce qui reste conditionnel.} La structure froide et son énergie sont vérifiées analytiquement. Au chaud, diminuer le biais de $q$ en augmentant N et conserver un Cowley non nul sont deux observations compatibles : l’ordre global disparaît tandis que des préférences de voisinage survivent. Près du pic, la cohérence entre ordres et énergie est forte, mais le poids des deux populations n’est pas assez stable dans les grandes boîtes. On rapporte donc des maxima observés, pas une température expérimentale ni une limite infinie précise.
+
+\item \textbf{Ne pas transformer une amélioration géométrique en validation complète.} L12 laisse davantage de place aux fluctuations et résout mieux Fourier, mais il ralentit aussi l’exploration. La question suivante n’est pas seulement « encore plus grand ? » : c’est « davantage de passages indépendants, avec quel protocole et quels diagnostics ? ». La réponse guide les calculs utiles.
+
+\end{itemize}\end{oral}

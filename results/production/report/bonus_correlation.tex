@@ -20,7 +20,7 @@ Le facteur sinus correspond au réseau de mailles de pas $a$. Cet estimateur com
 La part cohérente $|\langle F\rangle|^2$ est sauvegardée séparément. Cependant, si la chaîne visite plusieurs variantes ordonnées, $\langle\boldsymbol\psi\rangle$ peut être proche de zéro alors que $q$ reste élevé. Le spectre connexe canonique contient alors encore la fluctuation collective entre variantes : une grande valeur de $\xi_{2,L}$ ne décrit pas les petits défauts d'une phase pure.
 Un diagnostic supplémentaire calcule la variance de Fourier conditionnellement au sous-réseau majoritaire, puis moyenne ces variances avec les fréquences des variantes. Ce diagnostic intra-variante enlève la variation entre leurs moyennes. Il est affiché uniquement pour $T\leq1000$ K, $\langle q\rangle>0.8$ et au moins 90\,\% de couverture par des groupes de huit états ou plus. Il s'agit d'un conditionnement explicite, pas d'un remplacement de la corrélation canonique ; il serait biaisant dans le régime désordonné. Aucune incertitude statistique n'est attribuée ici à ce seul diagnostic.
 \subsubsection{Campagne dédiée, incertitudes et contrôles}
-La configuration 	exttt{configs/correlation\_L6.json} utilise $L=6$, 14 températures entre 900 et 2000 K, deux chaînes de graines 202611041 et 202611042. Après 3000 balayages d'équilibration, 12000 balayages produisent 600 configurations par chaîne et température, espacées de 20 balayages. Les échanges de répliques ont lieu tous les 5 balayages.
+La configuration \texttt{configs/correlation\_L6.json} utilise $L=6$, 14 températures entre 900 et 2000 K, deux chaînes de graines 202611041 et 202611042. Après 3000 balayages d'équilibration, 12000 balayages produisent 600 configurations par chaîne et température, espacées de 20 balayages. Les échanges de répliques ont lieu tous les 5 balayages.
 Les états de départ sont les configurations finales de la campagne canonique antérieure à la température disponible la plus proche ; les nouvelles mesures proviennent uniquement de la nouvelle production. Contrairement aux anciennes archives contenant surtout des observables, les nouvelles archives conservent chaque état atomique échantillonné.
 Les intervalles sont les percentiles 2.5 et 97.5 d'un bootstrap circulaire de 400 répétitions, par blocs contigus dans chaque chaîne, avec recalcul de la moyenne complexe et du rapport à chaque répétition. La longueur des blocs vaut environ deux fois le plus grand temps d'autocorrélation estimé parmi $E$, $q$, les puissances des modes et les composantes signées. Une sensibilité à demi/double longueur est conservée autour de la transition. Ces intervalles sont conditionnels aux trajectoires observées et ne corrigent ni une phase non visitée ni la taille finie. À basse température, les composantes signées peuvent rester corrélées bien plus longtemps que l'énergie et la norme $q$ ; l'effectif utile ou le nombre de blocs deviennent alors insuffisants. Un intervalle étroit malgré ce signalement reste une incertitude conditionnelle fragile, et non une mesure validée à haute précision.
 Les diagnostics comprennent R-hat de $E$, $q$, $S(0)$ et des composantes signées, l'effectif utile, les échanges acceptés et la fraction de rapports bootstrap définis. Une racine négative ou un dénominateur nul produit une valeur manquante, jamais un zéro fabriqué. Une longueur supérieure à $L/2$ est signalée sans être écrêtée : ce seuil est un repère prudent, pas une borne mathématique de l'estimateur.
@@ -43,15 +43,15 @@ signaler ratios indefinis, diagnostics et taille finie
 \subsubsection{Résultats à taille finie et comparaison des définitions}
 \begin{center}\scriptsize\begin{tabular}{rrrrrl}\toprule
 $T$ (K) & $\xi_{\rm brut}/a$ & $\xi_{\rm c}/a$ & IC 95\,\% de $\xi_{\rm c}/a$ & Intra-variante$/a$ & Réserve\\\midrule
-900 & 41.344 & 40.722 & $[35.942,43.461]$ & 0.687 & voir CSV\\
-980 & 24.609 & 24.327 & $[22.754,25.768]$ & 0.759 & voir CSV\\
-1000 & 18.587 & 18.445 & $[17.039,20.036]$ & 1.097 & voir CSV\\
-1020 & 14.071 & 13.968 & $[12.672,15.314]$ & \textemdash & voir CSV\\
-1030 & 11.379 & 11.322 & $[10.277,12.462]$ & \textemdash & voir CSV\\
-1040 & 8.794 & 8.732 & $[8.051,9.428]$ & \textemdash & voir CSV\\
-1045 & 7.320 & 7.276 & $[6.853,7.724]$ & \textemdash & voir CSV\\
-1050 & 6.220 & 6.193 & $[5.868,6.509]$ & \textemdash & voir CSV\\
-1055 & 5.052 & 5.037 & $[4.775,5.356]$ & \textemdash & voir CSV\\
+900 & 41.344 & 40.722 & $[35.942,43.461]$ & 0.687 & taille finie, ESS faible\\
+980 & 24.609 & 24.327 & $[22.754,25.768]$ & 0.759 & taille finie, ESS faible\\
+1000 & 18.587 & 18.445 & $[17.039,20.036]$ & 1.097 & taille finie, ESS faible\\
+1020 & 14.071 & 13.968 & $[12.672,15.314]$ & \textemdash & taille finie, ESS faible\\
+1030 & 11.379 & 11.322 & $[10.277,12.462]$ & \textemdash & taille finie, ESS faible\\
+1040 & 8.794 & 8.732 & $[8.051,9.428]$ & \textemdash & taille finie, ESS faible\\
+1045 & 7.320 & 7.276 & $[6.853,7.724]$ & \textemdash & taille finie, ESS faible\\
+1050 & 6.220 & 6.193 & $[5.868,6.509]$ & \textemdash & taille finie, ESS faible\\
+1055 & 5.052 & 5.037 & $[4.775,5.356]$ & \textemdash & taille finie, ESS faible\\
 1060 & 4.009 & 4.002 & $[3.775,4.202]$ & \textemdash & taille finie\\
 1080 & 1.854 & 1.844 & $[1.710,1.956]$ & \textemdash & aucune détectée\\
 1100 & 1.374 & 1.370 & $[1.283,1.460]$ & \textemdash & aucune détectée\\
@@ -59,7 +59,7 @@ $T$ (K) & $\xi_{\rm brut}/a$ & $\xi_{\rm c}/a$ & IC 95\,\% de $\xi_{\rm c}/a$ & 
 2000 & 0.374 & 0.376 & $[0.295,0.441]$ & \textemdash & aucune détectée\\
 \bottomrule\end{tabular}\end{center}
 Dans la phase froide, la grande longueur canonique et la longueur intra-variante beaucoup plus courte répondent à des questions différentes : cohérence de l'ordre à l'échelle de la boîte, ou fluctuations conditionnelles autour d'une variante. L'augmentation du rapport spectral ne constitue pas la mesure d'un domaine géométrique plus grand que le volume.
-Au-dessus de la transition, la longueur devient plus courte. Avec seulement six mailles par direction, le premier décalage accessible est $k_{\min}a=2\pi/6\simeq1.047$ : le régime des très petits vecteurs d'onde est peu résolu. Cette campagne ne détermine ni un exposant critique, ni une divergence, ni une température critique extrapolée. Il faudrait plusieurs tailles et étudier notamment $\xi/L$ en conservant la même définition.
+Au-dessus de la transition, la longueur devient plus courte. Avec seulement six mailles par direction, le premier décalage accessible est $k_{\min}a=2\pi/6\simeq1.047$ : le régime des très petits vecteurs d'onde est peu résolu. Cette campagne ne détermine ni un exposant critique, ni une divergence, ni une température critique extrapolée. Il faudrait plusieurs tailles et étudier notamment $\xi/(La)$ en conservant la même définition.
 \fig{correlation_01_xi}{1}{Longueurs spectrales brute et connexe, et diagnostic conditionnel intra-variante à basse température. Les grandes valeurs doivent être interprétées avec les réserves de taille finie.}
 \fig{correlation_02_real_fourier}{1}{Corrélations réelles connexes obtenues par FFT inverse et spectres des enveloppes d’ordre. Un plateau à basse température peut subsister du fait des fluctuations collectives entre variantes.}
 \fig{correlation_04_diagnostics}{1}{Diagnostics de la campagne spatiale ; l’accord statistique ne supprime pas les effets de taille finie.}

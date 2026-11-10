@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.9.11)  8 NOV 2026 22:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.9.11)  10 NOV 2026 07:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -859,7 +859,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip71
 ) (auto_results.tex)
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 55
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 56
 .
 
 (C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmr.fd
@@ -877,25 +877,25 @@ Package babel Info: 'french' activates 'french' shorthands.
 )
 \openout1 = `rapport_template.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Info: Redefining \degres on input line 55.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Info: Redefining \degres on input line 56.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -957,13 +957,13 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 s.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-LaTeX Info: Redefining \microtypecontext on input line 55.
-Package microtype Info: Applying patch `item' on input line 55.
-Package microtype Info: Applying patch `toc' on input line 55.
-Package microtype Info: Applying patch `eqnum' on input line 55.
-Package microtype Info: Applying patch `footnote' on input line 55.
-Package microtype Info: Applying patch `verbatim' on input line 55.
-LaTeX Info: Redefining \microtypesetup on input line 55.
+LaTeX Info: Redefining \microtypecontext on input line 56.
+Package microtype Info: Applying patch `item' on input line 56.
+Package microtype Info: Applying patch `toc' on input line 56.
+Package microtype Info: Applying patch `eqnum' on input line 56.
+Package microtype Info: Applying patch `footnote' on input line 56.
+Package microtype Info: Applying patch `verbatim' on input line 56.
+LaTeX Info: Redefining \microtypesetup on input line 56.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -979,7 +979,7 @@ Package microtype Info: No adjustment of character kerning.
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
-Package hyperref Info: Link coloring ON on input line 55.
+Package hyperref Info: Link coloring ON on input line 56.
 
 (C:\Users\vuache_h\Desktop\perso\Cu3Au_MC\results\thermal_cycle_L6\report\build
 \rapport_template.out)
@@ -988,38 +988,38 @@ Package hyperref Info: Link coloring ON on input line 55.
 \@outlinefile=\write4
 \openout4 = `rapport_template.out'.
 
-Package hyperref Info: Option `pageanchor' set `false' on input line 56.
+Package hyperref Info: Option `pageanchor' set `false' on input line 57.
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 6
-3.
+4.
 
 (C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 6
-3.
+4.
 
 (C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-63.
+64.
 
 (C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/lm\omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-63.
+64.
 
 (C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/lm\omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <24.88> on input line 63.
+(Font)              <24.88> on input line 64.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <20.74> on input line 63.
+(Font)              <20.74> on input line 64.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <17.28> on input line 63.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 63.
+(Font)              <17.28> on input line 64.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 64.
 
 
 (C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
@@ -1028,7 +1028,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 63.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 64.
 
  (C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1037,15 +1037,15 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 68.
+(Font)              <10> on input line 69.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 68.
+(Font)              <7> on input line 69.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 68.
+(Font)              <5> on input line 69.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 75.
+(Font)              <9> on input line 78.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 75.
+(Font)              <6> on input line 78.
  [1
 
 {C:/Users/vuache_h/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/v
@@ -1053,7 +1053,7 @@ uache_h/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/Users/vu
 ache_h/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users/vua
 che_h/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Users/
 vuache_h/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}]
-Package hyperref Info: Option `pageanchor' set `true' on input line 84.
+Package hyperref Info: Option `pageanchor' set `true' on input line 87.
 
 (C:\Users\vuache_h\Desktop\perso\Cu3Au_MC\results\thermal_cycle_L6\report\build
 \rapport_template.toc [1])
@@ -1061,52 +1061,54 @@ Package hyperref Info: Option `pageanchor' set `true' on input line 84.
 \openout5 = `rapport_template.toc'.
 
  [2] [3]
-<figures/01_reseau.pdf, id=285, 851.20775pt x 454.82957pt>
+<figures/01_reseau.pdf, id=290, 851.20775pt x 454.82957pt>
 File: figures/01_reseau.pdf Graphic file (type pdf)
 <use figures/01_reseau.pdf>
-Package pdftex.def Info: figures/01_reseau.pdf  used on input line 205.
+Package pdftex.def Info: figures/01_reseau.pdf  used on input line 245.
 (pdftex.def)             Requested size: 464.91862pt x 248.422pt.
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/lmr/m/sc/10'.
 (microtype)             Ignoring protrusion settings for this character.
-<figures/13_coquilles.pdf, id=286, 586.35616pt x 347.5133pt>
+<figures/13_coquilles.pdf, id=291, 586.35616pt x 347.5133pt>
 File: figures/13_coquilles.pdf Graphic file (type pdf)
 <use figures/13_coquilles.pdf>
-Package pdftex.def Info: figures/13_coquilles.pdf  used on input line 211.
+Package pdftex.def Info: figures/13_coquilles.pdf  used on input line 251.
 (pdftex.def)             Requested size: 464.92517pt x 275.5453pt.
  [4{C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathe
-x.enc} <./figures/01_reseau.pdf>]
-<figures/14_organigramme.pdf, id=314, 518.53723pt x 612.8496pt>
+x.enc}] [5 <./figures/01_reseau.pdf> <./figures/13_coquilles.pdf>]
+<figures/14_organigramme.pdf, id=335, 518.53723pt x 612.8496pt>
 File: figures/14_organigramme.pdf Graphic file (type pdf)
 <use figures/14_organigramme.pdf>
-Package pdftex.def Info: figures/14_organigramme.pdf  used on input line 276.
+Package pdftex.def Info: figures/14_organigramme.pdf  used on input line 317.
 (pdftex.def)             Requested size: 261.8711pt x 309.50063pt.
- [5 <./figures/13_coquilles.pdf>] [6 <./figures/14_organigramme.pdf>]
-<figures/12_cowley.pdf, id=348, 857.30298pt x 378.98691pt>
+ [6]
+<figures/12_cowley.pdf, id=346, 857.30298pt x 378.98691pt>
 File: figures/12_cowley.pdf Graphic file (type pdf)
 <use figures/12_cowley.pdf>
-Package pdftex.def Info: figures/12_cowley.pdf  used on input line 336.
+Package pdftex.def Info: figures/12_cowley.pdf  used on input line 396.
 (pdftex.def)             Requested size: 489.38725pt x 216.34283pt.
- [7 <./figures/12_cowley.pdf>]
-<figures/15_variantes.pdf, id=376, 686.565pt x 313.11278pt>
+ [7 <./figures/14_organigramme.pdf>]
+<figures/15_variantes.pdf, id=360, 686.565pt x 313.11278pt>
 File: figures/15_variantes.pdf Graphic file (type pdf)
 <use figures/15_variantes.pdf>
-Package pdftex.def Info: figures/15_variantes.pdf  used on input line 380.
+Package pdftex.def Info: figures/15_variantes.pdf  used on input line 459.
 (pdftex.def)             Requested size: 489.3817pt x 223.18593pt.
-<figures/09_sous_reseaux.pdf, id=377, 857.76993pt x 379.4928pt>
+ [8 <./figures/12_cowley.pdf>]
+<figures/09_sous_reseaux.pdf, id=389, 857.76993pt x 379.4928pt>
 File: figures/09_sous_reseaux.pdf Graphic file (type pdf)
 <use figures/09_sous_reseaux.pdf>
-Package pdftex.def Info: figures/09_sous_reseaux.pdf  used on input line 404.
+Package pdftex.def Info: figures/09_sous_reseaux.pdf  used on input line 483.
 (pdftex.def)             Requested size: 489.39204pt x 216.51581pt.
+ [9 <./figures/15_variantes.pdf> <./figures/09_sous_reseaux.pdf>]
+(current_validation.tex
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 406.
- (current_validation.tex [8 <./figures/15_variantes.pdf>]) [9 <./figures/09_sou
-s_reseaux.pdf>]
+(Font)              <8> on input line 2.
+) [10]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 497.
- [10]
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 5
-69.
+(Font)              <12> on input line 613.
+ [11]
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 7
+00.
 
 (C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
@@ -1115,161 +1117,243 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-<figures/16_coupes_2D.pdf, id=436, 707.90553pt x 509.57877pt>
+<figures/16_coupes_2D.pdf, id=446, 707.90553pt x 509.57877pt>
 File: figures/16_coupes_2D.pdf Graphic file (type pdf)
 <use figures/16_coupes_2D.pdf>
-Package pdftex.def Info: figures/16_coupes_2D.pdf  used on input line 579.
+Package pdftex.def Info: figures/16_coupes_2D.pdf  used on input line 710.
 (pdftex.def)             Requested size: 429.97466pt x 309.51297pt.
-<figures/17_moyennes_cumulees.pdf, id=437, 712.99063pt x 495.48615pt>
+<figures/17_moyennes_cumulees.pdf, id=447, 712.99063pt x 495.48615pt>
 File: figures/17_moyennes_cumulees.pdf Graphic file (type pdf)
 <use figures/17_moyennes_cumulees.pdf>
-Package pdftex.def Info: figures/17_moyennes_cumulees.pdf  used on input line 5
-82.
+Package pdftex.def Info: figures/17_moyennes_cumulees.pdf  used on input line 7
+13.
 (pdftex.def)             Requested size: 445.37871pt x 309.51173pt.
-<figures/10_repliques.pdf, id=438, 857.59207pt x 375.87929pt>
+<figures/10_repliques.pdf, id=448, 857.59207pt x 375.87929pt>
 File: figures/10_repliques.pdf Graphic file (type pdf)
 <use figures/10_repliques.pdf>
-Package pdftex.def Info: figures/10_repliques.pdf  used on input line 591.
+Package pdftex.def Info: figures/10_repliques.pdf  used on input line 722.
 (pdftex.def)             Requested size: 489.39525pt x 214.50003pt.
 
-(representative_results.tex) [11] [12 <./figures/16_coupes_2D.pdf> <./figures/1
-7_moyennes_cumulees.pdf>] [13 <./figures/10_repliques.pdf>]
-<figures/05_diagnostics.pdf, id=494, 857.4864pt x 591.60526pt>
+[12] [13 <./figures/16_coupes_2D.pdf> <./figures/17_moyennes_cumulees.pdf>]
+(representative_results.tex) [14 <./figures/10_repliques.pdf>]
+<figures/05_diagnostics.pdf, id=503, 857.4864pt x 591.60526pt>
 File: figures/05_diagnostics.pdf Graphic file (type pdf)
 <use figures/05_diagnostics.pdf>
-Package pdftex.def Info: figures/05_diagnostics.pdf  used on input line 693.
+Package pdftex.def Info: figures/05_diagnostics.pdf  used on input line 860.
 (pdftex.def)             Requested size: 448.60393pt x 309.50513pt.
-<figures/06_traces.pdf, id=495, 864.45273pt x 519.69658pt>
+<figures/06_traces.pdf, id=504, 864.45273pt x 519.69658pt>
 File: figures/06_traces.pdf Graphic file (type pdf)
 <use figures/06_traces.pdf>
-Package pdftex.def Info: figures/06_traces.pdf  used on input line 695.
+Package pdftex.def Info: figures/06_traces.pdf  used on input line 862.
 (pdftex.def)             Requested size: 489.39279pt x 294.21593pt.
- [14 <./figures/05_diagnostics.pdf>] (critical_table.tex)
-<figures/11_zoom_transition.pdf, id=517, 857.86562pt x 555.65092pt>
+ [15] [16 <./figures/05_diagnostics.pdf> <./figures/06_traces.pdf>] (critical_t
+able.tex)
+<figures/11_zoom_transition.pdf, id=540, 857.86562pt x 555.65092pt>
 File: figures/11_zoom_transition.pdf Graphic file (type pdf)
 <use figures/11_zoom_transition.pdf>
-Package pdftex.def Info: figures/11_zoom_transition.pdf  used on input line 742
+Package pdftex.def Info: figures/11_zoom_transition.pdf  used on input line 929
 .
 (pdftex.def)             Requested size: 477.86201pt x 309.51756pt.
-<figures/04_distributions.pdf, id=519, 857.23087pt x 364.9665pt>
+<figures/04_distributions.pdf, id=543, 857.23087pt x 364.9665pt>
 File: figures/04_distributions.pdf Graphic file (type pdf)
 <use figures/04_distributions.pdf>
-Package pdftex.def Info: figures/04_distributions.pdf  used on input line 751.
+Package pdftex.def Info: figures/04_distributions.pdf  used on input line 939.
 (pdftex.def)             Requested size: 489.38533pt x 208.35606pt.
- [15 <./figures/06_traces.pdf>] [16 <./figures/11_zoom_transition.pdf> <./figur
-es/04_distributions.pdf>]
+
+[17] [18 <./figures/11_zoom_transition.pdf> <./figures/04_distributions.pdf>]
 (peak_uncertainty.tex)
-<figures/18_incertitude_pic.pdf, id=575, 712.90149pt x 358.06471pt>
+<figures/18_incertitude_pic.pdf, id=591, 712.90149pt x 358.06471pt>
 File: figures/18_incertitude_pic.pdf Graphic file (type pdf)
 <use figures/18_incertitude_pic.pdf>
-Package pdftex.def Info: figures/18_incertitude_pic.pdf  used on input line 773
+Package pdftex.def Info: figures/18_incertitude_pic.pdf  used on input line 961
 .
 (pdftex.def)             Requested size: 464.92516pt x 233.51514pt.
- [17 <./figures/18_incertitude_pic.pdf>]
-<figures/08_champ_moyen.pdf, id=590, 857.80006pt x 379.4928pt>
+ [19 <./figures/18_incertitude_pic.pdf>]
+<figures/08_champ_moyen.pdf, id=606, 857.80006pt x 379.4928pt>
 File: figures/08_champ_moyen.pdf Graphic file (type pdf)
 <use figures/08_champ_moyen.pdf>
-Package pdftex.def Info: figures/08_champ_moyen.pdf  used on input line 841.
+Package pdftex.def Info: figures/08_champ_moyen.pdf  used on input line 1031.
 (pdftex.def)             Requested size: 489.39613pt x 216.51001pt.
-
-(discussion_results.tex [18 <./figures/08_champ_moyen.pdf>]) [19] [20]
-(bonus_cycle.tex [21]
-<figures/bonus_01_thermodynamique.pdf, id=652, 857.56696pt x 580.04204pt>
+ [20 <./figures/08_champ_moyen.pdf>] (discussion_results.tex) [21] [22] (bonus_
+cycle.tex
+[23]
+<figures/bonus_01_thermodynamique.pdf, id=667, 857.56696pt x 580.04204pt>
 File: figures/bonus_01_thermodynamique.pdf Graphic file (type pdf)
 <use figures/bonus_01_thermodynamique.pdf>
 Package pdftex.def Info: figures/bonus_01_thermodynamique.pdf  used on input li
 ne 49.
 (pdftex.def)             Requested size: 457.59648pt x 309.50958pt.
-<figures/bonus_02_ordres.pdf, id=653, 1002.40562pt x 580.04204pt>
+<figures/bonus_02_ordres.pdf, id=668, 1002.40562pt x 580.04204pt>
 File: figures/bonus_02_ordres.pdf Graphic file (type pdf)
 <use figures/bonus_02_ordres.pdf>
 Package pdftex.def Info: figures/bonus_02_ordres.pdf  used on input line 50.
 (pdftex.def)             Requested size: 464.92076pt x 269.0264pt.
-<figures/bonus_03_sous_reseaux.pdf, id=654, 857.69972pt x 580.04204pt>
+<figures/bonus_03_sous_reseaux.pdf, id=669, 857.69972pt x 580.04204pt>
 File: figures/bonus_03_sous_reseaux.pdf Graphic file (type pdf)
 <use figures/bonus_03_sous_reseaux.pdf>
 Package pdftex.def Info: figures/bonus_03_sous_reseaux.pdf  used on input line 
 51.
 (pdftex.def)             Requested size: 457.66733pt x 309.50958pt.
-<figures/bonus_04_ecarts.pdf, id=655, 785.77501pt x 509.57877pt>
+<figures/bonus_04_ecarts.pdf, id=670, 785.77501pt x 509.57877pt>
 File: figures/bonus_04_ecarts.pdf Graphic file (type pdf)
 <use figures/bonus_04_ecarts.pdf>
 Package pdftex.def Info: figures/bonus_04_ecarts.pdf  used on input line 52.
 (pdftex.def)             Requested size: 464.92213pt x 301.50417pt.
-<figures/bonus_06_diagnostics.pdf, id=656, 784.34271pt x 509.57877pt>
+<figures/bonus_06_diagnostics.pdf, id=671, 784.34271pt x 509.57877pt>
 File: figures/bonus_06_diagnostics.pdf Graphic file (type pdf)
 <use figures/bonus_06_diagnostics.pdf>
 Package pdftex.def Info: figures/bonus_06_diagnostics.pdf  used on input line 5
 3.
 (pdftex.def)             Requested size: 464.92442pt x 302.05623pt.
-<figures/bonus_08_distributions.pdf, id=657, 857.73512pt x 509.57877pt>
+<figures/bonus_08_distributions.pdf, id=672, 857.73512pt x 509.57877pt>
 File: figures/bonus_08_distributions.pdf Graphic file (type pdf)
 <use figures/bonus_08_distributions.pdf>
 Package pdftex.def Info: figures/bonus_08_distributions.pdf  used on input line
  54.
 (pdftex.def)             Requested size: 464.92384pt x 276.21036pt.
-) (bonus_animations.tex [22 <./figures/bonus_01_thermodynamique.pdf>] [23 <./fi
-gures/bonus_02_ordres.pdf> <./figures/bonus_03_sous_reseaux.pdf>] [24 <./figure
-s/bonus_04_ecarts.pdf> <./figures/bonus_06_diagnostics.pdf>]
-<figures/animations_01_evolution.pdf, id=822, 1002.37045pt x 338.96036pt>
+) (bonus_animations.tex [24] [25 <./figures/bonus_01_thermodynamique.pdf> <./fi
+gures/bonus_02_ordres.pdf>] [26 <./figures/bonus_03_sous_reseaux.pdf> <./figure
+s/bonus_04_ecarts.pdf>] [27 <./figures/bonus_06_diagnostics.pdf> <./figures/bon
+us_08_distributions.pdf>]
+<figures/animations_01_evolution.pdf, id=852, 1002.37045pt x 338.96036pt>
 File: figures/animations_01_evolution.pdf Graphic file (type pdf)
 <use figures/animations_01_evolution.pdf>
 Package pdftex.def Info: figures/animations_01_evolution.pdf  used on input lin
 e 14.
 (pdftex.def)             Requested size: 489.39162pt x 165.49205pt.
-) (bonus_correlation.tex [25 <./figures/bonus_08_distributions.pdf>] [26 <./fig
-ures/animations_01_evolution.pdf>] [27]
-<figures/correlation_01_xi.pdf, id=866, 857.87567pt x 366.85657pt>
+) [28 <./figures/animations_01_evolution.pdf>]
+(bonus_correlation.tex [29]
+<figures/correlation_01_xi.pdf, id=881, 857.87567pt x 366.85657pt>
 File: figures/correlation_01_xi.pdf Graphic file (type pdf)
 <use figures/correlation_01_xi.pdf>
 Package pdftex.def Info: figures/correlation_01_xi.pdf  used on input line 63.
 (pdftex.def)             Requested size: 489.40001pt x 209.28394pt.
-<figures/correlation_02_real_fourier.pdf, id=867, 857.36375pt x 353.06468pt>
+<figures/correlation_02_real_fourier.pdf, id=882, 857.36375pt x 353.06468pt>
 File: figures/correlation_02_real_fourier.pdf Graphic file (type pdf)
 <use figures/correlation_02_real_fourier.pdf>
 Package pdftex.def Info: figures/correlation_02_real_fourier.pdf  used on input
  line 64.
 (pdftex.def)             Requested size: 489.39578pt x 201.53448pt.
-<figures/correlation_04_diagnostics.pdf, id=868, 1000.95728pt x 339.11658pt>
+<figures/correlation_04_diagnostics.pdf, id=883, 1000.95728pt x 339.11658pt>
 File: figures/correlation_04_diagnostics.pdf Graphic file (type pdf)
 <use figures/correlation_04_diagnostics.pdf>
 Package pdftex.def Info: figures/correlation_04_diagnostics.pdf  used on input 
 line 65.
 (pdftex.def)             Requested size: 489.38895pt x 165.80118pt.
-<figures/correlation_03_relaxation.pdf, id=869, 857.83046pt x 556.5047pt>
+ [30]
+<figures/correlation_03_relaxation.pdf, id=892, 857.83046pt x 556.5047pt>
 File: figures/correlation_03_relaxation.pdf Graphic file (type pdf)
 <use figures/correlation_03_relaxation.pdf>
 Package pdftex.def Info: figures/correlation_03_relaxation.pdf  used on input l
 ine 72.
 (pdftex.def)             Requested size: 477.09634pt x 309.50912pt.
-) [28 <./figures/correlation_01_xi.pdf>] (bonus_sizes.tex [29 <./figures/correl
-ation_02_real_fourier.pdf> <./figures/correlation_04_diagnostics.pdf>]
-<figures/tailles_01_comparaison.pdf, id=932, 1002.10696pt x 574.26042pt>
-File: figures/tailles_01_comparaison.pdf Graphic file (type pdf)
-<use figures/tailles_01_comparaison.pdf>
-Package pdftex.def Info: figures/tailles_01_comparaison.pdf  used on input line
- 20.
-(pdftex.def)             Requested size: 489.3853pt x 280.44371pt.
- [30 <./figures/correlation_03_relaxation.pdf>]
-<figures/tailles_02_historiques.pdf, id=954, 857.49675pt x 519.69658pt>
-File: figures/tailles_02_historiques.pdf Graphic file (type pdf)
-<use figures/tailles_02_historiques.pdf>
-Package pdftex.def Info: figures/tailles_02_historiques.pdf  used on input line
- 32.
-(pdftex.def)             Requested size: 464.92549pt x 281.77388pt.
-<figures/tailles_03_distributions.pdf, id=955, 857.5218pt x 364.9665pt>
-File: figures/tailles_03_distributions.pdf Graphic file (type pdf)
-<use figures/tailles_03_distributions.pdf>
-Package pdftex.def Info: figures/tailles_03_distributions.pdf  used on input li
-ne 33.
-(pdftex.def)             Requested size: 464.926pt x 197.87532pt.
-) [31 <./figures/tailles_01_comparaison.pdf>] [32 <./figures/tailles_02_histori
-ques.pdf> <./figures/tailles_03_distributions.pdf>] [33] [34
+ [31 <./figures/correlation_01_xi.pdf> <./figures/correlation_02_real_fourier.p
+df>]) [32 <./figures/correlation_04_diagnostics.pdf> <./figures/correlation_03_
+relaxation.pdf>] (bonus_sizes.tex
+<figures/croise_01_transition.pdf, id=968, 930.24474pt x 539.39015pt>
+File: figures/croise_01_transition.pdf Graphic file (type pdf)
+<use figures/croise_01_transition.pdf>
+Package pdftex.def Info: figures/croise_01_transition.pdf  used on input line 4
+3.
+(pdftex.def)             Requested size: 489.39362pt x 283.76842pt.
+ [33]
+<figures/croise_02_ordres.pdf, id=976, 857.86562pt x 539.39015pt>
+File: figures/croise_02_ordres.pdf Graphic file (type pdf)
+<use figures/croise_02_ordres.pdf>
+Package pdftex.def Info: figures/croise_02_ordres.pdf  used on input line 49.
+(pdftex.def)             Requested size: 489.39427pt x 307.71071pt.
+ [34 <./figures/croise_01_transition.pdf> <./figures/croise_02_ordres.pdf>]
+<figures/croise_04_populations.pdf, id=1077, 929.99509pt x 713.74155pt>
+File: figures/croise_04_populations.pdf Graphic file (type pdf)
+<use figures/croise_04_populations.pdf>
+Package pdftex.def Info: figures/croise_04_populations.pdf  used on input line 
+71.
+(pdftex.def)             Requested size: 403.29584pt x 309.51668pt.
+ [35 <./figures/croise_04_populations.pdf>]
+<figures/croise_03_diagnostics.pdf, id=1092, 930.0126pt x 539.39015pt>
+File: figures/croise_03_diagnostics.pdf Graphic file (type pdf)
+<use figures/croise_03_diagnostics.pdf>
+Package pdftex.def Info: figures/croise_03_diagnostics.pdf  used on input line 
+93.
+(pdftex.def)             Requested size: 489.38501pt x 283.83427pt.
+ [36 <./figures/croise_03_diagnostics.pdf>]
+<figures/croise_05_energie.pdf, id=1126, 930.0754pt x 539.39015pt>
+File: figures/croise_05_energie.pdf Graphic file (type pdf)
+<use figures/croise_05_energie.pdf>
+Package pdftex.def Info: figures/croise_05_energie.pdf  used on input line 187.
 
-] [35] [36]
-[37] [38] [39] [40] [41] [42
+(pdftex.def)             Requested size: 489.38966pt x 283.81781pt.
 
-] [43] [44] [45] [46]
+[37]
+<figures/croise_07_variantes.pdf, id=1132, 930.13562pt x 539.39015pt>
+File: figures/croise_07_variantes.pdf Graphic file (type pdf)
+<use figures/croise_07_variantes.pdf>
+Package pdftex.def Info: figures/croise_07_variantes.pdf  used on input line 20
+9.
+(pdftex.def)             Requested size: 489.37877pt x 283.79312pt.
+<figures/croise_06_protocoles.pdf, id=1133, 930.24474pt x 539.39015pt>
+File: figures/croise_06_protocoles.pdf Graphic file (type pdf)
+<use figures/croise_06_protocoles.pdf>
+Package pdftex.def Info: figures/croise_06_protocoles.pdf  used on input line 2
+15.
+(pdftex.def)             Requested size: 489.39362pt x 283.76842pt.
+ [38 <./figures/croise_05_energie.pdf>] [39 <./figures/croise_07_variantes.pdf>
+ <./figures/croise_06_protocoles.pdf>]
+<figures/croise_08_spatial.pdf, id=1295, 930.05151pt x 337.15823pt>
+File: figures/croise_08_spatial.pdf Graphic file (type pdf)
+<use figures/croise_08_spatial.pdf>
+Package pdftex.def Info: figures/croise_08_spatial.pdf  used on input line 227.
+
+(pdftex.def)             Requested size: 489.3913pt x 177.412pt.
+ [40 <./figures/croise_08_spatial.pdf>]) (bonus_size_cycles.tex
+<figures/croise_10_cycles_global.pdf, id=1326, 930.24474pt x 539.39015pt>
+File: figures/croise_10_cycles_global.pdf Graphic file (type pdf)
+<use figures/croise_10_cycles_global.pdf>
+Package pdftex.def Info: figures/croise_10_cycles_global.pdf  used on input lin
+e 7.
+(pdftex.def)             Requested size: 489.39362pt x 283.76842pt.
+<figures/croise_11_cycles_diagnostics.pdf, id=1327, 930.17453pt x 539.39015pt>
+File: figures/croise_11_cycles_diagnostics.pdf Graphic file (type pdf)
+<use figures/croise_11_cycles_diagnostics.pdf>
+Package pdftex.def Info: figures/croise_11_cycles_diagnostics.pdf  used on inpu
+t line 27.
+(pdftex.def)             Requested size: 489.38506pt x 283.78488pt.
+ [41] [42 <./figures/croise_10_cycles_global.pdf> <./figures/croise_11_cycles_d
+iagnostics.pdf>]
+<figures/croise_12_cycle_L9_reference.pdf, id=1512, 930.24474pt x 539.39015pt>
+File: figures/croise_12_cycle_L9_reference.pdf Graphic file (type pdf)
+<use figures/croise_12_cycle_L9_reference.pdf>
+Package pdftex.def Info: figures/croise_12_cycle_L9_reference.pdf  used on inpu
+t line 33.
+(pdftex.def)             Requested size: 489.39362pt x 283.76842pt.
+ [43 <./figures/croise_12_cycle_L9_reference.pdf>]
+<figures/cycle_L9_sous_reseaux.pdf, id=1581, 857.69972pt x 580.04204pt>
+File: figures/cycle_L9_sous_reseaux.pdf Graphic file (type pdf)
+<use figures/cycle_L9_sous_reseaux.pdf>
+Package pdftex.def Info: figures/cycle_L9_sous_reseaux.pdf  used on input line 
+97.
+(pdftex.def)             Requested size: 457.66733pt x 309.50958pt.
+ [44 <./figures/cycle_L9_sous_reseaux.pdf>]
+<figures/croise_13_cycle_L12_reference.pdf, id=1612, 930.24474pt x 539.39015pt>
+
+File: figures/croise_13_cycle_L12_reference.pdf Graphic file (type pdf)
+<use figures/croise_13_cycle_L12_reference.pdf>
+Package pdftex.def Info: figures/croise_13_cycle_L12_reference.pdf  used on inp
+ut line 117.
+(pdftex.def)             Requested size: 489.39362pt x 283.76842pt.
+<figures/croise_14_cycle_L12_populations.pdf, id=1613, 929.99509pt x 539.39015p
+t>
+File: figures/croise_14_cycle_L12_populations.pdf Graphic file (type pdf)
+<use figures/croise_14_cycle_L12_populations.pdf>
+Package pdftex.def Info: figures/croise_14_cycle_L12_populations.pdf  used on i
+nput line 153.
+(pdftex.def)             Requested size: 489.38998pt x 283.8425pt.
+ [45 <./figures/croise_13_cycle_L12_reference.pdf>]) [46 <./figures/croise_14_c
+ycle_L12_populations.pdf>] [47] [48
+
+] [49] [50] [51] [52] [53] [54] [55
+
+] [56] [57] [58] [59]
 (C:\Users\vuache_h\Desktop\perso\Cu3Au_MC\results\thermal_cycle_L6\report\build
 \rapport_template.aux)
  ***********
@@ -1277,16 +1361,16 @@ LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
  ***********
 Package rerunfilecheck Info: File `rapport_template.out' has not changed.
-(rerunfilecheck)             Checksum: 620621E9B6C70224FEC5AB64B4ECB40C;14427.
+(rerunfilecheck)             Checksum: E96768352BE4209639FED84CD02B97AD;14964.
  ) 
 Here is how much of TeX's memory you used:
- 28984 strings out of 467871
- 558908 string characters out of 5416924
- 982683 words of memory out of 5000000
- 56680 multiletter control sequences out of 15000+600000
- 773093 words of font info for 357 fonts, out of 8000000 for 9000
+ 29203 strings out of 467871
+ 564432 string characters out of 5416924
+ 985193 words of memory out of 5000000
+ 56792 multiletter control sequences out of 15000+600000
+ 776209 words of font info for 391 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 98i,16n,108p,1061b,899s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 98i,16n,108p,1061b,930s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10
 .pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmb
 x12.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/
@@ -1322,9 +1406,9 @@ uache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/User
 s/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt8.pfb><C:/Us
 ers/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt9.pfb>
 Output written on C:\Users\vuache_h\Desktop\perso\Cu3Au_MC\results\thermal_cycl
-e_L6\report\build\rapport_template.pdf (47 pages, 1903356 bytes).
+e_L6\report\build\rapport_template.pdf (60 pages, 2683209 bytes).
 PDF statistics:
- 1349 PDF objects out of 1440 (max. 8388607)
- 218 named destinations out of 1000 (max. 500000)
- 76318 words of extra memory for PDF output out of 89155 (max. 10000000)
+ 2021 PDF objects out of 2073 (max. 8388607)
+ 254 named destinations out of 1000 (max. 500000)
+ 76381 words of extra memory for PDF output out of 89155 (max. 10000000)
 

@@ -1,0 +1,3 @@
+L,N,T_peak_grid_K,critical_diagnostics_ok,min_critical_ess,max_critical_rhat,mean_swap_acceptance,total_roundtrips,spatial_capture_every
+9,2916,1055.0,False,37.04176489653888,1.0258509174760073,0.611,0,100
+12,6912,1052.5,False,44.66176031392517,1.267918516692413,0.6133230337078652,0,200

@@ -48,6 +48,8 @@ def make_report(result_dir, compile_pdf=True):
             peaks.append(float(t[np.argmax(cv)]))
     status = ('critères locaux satisfaits' if summary['critical_diagnostics_ok']
               else 'au moins un critère local non satisfait ; statistiques à renforcer')
+    from .cycle_size_report import completed_cycles
+    cycle_sizes = ', '.join(str(r['L']) for r in completed_cycles())
     macros = {
         'Lbox': cfg['L'], 'Natoms': summary['n_atoms'],
         'Tpeak': f'{summary["T_cv_peak_grid_K"]:.0f}',
@@ -59,6 +61,7 @@ def make_report(result_dir, compile_pdf=True):
         'Ndraws': cfg['sample_sweeps']//cfg['sample_every'],
         'TestCount': found.group(1) if found else 'non exécutés dans ce dossier',
         'DiagnosticStatus': status,
+        'CompletedCycleSizes': cycle_sizes or 'aucune',
         'RandomLimit': f'{summary["random_limit_eV_atom_finite_N"]:.9f}',
         'ChainPeaks': ', '.join(f'chaîne {i+1} : ${t:.0f}$ K' for i, t in enumerate(peaks))}
     (out/'auto_results.tex').write_text('\n'.join(
@@ -103,7 +106,13 @@ def make_report(result_dir, compile_pdf=True):
     # La synthèse principale reste L6 ; les résultats L9 sont un complément
     # nommé, pour ne pas remplacer silencieusement les macros et figures L6.
     larger = root.parent/'production_L9'
-    if root.name == 'production' and (larger/'comparison_L6_L9/summary.json').exists():
+    cross = root.parent/'comparison_L6_L9_L12/summary.json'
+    if root.name == 'production' and cross.exists():
+        from .cross_report import refresh_include
+        refresh_include()
+        from .cycle_size_report import write_cycle_size_include
+        write_cycle_size_include()
+    elif root.name == 'production' and (larger/'comparison_L6_L9/summary.json').exists():
         from .size_comparison import write_report_include
         write_report_include(root, larger)
     if compile_pdf:
