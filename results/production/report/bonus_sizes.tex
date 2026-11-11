@@ -28,16 +28,6 @@ Allers-retours froid--chaud--froid & 7 & 0 & 0\\
 
 Les deux premières campagnes utilisent 46 températures et le même budget. L12 utilise 90 températures, un pas de 2.5 K près du pic et deux fois plus de balayages. Les observables sont mesurées tous les 10 balayages, les sessions d’échange tous les 5, avec deux chaînes par taille. L12 ne constitue donc pas un contrôle où seule la taille change. Les points sont les températures effectivement simulées ; aucune interpolation ne crée une mesure entre deux points.
 
-\begin{oral}{1. Comment comparer trois tailles sans confondre volume et précision ?}
-
-\begin{itemize}
-
-\item \textbf{Commencer par les quantités intensives.} Doubler le côté de L6 à L12 multiplie le nombre d’atomes par huit, mais ne doit pas multiplier l’énergie \emph{par atome} par huit. On compare donc $u=E/N$, $c_V=C_V/N$ et les paramètres normalisés. Un balayage effectue en revanche $N$ propositions : un même nombre de balayages représente davantage de calcul, sans assurer davantage d’états indépendants.
-
-\item \textbf{Lire les contrôles avant de conclure.} Une barre d’erreur petite est conditionnelle aux bassins visités. L’augmentation du volume peut diminuer l’arrondi de la transition tout en augmentant les séjours métastables. Un désaccord des chaînes interdit de présenter le déplacement du maximum comme une mesure précise de la limite infinie.
-
-\end{itemize}\end{oral}
-
 \subsubsection{Ordre global et local : augmentation sous la transition, diminution au chaud}
 
 \fig{croise_01_transition}{1}{Superposition des trois tailles : amplitude d’ordre, énergie, capacité calorifique, Cowley et fluctuations de q. La fenêtre 1035--1070 K rend visible la transition sans traits reliant les mesures.}
@@ -262,18 +252,9 @@ Une grande valeur froide reflète aussi l’ordre uniforme et la visite incompl�
 
 \item \textbf{Ce que le volume n’améliore pas ici.} Les passages entre populations deviennent trop lents pour le budget disponible. L12 conserve un désaccord important des chaînes malgré la grille densifiée et la production doublée. Le maximum de 1052.5 K reste provisoire. Le réseau rigide, les paires fixes, l’absence de phonons et la dynamique d’échanges globaux restent identiques : aucune de ces omissions n’est corrigée en augmentant L.
 
-\item \textbf{Ce qu’il faut ensuite mesurer.} Allonger les séries critiques et vérifier leurs poids de population ; comparer des tailles à diagnostics satisfaits ; réaliser les cycles additionnels pour étudier l’hystérésis en taille ; répéter plusieurs trempes avec une dynamique locale si l’objectif devient la nucléation physique. Une différence entre deux courbes seule ne permet pas de choisir entre ces mécanismes.
+\item \textbf{Ce qu’il faut ensuite mesurer.} Allonger les séries critiques et vérifier leurs poids de population ; comparer des tailles à diagnostics satisfaits ; répéter les cycles L6/L9/L12 achevés avec davantage de graines et des paliers critiques plus longs pour tester la mémoire du parcours ; répéter plusieurs trempes avec une dynamique locale si l’objectif devient la nucléation physique. Une différence entre deux courbes seule ne permet pas de choisir entre ces mécanismes.
 
 \end{itemize}
 
 {\raggedright Les fichiers de \texttt{results/comparison\_L6\_L9\_L12} contiennent : \texttt{overview.csv} (budgets et diagnostics), \texttt{all\_observables\_cross.csv} (moments, covariances, autocorrélations et contrôle exact énergie--Cowley à toutes les températures), \texttt{chain\_variant\_statistics.csv} (occupations et populations par chaîne), \texttt{block\_sensitivity.csv} (stabilité des erreurs), \texttt{spatial\_comparison.csv} (modes de Fourier et limites). Les neuf observables instantanées, $X_q$, le cumulant, les identités et acceptations de répliques, les erreurs, les demi-séries et les captures spatiales ont ainsi été examinés. Les historiques bruts d’équilibration gardent leur rôle de diagnostic, sans être incorporés aux moyennes de production.\par}
 
-\begin{oral}{1. Quelle conclusion défendre à partir de toutes les données ?}
-
-\begin{itemize}
-
-\item \textbf{Dire ce qui est robuste et ce qui reste conditionnel.} La structure froide et son énergie sont vérifiées analytiquement. Au chaud, diminuer le biais de $q$ en augmentant N et conserver un Cowley non nul sont deux observations compatibles : l’ordre global disparaît tandis que des préférences de voisinage survivent. Près du pic, la cohérence entre ordres et énergie est forte, mais le poids des deux populations n’est pas assez stable dans les grandes boîtes. On rapporte donc des maxima observés, pas une température expérimentale ni une limite infinie précise.
-
-\item \textbf{Ne pas transformer une amélioration géométrique en validation complète.} L12 laisse davantage de place aux fluctuations et résout mieux Fourier, mais il ralentit aussi l’exploration. La question suivante n’est pas seulement « encore plus grand ? » : c’est « davantage de passages indépendants, avec quel protocole et quels diagnostics ? ». La réponse guide les calculs utiles.
-
-\end{itemize}\end{oral}

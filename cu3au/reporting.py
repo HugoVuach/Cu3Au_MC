@@ -12,12 +12,17 @@ from .model import KB
 def _copy_atomic(source, destination):
     source = Path(source)
     destination = Path(destination)
+    content = source.read_bytes()
+    if destination.suffix == '.tex' and destination.parent.name == 'report':
+        # La version remise ne contient pas les supports pédagogiques pour l'oral.
+        content = re.sub(r'\\begin\{oral\}.*?\\end\{oral\}\s*', '',
+                         content.decode('utf8'), flags=re.DOTALL).encode('utf8')
     # Éviter de remplacer un export inchangé, notamment lorsqu'un lecteur
     # Windows garde son fichier ouvert pendant la compilation du rapport.
-    if destination.exists() and source.read_bytes() == destination.read_bytes():
+    if destination.exists() and content == destination.read_bytes():
         return str(destination)
     temporary = destination.with_suffix(destination.suffix+'.tmp')
-    shutil.copy2(source, temporary)
+    temporary.write_bytes(content)
     temporary.replace(destination)
     return str(destination)
 

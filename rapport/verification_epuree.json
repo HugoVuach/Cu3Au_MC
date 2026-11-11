@@ -1,0 +1,269 @@
+{
+  "date": "2026-11-10T13:22:34.671353+01:00",
+  "pages": 24,
+  "question_pages": {
+    "1": 2,
+    "2": 3,
+    "3": 4,
+    "4": 5,
+    "5": 6,
+    "6": 7,
+    "7": 8,
+    "8": 9,
+    "9": 10
+  },
+  "unique_figures": 24,
+  "bullets_per_slide": {
+    "1": 2,
+    "2": 2,
+    "3": 2,
+    "4": 2,
+    "5": 2,
+    "6": 2,
+    "7": 2,
+    "8": 2,
+    "9": 1,
+    "10": 2,
+    "11": 2,
+    "12": 2,
+    "13": 2,
+    "14": 2,
+    "15": 2,
+    "16": 2,
+    "17": 2,
+    "18": 2,
+    "19": 2,
+    "20": 2,
+    "21": 2,
+    "22": 2,
+    "23": 2,
+    "24": 2
+  },
+  "subtitles": "23 frame subtitles plus the cover subtitle",
+  "latex_warnings": [],
+  "gif_links": [
+    "animations/plaquette_cycle_thermique.gif",
+    "animations/plaquette_relaxation_isotherme.gif"
+  ],
+  "detailed_presentation_preserved": true,
+  "assets": [
+    {
+      "file": "figures_epurees\\13_coquilles.pdf",
+      "source": "results\\production\\report\\figures\\13_coquilles.pdf",
+      "source_sha256": "7a6433fa2da40e8889fe9356a289bb35396ed8447e5197f15e54baf3ecd2c604",
+      "omitted_text": [
+        "Deux distances, deux voisinages chimiques dans L1₂",
+        "Géométrie fixe : la coquille dépend de la distance, son occupation dépend de la configuration."
+      ]
+    },
+    {
+      "file": "figures_epurees\\12_cowley.pdf",
+      "source": "results\\production\\report\\figures\\12_cowley.pdf",
+      "source_sha256": "538302ed2e200d06729df9828609287c7a9588ad4b29ab7c28f998b40eb01a39",
+      "omitted_text": [
+        "Ordre chimique local : paramètres de Cowley",
+        "Barres : ±1 erreur-type. Les références horizontales correspondent à l’ordre parfait L1₂."
+      ]
+    },
+    {
+      "file": "figures_epurees\\15_variantes.pdf",
+      "source": "results\\production\\report\\figures\\15_variantes.pdf",
+      "source_sha256": "2ef75f37e1a76585b20b069730f24c90007ef3fc902ae682aa3eb1c56e2f42cd",
+      "omitted_text": [
+        "Quatre variantes ordonnées équivalentes : Au en or, Cu en bleu",
+        "États de référence construits : chaque panneau représente une configuration parfaitement ordonnée."
+      ]
+    },
+    {
+      "file": "figures_epurees\\09_sous_reseaux.pdf",
+      "source": "results\\production\\report\\figures\\09_sous_reseaux.pdf",
+      "source_sha256": "ab1fca374473803bda3ba87c84118794708d23414d616b8d6e9258fb5fbff610",
+      "omitted_text": [
+        "La symétrie entre quatre variantes doit être prise en compte",
+        "Une moyenne sur plusieurs variantes peut égaliser les occupations malgré un ordre instantané fort.",
+        "Une variante différente peut changer le signe de η"
+      ]
+    },
+    {
+      "file": "figures_epurees\\16_coupes_2D.pdf",
+      "source": "results\\production\\report\\figures\\16_coupes_2D.pdf",
+      "source_sha256": "2115dbe8e87b0d0ec3c21ec0a593ea6bfc6f16ccc23ca765e654db73d6b1bef5",
+      "omitted_text": [
+        "Coupes des configurations finales : Au en or, Cu en bleu",
+        "Deux plans adjacents montrent les quatre sous-réseaux ; un instantané ne remplace pas une moyenne thermique."
+      ]
+    },
+    {
+      "file": "figures_epurees\\17_moyennes_cumulees.pdf",
+      "source": "results\\production\\report\\figures\\17_moyennes_cumulees.pdf",
+      "source_sha256": "b67f44c4b0b3fea2ae68375f52b706c62c3a1b400cdffc80010ff0103cf7425c",
+      "omitted_text": [
+        "Accord progressif des moyennes à 1050 K",
+        "Les points successifs partagent leurs mesures : ces courbes sont corrélées et ne prouvent pas à elles seules l’équilibre."
+      ]
+    },
+    {
+      "file": "figures_epurees\\03_thermodynamique.pdf",
+      "source": "results\\production\\report\\figures\\03_thermodynamique.pdf",
+      "source_sha256": "0d789c263b69dde1fb4dd62701516b049ca0643d46d49dea3bdfb070bc43bc3f",
+      "omitted_text": [
+        "L’énergie augmente lorsque l’ordre est détruit",
+        "Seule la contribution des occupations chimiques est incluse ; le réseau ne vibre pas."
+      ]
+    },
+    {
+      "file": "figures_epurees\\11_zoom_transition.pdf",
+      "source": "results\\production\\report\\figures\\11_zoom_transition.pdf",
+      "source_sha256": "1e60e5951049adf0e93bfdf78dcd531ac9384bc0a0c74d7168fb022078376f51",
+      "omitted_text": [
+        "La grille fine résout le voisinage du maximum · 1050 K",
+        "Zone grisée : températures voisines du maximum, pas un intervalle de confiance. Barres : ±1 erreur-type."
+      ]
+    },
+    {
+      "file": "figures_epurees\\08_champ_moyen.pdf",
+      "source": "results\\production\\report\\figures\\08_champ_moyen.pdf",
+      "source_sha256": "5a33844389f01c5ae12261f121f0a8326dc4632addbeb64816822e624261ee39",
+      "omitted_text": [
+        "Le champ moyen néglige les corrélations spatiales",
+        "Dans la famille à un sous-réseau privilégié, q = η ; les deux courbes comparent des amplitudes.",
+        "Une approximation à comparer au calcul"
+      ]
+    },
+    {
+      "file": "figures_epurees\\bonus_02_ordres.pdf",
+      "source": "results\\production\\report\\figures\\bonus_02_ordres.pdf",
+      "source_sha256": "fe91c936f089ae4c78bddc6b7d9f57bc8f26a9601ac3d534bbf9275aa7cc9d71",
+      "omitted_text": [
+        "Ordre global et local au chauffage et au refroidissement",
+        "η dépend de la variante choisie ; q est l’amplitude à privilégier pour comparer les branches."
+      ]
+    },
+    {
+      "file": "figures_epurees\\bonus_03_sous_reseaux.pdf",
+      "source": "results\\production\\report\\figures\\bonus_03_sous_reseaux.pdf",
+      "source_sha256": "84cab17fb5b4ad4443757a07eace3ed411fdcaf05cb758fbb87151a6c1f7bbd7",
+      "omitted_text": [
+        "Occupations des sous-réseaux : chaque cycle séparément",
+        "Chaque point : moyenne temporelle d’un seul cycle, sans moyenne entre cycles.\nLes couleurs et symboles identifient μ ; des changements de variante peuvent subsister dans une moyenne temporelle."
+      ]
+    },
+    {
+      "file": "figures_epurees\\plaquette_relaxation_isotherme_debut.pdf",
+      "source": "results\\thermal_cycle_L6\\visualisation\\animations\\plaquette_relaxation_isotherme_debut.pdf",
+      "source_sha256": "c7a0deb4f75a6fdf09a49d6a9e83b0b97a5b82a9140d21e9051639c89d57ab25",
+      "omitted_text": [
+        "Relaxation après trempe 4000 → 1000 K · L = 6 · neuf coupes fixes",
+        "Configurations espacées de 20 balayages à 1000 K ; première image : état chaud avant relaxation.",
+        "Échanges Au–Cu globaux ; l’apparition d’ordre ne suffit pas à démontrer une nucléation."
+      ]
+    },
+    {
+      "file": "figures_epurees\\plaquette_relaxation_isotherme_fin.pdf",
+      "source": "results\\thermal_cycle_L6\\visualisation\\animations\\plaquette_relaxation_isotherme_fin.pdf",
+      "source_sha256": "3eefc88e28d6f305d9ebb5a5cf32d0b1d8be86e1844b5080cd8d4b842f8e241f",
+      "omitted_text": [
+        "Relaxation après trempe 4000 → 1000 K · L = 6 · neuf coupes fixes",
+        "Configurations espacées de 20 balayages à 1000 K ; première image : état chaud avant relaxation.",
+        "Échanges Au–Cu globaux ; l’apparition d’ordre ne suffit pas à démontrer une nucléation."
+      ]
+    },
+    {
+      "file": "figures_epurees\\correlation_03_relaxation.pdf",
+      "source": "results\\production\\report\\figures\\correlation_03_relaxation.pdf",
+      "source_sha256": "870f4a9295651e3ec98a9adf69c3586c2368e64eb15dde2dd9d18f0038a3c9b7",
+      "omitted_text": [
+        "Hors équilibre : ni longueur de fluctuation canonique, ni rayon de germe ; le mode uniforme peut dominer la longueur apparente."
+      ]
+    },
+    {
+      "file": "figures_epurees\\correlation_01_xi.pdf",
+      "source": "results\\production\\report\\figures\\correlation_01_xi.pdf",
+      "source_sha256": "7289381fbbc1a56115a25192f5b99468201e6d9bb0a56d4d8be2613479d00027",
+      "omitted_text": [
+        "Traits verticaux : bootstrap 95 % conditionnel aux chaînes ; croix : réserve statistique ou taille finie ; pas de barre pour le diagnostic intra-variante."
+      ]
+    },
+    {
+      "file": "figures_epurees\\correlation_02_real_fourier.pdf",
+      "source": "results\\production\\report\\figures\\correlation_02_real_fourier.pdf",
+      "source_sha256": "1509644bb205ce78dddd04e81f12c9b3385bb5c4acb97cc2460cfba61180e3ff",
+      "omitted_text": [
+        "FFT du champ d’ordre par maille ; aucune hypothèse de décroissance exponentielle ajustée à ces quelques distances."
+      ]
+    },
+    {
+      "file": "figures_epurees\\croise_01_transition.pdf",
+      "source": "results\\production\\report\\figures\\croise_01_transition.pdf",
+      "source_sha256": "3a7df69d5faed6e51d2c67ad296d121ff2325bd5cc80d1cf1f0ee4fc2afd5f7d",
+      "omitted_text": [
+        "L6, L9 et L12 : même figure, trois tailles",
+        "Symboles creux, barres ±1 erreur-type ; grilles réelles, sans interpolation. Près du pic, L9/L12 restent sous-échantillonnés."
+      ]
+    },
+    {
+      "file": "figures_epurees\\croise_02_ordres.pdf",
+      "source": "results\\production\\report\\figures\\croise_02_ordres.pdf",
+      "source_sha256": "f608d8168c85c2ff2644e39ab698da5f49a4b041ce2ffec4f07a40fd1559102b",
+      "omitted_text": [
+        "Ordre global, biais de taille et fluctuations complémentaires",
+        "q est une norme positive ; un cumulant négatif signale des distributions larges, sans prouver à lui seul une transition de premier ordre."
+      ]
+    },
+    {
+      "file": "figures_epurees\\croise_03_diagnostics.pdf",
+      "source": "results\\production\\report\\figures\\croise_03_diagnostics.pdf",
+      "source_sha256": "4f21026341843865ef416c535716b5eaf32525a6f532476a38209e0e44204303",
+      "omitted_text": [
+        "Pourquoi une boîte plus grande ne garantit pas un meilleur équilibre",
+        "τ(pμ) suit aussi les variantes ; la moyenne des taux d’échange peut masquer un lien presque infranchissable."
+      ]
+    },
+    {
+      "file": "figures_epurees\\croise_05_energie.pdf",
+      "source": "results\\production\\report\\figures\\croise_05_energie.pdf",
+      "source_sha256": "f97e560ef7a85aafc7fdcc9c577c9521fdd8b7ef2180bddcd33f28dbacfaed0f",
+      "omitted_text": [
+        "Relier les paires, Cowley et les fluctuations d’énergie",
+        "Les covariances sont indispensables. La dérivée est une différence finie sur la grille, sans barre d’erreur ni valeur de test statistique."
+      ]
+    },
+    {
+      "file": "figures_epurees\\croise_08_spatial.pdf",
+      "source": "results\\production\\report\\figures\\croise_08_spatial.pdf",
+      "source_sha256": "00188c3bfab9d4d0344f547f533afd426dafa5283e031f09213c041b13c82553",
+      "omitted_text": [
+        "Première comparaison spatiale L6/L9/L12",
+        "Même définition du champ, protocoles et captures différents ; ξ n’est pas un rayon de germe. Les grands rapports et erreurs sont à contrôler.",
+        "Grandes valeurs : ordre et mélange de variantes"
+      ]
+    },
+    {
+      "file": "figures_epurees\\croise_10_cycles_global.pdf",
+      "source": "results\\production\\report\\figures\\croise_10_cycles_global.pdf",
+      "source_sha256": "36e616083e9dae794e59cb8b1084ec42c7c4be10878108f50241d88e4fbb2041",
+      "omitted_text": [
+        "Cycles thermiques : zoom 1000–1100 K",
+        "Couleur = taille ; triangle vers le haut = chauffage, vers le bas = refroidissement. Barres conditionnelles ±1 erreur-type."
+      ]
+    },
+    {
+      "file": "figures_epurees\\croise_13_cycle_L12_reference.pdf",
+      "source": "results\\production\\report\\figures\\croise_13_cycle_L12_reference.pdf",
+      "source_sha256": "a0a5ea0211094d484c8d5b6cc8d963aafd2cf32ebe20e6e0ab8d580339f7054c",
+      "omitted_text": [
+        "L12 : mémoire thermique et production canonique",
+        "La production à répliques a une grille plus fine et deux fois plus de balayages ; un bon diagnostic dans une seule population ne prouve pas son poids d’équilibre."
+      ]
+    },
+    {
+      "file": "figures_epurees\\croise_14_cycle_L12_populations.pdf",
+      "source": "results\\production\\report\\figures\\croise_14_cycle_L12_populations.pdf",
+      "source_sha256": "3b6453470cfe93aff1e23c10d00714ad6e3398518d99f6bfe5dcaa10d2ab4686",
+      "omitted_text": [
+        "L12 : des poids de populations très différents selon le trajet",
+        "Séries temporelles sans échange de répliques ; les balayages ne sont pas un temps physique. Les histogrammes gardent les trajectoires et branches séparées."
+      ]
+    }
+  ]
+}

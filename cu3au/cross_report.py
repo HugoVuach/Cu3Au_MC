@@ -382,8 +382,9 @@ def write_include(campaigns, overview, spatial, figures, out):
         r'aucune de ces omissions n’est corrigée en augmentant L.',
         r'\item \textbf{Ce qu’il faut ensuite mesurer.} Allonger les séries '
         r'critiques et vérifier leurs poids de population ; comparer '
-        r'des tailles à diagnostics satisfaits ; réaliser les cycles '
-        r'additionnels pour étudier l’hystérésis en taille ; répéter '
+        r'des tailles à diagnostics satisfaits ; répéter les cycles '
+        r'L6/L9/L12 achevés avec davantage de graines et des paliers '
+        r'critiques plus longs pour tester la mémoire du parcours ; répéter '
         r'plusieurs trempes avec une dynamique locale si l’objectif '
         r'devient la nucléation physique. Une différence entre deux '
         r'courbes seule ne permet pas de choisir entre ces mécanismes.',

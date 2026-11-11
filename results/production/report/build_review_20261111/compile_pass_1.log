@@ -1,0 +1,414 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex.fmt)
+ restricted \write18 enabled.
+entering extended mode
+(C:/Users/vuache_h/Desktop/perso/Cu3Au_MC/report/rapport_template.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-12-24>
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo))
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.sty)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/lm\lmodern.sty)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.sty
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/babel\txtbabel.def
+)
+*************************************
+* Local config file bblopts.cfg used
+*
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/arabi\bblopts.cfg)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/babel/locale/fr\ba
+bel-french.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/babel-french\frenc
+h.ldf
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/babel-french\frenc
+h3.ldf)))
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/carlisle\scalefnt.st
+y)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.st
+y
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty)
+ (C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty))
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cf
+g))
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
+For additional information on amsmath, use the `?' option.
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amstext.sty
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty))
+ (C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty)
+ (C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty)
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amssymb.sty
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amsfonts.st
+y))
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.st
+y
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.st
+y (C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty)
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphic
+s.cfg)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.
+def)))
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\booktabs.st
+y) (C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.sty)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\xcolor.sty
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.c
+fg)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/graphics\mathcolor.l
+tx))
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype.
+sty
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.st
+y)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype-
+pdftex.def)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype.
+cfg))
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/fancyhdr\fancyhdr.st
+y)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcolorbox.
+sty
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/pgf/frontendlayer\ti
+kz.sty
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/pgf/basiclayer\pgf.s
+ty
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgfrcs
+.sty
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfu
+til-common.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfu
+til-latex.def)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfr
+cs.code.tex
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf\pgf.revision.t
+ex)))
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/pgf/basiclayer\pgfco
+re.sty
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/pgf/systemlayer\pgfs
+ys.sty
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pg
+fsys.code.tex
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfk
+eys.code.tex
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfk
+eyslibraryfiltered.code.tex))
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pg
+f.cfg)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pg
+fsys-pdftex.def
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pg
+fsys-common-pdf.def)))
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pg
+fsyssoftpath.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pg
+fsysprotocol.code.tex))
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgf
+core.code.tex
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmath.c
+ode.tex
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathut
+il.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathpa
+rser.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfu
+nctions.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfu
+nctions.basic.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfu
+nctions.trigonometric.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfu
+nctions.random.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfu
+nctions.comparison.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfu
+nctions.base.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfu
+nctions.round.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfu
+nctions.misc.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfu
+nctions.integerarithmetics.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathca
+lc.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfl
+oat.code.tex))
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfint.co
+de.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgf
+corepoints.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgf
+corepathconstruct.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgf
+corepathusage.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgf
+corescopes.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgf
+coregraphicstate.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgf
+coretransformations.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgf
+corequick.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgf
+coreobjects.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgf
+corepathprocessing.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgf
+corearrows.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgf
+coreshade.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgf
+coreimage.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgf
+coreexternal.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgf
+corelayers.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgf
+coretransparency.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgf
+corepatterns.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgf
+corerdf.code.tex)))
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmod
+uleshapes.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmod
+uleplot.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/pgf/compatibility\pg
+fcomp-version-0-65.sty)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/pgf/compatibility\pg
+fcomp-version-1-18.sty))
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgffor
+.sty
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgfkey
+s.sty
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfk
+eys.code.tex))
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/pgf/math\pgfmath.sty
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmath.c
+ode.tex))
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgff
+or.code.tex))
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/
+tikz\tikz.code.tex
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgfl
+ibraryplothandlers.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmod
+ulematrix.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/
+tikz/libraries\tikzlibrarytopaths.code.tex)))
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/tools\verbatim.sty)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/environ\environ.sty
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/trimspaces\trimspace
+s.sty)))
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcbbreakab
+le.code.tex
+Library (tcolorbox): 'tcbbreakable.code.tex' version '6.9.0'
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/pdfcol\pdfcol.sty
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcmds.st
+y)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/infwarerr\infwarer
+r.sty)))
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.st
+y
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.
+sty)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/kvdefinekeys\kvdef
+inekeys.sty)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pdfescape\pdfescap
+e.sty
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pdftexc
+mds.sty))
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/hycolor\hycolor.sty)
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/refcount\refcount.st
+y)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/gettitlestring\get
+titlestring.sty
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.
+sty)))
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\stringen
+c.sty)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def)
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.st
+y)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/bigintcalc\bigintc
+alc.sty)))
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdftex.def
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerun
+filecheck.sty
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/uniquecounter\uniq
+uecounter.sty))) (auto_results.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmr.fd)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-
+pdftex.def)
+(C:\Users\vuache_h\Desktop\perso\Cu3Au_MC\results\production\report\build_revie
+w_20261111\rapport_template.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf
+.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopd
+f-base.sty
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sy
+s.cfg))
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-cmr.cfg
+)
+(C:\Users\vuache_h\Desktop\perso\Cu3Au_MC\results\production\report\build_revie
+w_20261111\rapport_template.out)
+(C:\Users\vuache_h\Desktop\perso\Cu3Au_MC\results\production\report\build_revie
+w_20261111\rapport_template.out)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr.fd)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm.fd)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/lm\omslmsy.fd)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/lm\omxlmex.fd)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msa.cfg
+) (C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msb.cfg
+) [1{C:/Users/vuache_h/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Use
+rs/vuache_h/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/User
+s/vuache_h/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users
+/vuache_h/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Us
+ers/vuache_h/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}]
+(C:\Users\vuache_h\Desktop\perso\Cu3Au_MC\results\production\report\build_revie
+w_20261111\rapport_template.toc [1]) [2] [3] [4{C:/Users/vuache_h/AppData/Local
+/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.enc}] [5 <./figures/01_reseau.pdf
+> <./figures/13_coquilles.pdf>] [6] [7 <./figures/14_organigramme.pdf>]
+[8 <./figures/12_cowley.pdf> <./figures/15_variantes.pdf>]
+(current_validation.tex [9 <./figures/09_sous_reseaux.pdf>]) [10] [11]
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd)
+(representative_results.tex [12 <./figures/16_coupes_2D.pdf>] [13 <./figures/17
+_moyennes_cumulees.pdf> <./figures/10_repliques.pdf>]) [14] [15 <./figures/05_d
+iagnostics.pdf>] (critical_table.tex) (peak_uncertainty.tex [16 <./figures/06_t
+races.pdf>] [17 <./figures/11_zoom_transition.pdf> <./figures/04_distributions.
+pdf>]) [18 <./figures/18_incertitude_pic.pdf>] (discussion_results.tex)
+[19 <./figures/08_champ_moyen.pdf>] [20] (bonus_cycle.tex [21] [22])
+(bonus_animations.tex [23 <./figures/bonus_01_thermodynamique.pdf>] [24 <./figu
+res/bonus_02_ordres.pdf> <./figures/bonus_03_sous_reseaux.pdf>] [25 <./figures/
+bonus_04_ecarts.pdf> <./figures/bonus_06_diagnostics.pdf>])
+(bonus_correlation.tex [26 <./figures/bonus_08_distributions.pdf> <./figures/an
+imations_01_evolution.pdf>] [27] [28] [29 <./figures/correlation_01_xi.pdf> <./
+figures/correlation_02_real_fourier.pdf>] [30 <./figures/correlation_04_diagnos
+tics.pdf>]) (bonus_sizes.tex [31 <./figures/correlation_03_relaxation.pdf>]
+[32 <./figures/croise_01_transition.pdf>] [33 <./figures/croise_02_ordres.pdf>]
+[34 <./figures/croise_04_populations.pdf>] [35 <./figures/croise_03_diagnostics
+.pdf>] [36 <./figures/croise_05_energie.pdf>] [37 <./figures/croise_07_variante
+s.pdf>] [38 <./figures/croise_06_protocoles.pdf>]) (bonus_size_cycles.tex
+[39 <./figures/croise_08_spatial.pdf>] [40 <./figures/croise_10_cycles_global.p
+df>] [41 <./figures/croise_11_cycles_diagnostics.pdf> <./figures/croise_12_cycl
+e_L9_reference.pdf>] [42] [43 <./figures/cycle_L9_sous_reseaux.pdf> <./figures/
+croise_13_cycle_L12_reference.pdf>]) [44 <./figures/croise_14_cycle_L12_populat
+ions.pdf>] [45] [46]
+(C:\Users\vuache_h\Desktop\perso\Cu3Au_MC\results\production\report\build_revie
+w_20261111\rapport_template.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `rapport_template.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )
+pdfTeX warning (dest): name{subsection.B.12} has been referenced but does not e
+xist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.B.11} has been referenced but does not e
+xist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.B.10} has been referenced but does not e
+xist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.B.9} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.B.8} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.B.7} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.B.6} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.B.5} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.B.4} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.B.3} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.B.2} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.B.1} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{appendix.B} has been referenced but does not exist,
+ replaced by a fixed one
+
+<C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.p
+fb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx1
+2.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lm
+bx7.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/
+lmbx9.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/l
+m/lmcsc10.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/publ
+ic/lm/lmex10.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/p
+ublic/lm/lmmi10.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type
+1/public/lm/lmmi12.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/t
+ype1/public/lm/lmmi5.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts
+/type1/public/lm/lmmi6.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fon
+ts/type1/public/lm/lmmi7.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/f
+onts/type1/public/lm/lmmi8.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX
+/fonts/type1/public/lm/lmmi9.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKT
+eX/fonts/type1/public/lm/lmmib10.pfb><C:/Users/vuache_h/AppData/Local/Programs/
+MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/vuache_h/AppData/Local/Program
+s/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/vuache_h/AppData/Local/Progr
+ams/MiKTeX/fonts/type1/public/lm/lmr5.pfb><C:/Users/vuache_h/AppData/Local/Prog
+rams/MiKTeX/fonts/type1/public/lm/lmr6.pfb><C:/Users/vuache_h/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/vuache_h/AppData/Local/Pr
+ograms/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/vuache_h/AppData/Local/P
+rograms/MiKTeX/fonts/type1/public/lm/lmr9.pfb><C:/Users/vuache_h/AppData/Local/
+Programs/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/vuache_h/AppData/Loc
+al/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/vuache_h/AppData/
+Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy5.pfb><C:/Users/vuache_h/AppDat
+a/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy6.pfb><C:/Users/vuache_h/AppD
+ata/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/Users/vuache_h/Ap
+pData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Users/vuache_h/
+AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy9.pfb><C:/Users/vuache_
+h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/Users/vuac
+he_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt9.pfb>
+Output written on C:\Users\vuache_h\Desktop\perso\Cu3Au_MC\results\production\r
+eport\build_review_20261111\rapport_template.pdf (47 pages, 2482270 bytes).
+Transcript written on C:\Users\vuache_h\Desktop\perso\Cu3Au_MC\results\producti
+on\report\build_review_20261111\rapport_template.log.
+log4cxx: setFile(C:\Users\vuache_h\AppData\Local\MiKTeX\miktex\log/pdflatex.log,true) call failed.
+log4cxx: IO Exception : status code = 720005(Accès refusé.  )
+pdflatex: major issue: So far, you have not checked for MiKTeX updates.

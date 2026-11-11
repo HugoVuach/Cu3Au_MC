@@ -1,24 +1,45 @@
 {
-  "date": "2026-11-10T11:37:42.698934+01:00",
-  "pages": 24,
+  "date": "2026-11-10T15:28:16.349419+01:00",
+  "pages": 25,
   "slide_dimensions_mm": [
     240.0,
     135.0
   ],
   "question_pages": {
-    "1": 2,
-    "2": 3,
-    "3": 4,
-    "4": 5,
-    "5": 6,
-    "6": 7,
-    "7": 8,
-    "8": 9,
-    "9": 10
+    "1": [
+      2,
+      3
+    ],
+    "2": [
+      4
+    ],
+    "3": [
+      5
+    ],
+    "4": [
+      25
+    ],
+    "5": [
+      6
+    ],
+    "6": [
+      7
+    ],
+    "7": [
+      8
+    ],
+    "8": [
+      9
+    ],
+    "9": [
+      10
+    ]
   },
+  "main_slides_including_cover": 10,
   "bonus_appendix_slides": 14,
-  "figure_uses": 26,
-  "unique_figures": 26,
+  "validation_appendix_slides": 1,
+  "figure_uses": 25,
+  "unique_figures": 25,
   "repeated_figure_names": [],
   "latex_warnings": [],
   "gif_links": [
@@ -50,11 +71,6 @@
       "file": "figures\\09_sous_reseaux.pdf",
       "source": "results\\production\\report\\figures\\09_sous_reseaux.pdf",
       "sha256": "ab1fca374473803bda3ba87c84118794708d23414d616b8d6e9258fb5fbff610"
-    },
-    {
-      "file": "figures\\16_coupes_2D.pdf",
-      "source": "results\\production\\report\\figures\\16_coupes_2D.pdf",
-      "sha256": "2115dbe8e87b0d0ec3c21ec0a593ea6bfc6f16ccc23ca765e654db73d6b1bef5"
     },
     {
       "file": "figures\\17_moyennes_cumulees.pdf",

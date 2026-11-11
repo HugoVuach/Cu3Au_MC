@@ -47,44 +47,28 @@
 
 \begin{document}
 
-% Une seule diapositive pour chacune des neuf questions de subject.md.
+% Question 1 sur deux diapositives ; vérifications de la question 4 en annexe.
 \begin{frame}[plain]
 \vspace{4mm}
 {\color{teal}\rule{\linewidth}{1.3pt}}
 \vspace{5mm}
 {\fontsize{12}{14}\selectfont Modélisation et simulation numérique\par}
 \vspace{4mm}
-{\fontsize{28}{32}\selectfont\bfseries Transition ordre--désordre\par de Cu$_3$Au\par}
+{\fontsize{28}{32}\selectfont\bfseries Transition ordre--désordre de Cu$_3$Au\par}
 \vspace{4mm}
 {\fontsize{13}{16}\selectfont Méthode Monte-Carlo, observables et limites du modèle\par}
 \vspace{6mm}
-\begin{columns}[T,onlytextwidth]
-\begin{column}{.56\textwidth}
 \begin{block}{Fil conducteur : de la configuration à l'interprétation}
 Réseau CFC fixe $\to$ échanges Au--Cu $\to$ Metropolis $\to$ configurations
 $\to$ énergie, ordre et fluctuations $\to$ transition apparente.
-\[
-N=4L^3,\qquad c_{\Au}=1/4,\qquad u_0=-3.813\ \mathrm{eV/atome}.
-\]
 \end{block}
-\end{column}
-\begin{column}{.40\textwidth}
-\textbf{Organisation du diaporama}
-\begin{itemize}\tightlist
-\item Questions 1--9 : une diapositive par question, production de référence $L=6$.
-\item Annexes A1--A14 : cycles, GIF, corrélations, tailles $L=6,9,12$, algorithme et sources.
-\item Structure ordonnée $L1_2$ : ne pas confondre avec la taille $L=12$.
-\end{itemize}
-\end{column}
-\end{columns}
 \vfill
-\src{Synthèse du rapport principal relu le 10 novembre 2026. Figures et nombres issus des campagnes archivées ; aucune nouvelle simulation.}
 \end{frame}
 
-\begin{frame}[t]{Question 1 -- Construire le programme Monte-Carlo}
+\begin{frame}[t]{Question 1 -- Réseau, voisinages et Hamiltonien}
 \framesubtitle{Géométrie fixe, composition conservée et poids de Boltzmann}
 \begin{columns}[T,onlytextwidth]
-\begin{column}{.34\textwidth}
+\begin{column}{.47\textwidth}
 \textbf{Réseau et voisinage précalculés}
 \[
 \mathbf r/a=(i,j,k)+\mathbf b_\mu,\quad N=4L^3.
@@ -95,40 +79,40 @@ Pour L6 : 864 sites, 216 Au et 648 Cu.
 \[
 (X,Y,Z)=2\mathbf r/a\pmod{2L},\quad X+Y+Z\ \text{pair}.
 \]
-\fpic{13_coquilles}{42mm}
+\fpic{13_coquilles}{56mm}
 \src{Coquilles : 12 voisins à $a/\sqrt2$, puis 6 à $a$. Les espèces changent ; les listes de voisins restent fixes.}
 \end{column}
-\begin{column}{.36\textwidth}
+\begin{column}{.50\textwidth}
 \textbf{Hamiltonien : une seule fois chaque paire}
 \[
 E=\sum_{\langle ij\rangle_1}J_{\sigma_i\sigma_j}
 +\sum_{\langle ij\rangle_2}I_{\sigma_i\sigma_j}.
 \]
-\begin{tabular}{lrr}\toprule
-Paire (eV) & $J$ & $I$\\\midrule
-Au--Au & $-0.635$ & $0$\\
-Cu--Cu & $-0.582$ & $0$\\
-Au--Cu & $-0.689$ & $+0.0063$\\\bottomrule
-\end{tabular}
-\medskip
-
-Choisir uniformément un Au et un Cu, puis calculer avant l'échange
+Choisir uniformément $i$ occupé par Au et $j$ occupé par Cu, puis calculer avant l'échange :
 \[
-\Delta E=0.161(a_j-a_i)+0.0126(b_i-b_j).
+\begin{aligned}
+\Delta E={}&\sum_{n=1}^2\sum_{k\in V_n(i)\setminus\{j\}}\\[-1pt]
+&\big[U_n(\Cu,\sigma_k)-U_n(\Au,\sigma_k)\big]\\
+&+\sum_{n=1}^2\sum_{k\in V_n(j)\setminus\{i\}}\\[-1pt]
+&\big[U_n(\Au,\sigma_k)-U_n(\Cu,\sigma_k)\big].
+\end{aligned}
 \]
-$a_i,b_i$ : nombres de voisins Au, partenaire échangé exclu.
+$V_n(i)$ : voisins de coquille $n$ ; $U_1=J$ et $U_2=I$.
+La liaison mutuelle $i$--$j$, si elle existe, reste Au--Cu : sa variation est nulle.
 \[
-A=\min\!\left(1,e^{-\Delta E/(\kb T)}\right),
-\quad\kb=8.61733\,10^{-5}\ \mathrm{eV/K}.
+A=\min\!\left(1,e^{-\Delta E/(\kb T)}\right).
 \]
 Proposition symétrique $\Rightarrow$ balance détaillée.
-\notecrit{Échanges à toute distance : outil d'échantillonnage ; pas une diffusion physique par lacunes.}
-\end{column}
-\begin{column}{.27\textwidth}
-\fpic{14_organigramme}{76mm}
+\begin{itemize}\tightlist
+\item[$\ast$] Échanges à toute distance : outil d'échantillonnage ; pas une diffusion physique par lacunes.
+\end{itemize}
 \end{column}
 \end{columns}
-\takeaway{Un balayage = $N$ propositions, refus compris. Mesurer seulement les états acceptés fausserait les temps de séjour.}
+\end{frame}
+
+\begin{frame}{Question 1 -- De la proposition d'échange à la mesure}
+\framesubtitle{Organigramme : décision de Metropolis, balayages, échanges de répliques et observables}
+\fpic{14_organigramme}{96mm}
 \end{frame}
 
 \begin{frame}[t]{Question 2 -- Calculer les paramètres de Cowley}
@@ -144,97 +128,53 @@ Chaque paire Au--Cu est comptée depuis son extrémité Au : pas de facteur $1/2
 \[
 \boxed{\alpha_n=1-\frac{p_n^{\Cu|\Au}}{3/4}}.
 \]
-\begin{block}{Exemple chiffré : L6, première coquille}
-$216\times12=2592$ places autour des Au. Si 2160 sont Cu :
-\[
-p_1^{\Cu|\Au}=2160/2592=5/6,
-\quad \alpha_1=1-\frac{5/6}{3/4}=-1/9.
-\]
-$p$ est une probabilité ; $\alpha$ compare cette probabilité à la composition globale.
-\end{block}
-\end{column}
-\begin{column}{.59\textwidth}
-\fpic{12_cowley}{58mm}
+\medskip
 \begin{tabular}{lcc}\toprule
 Référence & $\alpha_1$ & $\alpha_2$\\\midrule
 $L1_2$ parfait & $-1/3$ & $1$\\
 Mélange indépendant, volume infini & $0$ & $0$\\
 Mélange aléatoire à composition fixée & \multicolumn{2}{c}{$-1/(N-1)$}\\\bottomrule
 \end{tabular}
-\notecrit{$\alpha_n=0$ signifie absence de préférence dans cette coquille ; cela ne prouve pas l'indépendance à toutes les distances.}
+\end{column}
+\begin{column}{.59\textwidth}
+\fpic{12_cowley}{58mm}
+\begin{itemize}\tightlist
+\item $\alpha_n=0$ signifie absence de préférence dans cette coquille ; cela ne prouve pas l'indépendance à toutes les distances.
+\item $\alpha_n<0$ : davantage de Cu autour d'Au que dans un mélange indépendant ; $\alpha_n>0$ : moins de Cu.
+\end{itemize}
 \end{column}
 \end{columns}
-\takeaway{$\alpha_n<0$ : davantage de Cu autour d'Au que dans un mélange indépendant ; $\alpha_n>0$ : moins de Cu.}
 \end{frame}
 
 \begin{frame}[t]{Question 3 -- Calculer l'ordre à longue portée}
 \framesubtitle{Fonction \texttt{ordre} : conserver $\eta$ du sujet et distinguer les quatre variantes avec $q$}
-\fpic{15_variantes}{29mm}
 \begin{columns}[T,onlytextwidth]
-\begin{column}{.37\textwidth}
+\begin{column}{.36\textwidth}
+\begin{itemize}\tightlist
+\item Les occupations des sous-réseaux définissent le paramètre de référence :
 \[
 p_\mu=\frac{N_{\Au,\mu}}{L^3},\quad \sum_{\mu=0}^3p_\mu=1,
-\qquad\eta=\frac{p_0-1/4}{3/4}.
+\]
+\[
+\eta=\frac{p_0-1/4}{3/4}.
 \]
 Dans la variante de référence, $\eta=1$ ; dans les trois autres, $\eta=-1/3$.
+\item L'amplitude invariante reconnaît les quatre variantes :
 \[
 \boxed{q=\sqrt{\frac43\sum_{\mu=0}^3(p_\mu-1/4)^2}}.
 \]
 $q=1$ dans les quatre états ordonnés. $q$ est calculé sur chaque configuration, puis moyenné.
-\notecrit{$\mu$ est un label géométrique, pas un potentiel chimique. Un faible $q$ peut coexister avec des domaines localement ordonnés.}
-\end{column}
-\begin{column}{.60\textwidth}
-\fpic{09_sous_reseaux}{44mm}
-\end{column}
-\end{columns}
-\takeaway{$\langle q(\mathbf p)\rangle\neq q(\langle\mathbf p\rangle)$ : moyenner quatre variantes ordonnées peut donner $\langle p_\mu\rangle=1/4$ sans désordre instantané.}
-\end{frame}
-
-\begin{frame}[t]{Question 4 -- Tester le programme complet}
-\framesubtitle{Distinguer exactitude du code et qualité de l'échantillonnage}
-\begin{columns}[T,onlytextwidth]
-\begin{column}{.60\textwidth}
-\begin{block}{Validation relancée : 34 tests réussis le 10 novembre 2026}
-\begin{tabular}{p{.47\linewidth}p{.43\linewidth}}\toprule
-Contrôle & Valeur attendue et obtenue\\\midrule
-Géométrie L6, voisinage réciproque & 864 sites ; $12+6$ voisins\\
-Énergie ordonnée & $-3294.432$ eV\\
-Cowley et ordre parfaits & $(-1/3,1)$ ; $\eta=q=1$\\
-Échange Au--Cu premiers voisins & $\Delta E=0.5586$ eV\\
-$\Delta E$ local contre recalcul global & Écart nul en micro-eV\\
-Noyau compilé contre référence & Écart observables $<10^{-12}$\\
-Arrêt puis reprise sur checkpoint & Même trajectoire que sans arrêt\\
-FFT, sommes directes et variantes & Identités spatiales vérifiées\\\bottomrule
-\end{tabular}
-\end{block}
-\src{Windows, Python 3.11.9 ; NumPy 2.3.5, SciPy 1.17.0, Numba 0.68.0. Journal : review\_tests\_20261110.log.}
-\end{column}
-\begin{column}{.37\textwidth}
-\textbf{Exemple indépendant : une paire d'antisites}
-
-Dans $L1_2$, échanger un Au et un Cu premiers voisins crée deux mauvaises occupations.
-Le comptage donne
-\[
-\Delta A_1=3,\qquad \Delta B_2=12,
-\]
-\[
-\Delta E=0.161\times3+0.0063\times12
-=0.5586\ \mathrm{eV}.
-\]
-Pour cette proposition à 1000 K :
-\[
-A=\exp[-0.5586/(\kb1000)]\simeq0.00153.
-\]
-\textbf{Contrôles pendant les campagnes}
-\begin{itemize}\tightlist
-\item Composition inchangée et énergie reconstruite.
-\item Continuité entre paliers et archives complètes.
-\item Borne exacte $E\geq E_0$.
+\item $\mu$ est un label géométrique, pas un potentiel chimique. Un faible $q$ peut coexister avec des domaines localement ordonnés.
 \end{itemize}
 \end{column}
+\begin{column}{.61\textwidth}
+\fpic{15_variantes}{41mm}
+\fpic{09_sous_reseaux}{54mm}
+\end{column}
 \end{columns}
-\takeaway{Des tests réussis valident des identités et des mécanismes du code ; ils ne prouvent ni l'équilibre, ni la fidélité au matériau réel.}
 \end{frame}
+
+
 
 \begin{frame}[t]{Question 5 -- Déterminer l'énergie de cohésion à $T=0$}
 \framesubtitle{Comptage exact des paires et conversion par atome / par unité de formule}
@@ -266,24 +206,22 @@ Une unité de formule Cu$_3$Au contient quatre atomes.
 \begin{column}{.48\textwidth}
 \textbf{Pourquoi est-ce un minimum global du modèle ?}
 
-Noter $A_1$ le nombre de paires Au--Au de première coquille et $B_n$ le nombre de paires Au--Cu.
-La composition impose
+\begin{itemize}\tightlist
+\item $A_1$ compte les paires Au--Au de première coquille et $B_n$ les paires Au--Cu. La composition impose
 \[
 2A_1+B_1=12N_{\Au}=3N.
 \]
-En éliminant les autres comptages dans l'énergie :
+\item En éliminant les autres comptages dans l'énergie :
 \[
 \boxed{E-E_0=0.161A_1+0.0063B_2\geq0}.
 \]
 $L1_2$ réalise $A_1=B_2=0$ : aucune configuration de même composition ne peut avoir une énergie inférieure.
-
-\textbf{Convention de signe}
-
-L'énergie liée est négative relativement à la référence du modèle. Si l'on appelle énergie de cohésion le coût positif de dissociation, son module vaut $3.813$ eV/atome.
-\notecrit{La preuve est exacte pour ces interactions de paires sur réseau rigide. Elle n'est pas une preuve du minimum d'une structure atomique relaxable réelle.}
+\item L'énergie liée est négative relativement à la référence du modèle. Le coût positif de dissociation vaut en module $3.813$ eV/atome.
+\item La preuve est exacte pour ces interactions de paires sur réseau rigide ; elle ne traite pas une structure atomique relaxable réelle.
+\item Agrandir la boîte multiplie $E_0$ par le nombre d'atomes ; $u_0$ et l'énergie par formule restent identiques.
+\end{itemize}
 \end{column}
 \end{columns}
-\takeaway{Agrandir la boîte multiplie $E_0$ par le nombre d'atomes ; $u_0$ et l'énergie par formule restent identiques.}
 \end{frame}
 
 \begin{frame}[t]{Question 6 -- Générer des configurations d'équilibre}
@@ -312,15 +250,13 @@ Les mesures restent classées par \emph{température}, après les éventuels éc
 \item Examiner stationnarité et moyennes cumulées.
 \item Comparer les chaînes, ESS et $\widehat R$.
 \item Contrôler aussi la circulation des répliques.
+\item 6000 balayages écartés ne garantissent pas l'équilibre. Deux chaînes peuvent rester dans des populations similaires sans explorer tous les états.
 \end{itemize}
-\notecrit{6000 balayages écartés ne garantissent pas l'équilibre. Deux chaînes peuvent rester dans des populations similaires sans explorer tous les états.}
 \end{column}
 \begin{column}{.57\textwidth}
-\fpic{16_coupes_2D}{48mm}
-\fpic{17_moyennes_cumulees}{39mm}
+\fpic{17_moyennes_cumulees}{86mm}
 \end{column}
 \end{columns}
-\takeaway{Ces répliques simultanées ne forment pas un cycle de chauffage. Une coupe est une vue partielle ; les observables utilisent tout le volume.}
 \end{frame}
 
 \begin{frame}[t]{Question 7 -- Calculer les grandeurs en fonction de $T$}
@@ -337,16 +273,18 @@ u=\langle E\rangle/N,\qquad
 \]
 Utiliser l'énergie \emph{totale} dans cette variance. $c_V$ est la capacité par atome, configuratoire seulement.
 \[
-X_q=\frac{N\operatorname{Var}(q)}{\kb T},\qquad
 U_q=1-\frac{\langle q^4\rangle}{3\langle q^2\rangle^2}.
 \]
-$X_q$ : réponse à un champ artificiel couplé à $q$ (eV$^{-1}$). $q$, $U_q$ et $c_V/\kb$ sont sans dimension.
+$q$, $U_q$ et $c_V/\kb$ sont sans dimension.
 
 \textbf{Incertitudes}
 
 Les mesures successives sont corrélées : bootstrap par blocs et comparaison de chaînes.
 ESS = effectif indépendant estimé ; $\widehat R$ = diagnostic de désaccord entre chaînes.
-\notecrit{Calculer les variances dans chaque chaîne, puis moyenner. Fusionner des chaînes de moyennes différentes ajouterait une variance artificielle.}
+\begin{itemize}\tightlist
+\item Calculer les variances dans chaque chaîne, puis moyenner. Fusionner des chaînes de moyennes différentes ajouterait une variance artificielle.
+\item Metropolis fournit les poids thermiques des configurations ; la capacité est calculée après coup avec leurs énergies, pas avec le taux d'acceptation.
+\end{itemize}
 \end{column}
 \begin{column}{.56\textwidth}
 \fpic{03_thermodynamique}{49mm}
@@ -360,10 +298,8 @@ $T$ (K) & $u$ (eV/at.) & $q$ & $\alpha_1$ & $\alpha_2$ & $c_V/\kb$\\\midrule
 4000 & $-3.7578$ & 0.065 & $-0.067$ & 0.026 & 0.028\\\bottomrule
 \end{tabular}
 \end{center}
-\src{Une variance mesurée nulle au froid signifie qu'aucune fluctuation n'a été vue ; ce n'est pas une preuve de capacité exactement nulle à température finie.}
 \end{column}
 \end{columns}
-\takeaway{Metropolis fournit les poids thermiques des configurations ; la capacité est calculée après coup avec leurs énergies, pas avec le taux d'acceptation.}
 \end{frame}
 
 \begin{frame}[t]{Question 8 -- Estimer la température de transition}
@@ -384,10 +320,11 @@ Bloc de 37 mesures, soit 370 balayages ; températures rééchantillonnées conj
 \qquad \mathrm{SE}=0.94\ \mathrm K.
 \]
 Blocs moitié/double : même intervalle, SE de 0.85 à 1.16 K.
-\notecrit{Les voisins 1045 et 1055 K ne forment pas un intervalle de confiance. Le bootstrap ne localise pas le pic entre deux points et ne corrige pas les bassins manqués.}
+\begin{itemize}\tightlist
+\item[$\ast$] Les voisins 1045 et 1055 K ne forment pas un intervalle de confiance. Le bootstrap ne localise pas le pic entre deux points et ne corrige pas les bassins manqués.
+\end{itemize}
 \end{column}
 \end{columns}
-\takeaway{$1050$ K caractérise ce modèle en L6. Il faut distinguer maximum fini, coexistence thermodynamique, limite $L\to\infty$ et température expérimentale.}
 \end{frame}
 
 \begin{frame}[t]{Question 9 -- Discuter les résultats et le modèle}
@@ -413,14 +350,18 @@ f_{\rm MF}=u_{\rm MF}-Ts_{\rm MF}.
 $A=0.0674625$ eV/atome ; $s_{\rm MF}$ est l'entropie de mélange approchée par atome.
 Coexistence approchée : $T_t^{\rm MF}\simeq1712$ K.
 Le champ moyen néglige les corrélations spatiales : sa coexistence diffère du maximum Monte-Carlo fini.
-\notecrit{Pic plus étroit, histogramme double ou hystérésis sont des indices complémentaires ; aucun ne démontre seul l'ordre de la transition. Les grandes tailles restent mal mélangées au pic.}
+\begin{itemize}\tightlist
+\item[$\ast$] Pic plus étroit, histogramme double ou hystérésis sont des indices complémentaires ; aucun ne démontre seul l'ordre de la transition. Les grandes tailles restent mal mélangées au pic.
+\item[$\ast$] Le modèle capture compétition énergie--entropie, défauts et variantes. Il ne prédit pas fidèlement la température réelle ni la vitesse de transformation.
+\end{itemize}
 \end{column}
 \end{columns}
-\takeaway{Le modèle capture compétition énergie--entropie, défauts et variantes. Il ne prédit pas fidèlement la température réelle ni la vitesse de transformation.}
 \src{[1] Paras \& Allanore (2021). [2] Benisek \& Dachs (2015). Références détaillées en annexe A14.}
 \end{frame}
 
 \appendix
+
+
 \begin{frame}[t]{Annexe A1 -- Bonus 1 : chauffage et refroidissement}
 \framesubtitle{Une trajectoire séquentielle conserve la mémoire de son histoire}
 \begin{columns}[T,onlytextwidth]
@@ -887,5 +828,49 @@ $\tau$ / $\widehat R$ & Autocorrélation / diagnostic de désaccord entre chaîn
 \end{enumerate}
 \end{column}
 \end{columns}
+\end{frame}
+\begin{frame}[t]{Annexe -- Question 4 -- Tester le programme complet}
+\framesubtitle{Distinguer exactitude du code et qualité de l'échantillonnage}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.60\textwidth}
+\begin{block}{Validation relancée : 34 tests réussis le 10 novembre 2026}
+\begin{tabular}{p{.47\linewidth}p{.43\linewidth}}\toprule
+Contrôle & Valeur attendue et obtenue\\\midrule
+Géométrie L6, voisinage réciproque & 864 sites ; $12+6$ voisins\\
+Énergie ordonnée & $-3294.432$ eV\\
+Cowley et ordre parfaits & $(-1/3,1)$ ; $\eta=q=1$\\
+Échange Au--Cu premiers voisins & $\Delta E=0.5586$ eV\\
+$\Delta E$ local contre recalcul global & Écart nul en micro-eV\\
+Noyau compilé contre référence & Écart observables $<10^{-12}$\\
+Arrêt puis reprise sur checkpoint & Même trajectoire que sans arrêt\\
+FFT, sommes directes et variantes & Identités spatiales vérifiées\\\bottomrule
+\end{tabular}
+\end{block}
+\end{column}
+\begin{column}{.37\textwidth}
+\textbf{Exemple indépendant : une paire d'antisites}
+
+Dans $L1_2$, échanger un Au et un Cu premiers voisins crée deux mauvaises occupations.
+Le comptage donne
+\[
+\Delta A_1=3,\qquad \Delta B_2=12,
+\]
+\[
+\Delta E=0.161\times3+0.0063\times12
+=0.5586\ \mathrm{eV}.
+\]
+Pour cette proposition à 1000 K :
+\[
+A=\exp[-0.5586/(\kb1000)]\simeq0.00153.
+\]
+\textbf{Contrôles pendant les campagnes}
+\begin{itemize}\tightlist
+\item Composition inchangée et énergie reconstruite.
+\item Continuité entre paliers et archives complètes.
+\item Borne exacte $E\geq E_0$.
+\end{itemize}
+\end{column}
+\end{columns}
+\takeaway{Des tests réussis valident des identités et des mécanismes du code ; ils ne prouvent ni l'équilibre, ni la fidélité au matériau réel.}
 \end{frame}
 \end{document}

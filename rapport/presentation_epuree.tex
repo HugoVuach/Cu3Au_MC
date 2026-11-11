@@ -1,0 +1,658 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\IfFileExists{french.ldf}{\usepackage[french]{babel}}{}
+\usepackage{amsmath,amssymb,booktabs,array,graphicx}
+\geometry{paperwidth=240mm,paperheight=135mm}
+\setbeamersize{text margin left=7mm,text margin right=7mm}
+\definecolor{navy}{HTML}{183047}
+\definecolor{teal}{HTML}{167D9A}
+\definecolor{pale}{HTML}{F1F5F8}
+\setbeamercolor{normal text}{fg=navy,bg=white}
+\setbeamercolor{structure}{fg=teal}
+\setbeamercolor{frametitle}{fg=navy,bg=pale}
+\renewcommand{\normalsize}{\fontsize{9}{10.7}\selectfont}
+\setbeamerfont{frametitle}{size=\fontsize{15}{17}\selectfont,series=\bfseries}
+\setbeamerfont{framesubtitle}{size=\fontsize{8.5}{10}\selectfont}
+\setbeamerfont{itemize/enumerate body}{size=\fontsize{9}{10.7}\selectfont}
+\setbeamertemplate{itemize item}{\textcolor{teal}{\textbullet}}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}{\hfill\fontsize{7}{8}\selectfont\insertframenumber/\inserttotalframenumber\hspace*{7mm}\vspace*{2mm}}
+\setlength{\abovedisplayskip}{4pt}
+\setlength{\belowdisplayskip}{4pt}
+\hypersetup{colorlinks=true,urlcolor=teal,linkcolor=teal,pdftitle={Cu3Au : présentation épurée},pdfauthor={Projet Cu3Au}}
+\graphicspath{{figures_epurees/}}
+\newcommand{\kb}{k_{\mathrm B}}
+\newcommand{\Au}{\mathrm{Au}}
+\newcommand{\Cu}{\mathrm{Cu}}
+\newcommand{\fpic}[2]{\begin{center}\includegraphics[width=\linewidth,height=#2,keepaspectratio]{#1.pdf}\end{center}}
+\newcommand{\gifpic}[3]{\begin{center}\href{#3}{\includegraphics[width=\linewidth,height=#2,keepaspectratio]{#1.pdf}}\end{center}}
+
+\newcommand{\deuxpoints}[2]{\par\smallskip\begin{itemize}\setlength{\itemsep}{2pt}\setlength{\parskip}{0pt}\item #1\item #2\end{itemize}}
+\newcommand{\unpoint}[1]{\par\smallskip\begin{itemize}\item #1\end{itemize}}
+
+\begin{document}
+
+\begin{frame}[plain]
+\vspace{10mm}
+{\color{teal}\rule{\linewidth}{1.3pt}}
+\vspace{9mm}
+{\fontsize{30}{35}\selectfont\bfseries Cu$_3$Au\par Transition ordre--désordre\par}
+\vspace{8mm}
+{\fontsize{13}{16}\selectfont Simulation Monte-Carlo d'un alliage sur réseau rigide\par}
+\vspace{7mm}
+\deuxpoints{Nous simulons les échanges entre Au et Cu à composition fixée pour suivre la mise en ordre chimique.}{Nous comparons les observables, les cycles thermiques et trois tailles de boîte : $L=6,9,12$.}
+\end{frame}
+
+\begin{frame}{Question 1 -- Construire le réseau et accepter les échanges atomiques}
+\framesubtitle{Hamiltonien de paires, variation locale d'énergie et règle de Metropolis}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.50\textwidth}
+\[
+\mathbf r/a=(i,j,k)+\mathbf b_\mu,\quad
+\mathbf b_\mu\in\{(0,0,0),(0,\tfrac12,\tfrac12),(\tfrac12,0,\tfrac12),(\tfrac12,\tfrac12,0)\}.
+\]
+\[
+(X,Y,Z)=2\mathbf r/a\pmod{2L},\quad X+Y+Z\in2\mathbb Z.
+\]
+\[
+E=\sum_{\langle ij\rangle_1}J_{\sigma_i\sigma_j}
++\sum_{\langle ij\rangle_2}I_{\sigma_i\sigma_j}.
+\]
+\[
+\begin{aligned}
+\Delta E={}&\sum_{n=1}^2\sum_{k\in V_n(i)\setminus\{j\}}
+\big[U_n(\Cu,\sigma_k)-U_n(\Au,\sigma_k)\big]\\
+&+\sum_{n=1}^2\sum_{k\in V_n(j)\setminus\{i\}}
+\big[U_n(\Au,\sigma_k)-U_n(\Cu,\sigma_k)\big].
+\end{aligned}
+\]
+\[
+\sigma_i=\Au,\quad\sigma_j=\Cu,\quad U_1=J,\quad U_2=I,
+\]
+\[
+A_{\rm M}=\min\left(1,e^{-\Delta E/(\kb T)}\right).
+\]
+\end{column}
+\begin{column}{.47\textwidth}
+\[
+L=6,\quad N=4L^3=864,\quad N_{\Au}=216,\quad N_{\Cu}=648.
+\]
+\fpic{13_coquilles}{67mm}
+\end{column}
+\end{columns}
+\deuxpoints{Le réseau CFC et les voisins restent fixes ; seuls les occupants Au et Cu sont échangés.}{Metropolis accepte parfois une hausse d'énergie pour échantillonner les excitations thermiques sans changer la composition.}
+\end{frame}
+
+\begin{frame}{Question 2 -- Mesurer l'ordre chimique dans les deux premières coquilles}
+\framesubtitle{De la probabilité conditionnelle aux paramètres de Cowley $\alpha_1$ et $\alpha_2$}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.31\textwidth}
+\[
+B_n=\sum_{i:\sigma_i=\Au}\sum_{j\in V_n(i)}\mathbf1_{\sigma_j=\Cu},
+\]
+\[
+p_n^{\Cu|\Au}=\frac{B_n}{N_{\Au}z_n},
+\qquad\alpha_n=1-\frac{p_n^{\Cu|\Au}}{c_{\Cu}}.
+\]
+\[
+c_{\Cu}=\frac34,\quad z_1=12,\quad z_2=6.
+\]
+\[
+(\alpha_1,\alpha_2)_{L1_2}=(-1/3,1),
+\]
+\[
+\alpha_n^{\rm rand}=-\frac1{N-1}\xrightarrow{N\to\infty}0.
+\]
+\end{column}
+\begin{column}{.66\textwidth}
+\fpic{12_cowley}{73mm}
+\end{column}
+\end{columns}
+\deuxpoints{On compte les voisins Cu autour des Au, puis on compare cette probabilité à la concentration globale en Cu.}{Un paramètre négatif indique un excès de voisins Cu ; l'état $L1_2$ parfait donne $\alpha_1=-1/3$ et $\alpha_2=1$.}
+\end{frame}
+
+\begin{frame}{Question 3 -- Distinguer l'ordre global et les quatre variantes}
+\framesubtitle{Paramètre signé $\eta$, occupations des sous-réseaux et amplitude invariante $q$}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.40\textwidth}
+\[
+p_\mu=\frac{N_{\Au,\mu}}{L^3},\quad\sum_{\mu=0}^3p_\mu=1,
+\]
+\[
+\eta=\frac{p_0-1/4}{3/4},\qquad
+q=\sqrt{\frac43\sum_{\mu=0}^3(p_\mu-1/4)^2}.
+\]
+\fpic{15_variantes}{43mm}
+\[
+\langle q(\mathbf p)\rangle\ne q(\langle\mathbf p\rangle).
+\]
+\end{column}
+\begin{column}{.57\textwidth}
+\fpic{09_sous_reseaux}{73mm}
+\end{column}
+\end{columns}
+\deuxpoints{$\eta$ dépend du sous-réseau de référence, tandis que $q=1$ reconnaît les quatre variantes parfaitement ordonnées.}{Une moyenne uniforme des occupations peut masquer des changements de variante : on calcule $q$ avant de le moyenner.}
+\end{frame}
+
+\begin{frame}{Question 4 -- Vérifier le programme avec des références exactes}
+\framesubtitle{Géométrie, énergie locale, observables et reprise des trajectoires : 34 tests réussis}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.48\textwidth}
+\[
+N=864,\quad |V_1(i)|=12,\quad |V_2(i)|=6,
+\]
+\[
+E_0=-3294.432\ \mathrm{eV},\quad
+(\alpha_1,\alpha_2)=(-1/3,1),\quad\eta=q=1.
+\]
+\[
+\max\left|\Delta E_{\rm local}-\Delta E_{\rm global}\right|=0\ \mathrm{\mu eV},
+\]
+\[
+\max|A_{\rm Numba}-A_{\rm Python}|<10^{-12},
+\qquad n_{\rm tests}=34.
+\]
+\[
+C_s^{\rm reprise}=C_s^{\rm continu},\qquad
+S(0)=L^3\langle q^2\rangle.
+\]
+\end{column}
+\begin{column}{.48\textwidth}
+\[
+\Delta A_1=3,\qquad\Delta B_2=12,
+\]
+\[
+\Delta E=0.161\times3+0.0063\times12=0.5586\ \mathrm{eV},
+\]
+\[
+A_{\rm M}(1000\ \mathrm K)=e^{-0.5586/(\kb1000)}\simeq0.00153.
+\]
+\[
+N_{\Au}(s)=N/4,\qquad E(s)\ge E_0.
+\]
+\[
+\text{Python }3.11.9,\quad\text{NumPy }2.3.5,
+\]
+\[
+\text{SciPy }1.17.0,\quad\text{Numba }0.68.0.
+\]
+\end{column}
+\end{columns}
+\deuxpoints{Les calculs locaux sont confrontés à un recalcul global et à des états dont les valeurs sont connues exactement.}{Ces tests vérifient le fonctionnement du code ; la qualité de l'équilibre se contrôle séparément sur les séries simulées.}
+\end{frame}
+
+\begin{frame}{Question 5 -- Calculer l'énergie de l'état ordonné à température nulle}
+\framesubtitle{Comptage des paires et passage de la boîte entière à l'atome ou à la formule Cu$_3$Au}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.49\textwidth}
+\[
+L=6,\quad N=864,\quad N_{\Cu_3\Au}=216.
+\]
+\begin{center}
+\begin{tabular}{crrr}\toprule
+$n$ & $N_{\Au\Au}^{(n)}$ & $N_{\Au\Cu}^{(n)}$ & $N_{\Cu\Cu}^{(n)}$\\\midrule
+1 & 0 & 2592 & 2592\\
+2 & 648 & 0 & 1944\\\bottomrule
+\end{tabular}
+\end{center}
+\[
+E_0=2592(-0.689)+2592(-0.582)=-3294.432\ \mathrm{eV},
+\]
+\[
+u_0=\frac{E_0}{864}=-3.813\ \mathrm{eV/atome},
+\]
+\[
+E_0^{\Cu_3\Au}=\frac{E_0}{216}=4u_0=-15.252\ \mathrm{eV/formule}.
+\]
+\end{column}
+\begin{column}{.47\textwidth}
+\[
+A_1=N_{\Au\Au}^{(1)},\quad B_n=N_{\Au\Cu}^{(n)},
+\]
+\[
+2A_1+B_1=12N_{\Au}=3N,
+\]
+\[
+E-E_0=0.161A_1+0.0063B_2\ge0,
+\]
+\[
+(A_1,B_2)_{L1_2}=(0,0).
+\]
+\end{column}
+\end{columns}
+\deuxpoints{On divise l'énergie totale par 864 pour obtenir l'énergie par atome, ou par 216 pour l'énergie par formule.}{La positivité de $E-E_0$ montre que $L1_2$ est un minimum global pour le Hamiltonien et la composition considérés.}
+\end{frame}
+
+\begin{frame}{Question 6 -- Échantillonner les configurations à chaque température}
+\framesubtitle{Deux chaînes indépendantes et échanges de répliques pour la production canonique L6}
+\[
+L=6,\quad n_{\text{chaînes}}=2,\quad n_T=46,\quad T\in[300,4000]\ \mathrm K,\quad
+n_{\rm eq}=6000,\quad n_{\rm prod}=30000.
+\]
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.49\textwidth}
+\fpic{16_coupes_2D}{67mm}
+\end{column}
+\begin{column}{.49\textwidth}
+\fpic{17_moyennes_cumulees}{67mm}
+\end{column}
+\end{columns}
+\[
+\Delta s_{\rm mesure}=10,\quad\Delta s_{\rm PT}=5,\quad M=3000,
+\quad\beta_r=\frac1{\kb T_r},\quad
+A_{\rm PT}=\min\left[1,e^{(\beta_r-\beta_s)(E_r-E_s)}\right].
+\]
+\deuxpoints{Après l'équilibration, les mesures sont classées par température, après les éventuels échanges de configurations entre répliques.}{L'accord des moyennes cumulées aide au diagnostic, mais ne prouve pas à lui seul que tous les états ont été explorés.}
+\end{frame}
+
+\begin{frame}{Question 7 -- Relier les configurations aux grandeurs thermiques}
+\framesubtitle{Énergie, ordre et réponses calculées à partir des fluctuations de production}
+\[
+u=\frac{\langle E\rangle}N,\qquad
+\frac{c_V}{\kb}=\frac{\langle E^2\rangle-\langle E\rangle^2}{N(\kb T)^2},\qquad
+U_q=1-\frac{\langle q^4\rangle}{3\langle q^2\rangle^2}.
+\]
+\fpic{03_thermodynamique}{65mm}
+\begin{columns}[c,onlytextwidth]
+\begin{column}{.65\textwidth}
+\begin{center}
+\fontsize{7.5}{8.5}\selectfont
+\begin{tabular}{rrrrrr}\toprule
+$T$ (K) & $u$ (eV/at.) & $q$ & $\alpha_1$ & $\alpha_2$ & $c_V/\kb$\\\midrule
+300 & $-3.8130$ & 1.000 & $-0.333$ & 1.000 & 0.000\\
+1000 & $-3.8026$ & 0.881 & $-0.283$ & 0.803 & 1.041\\
+1050 & $-3.7914$ & 0.575 & $-0.233$ & 0.527 & 5.873\\
+1100 & $-3.7799$ & 0.192 & $-0.180$ & 0.242 & 0.694\\
+4000 & $-3.7578$ & 0.065 & $-0.067$ & 0.026 & 0.028\\\bottomrule
+\end{tabular}
+\end{center}
+\end{column}
+\begin{column}{.32\textwidth}
+\[
+\widehat{\operatorname{Var}}(E)=\frac1{n_c}\sum_{c=1}^{n_c}\operatorname{Var}_c(E).
+\]
+\end{column}
+\end{columns}
+\deuxpoints{La capacité calorifique utilise la variance de l'énergie totale ; Metropolis fournit les configurations et leurs poids thermiques.}{Les variances sont calculées dans chaque chaîne avant moyenne pour éviter d'ajouter artificiellement leur désaccord.}
+\end{frame}
+
+\begin{frame}{Question 8 -- Repérer la transition ordre--désordre}
+\framesubtitle{Énergie, ordre global et fluctuations au voisinage du maximum de capacité calorifique}
+\[
+L=6,\qquad T^*_{c_V}=1050\ \mathrm K,\qquad T^*_{X_q}=1055\ \mathrm K.
+\]
+\fpic{11_zoom_transition}{83mm}
+\unpoint{Le maximum de $c_V$ se trouve à 1050 K en L6 ; les autres indicateurs situent la transformation dans la même zone.}
+\end{frame}
+
+\begin{frame}{Question 9 -- Comparer les résultats au champ moyen et au matériau réel}
+\framesubtitle{Ce que décrit le modèle de paires et ce que ses approximations limitent}
+\fpic{08_champ_moyen}{73mm}
+\[
+u_{\rm MF}=u_\infty-A\eta^2,\quad
+f_{\rm MF}=u_{\rm MF}-Ts_{\rm MF},\quad A=0.0674625\ \mathrm{eV/atome},
+\]
+\[
+T^*_{\rm MC,L6}=1050\ \mathrm K,\qquad
+T_t^{\rm MF}=1712.18\ \mathrm K,\qquad T_t^{\rm exp}\simeq662\ \mathrm K.
+\]
+\deuxpoints{Le modèle reproduit la perte d'ordre global et la persistance de préférences chimiques locales à haute température.}{Le réseau rigide, les interactions simplifiées et l'absence de diffusion par lacunes limitent l'accord quantitatif avec le matériau réel.}
+\end{frame}
+
+\appendix
+\begin{frame}{Annexe A1 -- Suivre la mémoire d'un cycle de chauffage et refroidissement}
+\framesubtitle{Bonus 1 : paliers séquentiels sans échange de répliques, pour deux trajectoires L6}
+\[
+300\ \mathrm K\ \nearrow\ 4000\ \mathrm K\ \searrow\ 300\ \mathrm K,\quad
+L=6,\quad n_c=2,\quad n_T=46,\quad n_{\rm eq}=6000,\quad n_{\rm prod}=30000,\quad\Delta s_{\rm mesure}=10.
+\]
+\fpic{bonus_02_ordres}{73mm}
+\deuxpoints{Chaque palier reprend l'état final du précédent, puis le refroidissement repart du véritable état chaud.}{Un écart entre les branches révèle une mémoire à durée finie ; il ne définit pas automatiquement une hystérésis d'équilibre.}
+\end{frame}
+
+\begin{frame}{Annexe A2 -- Lire les occupations des Au sans confondre les variantes}
+\framesubtitle{Bonus 1 : séparation des deux cycles et des branches de chauffage/refroidissement}
+\[
+p_\mu=\frac{N_{\Au,\mu}}{L^3},\qquad \sum_{\mu=0}^3p_\mu=1,\qquad L=6.
+\]
+\fpic{bonus_03_sous_reseaux}{73mm}
+\deuxpoints{Chaque panneau suit une trajectoire et un sens du cycle ; couleurs et symboles gardent le même indice de sous-réseau.}{Une bosse d'occupation peut traduire un changement de variante ; elle doit être confrontée à $q$ et aux autres occupations.}
+\end{frame}
+
+\begin{frame}{Annexe A3 -- Visualiser la mise en ordre sur neuf coupes atomiques}
+\framesubtitle{Bonus 1 : trois couches par orientation $(001)$, $(110)$ et $(111)$, avec accès aux GIF}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.485\textwidth}
+\[
+T=1000\ \mathrm K,\quad s=0,\quad q=0.049.
+\]
+\gifpic{plaquette_relaxation_isotherme_debut}{73mm}{animations/plaquette_relaxation_isotherme.gif}
+\end{column}
+\begin{column}{.485\textwidth}
+\[
+T=1000\ \mathrm K,\quad s=6000,\quad q=0.944.
+\]
+\gifpic{plaquette_relaxation_isotherme_fin}{73mm}{animations/plaquette_relaxation_isotherme.gif}
+\end{column}
+\end{columns}
+\[
+\href{animations/plaquette_cycle_thermique.gif}{T_{\rm cycle}:300\ \nearrow\ 4000\ \searrow\ 300\ \mathrm K,\quad N_{\rm images}=93}.
+\]
+\deuxpoints{Les neuf vues montrent des couches fixes du même volume, avec Au en or et Cu en bleu.}{Cliquer sur les plaquettes ouvre la relaxation isotherme ; la formule bleue ouvre le cycle à température variable.}
+\end{frame}
+
+\begin{frame}{Annexe A4 -- Mesurer la mise en ordre après une trempe à 1000 K}
+\framesubtitle{Bonus 1--2 : ordre global, poids du mode uniforme et longueur diffuse pendant la relaxation}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.63\textwidth}
+\fpic{correlation_03_relaxation}{83mm}
+\end{column}
+\begin{column}{.34\textwidth}
+\[
+L=6,\quad 4000\to1000\ \mathrm K,
+\]
+\[
+N_t=301,\quad\Delta s=20,\quad s_{\max}=6000,
+\]
+\[
+f_0=\frac{S(0)}{\sum_{\mathbf k}S(\mathbf k)},
+\]
+\[
+\frac{\ell_{\rm diff}}a=\sqrt{\frac{\sum_{\mathbf k\ne0}S(\mathbf k)}{\sum_{\mathbf k\ne0}\widehat k_a^2S(\mathbf k)}},
+\]
+\[
+\widehat k_a^2=4\sum_j\sin^2(k_ja/2).
+\]
+\end{column}
+\end{columns}
+\deuxpoints{Cette trajectoire montre une mise en ordre rapide de la petite boîte, avec des captures tous les 20 balayages.}{La longueur apparente est dominée par l'ordre uniforme ; une seule trempe ne donne ni rayon critique ni vitesse physique de croissance.}
+\end{frame}
+
+\begin{frame}{Annexe A5 -- Extraire une longueur de corrélation par Fourier}
+\framesubtitle{Bonus 2 : champ d'ordre signé, spectre connexe et estimateur de second moment}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.48\textwidth}
+\[
+\psi_\alpha(\mathbf R)=\sum_{\mu=0}^3\epsilon_{\alpha\mu}(n_{\mathbf R\mu}-1/4),
+\]
+\[
+\epsilon=\begin{pmatrix}1&1&-1&-1\\1&-1&1&-1\\1&-1&-1&1\end{pmatrix},\quad V=L^3,
+\]
+\[
+\mathbf m=V^{-1}\sum_{\mathbf R}\boldsymbol\psi(\mathbf R),\qquad q^2=|\mathbf m|^2/3,
+\]
+\[
+\mathbf Q_x=\frac{2\pi}a(1,0,0),\quad\mathbf Q_y=\frac{2\pi}a(0,1,0),\quad\mathbf Q_z=\frac{2\pi}a(0,0,1).
+\]
+\end{column}
+\begin{column}{.49\textwidth}
+\[
+F_\alpha(\mathbf k)=\sum_{\mathbf R}\psi_\alpha(\mathbf R)e^{-i\mathbf k\cdot\mathbf R},
+\]
+\[
+S_c(\mathbf k)=\frac1{3V}\sum_\alpha\left[\langle|F_\alpha|^2\rangle-|\langle F_\alpha\rangle|^2\right],
+\]
+\[
+\xi_{\rm 2nd}^2=\frac{\sum_{\mathbf r}r^2C_c(\mathbf r)}{6\sum_{\mathbf r}C_c(\mathbf r)},
+\]
+\[
+\frac{\xi_{2,L}}a=\frac1{2\sin(\pi/L)}\sqrt{\frac{S_c(0)}{\overline S_1}-1},
+\]
+\[
+\overline S_1=\frac16\sum_{j=1}^3\left[S_c(k_{\min}\mathbf e_j)+S_c(-k_{\min}\mathbf e_j)\right],\quad k_{\min}=\frac{2\pi}{La}.
+\]
+\end{column}
+\end{columns}
+\deuxpoints{Le champ à trois composantes distingue les quatre variantes ; son mode uniforme mesure l'ordre, pas la concentration totale fixée.}{Le rapport entre le centre du pic et les premiers modes voisins définit une longueur de second moment, distincte d'un rayon de domaine.}
+\end{frame}
+
+\begin{frame}{Annexe A6 -- Interpréter la longueur de corrélation en fonction de $T$}
+\framesubtitle{Bonus 2 : comparaison des spectres connexes, des corrélations réelles et du diagnostic intra-variante}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.49\textwidth}\fpic{correlation_01_xi}{67mm}\end{column}
+\begin{column}{.49\textwidth}\fpic{correlation_02_real_fourier}{67mm}\end{column}
+\end{columns}
+\[
+L=6,\quad n_T=14,\quad n_c=2,\quad n_{\rm eq}=3000,\quad n_{\rm prod}=12000,\quad\Delta s=20,\quad n_{\rm bootstrap}=400.
+\]
+\begin{center}
+\begin{tabular}{rrrrrr}\toprule
+$T$ (K) & 900 & 1000 & 1050 & 1100 & 1300\\\midrule
+$\xi_c/a$ & 40.722 & 18.445 & 6.193 & 1.370 & 0.663\\
+$\xi_{\rm intra}/a$ & 0.687 & 1.097 & --- & --- & ---\\\bottomrule
+\end{tabular}
+\end{center}
+\deuxpoints{Au froid, les changements collectifs de variante peuvent produire une grande longueur connexe, bien supérieure à la boîte.}{Le diagnostic intra-variante et les contrôles statistiques empêchent d'assimiler cette valeur à une taille géométrique de domaine.}
+\end{frame}
+
+\begin{frame}{Annexe A7 -- Comparer l'ordre et la transition pour trois tailles}
+\framesubtitle{Bonus 3 : superposition L6/L9/L12 et amplitude résiduelle de l'ordre au chaud}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.51\textwidth}\fpic{croise_01_transition}{73mm}\end{column}
+\begin{column}{.46\textwidth}\fpic{croise_02_ordres}{73mm}\end{column}
+\end{columns}
+\[
+\langle q^2\rangle_{\rm rand}=\frac3{N-1},\qquad
+\sqrt N\langle q\rangle_{4000\,\mathrm K}=(1.922,1.924,1.926).
+\]
+\deuxpoints{À 1045 K, l'ordre est plus marqué dans les grandes boîtes ; au chaud, le résidu de $q$ diminue avec le volume.}{La quasi-superposition de $\sqrt N\langle q\rangle$ soutient un effet de fluctuations finies, sans constituer une mesure d'exposant critique.}
+\end{frame}
+
+\begin{frame}{Annexe A8 -- Vérifier si une boîte plus grande améliore l'équilibre}
+\framesubtitle{Bonus 3 : effectif utile, désaccord des chaînes et circulation des répliques}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.62\textwidth}\fpic{croise_03_diagnostics}{83mm}\end{column}
+\begin{column}{.35\textwidth}
+\begin{center}
+\begin{tabular}{lrrr}\toprule
+$L$ & 6 & 9 & 12\\\midrule
+$N$ & 864 & 2916 & 6912\\
+$n_T$ & 46 & 46 & 90\\
+$n_{\rm prod}$ & 30000 & 30000 & 60000\\
+$c_V^{\max}/\kb$ & 5.87 & 17.68 & 26.85\\
+ESS$_{\min}$ & 1191 & 37 & 45\\
+$\widehat R_{\max}(E,q)$ & 1.005 & 1.026 & 1.268\\
+$n_{\rm aller-retour}$ & 7 & 0 & 0\\\bottomrule
+\end{tabular}
+\end{center}
+\[
+T^*_{L12}=1052.5\ \mathrm K,
+\]
+\[
+P_1(q>0.5)=0.826,\quad P_2(q>0.5)=0.159.
+\]
+\end{column}
+\end{columns}
+\deuxpoints{Les grandes tailles rendent le pic plus marqué, mais les deux chaînes L12 ne visitent pas les populations avec les mêmes poids.}{La grille plus fine et la production doublée ne suppriment pas ce défaut : augmenter $L$ ne garantit pas une meilleure convergence.}
+\end{frame}
+
+\begin{frame}{Annexe A9 -- Relier les défauts locaux à l'énergie et à la capacité}
+\framesubtitle{Bonus 3 : identité énergie--Cowley et rôle de la covariance entre coquilles}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.40\textwidth}
+\[
+\frac{A_1}{N}=\frac38+\frac98\alpha_1,\qquad\frac{B_2}{N}=\frac98(1-\alpha_2),
+\]
+\[
+\begin{aligned}
+u={}&-3.813+0.161\left(\frac38+\frac98\alpha_1\right)\\
+&+0.0063\frac98(1-\alpha_2)\quad\mathrm{eV/atome},
+\end{aligned}
+\]
+\[
+E_1=0.161A_1,\qquad E_2=0.0063B_2,
+\]
+\[
+\frac{c_V}{\kb}=\frac{\operatorname{Var}(E_1)+\operatorname{Var}(E_2)+2\operatorname{Cov}(E_1,E_2)}{N(\kb T)^2}.
+\]
+\end{column}
+\begin{column}{.57\textwidth}\fpic{croise_05_energie}{83mm}\end{column}
+\end{columns}
+\deuxpoints{L'énergie et les paramètres de Cowley sont reliés par une identité exacte : leur accord n'est pas une preuve indépendante de transition.}{La covariance contribue fortement au pic de capacité et doit être conservée, même si la seconde interaction est faible.}
+\end{frame}
+
+\begin{frame}{Annexe A10 -- Comparer la portée spatiale de l'ordre entre tailles}
+\framesubtitle{Bonus 3 : longueurs $\xi/a$, rapports $\xi/(La)$ et diagnostics des composantes signées}
+\fpic{croise_08_spatial}{71mm}
+\begin{center}
+\begin{tabular}{rrrrr}\toprule
+$L$ & $T$ (K) & $\xi_c/a$ & ESS & $\widehat R_{\text{signé}}$\\\midrule
+9 & 1050 & 11.53 & 31.6 & 1.45\\
+12 & 1050 & 12.70 & 15.8 & 1.84\\
+9 & 1300 & 0.77 & 336 & 1.00\\
+12 & 1300 & 0.72 & 404 & 1.00\\\bottomrule
+\end{tabular}
+\end{center}
+\deuxpoints{Au chaud, les longueurs courtes sont plus proches entre tailles ; près de la transition, les différences de populations pèsent davantage.}{Les captures et budgets diffèrent entre campagnes, et les composantes signées restent lentes : la comparaison n'est pas une extrapolation contrôlée.}
+\end{frame}
+
+\begin{frame}{Annexe A11 -- Superposer les cycles thermiques des trois tailles}
+\framesubtitle{Bonus 4 : chauffage/refroidissement entre 1000 et 1100 K et écarts appariés à 1050 K}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.66\textwidth}\fpic{croise_10_cycles_global}{83mm}\end{column}
+\begin{column}{.31\textwidth}
+\[
+T\in[1000,1100]\ \mathrm K,
+\quad \Delta q=q_\downarrow-q_\uparrow.
+\]
+\begin{center}
+\begin{tabular}{rrr}\toprule
+$L$ & $T^*_{\uparrow}$ (K) & $T^*_{\downarrow}$ (K)\\\midrule
+6 & 1050 & 1055\\
+9 & 1055 & 1055\\
+12 & 1055 & 1050\\\bottomrule
+\end{tabular}
+\medskip
+
+\begin{tabular}{rrr}\toprule
+$L$ & $\Delta q(1050\,\mathrm K)$ & SE$_{\rm cycles}$\\\midrule
+6 & $-0.0684$ & 0.0557\\
+9 & $+0.0796$ & 0.1538\\
+12 & $-0.4695$ & 0.1781\\\bottomrule
+\end{tabular}
+\end{center}
+\end{column}
+\end{columns}
+\deuxpoints{Les branches d'un cycle sont appariées ; les écarts sont calculés trajectoire par trajectoire avant leur moyenne.}{Avec seulement deux cycles et des diagnostics critiques insuffisants, aucune loi monotone d'hystérésis avec la taille n'est établie.}
+\end{frame}
+
+\begin{frame}{Annexe A12 -- Expliquer la forte mémoire thermique observée en L12}
+\framesubtitle{Bonus 4 : confronter moyennes de branche, séries temporelles et populations individuelles}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.49\textwidth}
+\fpic{croise_13_cycle_L12_reference}{76mm}
+\[
+T=1050\ \mathrm K,\quad q_\uparrow=0.772,\quad q_\downarrow=0.302,
+\]
+\[
+\Delta u=+0.01048\ \mathrm{eV/atome},\quad
+\Delta\alpha_1=+0.04695,\quad\Delta\alpha_2=-0.27893.
+\]
+\end{column}
+\begin{column}{.48\textwidth}
+\fpic{croise_14_cycle_L12_populations}{76mm}
+\[
+(q_{\downarrow,1},q_{\downarrow,2})_{1050\,\mathrm K}=(0.480,0.124),
+\]
+\[
+(q_{\uparrow,1},q_{\uparrow,2})_{1055\,\mathrm K}=(0.536,0.084).
+\]
+\end{column}
+\end{columns}
+\deuxpoints{À 1050 K, le retour est moins ordonné que l'aller, mais les deux trajectoires de retour restent très différentes.}{Un diagnostic local favorable peut correspondre à un seul bassin visité ; l'écart d'énergie mesuré n'est donc pas une chaleur latente.}
+\end{frame}
+
+\begin{frame}{Annexe A13 -- Organiser les mouvements, les balayages et les mesures}
+\framesubtitle{Du mouvement élémentaire aux deux protocoles de température et à l'analyse spatiale}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.49\textwidth}
+\[
+\pi_T(C)=Z^{-1}e^{-\beta E(C)},\qquad\beta=1/(\kb T),
+\]
+\[
+C'=\operatorname{swap}_{i\in\Au,j\in\Cu}(C),\quad
+\Delta E=E(C')-E(C),
+\]
+\[
+\mathcal K_T(C)=\begin{cases}C',&u<A_{\rm M}(C\to C'),\\C,&u\ge A_{\rm M}(C\to C'),\end{cases}
+\quad u\sim\mathcal U[0,1),
+\]
+\[
+\mathcal C_s\xrightarrow{\{\mathcal K_{T_r}^{N}\}_r}\widetilde{\mathcal C}_{s+1}
+\xrightarrow{(s+1)\bmod5=0,\ A_{\rm PT}}\mathcal C_{s+1},
+\]
+\[
+s>n_{\rm eq},\quad (s-n_{\rm eq})\bmod10=0,
+\]
+\[
+\mathcal M_s=(E_s,\eta_s,q_s,\alpha_{1s},\alpha_{2s},p_{0s},\ldots,p_{3s}).
+\]
+\end{column}
+\begin{column}{.48\textwidth}
+\[
+\mathcal T_\uparrow=(T_1,\ldots,T_m),\quad
+\mathcal T_\downarrow=(T_m,\ldots,T_1),
+\]
+\[
+C^{(0)}_{j+1}=C^{(n_{\rm eq}+n_{\rm prod})}_j,
+\]
+\[
+\Delta A_c(T)=\overline A_{c,\downarrow}(T)-\overline A_{c,\uparrow}(T),
+\]
+\[
+\{C_s\}\longrightarrow\boldsymbol\psi_s\longrightarrow F_s=\operatorname{FFT}(\boldsymbol\psi_s),
+\]
+\[
+\{\langle F\rangle_c,\langle|F|^2\rangle_c\}\longrightarrow S_{c,\rm connexe}
+\longrightarrow\overline S_{\rm connexe}\longrightarrow\xi_{2,L}.
+\]
+\end{column}
+\end{columns}
+\deuxpoints{Un balayage contient $N$ propositions, refus compris ; les mesures suivent un calendrier fixé après les échanges de répliques éventuels.}{Le cycle transmet l'état au palier suivant, tandis que la production à répliques échantillonne plusieurs températures simultanément.}
+\end{frame}
+
+\begin{frame}{Annexe A14 -- Récapituler les paramètres physiques et numériques}
+\framesubtitle{Même Hamiltonien pour les trois tailles, avec des budgets canoniques et cycliques distincts}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.43\textwidth}
+\[
+c_{\Au}=1/4,\quad c_{\Cu}=3/4,\quad z_1=12,\quad z_2=6,
+\]
+\[
+r_1=a/\sqrt2,\quad r_2=a,\quad L_{\text{boîte}}=La.
+\]
+\begin{center}
+\begin{tabular}{lrr}\toprule
+ & $J$ (eV) & $I$ (eV)\\\midrule
+Au--Au & $-0.635$ & 0\\
+Cu--Cu & $-0.582$ & 0\\
+Au--Cu & $-0.689$ & $+0.0063$\\\bottomrule
+\end{tabular}
+\end{center}
+\end{column}
+\begin{column}{.54\textwidth}
+\begin{center}
+\begin{tabular}{lrrr}\toprule
+$L$ & 6 & 9 & 12\\\midrule
+$N=4L^3$ & 864 & 2916 & 6912\\
+$N_{\Au}=L^3$ & 216 & 729 & 1728\\
+$N_{\Cu}=3L^3$ & 648 & 2187 & 5184\\
+$k_{\min}a$ & 1.047 & 0.698 & 0.524\\
+$n_{T,\rm canonique}$ & 46 & 46 & 90\\
+$n_{\rm eq,canonique}$ & 6000 & 6000 & 12000\\
+$n_{\rm prod,canonique}$ & 30000 & 30000 & 60000\\
+$n_{T,\rm cycle}$ & 46 & 46 & 46\\
+$n_{\rm eq,cycle}$ & 6000 & 6000 & 6000\\
+$n_{\rm prod,cycle}$ & 30000 & 30000 & 30000\\\bottomrule
+\end{tabular}
+\end{center}
+\[
+n_c=2,\quad\Delta s_{\rm mesure}=10,\quad\Delta s_{\rm PT,canonique}=5,\quad n_{\rm PT,cycle}=0.
+\]
+\end{column}
+\end{columns}
+\deuxpoints{Passer de L6 à L12 multiplie le nombre de sites par huit, sans modifier la composition ni les énergies de paire.}{Un même nombre de balayages ne fournit pas nécessairement le même nombre de configurations indépendantes.}
+\end{frame}
+\end{document}

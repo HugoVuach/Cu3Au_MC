@@ -75,11 +75,14 @@ def main():
         for question in range(1, 10):
             pattern = re.compile(r'Question\s+' + str(question) + r'\s+[\u2013\u2014-]')
             pages = [i + 1 for i, text in enumerate(texts) if pattern.search(text)]
-            if len(pages) != 1:
-                raise RuntimeError(f'Question {question}: expected one page, found {pages}')
-            question_pages[str(question)] = pages[0]
-        if len(doc) != 24:
-            raise RuntimeError(f'Expected 24 slides, found {len(doc)}')
+            expected_count = 2 if question == 1 else 1
+            if len(pages) != expected_count:
+                raise RuntimeError(f'Question {question}: expected {expected_count} pages, found {pages}')
+            question_pages[str(question)] = pages
+        if len(doc) != 25:
+            raise RuntimeError(f'Expected 25 slides, found {len(doc)}')
+        if question_pages['1'] != [2, 3] or question_pages['4'] != [25]:
+            raise RuntimeError('Expected two opening Q1 slides and Q4 as the final appendix.')
         missing_links = []
         gif_links = []
         for page in doc:
@@ -97,7 +100,8 @@ def main():
         audit = {
             'date': datetime.now().astimezone().isoformat(),
             'pages': len(doc), 'slide_dimensions_mm': dimensions,
-            'question_pages': question_pages, 'bonus_appendix_slides': 14,
+            'question_pages': question_pages, 'main_slides_including_cover': 10,
+            'bonus_appendix_slides': 14, 'validation_appendix_slides': 1,
             'figure_uses': len(figure_names), 'unique_figures': len(set(figure_names)),
             'repeated_figure_names': [name for name, n in Counter(figure_names).items() if n > 1],
             'latex_warnings': warnings, 'gif_links': gif_links, 'assets': assets,

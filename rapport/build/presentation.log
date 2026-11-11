@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.9.11)  10 NOV 2026 11:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.9.11)  10 NOV 2026 15:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1150,332 +1150,329 @@ LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <7> not available
 (Font)              Font shape `T1/lmss/m/sl' tried instead on input line 48.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <5> not available
 (Font)              Font shape `T1/lmss/m/sl' tried instead on input line 48.
-LaTeX Font Info:    Calculating math sizes for size <28> on input line 82.
+LaTeX Font Info:    Calculating math sizes for size <28> on input line 66.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <28> on input line 82.
+(Font)              <28> on input line 66.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <19.59991> on input line 82.
+(Font)              <19.59991> on input line 66.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14> on input line 82.
+(Font)              <14> on input line 66.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <28> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 82.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 66.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <19.59991> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 82.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 66.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <14> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 82.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 66.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 82.
+(Font)              <9> on input line 66.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 82.
+(Font)              <6> on input line 66.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <9> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 82.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 66.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <6> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 82.
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 82
-.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 66.
 
-(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmr.fd
-File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
 [1
 
 {C:/Users/vuache_h/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/v
 uache_h/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/Users/vu
-ache_h/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Users
-/vuache_h/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users/
-vuache_h/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}]
+ache_h/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}]
 LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <9> not available
-(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 132.
+(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 111.
 LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <6> not available
-(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 132.
+(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 111.
 LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <5> not available
-(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 132.
-<figures/13_coquilles.pdf, id=34, 586.35616pt x 347.5133pt>
+(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 111.
+<figures/13_coquilles.pdf, id=27, 586.35616pt x 347.5133pt>
 File: figures/13_coquilles.pdf Graphic file (type pdf)
 <use figures/13_coquilles.pdf>
-Package pdftex.def Info: figures/13_coquilles.pdf  used on input line 132.
-(pdftex.def)             Requested size: 201.631pt x 119.49982pt.
-LaTeX Font Info:    Calculating math sizes for size <6.5> on input line 132.
+Package pdftex.def Info: figures/13_coquilles.pdf  used on input line 111.
+(pdftex.def)             Requested size: 268.8503pt x 159.3384pt.
+LaTeX Font Info:    Calculating math sizes for size <6.5> on input line 111.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6.5> on input line 132.
+(Font)              <6.5> on input line 111.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <4.54997> on input line 132.
+(Font)              <4.54997> on input line 111.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <3.25> on input line 132.
+(Font)              <3.25> on input line 111.
 LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <6.5> not available
-(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 132.
+(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 111.
 LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <4.54997> not available
-(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 132.
+(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 111.
 LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <3.25> not available
-(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 132.
+(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 111.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <6.5> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 132.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 111.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <4.54997> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 132.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 111.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <3.25> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 132.
-<figures/14_organigramme.pdf, id=35, 518.53723pt x 612.8496pt>
-File: figures/14_organigramme.pdf Graphic file (type pdf)
-<use figures/14_organigramme.pdf>
-Package pdftex.def Info: figures/14_organigramme.pdf  used on input line 132.
-(pdftex.def)             Requested size: 173.61807pt x 205.196pt.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 111.
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 11
+1.
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmr.fd
+File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
 LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <7> not available
-(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 132.
+(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 111.
 
 [2
 
-{C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.e
-nc} <./figures/13_coquilles.pdf> <./figures/14_organigramme.pdf>]
-<figures/12_cowley.pdf, id=67, 857.30298pt x 378.98691pt>
+{C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.e
+nc}{C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.en
+c}{C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex
+.enc} <./figures/13_coquilles.pdf>]
+<figures/14_organigramme.pdf, id=56, 518.53723pt x 612.8496pt>
+File: figures/14_organigramme.pdf Graphic file (type pdf)
+<use figures/14_organigramme.pdf>
+Package pdftex.def Info: figures/14_organigramme.pdf  used on input line 116.
+(pdftex.def)             Requested size: 231.10835pt x 273.14268pt.
+ [3
+
+ <./figures/14_organigramme.pdf>]
+<figures/12_cowley.pdf, id=70, 857.30298pt x 378.98691pt>
 File: figures/12_cowley.pdf Graphic file (type pdf)
 <use figures/12_cowley.pdf>
-Package pdftex.def Info: figures/12_cowley.pdf  used on input line 168.
+Package pdftex.def Info: figures/12_cowley.pdf  used on input line 147.
 (pdftex.def)             Requested size: 373.30315pt x 165.02567pt.
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
-68.
+47.
 
 (C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <8> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 168.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 147.
 
-[3
+[4
 
  <./figures/12_cowley.pdf>]
-<figures/15_variantes.pdf, id=95, 686.565pt x 313.11278pt>
+<figures/15_variantes.pdf, id=100, 686.565pt x 313.11278pt>
 File: figures/15_variantes.pdf Graphic file (type pdf)
 <use figures/15_variantes.pdf>
-Package pdftex.def Info: figures/15_variantes.pdf  used on input line 191.
-(pdftex.def)             Requested size: 180.92267pt x 82.51105pt.
-<figures/09_sous_reseaux.pdf, id=96, 857.76993pt x 379.4928pt>
+Package pdftex.def Info: figures/15_variantes.pdf  used on input line 175.
+(pdftex.def)             Requested size: 255.78506pt x 116.65256pt.
+<figures/09_sous_reseaux.pdf, id=101, 857.76993pt x 379.4928pt>
 File: figures/09_sous_reseaux.pdf Graphic file (type pdf)
 <use figures/09_sous_reseaux.pdf>
-Package pdftex.def Info: figures/09_sous_reseaux.pdf  used on input line 191.
-(pdftex.def)             Requested size: 282.97333pt x 125.19247pt.
+Package pdftex.def Info: figures/09_sous_reseaux.pdf  used on input line 175.
+(pdftex.def)             Requested size: 347.2902pt x 153.64742pt.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 191.
+(Font)              <8> on input line 175.
 LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <8> not available
-(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 191.
+(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 175.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <8> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 191.
- [4
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 175.
+ [5
 
- <./figures/15_variantes.pdf> <./figures/09_sous_reseaux.pdf>] [5
-
-]
-LaTeX Font Info:    Calculating math sizes for size <16> on input line 287.
+ <./figures/15_variantes.pdf> <./figures/09_sous_reseaux.pdf>]
+LaTeX Font Info:    Calculating math sizes for size <16> on input line 225.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <16> on input line 287.
+(Font)              <16> on input line 225.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <11.19995> on input line 287.
+(Font)              <11.19995> on input line 225.
 LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <16> not available
-(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 287.
+(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 225.
 LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <11.19995> not available
-(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 287.
+(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 225.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <16> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 287.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 225.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <11.19995> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 287.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 225.
  [6
 
 ]
-<figures/16_coupes_2D.pdf, id=146, 707.90553pt x 509.57877pt>
-File: figures/16_coupes_2D.pdf Graphic file (type pdf)
-<use figures/16_coupes_2D.pdf>
-Package pdftex.def Info: figures/16_coupes_2D.pdf  used on input line 324.
-(pdftex.def)             Requested size: 189.72202pt x 136.5695pt.
-<figures/17_moyennes_cumulees.pdf, id=147, 712.99063pt x 495.48615pt>
+<figures/17_moyennes_cumulees.pdf, id=146, 712.99063pt x 495.48615pt>
 File: figures/17_moyennes_cumulees.pdf Graphic file (type pdf)
 <use figures/17_moyennes_cumulees.pdf>
-Package pdftex.def Info: figures/17_moyennes_cumulees.pdf  used on input line 3
-24.
-(pdftex.def)             Requested size: 159.67616pt x 110.96545pt.
+Package pdftex.def Info: figures/17_moyennes_cumulees.pdf  used on input line 2
+60.
+(pdftex.def)             Requested size: 352.09918pt x 244.68802pt.
  [7
 
- <./figures/16_coupes_2D.pdf> <./figures/17_moyennes_cumulees.pdf>]
-<figures/03_thermodynamique.pdf, id=176, 857.56696pt x 364.9665pt>
+ <./figures/17_moyennes_cumulees.pdf>]
+<figures/03_thermodynamique.pdf, id=161, 857.56696pt x 364.9665pt>
 File: figures/03_thermodynamique.pdf Graphic file (type pdf)
 <use figures/03_thermodynamique.pdf>
-Package pdftex.def Info: figures/03_thermodynamique.pdf  used on input line 367
+Package pdftex.def Info: figures/03_thermodynamique.pdf  used on input line 303
 .
 (pdftex.def)             Requested size: 327.59302pt x 139.41823pt.
  [8
 
  <./figures/03_thermodynamique.pdf>]
-<figures/11_zoom_transition.pdf, id=203, 857.86562pt x 555.65092pt>
+<figures/11_zoom_transition.pdf, id=188, 857.86562pt x 555.65092pt>
 File: figures/11_zoom_transition.pdf Graphic file (type pdf)
 <use figures/11_zoom_transition.pdf>
-Package pdftex.def Info: figures/11_zoom_transition.pdf  used on input line 391
+Package pdftex.def Info: figures/11_zoom_transition.pdf  used on input line 328
 .
 (pdftex.def)             Requested size: 250.38472pt x 162.17749pt.
-<figures/18_incertitude_pic.pdf, id=204, 712.90149pt x 358.06471pt>
+<figures/18_incertitude_pic.pdf, id=189, 712.90149pt x 358.06471pt>
 File: figures/18_incertitude_pic.pdf Graphic file (type pdf)
 <use figures/18_incertitude_pic.pdf>
-Package pdftex.def Info: figures/18_incertitude_pic.pdf  used on input line 391
+Package pdftex.def Info: figures/18_incertitude_pic.pdf  used on input line 328
 .
 (pdftex.def)             Requested size: 243.59076pt x 122.34685pt.
  [9
 
  <./figures/11_zoom_transition.pdf> <./figures/18_incertitude_pic.pdf>]
-<figures/08_champ_moyen.pdf, id=245, 857.80006pt x 379.4928pt>
+<figures/08_champ_moyen.pdf, id=230, 857.80006pt x 379.4928pt>
 File: figures/08_champ_moyen.pdf Graphic file (type pdf)
 <use figures/08_champ_moyen.pdf>
-Package pdftex.def Info: figures/08_champ_moyen.pdf  used on input line 421.
+Package pdftex.def Info: figures/08_champ_moyen.pdf  used on input line 360.
 (pdftex.def)             Requested size: 276.5435pt x 122.3435pt.
  [10
 
  <./figures/08_champ_moyen.pdf>]
-<figures/bonus_02_ordres.pdf, id=269, 1002.40562pt x 580.04204pt>
+<figures/bonus_02_ordres.pdf, id=254, 1002.40562pt x 580.04204pt>
 File: figures/bonus_02_ordres.pdf Graphic file (type pdf)
 <use figures/bonus_02_ordres.pdf>
-Package pdftex.def Info: figures/bonus_02_ordres.pdf  used on input line 452.
+Package pdftex.def Info: figures/bonus_02_ordres.pdf  used on input line 393.
 (pdftex.def)             Requested size: 373.69864pt x 216.24072pt.
  [11
 
  <./figures/bonus_02_ordres.pdf>]
-<figures/bonus_03_sous_reseaux.pdf, id=319, 857.69972pt x 580.04204pt>
+<figures/bonus_03_sous_reseaux.pdf, id=304, 857.69972pt x 580.04204pt>
 File: figures/bonus_03_sous_reseaux.pdf Graphic file (type pdf)
 <use figures/bonus_03_sous_reseaux.pdf>
 Package pdftex.def Info: figures/bonus_03_sous_reseaux.pdf  used on input line 
-480.
+421.
 (pdftex.def)             Requested size: 328.16724pt x 221.93173pt.
  [12
 
  <./figures/bonus_03_sous_reseaux.pdf>]
-<figures/plaquette_relaxation_isotherme_debut.pdf, id=349, 794.97pt x 794.97pt>
+<figures/plaquette_relaxation_isotherme_debut.pdf, id=334, 794.97pt x 794.97pt>
 
 File: figures/plaquette_relaxation_isotherme_debut.pdf Graphic file (type pdf)
 <use figures/plaquette_relaxation_isotherme_debut.pdf>
 Package pdftex.def Info: figures/plaquette_relaxation_isotherme_debut.pdf  used
- on input line 514.
+ on input line 455.
 (pdftex.def)             Requested size: 213.39536pt x 213.39536pt.
-<figures/plaquette_relaxation_isotherme_fin.pdf, id=350, 794.97pt x 794.97pt>
+<figures/plaquette_relaxation_isotherme_fin.pdf, id=335, 794.97pt x 794.97pt>
 File: figures/plaquette_relaxation_isotherme_fin.pdf Graphic file (type pdf)
 <use figures/plaquette_relaxation_isotherme_fin.pdf>
 Package pdftex.def Info: figures/plaquette_relaxation_isotherme_fin.pdf  used o
-n input line 514.
+n input line 455.
 (pdftex.def)             Requested size: 213.39536pt x 213.39536pt.
  [13
 
  <./figures/plaquette_relaxation_isotherme_debut.pdf> <./figures/plaquette_rela
 xation_isotherme_fin.pdf>]
-<figures/correlation_03_relaxation.pdf, id=408, 857.83046pt x 556.5047pt>
+<figures/correlation_03_relaxation.pdf, id=393, 857.83046pt x 556.5047pt>
 File: figures/correlation_03_relaxation.pdf Graphic file (type pdf)
 <use figures/correlation_03_relaxation.pdf>
 Package pdftex.def Info: figures/correlation_03_relaxation.pdf  used on input l
-ine 541.
+ine 482.
 (pdftex.def)             Requested size: 333.32213pt x 216.23775pt.
  [14
 
  <./figures/correlation_03_relaxation.pdf>]
 LaTeX Font Info:    Font shape `OT1/lmss/b/n' in size <9> not available
-(Font)              Font shape `OT1/lmss/bx/n' tried instead on input line 590.
+(Font)              Font shape `OT1/lmss/bx/n' tried instead on input line 531.
 
 LaTeX Font Info:    Font shape `OT1/lmss/b/n' in size <6> not available
-(Font)              Font shape `OT1/lmss/bx/n' tried instead on input line 590.
+(Font)              Font shape `OT1/lmss/bx/n' tried instead on input line 531.
 
 LaTeX Font Info:    Font shape `OT1/lmss/b/n' in size <5> not available
-(Font)              Font shape `OT1/lmss/bx/n' tried instead on input line 590.
+(Font)              Font shape `OT1/lmss/bx/n' tried instead on input line 531.
 
 LaTeX Font Info:    Font shape `T1/lmss/b/it' in size <9> not available
-(Font)              Font shape `T1/lmss/bx/it' tried instead on input line 590.
+(Font)              Font shape `T1/lmss/bx/it' tried instead on input line 531.
 
 LaTeX Font Info:    Font shape `T1/lmss/bx/it' in size <9> not available
-(Font)              Font shape `T1/lmss/bx/sl' tried instead on input line 590.
+(Font)              Font shape `T1/lmss/bx/sl' tried instead on input line 531.
 
 LaTeX Font Info:    Font shape `T1/lmss/b/it' in size <6> not available
-(Font)              Font shape `T1/lmss/bx/it' tried instead on input line 590.
+(Font)              Font shape `T1/lmss/bx/it' tried instead on input line 531.
 
 LaTeX Font Info:    Font shape `T1/lmss/bx/it' in size <6> not available
-(Font)              Font shape `T1/lmss/bx/sl' tried instead on input line 590.
+(Font)              Font shape `T1/lmss/bx/sl' tried instead on input line 531.
 
 LaTeX Font Info:    Font shape `T1/lmss/b/it' in size <5> not available
-(Font)              Font shape `T1/lmss/bx/it' tried instead on input line 590.
+(Font)              Font shape `T1/lmss/bx/it' tried instead on input line 531.
 
 LaTeX Font Info:    Font shape `T1/lmss/bx/it' in size <5> not available
-(Font)              Font shape `T1/lmss/bx/sl' tried instead on input line 590.
+(Font)              Font shape `T1/lmss/bx/sl' tried instead on input line 531.
 
  [15
 
 ]
-<figures/correlation_01_xi.pdf, id=434, 857.87567pt x 366.85657pt>
+<figures/correlation_01_xi.pdf, id=419, 857.87567pt x 366.85657pt>
 File: figures/correlation_01_xi.pdf Graphic file (type pdf)
 <use figures/correlation_01_xi.pdf>
-Package pdftex.def Info: figures/correlation_01_xi.pdf  used on input line 619.
+Package pdftex.def Info: figures/correlation_01_xi.pdf  used on input line 560.
 
 (pdftex.def)             Requested size: 315.09207pt x 134.74399pt.
-<figures/correlation_02_real_fourier.pdf, id=435, 857.36375pt x 353.06468pt>
+<figures/correlation_02_real_fourier.pdf, id=420, 857.36375pt x 353.06468pt>
 File: figures/correlation_02_real_fourier.pdf Graphic file (type pdf)
 <use figures/correlation_02_real_fourier.pdf>
 Package pdftex.def Info: figures/correlation_02_real_fourier.pdf  used on input
- line 619.
+ line 560.
 (pdftex.def)             Requested size: 308.65071pt x 127.10318pt.
  [16
 
  <./figures/correlation_01_xi.pdf> <./figures/correlation_02_real_fourier.pdf>]
-<figures/croise_01_transition.pdf, id=473, 930.24474pt x 539.39015pt>
+<figures/croise_01_transition.pdf, id=458, 930.24474pt x 539.39015pt>
 File: figures/croise_01_transition.pdf Graphic file (type pdf)
 <use figures/croise_01_transition.pdf>
-Package pdftex.def Info: figures/croise_01_transition.pdf  used on input line 6
-40.
+Package pdftex.def Info: figures/croise_01_transition.pdf  used on input line 5
+81.
 (pdftex.def)             Requested size: 314.0505pt x 182.09804pt.
-<figures/croise_02_ordres.pdf, id=474, 857.86562pt x 539.39015pt>
+<figures/croise_02_ordres.pdf, id=459, 857.86562pt x 539.39015pt>
 File: figures/croise_02_ordres.pdf Graphic file (type pdf)
 <use figures/croise_02_ordres.pdf>
-Package pdftex.def Info: figures/croise_02_ordres.pdf  used on input line 640.
+Package pdftex.def Info: figures/croise_02_ordres.pdf  used on input line 581.
 (pdftex.def)             Requested size: 276.04103pt x 173.5631pt.
  [17
 
  <./figures/croise_01_transition.pdf> <./figures/croise_02_ordres.pdf>]
-<figures/croise_03_diagnostics.pdf, id=574, 930.0126pt x 539.39015pt>
+<figures/croise_03_diagnostics.pdf, id=559, 930.0126pt x 539.39015pt>
 File: figures/croise_03_diagnostics.pdf Graphic file (type pdf)
 <use figures/croise_03_diagnostics.pdf>
 Package pdftex.def Info: figures/croise_03_diagnostics.pdf  used on input line 
-672.
+613.
 (pdftex.def)             Requested size: 363.02985pt x 210.5506pt.
  [18
 
  <./figures/croise_03_diagnostics.pdf>]
-<figures/croise_05_energie.pdf, id=606, 930.0754pt x 539.39015pt>
+<figures/croise_05_energie.pdf, id=591, 930.0754pt x 539.39015pt>
 File: figures/croise_05_energie.pdf Graphic file (type pdf)
 <use figures/croise_05_energie.pdf>
-Package pdftex.def Info: figures/croise_05_energie.pdf  used on input line 707.
+Package pdftex.def Info: figures/croise_05_energie.pdf  used on input line 648.
 
 (pdftex.def)             Requested size: 338.53094pt x 196.32845pt.
  [19
 
  <./figures/croise_05_energie.pdf>]
-<figures/croise_08_spatial.pdf, id=636, 930.05151pt x 337.15823pt>
+<figures/croise_08_spatial.pdf, id=621, 930.05151pt x 337.15823pt>
 File: figures/croise_08_spatial.pdf Graphic file (type pdf)
 <use figures/croise_08_spatial.pdf>
-Package pdftex.def Info: figures/croise_08_spatial.pdf  used on input line 729.
+Package pdftex.def Info: figures/croise_08_spatial.pdf  used on input line 670.
 
 (pdftex.def)             Requested size: 431.67476pt x 156.48886pt.
  [20
 
  <./figures/croise_08_spatial.pdf>]
-<figures/croise_10_cycles_global.pdf, id=665, 930.24474pt x 539.39015pt>
+<figures/croise_10_cycles_global.pdf, id=650, 930.24474pt x 539.39015pt>
 File: figures/croise_10_cycles_global.pdf Graphic file (type pdf)
 <use figures/croise_10_cycles_global.pdf>
 Package pdftex.def Info: figures/croise_10_cycles_global.pdf  used on input lin
-e 760.
+e 701.
 (pdftex.def)             Requested size: 382.75128pt x 221.93327pt.
  [21
 
  <./figures/croise_10_cycles_global.pdf>]
-<figures/croise_13_cycle_L12_reference.pdf, id=787, 930.24474pt x 539.39015pt>
+<figures/croise_13_cycle_L12_reference.pdf, id=772, 930.24474pt x 539.39015pt>
 File: figures/croise_13_cycle_L12_reference.pdf Graphic file (type pdf)
 <use figures/croise_13_cycle_L12_reference.pdf>
 Package pdftex.def Info: figures/croise_13_cycle_L12_reference.pdf  used on inp
-ut line 785.
+ut line 726.
 (pdftex.def)             Requested size: 269.89182pt x 156.49321pt.
-<figures/croise_14_cycle_L12_populations.pdf, id=788, 929.99509pt x 539.39015pt
+<figures/croise_14_cycle_L12_populations.pdf, id=773, 929.99509pt x 539.39015pt
 >
 File: figures/croise_14_cycle_L12_populations.pdf Graphic file (type pdf)
 <use figures/croise_14_cycle_L12_populations.pdf>
 Package pdftex.def Info: figures/croise_14_cycle_L12_populations.pdf  used on i
-nput line 785.
+nput line 726.
 (pdftex.def)             Requested size: 269.81938pt x 156.49321pt.
  [22
 
@@ -1483,11 +1480,12 @@ nput line 785.
 opulations.pdf>]
 \openout4 = `presentation.vrb'.
 
-
-(C:\Users\vuache_h\Desktop\perso\Cu3Au_MC\rapport\build\presentation.vrb)
+ (C:\Users\vuache_h\Desktop\perso\Cu3Au_MC\rapport\build\presentation.vrb)
 [23
 
 ] [24
+
+] [25
 
 ]
 \tf@nav=\write6
@@ -1509,10 +1507,10 @@ Package rerunfilecheck Info: File `presentation.out' has not changed.
 (rerunfilecheck)             Checksum: B706104383139FCF894D10245707BAFB;71.
  ) 
 Here is how much of TeX's memory you used:
- 24357 strings out of 467871
- 474948 string characters out of 5416924
- 864071 words of memory out of 5000000
- 52648 multiletter control sequences out of 15000+600000
+ 24354 strings out of 467871
+ 474757 string characters out of 5416924
+ 864052 words of memory out of 5000000
+ 52643 multiletter control sequences out of 15000+600000
  841953 words of font info for 174 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,17n,123p,416b,748s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1542,9 +1540,9 @@ a/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt8.pfb><C:/Users/vuache_h/AppD
 ata/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt9.pfb><C:/Users/vuache_h/Ap
 pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam7.pfb>
 Output written on C:\Users\vuache_h\Desktop\perso\Cu3Au_MC\rapport\build\presen
-tation.pdf (24 pages, 1403956 bytes).
+tation.pdf (25 pages, 1387146 bytes).
 PDF statistics:
- 1003 PDF objects out of 1200 (max. 8388607)
- 50 named destinations out of 1000 (max. 500000)
- 181 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 994 PDF objects out of 1000 (max. 8388607)
+ 52 named destinations out of 1000 (max. 500000)
+ 176 words of extra memory for PDF output out of 10000 (max. 10000000)
 

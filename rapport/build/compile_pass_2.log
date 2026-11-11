@@ -325,30 +325,29 @@ r-theorem-dictionary-English.dict)
 (C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/lm\omxlmex.fd)
 (C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd)
 (C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd)
-(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmr.fd)
 [1{C:/Users/vuache_h/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users
 /vuache_h/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/Users/
-vuache_h/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Use
-rs/vuache_h/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/User
-s/vuache_h/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}]
-[2{C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex
-.enc} <./figures/13_coquilles.pdf> <./figures/14_organigramme.pdf>]
+vuache_h/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}]
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmr.fd)
+[2{C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit
+.enc}{C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.
+enc}{C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-math
+ex.enc} <./figures/13_coquilles.pdf>] [3 <./figures/14_organigramme.pdf>]
 (C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd)
-[3 <./figures/12_cowley.pdf>] [4 <./figures/15_variantes.pdf> <./figures/09_sou
-s_reseaux.pdf>] [5] [6] [7 <./figures/16_coupes_2D.pdf> <./figures/17_moyennes_
-cumulees.pdf>] [8 <./figures/03_thermodynamique.pdf>] [9 <./figures/11_zoom_tra
-nsition.pdf> <./figures/18_incertitude_pic.pdf>] [10 <./figures/08_champ_moyen.
-pdf>] [11 <./figures/bonus_02_ordres.pdf>] [12 <./figures/bonus_03_sous_reseaux
-.pdf>] [13 <./figures/plaquette_relaxation_isotherme_debut.pdf> <./figures/plaq
-uette_relaxation_isotherme_fin.pdf>] [14 <./figures/correlation_03_relaxation.p
-df>] [15] [16 <./figures/correlation_01_xi.pdf> <./figures/correlation_02_real_
-fourier.pdf>] [17 <./figures/croise_01_transition.pdf> <./figures/croise_02_ord
-res.pdf>] [18 <./figures/croise_03_diagnostics.pdf>] [19 <./figures/croise_05_e
-nergie.pdf>] [20 <./figures/croise_08_spatial.pdf>] [21 <./figures/croise_10_cy
-cles_global.pdf>] [22 <./figures/croise_13_cycle_L12_reference.pdf> <./figures/
-croise_14_cycle_L12_populations.pdf>]
-(C:\Users\vuache_h\Desktop\perso\Cu3Au_MC\rapport\build\presentation.vrb)
-[23] [24]
+[4 <./figures/12_cowley.pdf>] [5 <./figures/15_variantes.pdf> <./figures/09_sou
+s_reseaux.pdf>] [6] [7 <./figures/17_moyennes_cumulees.pdf>] [8 <./figures/03_t
+hermodynamique.pdf>] [9 <./figures/11_zoom_transition.pdf> <./figures/18_incert
+itude_pic.pdf>] [10 <./figures/08_champ_moyen.pdf>] [11 <./figures/bonus_02_ord
+res.pdf>] [12 <./figures/bonus_03_sous_reseaux.pdf>] [13 <./figures/plaquette_r
+elaxation_isotherme_debut.pdf> <./figures/plaquette_relaxation_isotherme_fin.pd
+f>] [14 <./figures/correlation_03_relaxation.pdf>] [15] [16 <./figures/correlat
+ion_01_xi.pdf> <./figures/correlation_02_real_fourier.pdf>] [17 <./figures/croi
+se_01_transition.pdf> <./figures/croise_02_ordres.pdf>] [18 <./figures/croise_0
+3_diagnostics.pdf>] [19 <./figures/croise_05_energie.pdf>] [20 <./figures/crois
+e_08_spatial.pdf>] [21 <./figures/croise_10_cycles_global.pdf>] [22 <./figures/
+croise_13_cycle_L12_reference.pdf> <./figures/croise_14_cycle_L12_populations.p
+df>] (C:\Users\vuache_h\Desktop\perso\Cu3Au_MC\rapport\build\presentation.vrb)
+[23] [24] [25]
 (C:\Users\vuache_h\Desktop\perso\Cu3Au_MC\rapport\build\presentation.aux) )<C:/
 Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex10.pfb><
 C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi6.pfb
@@ -376,7 +375,7 @@ l/Programs/MiKTeX/fonts/type1/public/lm/lmtt8.pfb><C:/Users/vuache_h/AppData/Lo
 cal/Programs/MiKTeX/fonts/type1/public/lm/lmtt9.pfb><C:/Users/vuache_h/AppData/
 Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam7.pfb>
 Output written on C:\Users\vuache_h\Desktop\perso\Cu3Au_MC\rapport\build\presen
-tation.pdf (24 pages, 1403956 bytes).
+tation.pdf (25 pages, 1387146 bytes).
 Transcript written on C:\Users\vuache_h\Desktop\perso\Cu3Au_MC\rapport\build\pr
 esentation.log.
 log4cxx: setFile(C:\Users\vuache_h\AppData\Local\MiKTeX\miktex\log/pdflatex.log,true) call failed.

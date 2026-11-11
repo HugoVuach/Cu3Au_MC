@@ -436,7 +436,7 @@ def detailed_L12_analysis(runs,out,target):
         r'de norme décroît avec le volume. Les protocoles situent '
         r'la transformation dans la même zone de 1050--1055 K.',
         r'\item \textbf{Limite principale restante.} Les grandes boîtes '
-        r'ressèrent la transition et accentuent la dépendance au '
+        r'resserrent la zone de transformation et montrent une dépendance au '
         r'parcours, mais les poids des populations ne sont pas '
         r'assez bien contrôlés au pic. Il faut davantage de '
         r'trajectoires, des paliers critiques plus longs et '

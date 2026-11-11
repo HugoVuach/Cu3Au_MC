@@ -1,6 +1,6 @@
 {
-  "date": "2026-11-10T07:42:11.085872+01:00",
-  "pages": 60,
+  "date": "2026-11-11T11:30:02.159982+01:00",
+  "pages": 46,
   "figures": 40,
   "figure_names": [
     "01_reseau",
@@ -47,30 +47,27 @@
   "duplicate_calls": [],
   "identical_rendered_figures": [],
   "missing_inputs_figures_or_links": [],
+  "missing_references": [],
+  "missing_citations": [],
   "latex_warnings": [],
   "tests_passed": 34,
-  "test_log": "results/comparison_L6_L9_L12/review_tests_20261110.log",
-  "review_scope": "All questions 1-9, four bonus parts, algorithm and pseudocode; methodology, notation, interpretation and uncertainty",
-  "additional_validation": "Final L12 canonical/cycle comparison checked against archives; individual populations and paired differences reported",
-  "completed_canonical_sizes": [
-    6,
-    9,
-    12
+  "test_log": "results/comparison_L6_L9_L12/review_tests_20261111.log",
+  "pdf_author": "Hugo Vuacheux et Mazarine Lambert",
+  "cover_authors_present": true,
+  "pedagogical_boxes_removed": 18,
+  "algorithm_appendix_removed": true,
+  "question_sections_present": 9,
+  "conclusion_pdf_pages": [
+    44,
+    45
   ],
-  "completed_thermal_cycle_sizes": [
-    6,
-    9,
-    12
+  "new_production_simulations": false,
+  "review_notes": "report/relecture_finale_2026-11-11.md",
+  "validation_files": [
+    "results/production/validation_review_20261111.json",
+    "results/production_L9/validation_review_20261111.json",
+    "results/production_L12/validation_review_20261111.json"
   ],
-  "deferred_thermal_cycle_sizes": [],
   "main_and_copy_identical": true,
-  "cycle_temperature_window_K": [
-    1000,
-    1100
-  ],
-  "gif_links": [
-    "animations/plaquette_cycle_thermique.gif",
-    "animations/plaquette_relaxation_isotherme.gif"
-  ],
-  "final_review_notes": "report/relecture_finale_2026-11-10.md"
+  "main_pdf_sha256": "d6a583735e8f0d421499038c25a990ed6ff31634e5f6eee472ac5366a05a0f70"
 }

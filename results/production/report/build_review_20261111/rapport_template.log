@@ -1,0 +1,1406 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.9.11)  11 NOV 2026 11:29
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**C:/Users/vuache_h/Desktop/perso/Cu3Au_MC/report/rapport_template.tex
+(C:/Users/vuache_h/Desktop/perso/Cu3Au_MC/report/rapport_template.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-12-24>
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
+File: size10.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count275
+\c@section=\count276
+\c@subsection=\count277
+\c@subsubsection=\count278
+\c@paragraph=\count279
+\c@subparagraph=\count280
+\c@figure=\count281
+\c@table=\count282
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen148
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.sty
+Package: inputenc 2024/02/08 v1.3d Input encoding file
+\inpenc@prehook=\toks17
+\inpenc@posthook=\toks18
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
+Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/lm\lmodern.sty
+Package: lmodern 2015/05/01 v1.6.1 Latin Modern Fonts
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/lmm/m/it on input line 23.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> OMS/lmsy/m/n on input line 24.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 25.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 26.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/b/it --> OML/lmm/b/it on input line 27.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> OMS/lmsy/b/n on input line 28.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 29.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 31.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> OT1/lmss/m/n on input line 32.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> OT1/lmr/m/it on input line 33.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 34.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 35.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> OT1/lmss/bx/n on input line 36.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> OT1/lmr/bx/it on input line 37.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.sty
+Package: babel 2025/12/11 v25.17 The multilingual framework for LuaLaTeX, pdfLa
+TeX and XeLaTeX
+\babel@savecnt=\count283
+LaTeX Encoding Info:    Redeclaring text command \ij (encoding OT1) on input li
+ne 2068.
+LaTeX Encoding Info:    Redeclaring text command \IJ (encoding OT1) on input li
+ne 2070.
+LaTeX Encoding Info:    Redeclaring text command \ij (encoding T1) on input lin
+e 2072.
+LaTeX Encoding Info:    Redeclaring text command \IJ (encoding T1) on input lin
+e 2073.
+LaTeX Encoding Info:    Ignoring declaration for text command \ij (encoding ?) 
+on input line 2074.
+LaTeX Encoding Info:    Ignoring declaration for text command \IJ (encoding ?) 
+on input line 2076.
+LaTeX Encoding Info:    Ignoring declaration for text command \SS (encoding ?) 
+on input line 2101.
+\U@D=\dimen149
+\l@unhyphenated=\language79
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/babel\txtbabel.def
+)
+\bbl@readstream=\read2
+\bbl@dirlevel=\count284
+Package babel Info: Configuration files are deprecated, as
+(babel)             they can break document portability.
+(babel)             Reported on input line 4196.
+
+*************************************
+* Local config file bblopts.cfg used
+*
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/arabi\bblopts.cfg
+File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
+ babel
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/babel/locale/fr\ba
+bel-french.tex)
+Package babel Info: Importing font and identification data for french
+(babel)             from babel-fr.ini. Reported on input line 4320.
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/babel-french\frenc
+h.ldf
+Language: french 2026-06-06 v4.1a French support from the babel system
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/babel-french\frenc
+h3.ldf
+Language: french 2026-06-06 v3.7f French support from the babel system
+\FB@stdchar=\count285
+Package babel Info: Making : an active character on input line 266.
+Package babel Info: Making ; an active character on input line 267.
+Package babel Info: Making ! an active character on input line 268.
+Package babel Info: Making ? an active character on input line 269.
+\FBguill@level=\count286
+\FBold@everypar=\toks19
+\FB@Mht=\dimen150
+\mc@charclass=\count287
+\mc@charfam=\count288
+\mc@charslot=\count289
+\std@mcc=\count290
+\dec@mcc=\count291
+\listindentFB=\dimen151
+\descindentFB=\dimen152
+\labelwidthFB=\dimen153
+\labelfullwidthFB=\dimen154
+\FB@pardim=\dimen155
+\parindentFFN=\dimen156
+\FBfnindent=\dimen157
+)))
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/carlisle\scalefnt.st
+y)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.st
+y
+Package: geometry 2026/03/07 v6.0 Page Geometry
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks20
+) (C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
+Package: iftex 2024/12/12 v1.0g TeX engine tests
+))
+\Gm@cnth=\count292
+\Gm@cntv=\count293
+\c@Gm@tempcnt=\count294
+\Gm@bindingoffset=\dimen158
+\Gm@wd@mp=\dimen159
+\Gm@odd@mp=\dimen160
+\Gm@even@mp=\dimen161
+\Gm@layoutwidth=\dimen162
+\Gm@layoutheight=\dimen163
+\Gm@layouthoffset=\dimen164
+\Gm@layoutvoffset=\dimen165
+\Gm@dimlist=\toks21
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cf
+g))
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
+Package: amsmath 2025/07/09 v2.17z AMS math features
+\@mathmargin=\skip51
+
+For additional information on amsmath, use the `?' option.
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amstext.sty
+Package: amstext 2024/11/17 v2.01 AMS text
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks22
+\ex@=\dimen166
+)) (C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.st
+y
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen167
+) (C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty
+Package: amsopn 2022/04/08 v2.04 operator names
+)
+\inf@bad=\count295
+LaTeX Info: Redefining \frac on input line 233.
+\uproot@=\count296
+\leftroot@=\count297
+LaTeX Info: Redefining \overline on input line 398.
+LaTeX Info: Redefining \colon on input line 409.
+\classnum@=\count298
+\DOTSCASE@=\count299
+LaTeX Info: Redefining \ldots on input line 495.
+LaTeX Info: Redefining \dots on input line 498.
+LaTeX Info: Redefining \cdots on input line 619.
+\Mathstrutbox@=\box53
+\strutbox@=\box54
+LaTeX Info: Redefining \big on input line 721.
+LaTeX Info: Redefining \Big on input line 722.
+LaTeX Info: Redefining \bigg on input line 723.
+LaTeX Info: Redefining \Bigg on input line 724.
+\big@size=\dimen168
+LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
+\macc@depth=\count300
+LaTeX Info: Redefining \bmod on input line 904.
+LaTeX Info: Redefining \pmod on input line 909.
+LaTeX Info: Redefining \smash on input line 939.
+LaTeX Info: Redefining \relbar on input line 969.
+LaTeX Info: Redefining \Relbar on input line 970.
+\c@MaxMatrixCols=\count301
+\dotsspace@=\muskip17
+\c@parentequation=\count302
+\dspbrk@lvl=\count303
+\tag@help=\toks23
+\row@=\count304
+\column@=\count305
+\maxfields@=\count306
+\andhelp@=\toks24
+\eqnshift@=\dimen169
+\alignsep@=\dimen170
+\tagshift@=\dimen171
+\tagwidth@=\dimen172
+\totwidth@=\dimen173
+\lineht@=\dimen174
+\@envbody=\toks25
+\multlinegap=\skip52
+\multlinetaggap=\skip53
+\mathdisplay@stack=\toks26
+LaTeX Info: Redefining \[ on input line 2950.
+LaTeX Info: Redefining \] on input line 2951.
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amsfonts.st
+y
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.st
+y
+Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.st
+y
+Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
+ (C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphic
+s.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 106.
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.
+def
+File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen175
+\Gin@req@width=\dimen176
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\booktabs.st
+y
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen177
+\lightrulewidth=\dimen178
+\cmidrulewidth=\dimen179
+\belowrulesep=\dimen180
+\belowbottomsep=\dimen181
+\aboverulesep=\dimen182
+\abovetopsep=\dimen183
+\cmidrulesep=\dimen184
+\cmidrulekern=\dimen185
+\defaultaddspace=\dimen186
+\@cmidla=\count307
+\@cmidlb=\count308
+\@aboverulesep=\dimen187
+\@belowrulesep=\dimen188
+\@thisruleclass=\count309
+\@lastruleclass=\count310
+\@thisrulewidth=\dimen189
+) (C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.sty
+Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
+\col@sep=\dimen190
+\ar@mcellbox=\box55
+\extrarowheight=\dimen191
+\NC@list=\toks27
+\extratabsurround=\skip54
+\backup@length=\skip55
+\ar@cellbox=\box56
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\xcolor.sty
+Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.c
+fg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 274.
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/graphics\mathcolor.l
+tx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1349.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1353.
+Package xcolor Info: Model `RGB' extended on input line 1365.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1367.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1370.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype.
+sty
+Package: microtype 2026/03/01 v3.2d Micro-typographical refinements (RS)
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.st
+y
+Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count311
+)
+\MT@toks=\toks28
+\MT@tempbox=\box57
+\MT@count=\count312
+LaTeX Info: Redefining \noprotrusionifhmode on input line 1084.
+LaTeX Info: Redefining \leftprotrusion on input line 1085.
+\MT@prot@toks=\toks29
+LaTeX Info: Redefining \rightprotrusion on input line 1104.
+LaTeX Info: Redefining \textls on input line 1449.
+\MT@outer@kern=\dimen192
+LaTeX Info: Redefining \microtypecontext on input line 2053.
+LaTeX Info: Redefining \textmicrotypecontext on input line 2070.
+\MT@listname@count=\count313
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype-
+pdftex.def
+File: microtype-pdftex.def 2026/03/01 v3.2d Definitions specific to pdftex (RS)
+
+LaTeX Info: Redefining \lsstyle on input line 944.
+LaTeX Info: Redefining \lslig on input line 944.
+\MT@outer@space=\skip56
+)
+Package microtype Info: Loading configuration file microtype.cfg.
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype.
+cfg
+File: microtype.cfg 2026/03/01 v3.2d microtype main configuration file (RS)
+)
+LaTeX Info: Redefining \microtypesetup on input line 3065.
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/fancyhdr\fancyhdr.st
+y
+Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
+
+\f@nch@headwidth=\skip57
+\f@nch@offset@elh=\skip58
+\f@nch@offset@erh=\skip59
+\f@nch@offset@olh=\skip60
+\f@nch@offset@orh=\skip61
+\f@nch@offset@elf=\skip62
+\f@nch@offset@erf=\skip63
+\f@nch@offset@olf=\skip64
+\f@nch@offset@orf=\skip65
+\f@nch@height=\skip66
+\f@nch@footalignment=\skip67
+\f@nch@widthL=\skip68
+\f@nch@widthC=\skip69
+\f@nch@widthR=\skip70
+\@temptokenb=\toks30
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcolorbox.
+sty
+Package: tcolorbox 2025/11/28 version 6.9.0 text color boxes
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/pgf/frontendlayer\ti
+kz.sty
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/pgf/basiclayer\pgf.s
+ty
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgfrcs
+.sty
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfu
+til-common.tex
+\pgfutil@everybye=\toks31
+\pgfutil@tempdima=\dimen193
+\pgfutil@tempdimb=\dimen194
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfu
+til-latex.def
+\pgfutil@abb=\box58
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfr
+cs.code.tex
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf\pgf.revision.t
+ex)
+Package: pgfrcs 2025-08-29 v3.1.11a (3.1.11a)
+))
+Package: pgf 2025-08-29 v3.1.11a (3.1.11a)
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/pgf/basiclayer\pgfco
+re.sty
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/pgf/systemlayer\pgfs
+ys.sty
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pg
+fsys.code.tex
+Package: pgfsys 2025-08-29 v3.1.11a (3.1.11a)
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfk
+eys.code.tex
+\pgfkeys@pathtoks=\toks32
+\pgfkeys@temptoks=\toks33
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfk
+eyslibraryfiltered.code.tex
+\pgfkeys@tmptoks=\toks34
+))
+\pgf@x=\dimen195
+\pgf@y=\dimen196
+\pgf@xa=\dimen197
+\pgf@ya=\dimen198
+\pgf@xb=\dimen199
+\pgf@yb=\dimen256
+\pgf@xc=\dimen257
+\pgf@yc=\dimen258
+\pgf@xd=\dimen259
+\pgf@yd=\dimen260
+\w@pgf@writea=\write3
+\r@pgf@reada=\read3
+\c@pgf@counta=\count314
+\c@pgf@countb=\count315
+\c@pgf@countc=\count316
+\c@pgf@countd=\count317
+\t@pgf@toka=\toks35
+\t@pgf@tokb=\toks36
+\t@pgf@tokc=\toks37
+\pgf@sys@id@count=\count318
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pg
+f.cfg
+File: pgf.cfg 2025-08-29 v3.1.11a (3.1.11a)
+)
+Driver file for pgf: pgfsys-pdftex.def
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pg
+fsys-pdftex.def
+File: pgfsys-pdftex.def 2025-08-29 v3.1.11a (3.1.11a)
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pg
+fsys-common-pdf.def
+File: pgfsys-common-pdf.def 2025-08-29 v3.1.11a (3.1.11a)
+)))
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pg
+fsyssoftpath.code.tex
+File: pgfsyssoftpath.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfsyssoftpath@smallbuffer@items=\count319
+\pgfsyssoftpath@bigbuffer@items=\count320
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pg
+fsysprotocol.code.tex
+File: pgfsysprotocol.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+))
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgf
+core.code.tex
+Package: pgfcore 2025-08-29 v3.1.11a (3.1.11a)
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmath.c
+ode.tex
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathut
+il.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathpa
+rser.code.tex
+\pgfmath@dimen=\dimen261
+\pgfmath@count=\count321
+\pgfmath@box=\box59
+\pgfmath@toks=\toks38
+\pgfmath@stack@operand=\toks39
+\pgfmath@stack@operation=\toks40
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfu
+nctions.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfu
+nctions.basic.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfu
+nctions.trigonometric.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfu
+nctions.random.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfu
+nctions.comparison.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfu
+nctions.base.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfu
+nctions.round.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfu
+nctions.misc.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfu
+nctions.integerarithmetics.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathca
+lc.code.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfl
+oat.code.tex
+\c@pgfmathroundto@lastzeros=\count322
+))
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfint.co
+de.tex)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgf
+corepoints.code.tex
+File: pgfcorepoints.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@picminx=\dimen262
+\pgf@picmaxx=\dimen263
+\pgf@picminy=\dimen264
+\pgf@picmaxy=\dimen265
+\pgf@pathminx=\dimen266
+\pgf@pathmaxx=\dimen267
+\pgf@pathminy=\dimen268
+\pgf@pathmaxy=\dimen269
+\pgf@xx=\dimen270
+\pgf@xy=\dimen271
+\pgf@yx=\dimen272
+\pgf@yy=\dimen273
+\pgf@zx=\dimen274
+\pgf@zy=\dimen275
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgf
+corepathconstruct.code.tex
+File: pgfcorepathconstruct.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@path@lastx=\dimen276
+\pgf@path@lasty=\dimen277
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgf
+corepathusage.code.tex
+File: pgfcorepathusage.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@shorten@end@additional=\dimen278
+\pgf@shorten@start@additional=\dimen279
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgf
+corescopes.code.tex
+File: pgfcorescopes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfpic=\box60
+\pgf@hbox=\box61
+\pgf@layerbox@main=\box62
+\pgf@picture@serial@count=\count323
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgf
+coregraphicstate.code.tex
+File: pgfcoregraphicstate.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgflinewidth=\dimen280
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgf
+coretransformations.code.tex
+File: pgfcoretransformations.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@pt@x=\dimen281
+\pgf@pt@y=\dimen282
+\pgf@pt@temp=\dimen283
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgf
+corequick.code.tex
+File: pgfcorequick.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgf
+coreobjects.code.tex
+File: pgfcoreobjects.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgf
+corepathprocessing.code.tex
+File: pgfcorepathprocessing.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgf
+corearrows.code.tex
+File: pgfcorearrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfarrowsep=\dimen284
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgf
+coreshade.code.tex
+File: pgfcoreshade.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@max=\dimen285
+\pgf@sys@shading@range@num=\count324
+\pgf@shadingcount=\count325
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgf
+coreimage.code.tex
+File: pgfcoreimage.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgf
+coreexternal.code.tex
+File: pgfcoreexternal.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfexternal@startupbox=\box63
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgf
+corelayers.code.tex
+File: pgfcorelayers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgf
+coretransparency.code.tex
+File: pgfcoretransparency.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgf
+corepatterns.code.tex
+File: pgfcorepatterns.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgf
+corerdf.code.tex
+File: pgfcorerdf.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)))
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmod
+uleshapes.code.tex
+File: pgfmoduleshapes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfnodeparttextbox=\box64
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmod
+uleplot.code.tex
+File: pgfmoduleplot.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/pgf/compatibility\pg
+fcomp-version-0-65.sty
+Package: pgfcomp-version-0-65 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@nodesepstart=\dimen286
+\pgf@nodesepend=\dimen287
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/pgf/compatibility\pg
+fcomp-version-1-18.sty
+Package: pgfcomp-version-1-18 2025-08-29 v3.1.11a (3.1.11a)
+))
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgffor
+.sty
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgfkey
+s.sty
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfk
+eys.code.tex))
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/pgf/math\pgfmath.sty
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmath.c
+ode.tex))
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgff
+or.code.tex
+Package: pgffor 2025-08-29 v3.1.11a (3.1.11a)
+\pgffor@iter=\dimen288
+\pgffor@skip=\dimen289
+\pgffor@stack=\toks41
+\pgffor@toks=\toks42
+))
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/
+tikz\tikz.code.tex
+Package: tikz 2025-08-29 v3.1.11a (3.1.11a)
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgfl
+ibraryplothandlers.code.tex
+File: pgflibraryplothandlers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@plot@mark@count=\count326
+\pgfplotmarksize=\dimen290
+)
+\tikz@lastx=\dimen291
+\tikz@lasty=\dimen292
+\tikz@lastxsaved=\dimen293
+\tikz@lastysaved=\dimen294
+\tikz@lastmovetox=\dimen295
+\tikz@lastmovetoy=\dimen296
+\tikzleveldistance=\dimen297
+\tikzsiblingdistance=\dimen298
+\tikz@figbox=\box65
+\tikz@figbox@bg=\box66
+\tikz@tempbox=\box67
+\tikz@tempbox@bg=\box68
+\tikztreelevel=\count327
+\tikznumberofchildren=\count328
+\tikznumberofcurrentchild=\count329
+\tikz@fig@count=\count330
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmod
+ulematrix.code.tex
+File: pgfmodulematrix.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfmatrixcurrentrow=\count331
+\pgfmatrixcurrentcolumn=\count332
+\pgf@matrix@numberofcolumns=\count333
+)
+\tikz@expandcount=\count334
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/
+tikz/libraries\tikzlibrarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)))
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/tools\verbatim.sty
+Package: verbatim 2024-01-22 v1.5x LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks43
+\verbatim@line=\toks44
+\verbatim@in@stream=\read4
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/environ\environ.sty
+Package: environ 2014/05/04 v0.3 A new way to define environments
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/trimspaces\trimspace
+s.sty
+Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
+))
+\tcb@titlebox=\box69
+\tcb@upperbox=\box70
+\tcb@lowerbox=\box71
+\tcb@phantombox=\box72
+\c@tcbbreakpart=\count335
+\c@tcblayer=\count336
+\c@tcolorbox@number=\count337
+\l__tcobox_tmpa_box=\box73
+\l__tcobox_tmpa_dim=\dimen299
+\tcb@temp=\box74
+\tcb@temp=\box75
+\tcb@temp=\box76
+\tcb@temp=\box77
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcbbreakab
+le.code.tex
+Library (tcolorbox): 'tcbbreakable.code.tex' version '6.9.0'
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/pdfcol\pdfcol.sty
+Package: pdfcol 2022-09-21 v1.7 Handle new color stacks for pdfTeX (HO)
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcmds.st
+y
+Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/infwarerr\infwarer
+r.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+))
+Package pdfcol Info: New color stack `tcb@breakable' = 1 on input line 23.
+\tcb@testbox=\box78
+\tcb@totalupperbox=\box79
+\tcb@totallowerbox=\box80
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.st
+y
+Package: hyperref 2025-07-12 v7.01o Hypertext links for LaTeX
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.
+sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/kvdefinekeys\kvdef
+inekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pdfescape\pdfescap
+e.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pdftexc
+mds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+))
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/hycolor\hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
+Package: nameref 2025-06-21 v2.57 Cross-referencing by name of section
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/refcount\refcount.st
+y
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/gettitlestring\get
+titlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.
+sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+))
+\c@section@level=\count338
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\stringen
+c.sty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
+)
+)
+\@linkdim=\dimen300
+\Hy@linkcounter=\count339
+\Hy@pagecounter=\count340
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
+File: pd1enc.def 2025-07-12 v7.01o Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.st
+y
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+\Hy@SavedSpaceFactor=\count341
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def
+File: puenc.def 2025-07-12 v7.01o Hyperref: PDF Unicode definition (HO)
+Now handling font encoding PU ...
+... no UTF-8 mapping file for font encoding PU
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 4066.
+Package hyperref Info: Hyper figures OFF on input line 4195.
+Package hyperref Info: Link nesting OFF on input line 4200.
+Package hyperref Info: Hyper index ON on input line 4203.
+Package hyperref Info: Plain pages OFF on input line 4210.
+Package hyperref Info: Backreferencing OFF on input line 4215.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4462.
+\c@Hy@tempcnt=\count342
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
+\Urlmuskip=\muskip18
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 4801.
+\XeTeXLinkMargin=\dimen301
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/bigintcalc\bigintc
+alc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
+\Fld@menulength=\count343
+\Field@Width=\dimen302
+\Fld@charsize=\dimen303
+Package hyperref Info: Hyper figures OFF on input line 6078.
+Package hyperref Info: Link nesting OFF on input line 6083.
+Package hyperref Info: Hyper index ON on input line 6086.
+Package hyperref Info: backreferencing OFF on input line 6093.
+Package hyperref Info: Link coloring ON on input line 6096.
+Package hyperref Info: Link coloring with OCG OFF on input line 6103.
+Package hyperref Info: PDF/A mode OFF on input line 6108.
+\Hy@abspage=\count344
+\c@Item=\count345
+\c@Hfootnote=\count346
+)
+Package hyperref Info: Driver (autodetected): hpdftex.
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdftex.def
+File: hpdftex.def 2025-07-12 v7.01o Hyperref driver for pdfTeX
+\Fld@listcount=\count347
+\c@bookmark@seq@number=\count348
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerun
+filecheck.sty
+Package: rerunfilecheck 2025-06-21 v1.11 Rerun checks for auxiliary files (HO)
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/generic/uniquecounter\uniq
+uecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+84.
+)
+\Hy@SectionHShift=\skip71
+) (auto_results.tex)
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 58
+.
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmr.fd
+File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-
+pdftex.def
+File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count349
+)
+(C:\Users\vuache_h\Desktop\perso\Cu3Au_MC\results\production\report\build_revie
+w_20261111\rapport_template.aux
+Package babel Info: 'french' activates 'french' shorthands.
+(babel)             Reported on input line 11.
+)
+\openout1 = `rapport_template.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Info: Redefining \degres on input line 58.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(54.06023pt, 489.38742pt, 54.06023pt)
+* v-part:(T,H,B)=(54.06023pt, 736.92639pt, 54.06023pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=489.38742pt
+* \textheight=736.92639pt
+* \oddsidemargin=-18.20976pt
+* \evensidemargin=-18.20976pt
+* \topmargin=-57.20976pt
+* \headheight=14.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=57.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf
+.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count350
+\scratchdimen=\dimen304
+\scratchbox=\box81
+\nofMPsegments=\count351
+\nofMParguments=\count352
+\everyMPshowfont=\toks45
+\MPscratchCnt=\count353
+\MPscratchDim=\dimen305
+\MPnumerator=\count354
+\makeMPintoPDFobject=\count355
+\everyMPtoPDFconversion=\toks46
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopd
+f-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sy
+s.cfg
+File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
+))
+LaTeX Info: Redefining \microtypecontext on input line 58.
+Package microtype Info: Applying patch `item' on input line 58.
+Package microtype Info: Applying patch `toc' on input line 58.
+Package microtype Info: Applying patch `eqnum' on input line 58.
+Package microtype Info: Applying patch `footnote' on input line 58.
+Package microtype Info: Applying patch `verbatim' on input line 58.
+LaTeX Info: Redefining \microtypesetup on input line 58.
+Package microtype Info: Generating PDF output.
+Package microtype Info: Character protrusion enabled (level 2).
+Package microtype Info: Using default protrusion set `alltext'.
+Package microtype Info: Automatic font expansion enabled (level 2),
+(microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
+Package microtype Info: Using default expansion set `alltext-nott'.
+Package microtype Info: Patching command `\showhyphens'.
+Package microtype Info: No adjustment of tracking.
+Package microtype Info: No adjustment of interword spacing.
+Package microtype Info: No adjustment of character kerning.
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-cmr.cfg
+File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
+(RS)
+)
+Package hyperref Info: Link coloring ON on input line 58.
+
+(C:\Users\vuache_h\Desktop\perso\Cu3Au_MC\results\production\report\build_revie
+w_20261111\rapport_template.out)
+(C:\Users\vuache_h\Desktop\perso\Cu3Au_MC\results\production\report\build_revie
+w_20261111\rapport_template.out)
+\@outlinefile=\write4
+\openout4 = `rapport_template.out'.
+
+Package hyperref Info: Option `pageanchor' set `false' on input line 59.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 6
+6.
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr.fd
+File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 6
+6.
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm.fd
+File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
+66.
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/lm\omslmsy.fd
+File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
+66.
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/lm\omxlmex.fd
+File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <24.88> on input line 66.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <20.74> on input line 66.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <17.28> on input line 66.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 66.
+
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msa.cfg
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 66.
+
+ (C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msb.cfg
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 73.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 73.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 73.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <9> on input line 82.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 82.
+ [1
+
+{C:/Users/vuache_h/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/v
+uache_h/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/Users/vu
+ache_h/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users/vua
+che_h/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Users/
+vuache_h/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}]
+Package hyperref Info: Option `pageanchor' set `true' on input line 91.
+
+(C:\Users\vuache_h\Desktop\perso\Cu3Au_MC\results\production\report\build_revie
+w_20261111\rapport_template.toc)
+\tf@toc=\write5
+\openout5 = `rapport_template.toc'.
+
+ [1] [2]
+<figures/01_reseau.pdf, id=226, 851.20775pt x 454.82957pt>
+File: figures/01_reseau.pdf Graphic file (type pdf)
+<use figures/01_reseau.pdf>
+Package pdftex.def Info: figures/01_reseau.pdf  used on input line 249.
+(pdftex.def)             Requested size: 464.91862pt x 248.422pt.
+Package microtype Info: Character `029' is missing
+(microtype)             in font `T1/lmr/m/sc/10'.
+(microtype)             Ignoring protrusion settings for this character.
+<figures/13_coquilles.pdf, id=227, 586.35616pt x 347.5133pt>
+File: figures/13_coquilles.pdf Graphic file (type pdf)
+<use figures/13_coquilles.pdf>
+Package pdftex.def Info: figures/13_coquilles.pdf  used on input line 255.
+(pdftex.def)             Requested size: 464.92517pt x 275.5453pt.
+ [3{C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathe
+x.enc}] [4 <./figures/01_reseau.pdf> <./figures/13_coquilles.pdf>]
+<figures/14_organigramme.pdf, id=271, 518.53723pt x 612.8496pt>
+File: figures/14_organigramme.pdf Graphic file (type pdf)
+<use figures/14_organigramme.pdf>
+Package pdftex.def Info: figures/14_organigramme.pdf  used on input line 321.
+(pdftex.def)             Requested size: 261.8711pt x 309.50063pt.
+ [5]
+<figures/12_cowley.pdf, id=279, 857.30298pt x 378.98691pt>
+File: figures/12_cowley.pdf Graphic file (type pdf)
+<use figures/12_cowley.pdf>
+Package pdftex.def Info: figures/12_cowley.pdf  used on input line 376.
+(pdftex.def)             Requested size: 489.38725pt x 216.34283pt.
+ [6 <./figures/14_organigramme.pdf>]
+<figures/15_variantes.pdf, id=294, 686.565pt x 313.11278pt>
+File: figures/15_variantes.pdf Graphic file (type pdf)
+<use figures/15_variantes.pdf>
+Package pdftex.def Info: figures/15_variantes.pdf  used on input line 416.
+(pdftex.def)             Requested size: 489.3817pt x 223.18593pt.
+ [7 <./figures/12_cowley.pdf> <./figures/15_variantes.pdf>]
+<figures/09_sous_reseaux.pdf, id=339, 857.76993pt x 379.4928pt>
+File: figures/09_sous_reseaux.pdf Graphic file (type pdf)
+<use figures/09_sous_reseaux.pdf>
+Package pdftex.def Info: figures/09_sous_reseaux.pdf  used on input line 440.
+(pdftex.def)             Requested size: 489.39204pt x 216.51581pt.
+ (current_validation.tex
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 2.
+
+[8 <./figures/09_sous_reseaux.pdf>]) [9]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <12> on input line 532.
+ [10]
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 5
+97.
+
+(C:\Users\vuache_h\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
+File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `lmtt' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+<figures/16_coupes_2D.pdf, id=384, 707.90553pt x 509.57877pt>
+File: figures/16_coupes_2D.pdf Graphic file (type pdf)
+<use figures/16_coupes_2D.pdf>
+Package pdftex.def Info: figures/16_coupes_2D.pdf  used on input line 607.
+(pdftex.def)             Requested size: 429.97466pt x 309.51297pt.
+<figures/17_moyennes_cumulees.pdf, id=385, 712.99063pt x 495.48615pt>
+File: figures/17_moyennes_cumulees.pdf Graphic file (type pdf)
+<use figures/17_moyennes_cumulees.pdf>
+Package pdftex.def Info: figures/17_moyennes_cumulees.pdf  used on input line 6
+10.
+(pdftex.def)             Requested size: 445.37871pt x 309.51173pt.
+<figures/10_repliques.pdf, id=386, 857.59207pt x 375.87929pt>
+File: figures/10_repliques.pdf Graphic file (type pdf)
+<use figures/10_repliques.pdf>
+Package pdftex.def Info: figures/10_repliques.pdf  used on input line 619.
+(pdftex.def)             Requested size: 489.39525pt x 214.50003pt.
+
+(representative_results.tex [11 <./figures/16_coupes_2D.pdf>] [12 <./figures/17
+_moyennes_cumulees.pdf> <./figures/10_repliques.pdf>]) [13]
+<figures/05_diagnostics.pdf, id=439, 857.4864pt x 591.60526pt>
+File: figures/05_diagnostics.pdf Graphic file (type pdf)
+<use figures/05_diagnostics.pdf>
+Package pdftex.def Info: figures/05_diagnostics.pdf  used on input line 732.
+(pdftex.def)             Requested size: 448.60393pt x 309.50513pt.
+<figures/06_traces.pdf, id=440, 864.45273pt x 519.69658pt>
+File: figures/06_traces.pdf Graphic file (type pdf)
+<use figures/06_traces.pdf>
+Package pdftex.def Info: figures/06_traces.pdf  used on input line 734.
+(pdftex.def)             Requested size: 489.39279pt x 294.21593pt.
+ [14 <./figures/05_diagnostics.pdf>] (critical_table.tex)
+<figures/11_zoom_transition.pdf, id=462, 857.86562pt x 555.65092pt>
+File: figures/11_zoom_transition.pdf Graphic file (type pdf)
+<use figures/11_zoom_transition.pdf>
+Package pdftex.def Info: figures/11_zoom_transition.pdf  used on input line 774
+.
+(pdftex.def)             Requested size: 477.86201pt x 309.51756pt.
+<figures/04_distributions.pdf, id=465, 857.23087pt x 364.9665pt>
+File: figures/04_distributions.pdf Graphic file (type pdf)
+<use figures/04_distributions.pdf>
+Package pdftex.def Info: figures/04_distributions.pdf  used on input line 784.
+(pdftex.def)             Requested size: 489.38533pt x 208.35606pt.
+ (peak_uncertainty.tex [15 <./figures/06_traces.pdf>] [16 <./figures/11_zoom_tr
+ansition.pdf> <./figures/04_distributions.pdf>])
+<figures/18_incertitude_pic.pdf, id=521, 712.90149pt x 358.06471pt>
+File: figures/18_incertitude_pic.pdf Graphic file (type pdf)
+<use figures/18_incertitude_pic.pdf>
+Package pdftex.def Info: figures/18_incertitude_pic.pdf  used on input line 806
+.
+(pdftex.def)             Requested size: 464.92516pt x 233.51514pt.
+ [17 <./figures/18_incertitude_pic.pdf>]
+<figures/08_champ_moyen.pdf, id=536, 857.80006pt x 379.4928pt>
+File: figures/08_champ_moyen.pdf Graphic file (type pdf)
+<use figures/08_champ_moyen.pdf>
+Package pdftex.def Info: figures/08_champ_moyen.pdf  used on input line 876.
+(pdftex.def)             Requested size: 489.39613pt x 216.51001pt.
+ (discussion_results.tex)
+[18 <./figures/08_champ_moyen.pdf>] [19] (bonus_cycle.tex [20] [21]
+<figures/bonus_01_thermodynamique.pdf, id=593, 857.56696pt x 580.04204pt>
+File: figures/bonus_01_thermodynamique.pdf Graphic file (type pdf)
+<use figures/bonus_01_thermodynamique.pdf>
+Package pdftex.def Info: figures/bonus_01_thermodynamique.pdf  used on input li
+ne 49.
+(pdftex.def)             Requested size: 457.59648pt x 309.50958pt.
+<figures/bonus_02_ordres.pdf, id=594, 1002.40562pt x 580.04204pt>
+File: figures/bonus_02_ordres.pdf Graphic file (type pdf)
+<use figures/bonus_02_ordres.pdf>
+Package pdftex.def Info: figures/bonus_02_ordres.pdf  used on input line 50.
+(pdftex.def)             Requested size: 464.92076pt x 269.0264pt.
+<figures/bonus_03_sous_reseaux.pdf, id=595, 857.69972pt x 580.04204pt>
+File: figures/bonus_03_sous_reseaux.pdf Graphic file (type pdf)
+<use figures/bonus_03_sous_reseaux.pdf>
+Package pdftex.def Info: figures/bonus_03_sous_reseaux.pdf  used on input line 
+51.
+(pdftex.def)             Requested size: 457.66733pt x 309.50958pt.
+<figures/bonus_04_ecarts.pdf, id=596, 785.77501pt x 509.57877pt>
+File: figures/bonus_04_ecarts.pdf Graphic file (type pdf)
+<use figures/bonus_04_ecarts.pdf>
+Package pdftex.def Info: figures/bonus_04_ecarts.pdf  used on input line 52.
+(pdftex.def)             Requested size: 464.92213pt x 301.50417pt.
+<figures/bonus_06_diagnostics.pdf, id=597, 784.34271pt x 509.57877pt>
+File: figures/bonus_06_diagnostics.pdf Graphic file (type pdf)
+<use figures/bonus_06_diagnostics.pdf>
+Package pdftex.def Info: figures/bonus_06_diagnostics.pdf  used on input line 5
+3.
+(pdftex.def)             Requested size: 464.92442pt x 302.05623pt.
+<figures/bonus_08_distributions.pdf, id=598, 857.73512pt x 509.57877pt>
+File: figures/bonus_08_distributions.pdf Graphic file (type pdf)
+<use figures/bonus_08_distributions.pdf>
+Package pdftex.def Info: figures/bonus_08_distributions.pdf  used on input line
+ 54.
+(pdftex.def)             Requested size: 464.92384pt x 276.21036pt.
+)
+(bonus_animations.tex [22 <./figures/bonus_01_thermodynamique.pdf>] [23 <./figu
+res/bonus_02_ordres.pdf> <./figures/bonus_03_sous_reseaux.pdf>] [24 <./figures/
+bonus_04_ecarts.pdf> <./figures/bonus_06_diagnostics.pdf>]
+<figures/animations_01_evolution.pdf, id=763, 1002.37045pt x 338.96036pt>
+File: figures/animations_01_evolution.pdf Graphic file (type pdf)
+<use figures/animations_01_evolution.pdf>
+Package pdftex.def Info: figures/animations_01_evolution.pdf  used on input lin
+e 14.
+(pdftex.def)             Requested size: 489.39162pt x 165.49205pt.
+)
+(bonus_correlation.tex [25 <./figures/bonus_08_distributions.pdf> <./figures/an
+imations_01_evolution.pdf>] [26]
+<figures/correlation_01_xi.pdf, id=800, 857.87567pt x 366.85657pt>
+File: figures/correlation_01_xi.pdf Graphic file (type pdf)
+<use figures/correlation_01_xi.pdf>
+Package pdftex.def Info: figures/correlation_01_xi.pdf  used on input line 63.
+(pdftex.def)             Requested size: 489.40001pt x 209.28394pt.
+<figures/correlation_02_real_fourier.pdf, id=801, 857.36375pt x 353.06468pt>
+File: figures/correlation_02_real_fourier.pdf Graphic file (type pdf)
+<use figures/correlation_02_real_fourier.pdf>
+Package pdftex.def Info: figures/correlation_02_real_fourier.pdf  used on input
+ line 64.
+(pdftex.def)             Requested size: 489.39578pt x 201.53448pt.
+<figures/correlation_04_diagnostics.pdf, id=802, 1000.95728pt x 339.11658pt>
+File: figures/correlation_04_diagnostics.pdf Graphic file (type pdf)
+<use figures/correlation_04_diagnostics.pdf>
+Package pdftex.def Info: figures/correlation_04_diagnostics.pdf  used on input 
+line 65.
+(pdftex.def)             Requested size: 489.38895pt x 165.80118pt.
+ [27] [28 <./figures/correlation_01_xi.pdf> <./figures/correlation_02_real_four
+ier.pdf>] [29 <./figures/correlation_04_diagnostics.pdf>]
+<figures/correlation_03_relaxation.pdf, id=866, 857.83046pt x 556.5047pt>
+File: figures/correlation_03_relaxation.pdf Graphic file (type pdf)
+<use figures/correlation_03_relaxation.pdf>
+Package pdftex.def Info: figures/correlation_03_relaxation.pdf  used on input l
+ine 73.
+(pdftex.def)             Requested size: 477.09634pt x 309.50912pt.
+) (bonus_sizes.tex [30
+
+ <./figures/correlation_03_relaxation.pdf>]
+<figures/croise_01_transition.pdf, id=891, 930.24474pt x 539.39015pt>
+File: figures/croise_01_transition.pdf Graphic file (type pdf)
+<use figures/croise_01_transition.pdf>
+Package pdftex.def Info: figures/croise_01_transition.pdf  used on input line 3
+3.
+(pdftex.def)             Requested size: 489.39362pt x 283.76842pt.
+
+[31 <./figures/croise_01_transition.pdf>]
+<figures/croise_02_ordres.pdf, id=961, 857.86562pt x 539.39015pt>
+File: figures/croise_02_ordres.pdf Graphic file (type pdf)
+<use figures/croise_02_ordres.pdf>
+Package pdftex.def Info: figures/croise_02_ordres.pdf  used on input line 39.
+(pdftex.def)             Requested size: 489.39427pt x 307.71071pt.
+<figures/croise_04_populations.pdf, id=962, 929.99509pt x 713.74155pt>
+File: figures/croise_04_populations.pdf Graphic file (type pdf)
+<use figures/croise_04_populations.pdf>
+Package pdftex.def Info: figures/croise_04_populations.pdf  used on input line 
+61.
+(pdftex.def)             Requested size: 403.29584pt x 309.51668pt.
+ [32 <./figures/croise_02_ordres.pdf>]
+<figures/croise_03_diagnostics.pdf, id=1001, 930.0126pt x 539.39015pt>
+File: figures/croise_03_diagnostics.pdf Graphic file (type pdf)
+<use figures/croise_03_diagnostics.pdf>
+Package pdftex.def Info: figures/croise_03_diagnostics.pdf  used on input line 
+83.
+(pdftex.def)             Requested size: 489.38501pt x 283.83427pt.
+[33 <./figures/croise_04_populations.pdf>] [34 <./figures/croise_03_diagnostics
+.pdf>]
+<figures/croise_05_energie.pdf, id=1047, 930.0754pt x 539.39015pt>
+File: figures/croise_05_energie.pdf Graphic file (type pdf)
+<use figures/croise_05_energie.pdf>
+Package pdftex.def Info: figures/croise_05_energie.pdf  used on input line 177.
+
+(pdftex.def)             Requested size: 489.38966pt x 283.81781pt.
+ [35 <./figures/croise_05_energie.pdf>]
+<figures/croise_07_variantes.pdf, id=1077, 930.13562pt x 539.39015pt>
+File: figures/croise_07_variantes.pdf Graphic file (type pdf)
+<use figures/croise_07_variantes.pdf>
+Package pdftex.def Info: figures/croise_07_variantes.pdf  used on input line 19
+9.
+(pdftex.def)             Requested size: 489.37877pt x 283.79312pt.
+<figures/croise_06_protocoles.pdf, id=1078, 930.24474pt x 539.39015pt>
+File: figures/croise_06_protocoles.pdf Graphic file (type pdf)
+<use figures/croise_06_protocoles.pdf>
+Package pdftex.def Info: figures/croise_06_protocoles.pdf  used on input line 2
+05.
+(pdftex.def)             Requested size: 489.39362pt x 283.76842pt.
+ [36 <./figures/croise_07_variantes.pdf>]
+<figures/croise_08_spatial.pdf, id=1114, 930.05151pt x 337.15823pt>
+File: figures/croise_08_spatial.pdf Graphic file (type pdf)
+<use figures/croise_08_spatial.pdf>
+Package pdftex.def Info: figures/croise_08_spatial.pdf  used on input line 217.
+
+(pdftex.def)             Requested size: 489.3913pt x 177.412pt.
+ [37 <./figures/croise_06_protocoles.pdf>]) (bonus_size_cycles.tex
+<figures/croise_10_cycles_global.pdf, id=1219, 930.24474pt x 539.39015pt>
+File: figures/croise_10_cycles_global.pdf Graphic file (type pdf)
+<use figures/croise_10_cycles_global.pdf>
+Package pdftex.def Info: figures/croise_10_cycles_global.pdf  used on input lin
+e 7.
+(pdftex.def)             Requested size: 489.39362pt x 283.76842pt.
+
+[38 <./figures/croise_08_spatial.pdf>]
+<figures/croise_11_cycles_diagnostics.pdf, id=1249, 930.17453pt x 539.39015pt>
+File: figures/croise_11_cycles_diagnostics.pdf Graphic file (type pdf)
+<use figures/croise_11_cycles_diagnostics.pdf>
+Package pdftex.def Info: figures/croise_11_cycles_diagnostics.pdf  used on inpu
+t line 27.
+(pdftex.def)             Requested size: 489.38506pt x 283.78488pt.
+<figures/croise_12_cycle_L9_reference.pdf, id=1250, 930.24474pt x 539.39015pt>
+File: figures/croise_12_cycle_L9_reference.pdf Graphic file (type pdf)
+<use figures/croise_12_cycle_L9_reference.pdf>
+Package pdftex.def Info: figures/croise_12_cycle_L9_reference.pdf  used on inpu
+t line 33.
+(pdftex.def)             Requested size: 489.39362pt x 283.76842pt.
+ [39 <./figures/croise_10_cycles_global.pdf>] [40 <./figures/croise_11_cycles_d
+iagnostics.pdf> <./figures/croise_12_cycle_L9_reference.pdf>]
+<figures/cycle_L9_sous_reseaux.pdf, id=1497, 857.69972pt x 580.04204pt>
+File: figures/cycle_L9_sous_reseaux.pdf Graphic file (type pdf)
+<use figures/cycle_L9_sous_reseaux.pdf>
+Package pdftex.def Info: figures/cycle_L9_sous_reseaux.pdf  used on input line 
+97.
+(pdftex.def)             Requested size: 457.66733pt x 309.50958pt.
+<figures/croise_13_cycle_L12_reference.pdf, id=1498, 930.24474pt x 539.39015pt>
+
+File: figures/croise_13_cycle_L12_reference.pdf Graphic file (type pdf)
+<use figures/croise_13_cycle_L12_reference.pdf>
+Package pdftex.def Info: figures/croise_13_cycle_L12_reference.pdf  used on inp
+ut line 107.
+(pdftex.def)             Requested size: 489.39362pt x 283.76842pt.
+ [41] [42 <./figures/cycle_L9_sous_reseaux.pdf> <./figures/croise_13_cycle_L12_
+reference.pdf>]
+<figures/croise_14_cycle_L12_populations.pdf, id=1599, 929.99509pt x 539.39015p
+t>
+File: figures/croise_14_cycle_L12_populations.pdf Graphic file (type pdf)
+<use figures/croise_14_cycle_L12_populations.pdf>
+Package pdftex.def Info: figures/croise_14_cycle_L12_populations.pdf  used on i
+nput line 143.
+(pdftex.def)             Requested size: 489.38998pt x 283.8425pt.
+) [43 <./figures/croise_14_cycle_L12_populations.pdf>] [44] [45]
+(C:\Users\vuache_h\Desktop\perso\Cu3Au_MC\results\production\report\build_revie
+w_20261111\rapport_template.aux)
+ ***********
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-12-24>
+ ***********
+Package rerunfilecheck Info: File `rapport_template.out' has not changed.
+(rerunfilecheck)             Checksum: B82424FABD3F7DE0F20245B733BDFB44;11147.
+ ) 
+Here is how much of TeX's memory you used:
+ 28883 strings out of 467871
+ 561062 string characters out of 5416924
+ 980360 words of memory out of 5000000
+ 56720 multiletter control sequences out of 15000+600000
+ 760292 words of font info for 303 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 98i,16n,108p,1061b,793s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10
+.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmb
+x12.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/
+lmbx7.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/l
+m/lmbx9.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public
+/lm/lmcsc10.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1/pu
+blic/lm/lmex10.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/type1
+/public/lm/lmmi10.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts/ty
+pe1/public/lm/lmmi12.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fonts
+/type1/public/lm/lmmi5.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/fon
+ts/type1/public/lm/lmmi6.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX/f
+onts/type1/public/lm/lmmi7.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKTeX
+/fonts/type1/public/lm/lmmi8.pfb><C:/Users/vuache_h/AppData/Local/Programs/MiKT
+eX/fonts/type1/public/lm/lmmi9.pfb><C:/Users/vuache_h/AppData/Local/Programs/Mi
+KTeX/fonts/type1/public/lm/lmmib10.pfb><C:/Users/vuache_h/AppData/Local/Program
+s/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/vuache_h/AppData/Local/Progr
+ams/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/vuache_h/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/public/lm/lmr5.pfb><C:/Users/vuache_h/AppData/Local/Pr
+ograms/MiKTeX/fonts/type1/public/lm/lmr6.pfb><C:/Users/vuache_h/AppData/Local/P
+rograms/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/vuache_h/AppData/Local/
+Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/vuache_h/AppData/Local
+/Programs/MiKTeX/fonts/type1/public/lm/lmr9.pfb><C:/Users/vuache_h/AppData/Loca
+l/Programs/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/vuache_h/AppData/L
+ocal/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/vuache_h/AppDat
+a/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy5.pfb><C:/Users/vuache_h/AppD
+ata/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy6.pfb><C:/Users/vuache_h/Ap
+pData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/Users/vuache_h/
+AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Users/vuache_
+h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy9.pfb><C:/Users/vuach
+e_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/Users/vu
+ache_h/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt9.pfb>
+Output written on C:\Users\vuache_h\Desktop\perso\Cu3Au_MC\results\production\r
+eport\build_review_20261111\rapport_template.pdf (46 pages, 2470490 bytes).
+PDF statistics:
+ 1818 PDF objects out of 2073 (max. 8388607)
+ 177 named destinations out of 1000 (max. 500000)
+ 71165 words of extra memory for PDF output out of 74296 (max. 10000000)
+

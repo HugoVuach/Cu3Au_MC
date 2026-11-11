@@ -146,6 +146,24 @@ def write_includes(output='results/correlation_L6', reference='results/productio
         r"La concentration totale étant fixée, son mode uniforme ne fluctue "
         r"pas. Le mode $\mathbf k=0$ utilisé ci-dessous est celui du champ "
         r"d'ordre, pas celui de la concentration brute.",
+        r'\begin{oral}{Du tableau des occupations aux modes de Fourier}',
+        r'\begin{itemize}',
+        r"\item \textbf{Ce qui entre dans la FFT.} Pour chaque configuration, "
+        r"les occupations Au/Cu sont regroupées en un tableau de "
+        r"$L\times L\times L$ mailles, portant chacune trois composantes "
+        r"$\psi_\alpha$. La FFT (\emph{Fast Fourier Transform}) agit sur les "
+        r"trois directions spatiales, séparément pour chaque composante. "
+        r"Elle fournit les amplitudes complexes $F_\alpha$ ; leur module "
+        r"au carré donne les intensités utilisées dans les spectres.",
+        r"\item \textbf{Ce qui définit un mode.} Un mode est un motif "
+        r"élémentaire de variation spatiale. La périodicité impose "
+        r"$\mathbf k=(2\pi/(La))(n_x,n_y,n_z)$, où les $n_j$ sont des "
+        r"indices entiers de modes, pas des positions atomiques. Le code "
+        r"construit $k_ja$ avec \texttt{2*pi*np.fft.fftfreq(L)}. "
+        r"Un petit $|\mathbf k|$ décrit une variation à grande distance. "
+        r"Le mode zéro est uniforme d'une maille à l'autre : le même motif "
+        r"chimique peut se répéter sans que tous les sites soient de même espèce.",
+        r'\end{itemize}\end{oral}',
         r'\subsubsection{Corrélation réelle, FFT et second moment}',
         r'\[F_\alpha(\mathbf k)=\sum_{\mathbf R}\psi_\alpha(\mathbf R)e^{-i\mathbf k\cdot\mathbf R},'
         r'\qquad S_{\rm brut}(\mathbf k)=\frac1{3V}\sum_\alpha\langle|F_\alpha(\mathbf k)|^2\rangle.\]',
@@ -280,6 +298,7 @@ def write_includes(output='results/correlation_L6', reference='results/productio
         r'\fig{correlation_01_xi}{1}{Longueurs spectrales brute et connexe, et diagnostic conditionnel intra-variante à basse température. Les grandes valeurs doivent être interprétées avec les réserves de taille finie.}',
         r'\fig{correlation_02_real_fourier}{1}{Corrélations réelles connexes obtenues par FFT inverse et spectres des enveloppes d’ordre. Un plateau à basse température peut subsister du fait des fluctuations collectives entre variantes.}',
         r'\fig{correlation_04_diagnostics}{1}{Diagnostics de la campagne spatiale ; l’accord statistique ne supprime pas les effets de taille finie.}',
+        r'\clearpage',
         r'\subsubsection{Après la trempe : distinguer croissance de l’ordre et longueur de fluctuation}',
         r"Les 301 configurations du GIF isotherme permettent une analyse "
         r"spatiale instantanée à 1000 K. On calcule le même rapport de "
@@ -307,6 +326,27 @@ def write_includes(output='results/correlation_L6', reference='results/productio
         r"doivent être accompagnés d'une analyse quantitative et de "
         r"plusieurs répétitions.",
         r'\fig{correlation_03_relaxation}{1}{Longueur apparente, largeur diffuse et poids de l’ordre uniforme pendant la relaxation, avec zoom initial ; comparaison à la part cohérente de la campagne canonique.}',
+        r'\begin{oral}{Lire les quatre panneaux sans confondre temps et température}',
+        r'\begin{itemize}',
+        r"\item \textbf{En haut : deux longueurs, deux questions.} Dans la "
+        r"figure~\ref{fig:correlation_03_relaxation}, les deux "
+        r"panneaux tracent $\ell_{\rm app}/a$ et $\ell_{\rm diff}/a$, "
+        r"sur 6000 balayages puis sur les 200 premiers. Les grandes "
+        r"valeurs bleues et leur dispersion montrent surtout la domination "
+        r"du mode uniforme sur ses premiers voisins ; les petits rapports "
+        r"verts caractérisent le spectre diffus restant. Ni l'un ni "
+        r"l'autre n'est directement un rayon de domaine. La ligne $L/2$ "
+        r"est un avertissement de taille finie, pas une borne mathématique.",
+        r"\item \textbf{En bas : deux fractions différentes.} À gauche, "
+        r"$f_0$ est une fraction d'intensité spectrale à chaque instant "
+        r"de la trempe, pas une fraction d'atomes ordonnés. À droite, "
+        r"l'abscisse devient la température : la part cohérente du mode "
+        r"zéro provient de la campagne canonique. Sa faible valeur, même "
+        r"au froid, peut résulter de la compensation des amplitudes signées "
+        r"lors des changements de variante, sans que les configurations "
+        r"soient désordonnées. Une moyenne d'amplitude et une moyenne "
+        r"d'intensité ne répondent pas à la même question.",
+        r'\end{itemize}\end{oral}',
         r'\subsubsection{Fichiers, vérifications et références de méthode}',
         r"Le module \texttt{correlation.py} définit les observables. "
         r"Le lancement se fait par \texttt{correlation\_campaign.py} ; "
